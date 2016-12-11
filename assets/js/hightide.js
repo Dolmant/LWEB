@@ -1,4 +1,5 @@
 /*global $, jQuery, alert */
+var get_projects = require('./project_separate.js').get_projects;
 
 function toggleOverlay() {
     "use strict";
@@ -70,6 +71,10 @@ var HT = {
             $('header').removeClass('introHeader');
             $('footer').removeClass('introStatic');
             $(window).scrollTop(0);
+            var num = 0;
+            setTimeout(function () {
+                $('.filters').toggleClass('open');
+            }, num);
         },
         parallax: function () {
             "use strict";
@@ -174,8 +179,6 @@ var HT = {
             }, 550);
         });
         
-
-        
         $("a.fade, .projects a, .pager a").click(function (event) {
             event.preventDefault();
             var num = 0,
@@ -198,16 +201,9 @@ var HT = {
     },
     filters: function () {
         "use strict";
-        $('header .filter-work').click(function () {
+        $('.filters #projects').click(function () {
             var num = 0;
-            if ($('header').hasClass('introHeader')) {
-                $('header.introHeader .intro-down').trigger('click');
-                num = 1300;
-            }
-            setTimeout(function () {
-                $(this).toggleClass('open');
-                $('.filters').toggleClass('open');
-            }, num);
+            $('#page-container').html = project_separate.get_projects();
 
         });
     },
