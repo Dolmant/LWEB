@@ -1,5 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-/*global $, jQuery, alert */
 'use strict';
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
@@ -22,269 +21,267 @@ var _jqueryMin = require('./jquery.min');
 
 var _jqueryMin2 = _interopRequireDefault(_jqueryMin);
 
+var _reactRedux = require('react-redux');
+
+var _redux = require('redux');
+
 function toggleOverlay() {
-    "use strict";
-    var overlay = document.getElementById('overlay');
-    var specialBox = document.getElementById('specialBox');
-    overlay.style.opacity = .8;
-    if (overlay.style.display == "flex") {
-        overlay.style.display = "none";
-        specialBox.style.display = "none";
-    } else {
-        overlay.style.display = "flex";
-        specialBox.style.display = "flex";
-    }
+	"use strict";
+	var overlay = document.getElementById('overlay');
+	var specialBox = document.getElementById('specialBox');
+	overlay.style.opacity = .8;
+	if (overlay.style.display == "flex") {
+		overlay.style.display = "none";
+		specialBox.style.display = "none";
+	} else {
+		overlay.style.display = "flex";
+		specialBox.style.display = "flex";
+	}
 }
 
 var HT = {
-    isTouch: function isTouch() {
-        "use strict";
-        return 'ontouchstart' in document.documentElement;
-    },
-    ready: function ready() {
-        "use strict";
-        HT.fajax();
-        HT.filters();
-        HT.sidebar();
-        HT.newsletter();
-        if (_jqueryMin2['default']('.intro').length) {
-            if (_jqueryMin2['default'](window).width() && !HT.isTouch()) {
-                //HANDLE FULL BLEED VIDEO
-                HT.intro.setup();
-            } else {
-                _jqueryMin2['default']('.intro').remove();
-                _jqueryMin2['default']('header').removeClass('introHeader');
-            }
-        }
-        if (_jqueryMin2['default']("body.home").length) {
-            return undefined;
-        }
-        if (_jqueryMin2['default']("body.project").length) {
-            return undefined;
-        }
-    },
-    intro: {
-        scrollPoint: 0,
-        on: false,
-        setup: function setup() {
-            "use strict";
-            _jqueryMin2['default']('.intro').show();
-            _jqueryMin2['default'](window).scrollTop(0);
-            _jqueryMin2['default']('footer').addClass('introStatic');
-            _jqueryMin2['default']('body').css('padding-top', _jqueryMin2['default'](window).height() + 'px');
-            _jqueryMin2['default']('.page.container').addClass('noPad');
-            HT.intro.scrollPoint = _jqueryMin2['default'](window).height();
-            HT.intro.on = true;
-            _jqueryMin2['default']('.intro-logo').css({ 'top': HT.intro.scrollPoint / 2 - 21 });
-            _jqueryMin2['default']('header.introHeader .intro-down').click(function () {
-                _jqueryMin2['default']('html, body').animate({ scrollTop: HT.intro.scrollPoint - 65 }, 1000);
-            });
-            _jqueryMin2['default']('.introVideo').css({ 'min-height': _jqueryMin2['default'](window).height() });
-            _jqueryMin2['default']('.intro-logo img').click(function () {
-                _jqueryMin2['default']('header.introHeader .intro-down').trigger('click');
-            });
-        },
-        close: function close() {
-            "use strict";
-            HT.intro.on = false;
-            _jqueryMin2['default']('.intro').remove();
-            _jqueryMin2['default']('.page.container').removeClass('noPad');
-            _jqueryMin2['default']('body').css({ 'padding-top': 0 });
-            _jqueryMin2['default']('header').removeClass('introHeader');
-            _jqueryMin2['default']('footer').removeClass('introStatic');
-            _jqueryMin2['default'](window).scrollTop(0);
-            var num = 0;
-            setTimeout(function () {
-                _jqueryMin2['default']('.filters').toggleClass('open');
-            }, num);
-        },
-        parallax: function parallax() {
-            "use strict";
-            if (_jqueryMin2['default'](window).scrollTop() < HT.intro.scrollPoint) {
-                _jqueryMin2['default']('.introVideo').css({ 'top': _jqueryMin2['default'](window).scrollTop() / -3 });
-            }
-        },
-        logoScroll: function logoScroll() {
-            "use strict";
-            var top = HT.intro.scrollPoint / 2 - 21;
-            _jqueryMin2['default']('.intro-logo').css({ 'top': top - _jqueryMin2['default'](window).scrollTop() });
-        },
-        scroll: function scroll() {
-            "use strict";
-            HT.intro.parallax();
-            HT.intro.logoScroll();
-            if (_jqueryMin2['default'](window).scrollTop() < HT.intro.scrollPoint) {
-                _jqueryMin2['default']('.intro').css({ 'height': HT.intro.scrollPoint - _jqueryMin2['default'](window).scrollTop() });
-            }
-        },
-        resize: function resize() {
-            "use strict";
-            if (_jqueryMin2['default'](window).scrollTop() === 0) {
-                _jqueryMin2['default']('.intro-logo').css({ 'top': _jqueryMin2['default'](window).height() / 2 - 21 });
-            }
-        }
-    },
+	isTouch: function isTouch() {
+		"use strict";
+		return 'ontouchstart' in document.documentElement;
+	},
+	ready: function ready() {
+		"use strict";
+		HT.fajax();
+		HT.filters();
+		HT.sidebar();
+		HT.newsletter();
+		if (_jqueryMin2['default']('.intro').length) {
+			if (_jqueryMin2['default'](window).width() && !HT.isTouch()) {
+				//HANDLE FULL BLEED VIDEO
+				HT.intro.setup();
+			} else {
+				_jqueryMin2['default']('.intro').remove();
+				_jqueryMin2['default']('header').removeClass('introHeader');
+			}
+		}
+		if (_jqueryMin2['default']("body.home").length) {
+			return undefined;
+		}
+		if (_jqueryMin2['default']("body.project").length) {
+			return undefined;
+		}
+	},
+	intro: {
+		scrollPoint: 0,
+		on: false,
+		setup: function setup() {
+			"use strict";
+			_jqueryMin2['default']('.intro').show();
+			_jqueryMin2['default'](window).scrollTop(0);
+			_jqueryMin2['default']('footer').addClass('introStatic');
+			_jqueryMin2['default']('body').css('padding-top', _jqueryMin2['default'](window).height() + 'px');
+			_jqueryMin2['default']('.page.container').addClass('noPad');
+			HT.intro.scrollPoint = _jqueryMin2['default'](window).height();
+			HT.intro.on = true;
+			_jqueryMin2['default']('.intro-logo').css({ 'top': HT.intro.scrollPoint / 2 - 21 });
+			_jqueryMin2['default']('header.introHeader .intro-down').click(function () {
+				_jqueryMin2['default']('html, body').animate({ scrollTop: HT.intro.scrollPoint - 65 }, 1000);
+			});
+			_jqueryMin2['default']('.introVideo').css({ 'min-height': _jqueryMin2['default'](window).height() });
+			_jqueryMin2['default']('.intro-logo img').click(function () {
+				_jqueryMin2['default']('header.introHeader .intro-down').trigger('click');
+			});
+		},
+		close: function close() {
+			"use strict";
+			HT.intro.on = false;
+			_jqueryMin2['default']('.intro').remove();
+			_jqueryMin2['default']('.page.container').removeClass('noPad');
+			_jqueryMin2['default']('body').css({ 'padding-top': 0 });
+			_jqueryMin2['default']('header').removeClass('introHeader');
+			_jqueryMin2['default']('footer').removeClass('introStatic');
+			_jqueryMin2['default'](window).scrollTop(0);
+			var num = 0;
+			setTimeout(function () {
+				_jqueryMin2['default']('.filters').toggleClass('open');
+			}, num);
+		},
+		parallax: function parallax() {
+			"use strict";
+			if (_jqueryMin2['default'](window).scrollTop() < HT.intro.scrollPoint) {
+				_jqueryMin2['default']('.introVideo').css({ 'top': _jqueryMin2['default'](window).scrollTop() / -3 });
+			}
+		},
+		logoScroll: function logoScroll() {
+			"use strict";
+			var top = HT.intro.scrollPoint / 2 - 21;
+			_jqueryMin2['default']('.intro-logo').css({ 'top': top - _jqueryMin2['default'](window).scrollTop() });
+		},
+		scroll: function scroll() {
+			"use strict";
+			HT.intro.parallax();
+			HT.intro.logoScroll();
+			if (_jqueryMin2['default'](window).scrollTop() < HT.intro.scrollPoint) {
+				_jqueryMin2['default']('.intro').css({ 'height': HT.intro.scrollPoint - _jqueryMin2['default'](window).scrollTop() });
+			}
+		},
+		resize: function resize() {
+			"use strict";
+			if (_jqueryMin2['default'](window).scrollTop() === 0) {
+				_jqueryMin2['default']('.intro-logo').css({ 'top': _jqueryMin2['default'](window).height() / 2 - 21 });
+			}
+		}
+	},
 
-    scroll: function scroll() {
-        "use strict";
-        if (_jqueryMin2['default']("body.journal") && _jqueryMin2['default']('.posts-loader').length) {
-            HT.checkPosts();
-        }
-        if (HT.intro.on) {
-            HT.intro.scroll();
-            if (_jqueryMin2['default'](window).scrollTop() >= HT.intro.scrollPoint - 65) {
-                HT.intro.close();
-            }
-        }
-    },
-    checkPosts: function checkPosts() {
-        "use strict";
-        var docViewTop = _jqueryMin2['default'](window).scrollTop(),
-            docViewBottom = docViewTop + _jqueryMin2['default'](window).height(),
-            elemTop = _jqueryMin2['default']('.posts-loader').offset().top,
-            elemBottom = elemTop + _jqueryMin2['default']('.posts-loader').height();
+	scroll: function scroll() {
+		"use strict";
+		if (_jqueryMin2['default']("body.journal") && _jqueryMin2['default']('.posts-loader').length) {
+			HT.checkPosts();
+		}
+		if (HT.intro.on) {
+			HT.intro.scroll();
+			if (_jqueryMin2['default'](window).scrollTop() >= HT.intro.scrollPoint - 65) {
+				HT.intro.close();
+			}
+		}
+	},
+	checkPosts: function checkPosts() {
+		"use strict";
+		var docViewTop = _jqueryMin2['default'](window).scrollTop(),
+		    docViewBottom = docViewTop + _jqueryMin2['default'](window).height(),
+		    elemTop = _jqueryMin2['default']('.posts-loader').offset().top,
+		    elemBottom = elemTop + _jqueryMin2['default']('.posts-loader').height();
 
-        if (elemBottom <= docViewBottom && elemTop - 100 >= docViewTop && _jqueryMin2['default']('.posts-loader').hasClass('inactive')) {
-            _jqueryMin2['default']('.posts-loader').addClass('active').removeClass('inactive');
-            HT.loadPosts();
-        }
-    },
-    scrollbarWidth: function scrollbarWidth() {
-        "use strict";
-        var parent, child, width;
+		if (elemBottom <= docViewBottom && elemTop - 100 >= docViewTop && _jqueryMin2['default']('.posts-loader').hasClass('inactive')) {
+			_jqueryMin2['default']('.posts-loader').addClass('active').removeClass('inactive');
+			HT.loadPosts();
+		}
+	},
+	scrollbarWidth: function scrollbarWidth() {
+		"use strict";
+		var parent, child, width;
 
-        if (width === undefined) {
-            parent = _jqueryMin2['default']('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body');
-            child = parent.children();
-            width = child.innerWidth() - child.height(99).innerWidth();
-            parent.remove();
-        }
-        return width;
-    },
-    loadPosts: function loadPosts() {
-        "use strict";
-        var postContainer = _jqueryMin2['default']('.posts'),
-            page = parseInt(postContainer.data('p'), 10) + 1,
-            dataString = 'p=' + page + '&',
-            cat = postContainer.data('cat');
-        if (postContainer.data('cat')) {
-            dataString += 'cat=' + cat;
-        }
+		if (width === undefined) {
+			parent = _jqueryMin2['default']('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body');
+			child = parent.children();
+			width = child.innerWidth() - child.height(99).innerWidth();
+			parent.remove();
+		}
+		return width;
+	},
+	loadPosts: function loadPosts() {
+		"use strict";
+		var postContainer = _jqueryMin2['default']('.posts'),
+		    page = parseInt(postContainer.data('p'), 10) + 1,
+		    dataString = 'p=' + page + '&',
+		    cat = postContainer.data('cat');
+		if (postContainer.data('cat')) {
+			dataString += 'cat=' + cat;
+		}
 
-        _jqueryMin2['default'].ajax({
-            url: '/assets/includes/posts.php',
-            data: dataString,
-            dataType: 'html',
-            beforeSend: function beforeSend() {
-                _jqueryMin2['default']('.posts-loader').addClass('loading');
-            },
-            success: function success(response) {
-                if (response.indexOf("post") >= 0) {
-                    postContainer.append(response);
-                    postContainer.data('p', page);
-                    _jqueryMin2['default']('.posts-loader').removeClass('loading').removeClass('active').addClass('inactive');
-                } else {
-                    _jqueryMin2['default']('.posts-loader').remove();
-                }
-            }
+		_jqueryMin2['default'].ajax({
+			url: '/assets/includes/posts.php',
+			data: dataString,
+			dataType: 'html',
+			beforeSend: function beforeSend() {
+				_jqueryMin2['default']('.posts-loader').addClass('loading');
+			},
+			success: function success(response) {
+				if (response.indexOf("post") >= 0) {
+					postContainer.append(response);
+					postContainer.data('p', page);
+					_jqueryMin2['default']('.posts-loader').removeClass('loading').removeClass('active').addClass('inactive');
+				} else {
+					_jqueryMin2['default']('.posts-loader').remove();
+				}
+			}
 
-        });
-    },
-    fajax: function fajax() {
-        "use strict";
-        _jqueryMin2['default']('body').hide();
+		});
+	},
+	fajax: function fajax() {
+		"use strict";
+		_jqueryMin2['default']('body').hide();
 
-        _jqueryMin2['default'](window).load(function () {
-            setTimeout(function () {
-                _jqueryMin2['default']('html').removeClass('loaded');
-                _jqueryMin2['default']('body').show();
-            }, 550);
-        });
+		_jqueryMin2['default'](window).load(function () {
+			setTimeout(function () {
+				_jqueryMin2['default']('html').removeClass('loaded');
+				_jqueryMin2['default']('body').show();
+			}, 550);
+		});
 
-        _jqueryMin2['default']("a.fade, .projects a, .pager a").click(function (event) {
-            event.preventDefault();
-            var num = 0,
-                link = _jqueryMin2['default'](this);
-            if (_jqueryMin2['default']('header').hasClass('introHeader') && link.hasClass('fade')) {
-                _jqueryMin2['default']('header.introHeader .intro-down').trigger('click');
-                num = 1300;
-            }
-            setTimeout(function () {
-                var linkLocation = link.attr('href');
+		_jqueryMin2['default']("a.fade, .projects a, .pager a").click(function (event) {
+			event.preventDefault();
+			var num = 0,
+			    link = _jqueryMin2['default'](this);
+			if (_jqueryMin2['default']('header').hasClass('introHeader') && link.hasClass('fade')) {
+				_jqueryMin2['default']('header.introHeader .intro-down').trigger('click');
+				num = 1300;
+			}
+			setTimeout(function () {
+				var linkLocation = link.attr('href');
 
-                function redirectPage() {
-                    window.location = linkLocation;
-                }
-                _jqueryMin2['default']('body').fadeOut(400, redirectPage);
-            }, num);
-        });
-    },
-    filters: function filters() {
-        "use strict";
-        _jqueryMin2['default']('.filters #projects').click(function () {
-            project_separate.renderpage1;
-        });
-        _jqueryMin2['default']('.filters #animals').click(function () {
-            project_separate.renderpage2;
-        });
-    },
-    sidebar: function sidebar() {
-        "use strict";
-        var sidebar = _jqueryMin2['default']('.sidebar');
-        _jqueryMin2['default']('header .about-me').click(function () {
-            if (!_jqueryMin2['default']('header').hasClass('introHeader')) {
-                if (parseInt(_jqueryMin2['default']('footer').css('padding-right'), 10) > 0) {
-                    _jqueryMin2['default']('footer, header, body, .filters.open').css('padding-right', 0);
-                    _jqueryMin2['default']('.overlay, header, footer').unbind('touchmove', function (e) {
-                        e.preventDefault();
-                    });
-                } else {
-                    _jqueryMin2['default']('footer, header, body, .filters.open').css('padding-right', HT.scrollbarWidth);
-                    _jqueryMin2['default']('.overlay, header, footer').bind('touchmove', function (e) {
-                        e.preventDefault();
-                    });
-                }
-                sidebar.toggleClass('active');
-                _jqueryMin2['default']('html').toggleClass('sidebar-open');
-            }
-        });
-    },
-    newsletter: function newsletter() {
-        "use strict";
-        _jqueryMin2['default']('#newsForm').submit(function (e) {
-            e.preventDefault();
-            var form = _jqueryMin2['default'](this);
-            _jqueryMin2['default'].ajax({
-                url: '/assets/includes/newsletter.php',
-                data: form.serialize(),
-                beforeSend: function beforeSend() {},
-                success: function success(response) {
-                    var resp = _jqueryMin2['default'].parseJSON(response);
-                    form.find('input[type=text]').val(resp.msg);
-                    if (resp.msg !== 'Thanks!') {
-                        form.find('input[type=text]').addClass('err');
-                    }
-                }
-            });
-        });
-    }
+				function redirectPage() {
+					window.location = linkLocation;
+				}
+				_jqueryMin2['default']('body').fadeOut(400, redirectPage);
+			}, num);
+		});
+	},
+	filters: function filters() {
+		"use strict";
+	},
+	sidebar: function sidebar() {
+		"use strict";
+		var sidebar = _jqueryMin2['default']('.sidebar');
+		_jqueryMin2['default']('header .about-me').click(function () {
+			if (!_jqueryMin2['default']('header').hasClass('introHeader')) {
+				if (parseInt(_jqueryMin2['default']('footer').css('padding-right'), 10) > 0) {
+					_jqueryMin2['default']('footer, header, body, .filters.open').css('padding-right', 0);
+					_jqueryMin2['default']('.overlay, header, footer').unbind('touchmove', function (e) {
+						e.preventDefault();
+					});
+				} else {
+					_jqueryMin2['default']('footer, header, body, .filters.open').css('padding-right', HT.scrollbarWidth);
+					_jqueryMin2['default']('.overlay, header, footer').bind('touchmove', function (e) {
+						e.preventDefault();
+					});
+				}
+				sidebar.toggleClass('active');
+				_jqueryMin2['default']('html').toggleClass('sidebar-open');
+			}
+		});
+	},
+	newsletter: function newsletter() {
+		"use strict";
+		_jqueryMin2['default']('#newsForm').submit(function (e) {
+			e.preventDefault();
+			var form = _jqueryMin2['default'](this);
+			_jqueryMin2['default'].ajax({
+				url: '/assets/includes/newsletter.php',
+				data: form.serialize(),
+				beforeSend: function beforeSend() {},
+				success: function success(response) {
+					var resp = _jqueryMin2['default'].parseJSON(response);
+					form.find('input[type=text]').val(resp.msg);
+					if (resp.msg !== 'Thanks!') {
+						form.find('input[type=text]').addClass('err');
+					}
+				}
+			});
+		});
+	}
 };
 
 _jqueryMin2['default'](document).ready(function () {
-    project_separate.renderhtml();
-    HT.ready();
+	project_separate.renderhtml();
+	HT.ready();
 });
 
 _jqueryMin2['default'](document).scroll(function () {
-    "use strict";
-    HT.scroll();
+	"use strict";
+	HT.scroll();
 });
 _jqueryMin2['default'](window).resize(function () {
-    "use strict";
-    HT.intro.resize();
+	"use strict";
+	HT.intro.resize();
 });
 
-},{"./jquery.min":2,"./project_separate":3,"react":204,"react-dom":5}],2:[function(require,module,exports){
+},{"./jquery.min":2,"./project_separate":3,"react":204,"react-dom":5,"react-redux":158,"redux":210}],2:[function(require,module,exports){
 /*! jQuery v1.11.0 | (c) 2005, 2014 jQuery Foundation, Inc. | jquery.org/license */
 "use strict";
 
@@ -2385,13 +2382,11 @@ _jqueryMin2['default'](window).resize(function () {
 });
 
 },{}],3:[function(require,module,exports){
-/*global $, jQuery, alert */
 'use strict';
 
 exports.__esModule = true;
+exports.updatecat = updatecat;
 exports.renderhtml = renderhtml;
-exports.renderpage1 = renderpage1;
-exports.renderpage2 = renderpage2;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -2412,584 +2407,654 @@ var _reactRedux = require('react-redux');
 var _redux = require('redux');
 
 var Intro = (function (_React$Component) {
-    _inherits(Intro, _React$Component);
+	_inherits(Intro, _React$Component);
 
-    function Intro() {
-        _classCallCheck(this, Intro);
+	function Intro() {
+		_classCallCheck(this, Intro);
 
-        _React$Component.apply(this, arguments);
-    }
+		_React$Component.apply(this, arguments);
+	}
 
-    Intro.prototype.render = function render() {
-        return _react2['default'].createElement(
-            'div',
-            null,
-            _react2['default'].createElement(
-                'div',
-                { className: 'intro-logo' },
-                _react2['default'].createElement('img', { src: './assets/images/bigderp.png' })
-            ),
-            _react2['default'].createElement(
-                'video',
-                { className: 'introVideo', autoPlay: '', loop: '' },
-                _react2['default'].createElement('source', { src: 'http://hightide.vaesite.net/__data/c2a165d9d5bfafc75d164f1cc461086f.mp4', type: 'video/mp4' }),
-                _react2['default'].createElement('source', { src: 'http://hightide.vaesite.net/__data/ebb929a4ee2f8e8409f503dab0d8e4e7.ogv', type: 'video/ogg' })
-            )
-        );
-    };
+	Intro.prototype.render = function render() {
+		return _react2['default'].createElement(
+			'div',
+			null,
+			_react2['default'].createElement(
+				'div',
+				{ className: 'intro-logo' },
+				_react2['default'].createElement('img', { src: './assets/images/bigderp.png' })
+			),
+			_react2['default'].createElement(
+				'video',
+				{ className: 'introVideo', autoPlay: '', loop: '' },
+				_react2['default'].createElement('source', { src: 'http://hightide.vaesite.net/__data/c2a165d9d5bfafc75d164f1cc461086f.mp4', type: 'video/mp4' }),
+				_react2['default'].createElement('source', { src: 'http://hightide.vaesite.net/__data/ebb929a4ee2f8e8409f503dab0d8e4e7.ogv', type: 'video/ogg' })
+			)
+		);
+	};
 
-    return Intro;
+	return Intro;
 })(_react2['default'].Component);
 
 var IntroHeader = (function (_React$Component2) {
-    _inherits(IntroHeader, _React$Component2);
+	_inherits(IntroHeader, _React$Component2);
 
-    function IntroHeader() {
-        _classCallCheck(this, IntroHeader);
+	function IntroHeader() {
+		_classCallCheck(this, IntroHeader);
 
-        _React$Component2.apply(this, arguments);
-    }
+		_React$Component2.apply(this, arguments);
+	}
 
-    IntroHeader.prototype.render = function render() {
-        return _react2['default'].createElement(
-            'div',
-            { className: 'container' },
-            _react2['default'].createElement(
-                'h1',
-                null,
-                _react2['default'].createElement(
-                    'a',
-                    { className: 'fade', href: 'http://derpspace.usite.pro/Lweb.html' },
-                    _react2['default'].createElement('img', { src: './assets/images/logo2.png', alt: 'High Tide' })
-                )
-            ),
-            _react2['default'].createElement(
-                'div',
-                { className: 'left' },
-                _react2['default'].createElement(
-                    'a',
-                    { className: 'fade', href: '' },
-                    'Instagram?'
-                )
-            ),
-            _react2['default'].createElement(
-                'div',
-                { className: 'right' },
-                _react2['default'].createElement(
-                    'div',
-                    { className: 'about-me' },
-                    'About Leo'
-                )
-            )
-        );
-    };
+	IntroHeader.prototype.render = function render() {
+		return _react2['default'].createElement(
+			'div',
+			{ className: 'container' },
+			_react2['default'].createElement(
+				'h1',
+				null,
+				_react2['default'].createElement(
+					'a',
+					{ className: 'fade', href: 'http://derpspace.usite.pro/Lweb.html' },
+					_react2['default'].createElement('img', { src: './assets/images/logo2.png', alt: 'High Tide' })
+				)
+			),
+			_react2['default'].createElement(
+				'div',
+				{ className: 'left' },
+				_react2['default'].createElement(
+					'a',
+					{ className: 'fade', href: '' },
+					'Instagram?'
+				)
+			),
+			_react2['default'].createElement(
+				'div',
+				{ className: 'right' },
+				_react2['default'].createElement(
+					'div',
+					{ className: 'about-me' },
+					'About Leo'
+				)
+			)
+		);
+	};
 
-    return IntroHeader;
+	return IntroHeader;
 })(_react2['default'].Component);
 
 var Filters = (function (_React$Component3) {
-    _inherits(Filters, _React$Component3);
+	_inherits(Filters, _React$Component3);
 
-    function Filters() {
-        _classCallCheck(this, Filters);
+	function Filters(props) {
+		_classCallCheck(this, Filters);
 
-        _React$Component3.apply(this, arguments);
-    }
+		_React$Component3.call(this, props);
+	}
 
-    Filters.prototype.render = function render() {
-        return _react2['default'].createElement(
-            'div',
-            { className: 'container' },
-            _react2['default'].createElement(
-                'ul',
-                null,
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '#', id: 'projects' },
-                        'Leo\'s Projects'
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '#', id: 'animals' },
-                        'Leo\'s Animals'
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { id: 'insects' },
-                        'Leo\'s Insects'
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { id: 'science' },
-                        'Leo\'s Science'
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { id: 'facts' },
-                        'Leo\'s Facts'
-                    )
-                )
-            )
-        );
-    };
+	Filters.prototype.render = function render() {
+		var _this = this;
 
-    return Filters;
+		return _react2['default'].createElement(
+			'div',
+			{ className: 'container' },
+			_react2['default'].createElement(
+				'ul',
+				null,
+				_react2['default'].createElement(
+					'li',
+					{ onClick: function () {
+							return _this.props.oncatClick("PROJECTS");
+						} },
+					_react2['default'].createElement(
+						'a',
+						{ id: 'projects' },
+						'Leo\'s Projects'
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					{ onClick: function () {
+							return _this.props.oncatClick("ANIMALS");
+						} },
+					_react2['default'].createElement(
+						'a',
+						{ id: 'animals' },
+						'Leo\'s Animals'
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					{ onClick: function () {
+							return _this.props.oncatClick("INSECTS");
+						} },
+					_react2['default'].createElement(
+						'a',
+						{ id: 'insects' },
+						'Leo\'s Insects'
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					{ onClick: function () {
+							return _this.props.oncatClick("SCIENCE");
+						} },
+					_react2['default'].createElement(
+						'a',
+						{ id: 'science' },
+						'Leo\'s Science'
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					{ onClick: function () {
+							return _this.props.oncatClick("FACTS");
+						} },
+					_react2['default'].createElement(
+						'a',
+						{ id: 'facts' },
+						'Leo\'s Facts'
+					)
+				)
+			)
+		);
+	};
+
+	return Filters;
 })(_react2['default'].Component);
 
+Filters.propTypes = {
+	oncatClick: _react.PropTypes.func.isRequired
+};
+
+var mapStateToProps1 = function mapStateToProps1(state) {
+	return {
+		state: state
+	};
+};
+
+var mapDispatchToProps1 = function mapDispatchToProps1(dispatch) {
+	return {
+		oncatClick: function oncatClick(id) {
+			dispatch(updatecat(id));
+		}
+	};
+};
+
+Filters = _reactRedux.connect(mapStateToProps1, mapDispatchToProps1)(Filters);
+
 var Overlay = (function (_React$Component4) {
-    _inherits(Overlay, _React$Component4);
+	_inherits(Overlay, _React$Component4);
 
-    function Overlay() {
-        _classCallCheck(this, Overlay);
+	function Overlay() {
+		_classCallCheck(this, Overlay);
 
-        _React$Component4.apply(this, arguments);
-    }
+		_React$Component4.apply(this, arguments);
+	}
 
-    Overlay.prototype.render = function render() {
-        return _react2['default'].createElement(
-            'p',
-            null,
-            'Hello!'
-        );
-    };
+	Overlay.prototype.render = function render() {
+		return _react2['default'].createElement(
+			'p',
+			null,
+			'Hello!'
+		);
+	};
 
-    return Overlay;
+	return Overlay;
 })(_react2['default'].Component);
 
 var Sidebar = (function (_React$Component5) {
-    _inherits(Sidebar, _React$Component5);
+	_inherits(Sidebar, _React$Component5);
 
-    function Sidebar() {
-        _classCallCheck(this, Sidebar);
+	function Sidebar() {
+		_classCallCheck(this, Sidebar);
 
-        _React$Component5.apply(this, arguments);
-    }
+		_React$Component5.apply(this, arguments);
+	}
 
-    Sidebar.prototype.render = function render() {
-        return _react2['default'].createElement(
-            'p',
-            null,
-            'Hello!'
-        );
-    };
+	Sidebar.prototype.render = function render() {
+		return _react2['default'].createElement(
+			'p',
+			null,
+			'Hello!'
+		);
+	};
 
-    return Sidebar;
+	return Sidebar;
 })(_react2['default'].Component);
 
 var PageContainer = (function (_React$Component6) {
-    _inherits(PageContainer, _React$Component6);
+	_inherits(PageContainer, _React$Component6);
 
-    function PageContainer() {
-        _classCallCheck(this, PageContainer);
+	function PageContainer(props) {
+		_classCallCheck(this, PageContainer);
 
-        _React$Component6.apply(this, arguments);
-    }
+		_React$Component6.call(this, props);
+	}
 
-    PageContainer.prototype.render = function render() {
-        if (this.state.category = "projects") {
-            return _react2['default'].createElement(
-                'ul',
-                { className: 'projects' },
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Leonie - Branding'
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/99d34be1b2bdd39c7fdbce1a1ae1190e.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Leo - Que Rico'
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/1debe7be15173c16096a32b32f196edd.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Bat Queen'
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/5e958b0ff0841d746d46495ce52cf9c3.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Leo by Leo'
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/images/bigpotato.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Potato'
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/4383358511db6748e7a9fd6efb1b665a.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'The Best'
-                        )
-                    )
-                )
-            );
-        } else if (this.state.category = "animals") {
-            return _react2['default'].createElement(
-                'ul',
-                { className: 'projects' },
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Leonie - Branding'
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Leonie - Branding'
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Leonie - Branding'
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'li',
-                    null,
-                    _react2['default'].createElement(
-                        'a',
-                        { href: '' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'img-wrap' },
-                            _react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
-                        ),
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            'Leonie - Branding'
-                        )
-                    )
-                )
-            );
-        } else {
-            return _react2['default'].createElement(
-                'a',
-                { href: '' },
-                _react2['default'].createElement(
-                    'div',
-                    { className: 'img-wrap' },
-                    _react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
-                ),
-                _react2['default'].createElement(
-                    'span',
-                    null,
-                    'Leonie - Branding'
-                )
-            );
-        }
-    };
+	PageContainer.prototype.render = function render() {
+		if (this.props.category == "PROJECTS") {
+			return _react2['default'].createElement(
+				'ul',
+				{ className: 'projects' },
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Leonie - Branding'
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/99d34be1b2bdd39c7fdbce1a1ae1190e.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Leo - Que Rico'
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/1debe7be15173c16096a32b32f196edd.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Bat Queen'
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/5e958b0ff0841d746d46495ce52cf9c3.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Leo by Leo'
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/images/bigpotato.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Potato'
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/4383358511db6748e7a9fd6efb1b665a.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'The Best'
+						)
+					)
+				)
+			);
+		} else if (this.props.category == "ANIMALS") {
+			return _react2['default'].createElement(
+				'ul',
+				{ className: 'projects' },
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Leonie - Branding'
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Leonie - Branding'
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Leonie - Branding'
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ href: '' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'img-wrap' },
+							_react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
+						),
+						_react2['default'].createElement(
+							'span',
+							null,
+							'Leonie - Branding'
+						)
+					)
+				)
+			);
+		} else {
+			return _react2['default'].createElement(
+				'a',
+				{ href: '' },
+				_react2['default'].createElement(
+					'div',
+					{ className: 'img-wrap' },
+					_react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
+				),
+				_react2['default'].createElement(
+					'span',
+					null,
+					'Leonie - Branding'
+				)
+			);
+		}
+	};
 
-    return PageContainer;
+	return PageContainer;
 })(_react2['default'].Component);
 
-Pagecontainer.propTypes = {
-    category: _react.PropTypes.string.isRequired
+PageContainer.propTypes = {
+	category: _react.PropTypes.string.isRequired
 };
 
+//actions you can send to the state:
+var UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+exports.UPDATE_CATEGORY = UPDATE_CATEGORY;
+
+function updatecat(category) {
+	return { type: UPDATE_CATEGORY, category: category };
+}
+
+var category = {
+	PROJECTS: 'PROJECTS',
+	ANIMALS: 'ANIMALS',
+	INSECTS: 'INSECTS',
+	SCIENCE: 'SCIENCE',
+	FACTS: 'FACTS'
+};
+
+exports.category = category;
+//reducer handles how the state updates
+
+function projectswitcher(state, action) {
+	if (state === undefined) state = { category: category.PROJECTS };
+
+	switch (action.type) {
+		case UPDATE_CATEGORY:
+			return {
+				category: action.category
+			};
+		default:
+			return state;
+	}
+}
+
+//create store
+
+var store = _redux.createStore(projectswitcher);
+
+//mapping to react
+
+var mapStateToProps = function mapStateToProps(state) {
+	return {
+		category: projectswitcher(state.category, state.category)
+	};
+};
+
+PageContainer = _reactRedux.connect(mapStateToProps)(PageContainer);
+
 var Footer = (function (_React$Component7) {
-    _inherits(Footer, _React$Component7);
+	_inherits(Footer, _React$Component7);
 
-    function Footer() {
-        _classCallCheck(this, Footer);
+	function Footer() {
+		_classCallCheck(this, Footer);
 
-        _React$Component7.apply(this, arguments);
-    }
+		_React$Component7.apply(this, arguments);
+	}
 
-    Footer.prototype.render = function render() {
-        return _react2['default'].createElement(
-            'footer',
-            { className: 'introStatic' },
-            _react2['default'].createElement(
-                'div',
-                { className: 'container' },
-                _react2['default'].createElement(
-                    'div',
-                    { className: 'contact' },
-                    _react2['default'].createElement(
-                        'ul',
-                        null,
-                        _react2['default'].createElement(
-                            'li',
-                            null,
-                            _react2['default'].createElement(
-                                'span',
-                                null,
-                                'e'
-                            ),
-                            _react2['default'].createElement(
-                                'a',
-                                { href: 'mailto:info@hightidenyc.co' },
-                                'info@hightidenyc.co'
-                            )
-                        ),
-                        _react2['default'].createElement(
-                            'li',
-                            null,
-                            _react2['default'].createElement(
-                                'span',
-                                null,
-                                'p'
-                            ),
-                            _react2['default'].createElement(
-                                'a',
-                                { href: 'http://derpspace.usite.pro/(917)%20723-4614' },
-                                '(917) 723-4614'
-                            )
-                        ),
-                        _react2['default'].createElement(
-                            'li',
-                            null,
-                            _react2['default'].createElement(
-                                'span',
-                                null,
-                                'a'
-                            ),
-                            _react2['default'].createElement(
-                                'address',
-                                null,
-                                '231 Derp Street, Snurf 209 | Brooklyn, NY 11201'
-                            )
-                        )
-                    )
-                ),
-                _react2['default'].createElement(
-                    'div',
-                    { className: 'newsletter' },
-                    _react2['default'].createElement(
-                        'form',
-                        { id: 'newsForm' },
-                        _react2['default'].createElement(
-                            'label',
-                            null,
-                            'Newsletter'
-                        ),
-                        _react2['default'].createElement('input', { type: 'text', name: 'e_mail_address', placeholder: 'Enter Email' }),
-                        _react2['default'].createElement('input', { type: 'submit', value: 'submit' })
-                    )
-                ),
-                _react2['default'].createElement(
-                    'div',
-                    { className: 'social' },
-                    _react2['default'].createElement(
-                        'ul',
-                        null,
-                        _react2['default'].createElement(
-                            'li',
-                            null,
-                            _react2['default'].createElement(
-                                'a',
-                                { target: '_blank', href: 'https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE' },
-                                _react2['default'].createElement('img', { src: './assets/4f480432915ecef876d62eefbeb5bc5e.png' })
-                            )
-                        ),
-                        _react2['default'].createElement(
-                            'li',
-                            null,
-                            _react2['default'].createElement(
-                                'a',
-                                { target: '_blank', href: '' },
-                                _react2['default'].createElement('img', { src: './assets/ed77402fcfb11e210044097a336ad1e6.png' })
-                            )
-                        ),
-                        _react2['default'].createElement(
-                            'li',
-                            null,
-                            _react2['default'].createElement(
-                                'a',
-                                { target: '_blank', href: '' },
-                                _react2['default'].createElement('img', { src: './assets/727a0a72ba2341e0bf8b5e0f1190c5f0.png' })
-                            )
-                        ),
-                        _react2['default'].createElement(
-                            'li',
-                            null,
-                            _react2['default'].createElement(
-                                'a',
-                                { target: '_blank', href: '' },
-                                _react2['default'].createElement('img', { src: './assets/60e3bc9b85b3431ff89f231cf0a84f5d.png' })
-                            )
-                        )
-                    )
-                )
-            )
-        );
-    };
+	Footer.prototype.render = function render() {
+		return _react2['default'].createElement(
+			'footer',
+			{ className: 'introStatic' },
+			_react2['default'].createElement(
+				'div',
+				{ className: 'container' },
+				_react2['default'].createElement(
+					'div',
+					{ className: 'contact' },
+					_react2['default'].createElement(
+						'ul',
+						null,
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'span',
+								null,
+								'e'
+							),
+							_react2['default'].createElement(
+								'a',
+								{ href: 'mailto:info@hightidenyc.co' },
+								'info@hightidenyc.co'
+							)
+						),
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'span',
+								null,
+								'p'
+							),
+							_react2['default'].createElement(
+								'a',
+								{ href: 'http://derpspace.usite.pro/(917)%20723-4614' },
+								'(917) 723-4614'
+							)
+						),
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'span',
+								null,
+								'a'
+							),
+							_react2['default'].createElement(
+								'address',
+								null,
+								'231 Derp Street, Snurf 209 | Brooklyn, NY 11201'
+							)
+						)
+					)
+				),
+				_react2['default'].createElement(
+					'div',
+					{ className: 'newsletter' },
+					_react2['default'].createElement(
+						'form',
+						{ id: 'newsForm' },
+						_react2['default'].createElement(
+							'label',
+							null,
+							'Newsletter'
+						),
+						_react2['default'].createElement('input', { type: 'text', name: 'e_mail_address', placeholder: 'Enter Email' }),
+						_react2['default'].createElement('input', { type: 'submit', value: 'submit' })
+					)
+				),
+				_react2['default'].createElement(
+					'div',
+					{ className: 'social' },
+					_react2['default'].createElement(
+						'ul',
+						null,
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'a',
+								{ target: '_blank', href: 'https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE' },
+								_react2['default'].createElement('img', { src: './assets/4f480432915ecef876d62eefbeb5bc5e.png' })
+							)
+						),
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'a',
+								{ target: '_blank', href: '' },
+								_react2['default'].createElement('img', { src: './assets/ed77402fcfb11e210044097a336ad1e6.png' })
+							)
+						),
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'a',
+								{ target: '_blank', href: '' },
+								_react2['default'].createElement('img', { src: './assets/727a0a72ba2341e0bf8b5e0f1190c5f0.png' })
+							)
+						),
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'a',
+								{ target: '_blank', href: '' },
+								_react2['default'].createElement('img', { src: './assets/60e3bc9b85b3431ff89f231cf0a84f5d.png' })
+							)
+						)
+					)
+				)
+			)
+		);
+	};
 
-    return Footer;
+	return Footer;
 })(_react2['default'].Component);
 
 function renderhtml() {
-    _reactDom2['default'].render(_react2['default'].createElement(Intro, null), document.getElementById("intro"));
-    _reactDom2['default'].render(_react2['default'].createElement(IntroHeader, null), document.getElementById("introHeader"));
-    _reactDom2['default'].render(_react2['default'].createElement(Filters, null), document.getElementById("filters"));
-    _reactDom2['default'].render(_react2['default'].createElement(Overlay, null), document.getElementById("overlay"));
-    _reactDom2['default'].render(_react2['default'].createElement(Sidebar, null), document.getElementById("sidebar"));
-    _reactDom2['default'].render(_react2['default'].createElement(PageContainer1, null), document.getElementById("page-container"));
-    _reactDom2['default'].render(_react2['default'].createElement(Footer, null), document.getElementById("introStatic"));
+	_reactDom2['default'].render(_react2['default'].createElement(Intro, null), document.getElementById("intro"));
+	_reactDom2['default'].render(_react2['default'].createElement(IntroHeader, null), document.getElementById("introHeader"));
+	_reactDom2['default'].render(_react2['default'].createElement(
+		_reactRedux.Provider,
+		{ store: store },
+		_react2['default'].createElement(Filters, null)
+	), document.getElementById("filters"));
+	_reactDom2['default'].render(_react2['default'].createElement(Overlay, null), document.getElementById("overlay"));
+	_reactDom2['default'].render(_react2['default'].createElement(Sidebar, null), document.getElementById("sidebar"));
+	_reactDom2['default'].render(_react2['default'].createElement(
+		_reactRedux.Provider,
+		{ store: store },
+		_react2['default'].createElement(PageContainer, null)
+	), document.getElementById("page-container"));
+	_reactDom2['default'].render(_react2['default'].createElement(Footer, null), document.getElementById("introStatic"));
 }
-
-function renderpage1() {
-    _reactDom2['default'].render(_react2['default'].createElement(PageContainer1, null), document.getElementById("page-container"));
-}
-
-function renderpage2() {
-    var num = 4;
-    _reactDom2['default'].render(_react2['default'].createElement(PageContainer2, null), document.getElementById("page-container"));
-    var num = 6;
-}
-
-var mapStateToProps = function mapStateToProps(state) {
-    return {
-        todos: getVisibleTodos(state.todos, state.visibilityFilter)
-    };
-};
 
 function get_science() {
-    "use strict";
-    var overlay = document.getElementById('overlay');
-    var specialBox = document.getElementById('specialBox');
-    overlay.style.opacity = .8;
-    if (overlay.style.display == "flex") {
-        overlay.style.display = "none";
-        specialBox.style.display = "none";
-    } else {
-        overlay.style.display = "flex";
-        specialBox.style.display = "flex";
-    }
+	"use strict";
+	var overlay = document.getElementById('overlay');
+	var specialBox = document.getElementById('specialBox');
+	overlay.style.opacity = .8;
+	if (overlay.style.display == "flex") {
+		overlay.style.display = "none";
+		specialBox.style.display = "none";
+	} else {
+		overlay.style.display = "flex";
+		specialBox.style.display = "flex";
+	}
 }
 
 },{"react":204,"react-dom":5,"react-redux":158,"redux":210}],4:[function(require,module,exports){
