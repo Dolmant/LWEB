@@ -1,8 +1,23 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import { connect } from 'react-redux'
+import { Provider, connect } from 'react-redux';
+import { createStore } from 'redux';
+import * as assetsDisplay from './assets';
+
+
+// actions you can send to the state:
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export function updatecat(category) {
+	return { type: UPDATE_CATEGORY, category };
+}
+
+export const category = {
+	PROJECTS: 'PROJECTS',
+	ANIMALS: 'ANIMALS',
+	INSECTS: 'INSECTS',
+	SCIENCE: 'SCIENCE',
+	FACTS: 'FACTS',
+};
 
 class Intro extends React.Component {
 	render() {
@@ -16,7 +31,7 @@ class Intro extends React.Component {
 					<source src="http://hightide.vaesite.net/__data/ebb929a4ee2f8e8409f503dab0d8e4e7.ogv" type="video/ogg"></source>
 				</video>
 			</div>
-		) 
+		);
 	}
 }
 
@@ -36,55 +51,52 @@ class IntroHeader extends React.Component {
 					<div className="about-me">About Leo</div>
 				</div>
 			</div>
-		)
+		);
 	}
 }
-				
+
 class Filters extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 	render() {
 		return (
 			<div className="container">
 				<ul>
-					<li onClick = {() => this.props.oncatClick("PROJECTS")}><a id="projects">Leo's Projects</a></li>
-					<li onClick = {() => this.props.oncatClick("ANIMALS")}><a id="animals">Leo's Animals</a></li>
-					<li onClick = {() => this.props.oncatClick("INSECTS")}><a id="insects">Leo's Insects</a></li>
-					<li onClick = {() => this.props.oncatClick("SCIENCE")}><a id="science">Leo's Science</a></li>
-					<li onClick = {() => this.props.oncatClick("FACTS")}><a id="facts">Leo's Facts</a></li>
+					<li onClick={() => this.props.oncatClick('PROJECTS')}><a id="projects">Leo&apos;s Projects</a></li>
+					<li onClick={() => this.props.oncatClick('ANIMALS')}><a id="animals">Leo&apos;s Animals</a></li>
+					<li onClick={() => this.props.oncatClick('INSECTS')}><a id="insects">Leo&apos;s Insects</a></li>
+					<li onClick={() => this.props.oncatClick('SCIENCE')}><a id="science">Leo&apos;s Science</a></li>
+					<li onClick={() => this.props.oncatClick('FACTS')}><a id="facts">Leo&apos;s Facts</a></li>
 				</ul>
 			</div>
-		)
+		);
 	}
 }
 
 Filters.propTypes = {
 	oncatClick: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps1 = (state) => {
-  return {
-  	state
-  }
-}
+	return {
+		state,
+	};
+};
 
 const mapDispatchToProps1 = dispatch => ({
 	oncatClick: (id) => {
-		dispatch(updatecat(id))
-	}
-})
+		dispatch(updatecat(id));
+	},
+});
 
 Filters = connect(
 	mapStateToProps1,
-	mapDispatchToProps1
-)(Filters)
+	mapDispatchToProps1,
+)(Filters);
 
 class Overlay extends React.Component {
 	render() {
 		return (
-			<p>Hello!</p>
-		)
+			<p></p>
+		);
 	}
 }
 
@@ -92,164 +104,74 @@ class Sidebar extends React.Component {
 	render() {
 		return (
 			<p>Hello!</p>
-		)
+		);
 	}
 }
-				
+
 class PageContainer extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 	render() {
-		if (this.props.category == "PROJECTS")
-		{
+		if (this.props.category === 'PROJECTS')	{
 			return (
 				<ul className="projects">
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/b418719d6a25ee5cd4542c627a5fd762.jpg"></img>
-							</div>
-							<span>Leonie - Branding</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/99d34be1b2bdd39c7fdbce1a1ae1190e.jpg"></img>
-							</div>
-							<span>Leo - Que Rico</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/1debe7be15173c16096a32b32f196edd.jpg"></img>
-							</div>
-							<span>Bat Queen</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/5e958b0ff0841d746d46495ce52cf9c3.jpg"></img>
-							</div>
-							<span>Leo by Leo</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/images/bigpotato.jpg"></img>
-							</div>
-							<span>Potato</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/4383358511db6748e7a9fd6efb1b665a.jpg"></img>
-							</div>
-							<span>The Best</span>
-						</a>
-					</li>
+					{ assetsDisplay.science() }
+					{ assetsDisplay.animals() }
 				</ul>
-			)
-		} else if(this.props.category == "ANIMALS") {
-			return(
+			);
+		} else if (this.props.category === 'ANIMALS') {
+			return (
 				<ul className="projects">
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/b418719d6a25ee5cd4542c627a5fd762.jpg"></img>
-							</div>
-							<span>Leonie - Branding</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/b418719d6a25ee5cd4542c627a5fd762.jpg"></img>
-							</div>
-							<span>Leonie - Branding</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/b418719d6a25ee5cd4542c627a5fd762.jpg"></img>
-							</div>
-							<span>Leonie - Branding</span>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div className="img-wrap">
-								<img src="./assets/b418719d6a25ee5cd4542c627a5fd762.jpg"></img>
-							</div>
-							<span>Leonie - Branding</span>
-						</a>
-					</li>
+					{ assetsDisplay.animals() }
 				</ul>
-			)
-		} else {
-			return(                        
-				<a href="">
-					<div className="img-wrap">
-						<img src="./assets/b418719d6a25ee5cd4542c627a5fd762.jpg"></img>
-					</div>
-					<span>Leonie - Branding</span>
-				</a>
-			)
+			);
+		} else if (this.props.category === 'SCIENCE') {
+			return (
+				<ul className="projects">
+					{ assetsDisplay.science() }
+				</ul>
+			);
 		}
+		return (
+			<a href="">
+				<div className="img-wrap">
+					<img src="./assets/b418719d6a25ee5cd4542c627a5fd762.jpg"></img>
+				</div>
+				<span>Leonie - Branding</span>
+			</a>
+		);
 	}
 }
-				
+
 PageContainer.propTypes = {
-	category: PropTypes.string.isRequired
-}
+	category: PropTypes.string.isRequired,
+};
 
-//actions you can send to the state:
-export const UPDATE_CATEGORY = 'UPDATE_CATEGORY'
-export function updatecat(category) {
-	return { type: UPDATE_CATEGORY, category }
-}
+// reducer handles how the state updates
 
-export const category = {
-	PROJECTS: 'PROJECTS',
-	ANIMALS: 'ANIMALS',
-	INSECTS: 'INSECTS',
-	SCIENCE: 'SCIENCE',
-	FACTS: 'FACTS'
-}
-
-//reducer handles how the state updates
-
-function projectswitcher(state = {category: category.PROJECTS}, action) {
+function projectswitcher(state = { category: category.PROJECTS }, action) {
 	switch (action.type) {
-		case UPDATE_CATEGORY:
-			return {
-				category: action.category
-			}
-		default:
-			return state;
-		}
+	case UPDATE_CATEGORY:
+		return {
+			category: action.category,
+		};
+	default:
+		return state;
+	}
 }
 
-//create store
+// create store
 
-let store = createStore(projectswitcher);
+const store = createStore(projectswitcher);
 
-//mapping to react
+// mapping to react
 
 const mapStateToProps = state => ({
-	category: projectswitcher(state.category, state.category)
-})
+	category: projectswitcher(state.category, state.category),
+});
 
 PageContainer = connect(
-	mapStateToProps
-)(PageContainer)
-				
+	mapStateToProps,
+)(PageContainer);
+
 class Footer extends React.Component {
 	render() {
 		return (
@@ -258,8 +180,8 @@ class Footer extends React.Component {
 					<div className="contact">
 						<ul>
 							<li><span>e</span><a href="mailto:info@hightidenyc.co">info@hightidenyc.co</a></li>
-								<li><span>p</span><a href="http://derpspace.usite.pro/(917)%20723-4614">(917) 723-4614</a></li>
-								<li><span>a</span><address>231 Derp Street, Snurf 209 | Brooklyn, NY 11201</address></li>
+							<li><span>p</span><a href="http://derpspace.usite.pro/(917)%20723-4614">(917) 723-4614</a></li>
+							<li><span>a</span><address>231 Derp Street, Snurf 209 | Brooklyn, NY</address></li>
 						</ul>
 					</div>
 					<div className="newsletter">
@@ -272,22 +194,22 @@ class Footer extends React.Component {
 					<div className="social">
 						<ul>
 							<li>
-								<a target="_blank" href="https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE">
+								<a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE">
 									<img src="./assets/4f480432915ecef876d62eefbeb5bc5e.png"></img>
 								</a>
 							</li>
 							<li>
-								<a target="_blank" href="">
+								<a target="_blank" rel="noopener noreferrer" href="">
 									<img src="./assets/ed77402fcfb11e210044097a336ad1e6.png"></img>
 								</a>
 							</li>
 							<li>
-								<a target="_blank" href="">
+								<a target="_blank" rel="noopener noreferrer" href="">
 									<img src="./assets/727a0a72ba2341e0bf8b5e0f1190c5f0.png"></img>
 								</a>
 							</li>
 							<li>
-								<a target="_blank" href="">
+								<a target="_blank" rel="noopener noreferrer" href="">
 									<img src="./assets/60e3bc9b85b3431ff89f231cf0a84f5d.png"></img>
 								</a>
 							</li>
@@ -300,33 +222,19 @@ class Footer extends React.Component {
 }
 
 export function renderhtml() {
-  ReactDOM.render(<Intro />,document.getElementById("intro"));
-  ReactDOM.render(<IntroHeader />,document.getElementById("introHeader"));
-  ReactDOM.render(  
-  <Provider store={store}>
-  	<Filters />
-  </Provider>,
-  document.getElementById("filters"));
-  ReactDOM.render(<Overlay />,document.getElementById("overlay"));
-  ReactDOM.render(<Sidebar />,document.getElementById("sidebar"));
-  ReactDOM.render(
-  <Provider store={store}>
-  	<PageContainer />
-  </Provider>,
-  document.getElementById("page-container"));
-  ReactDOM.render(<Footer />,document.getElementById("introStatic"));
-}
-
-function get_science() {
-  "use strict";
-  var overlay = document.getElementById('overlay');
-	var specialBox = document.getElementById('specialBox');
-	overlay.style.opacity = .8;
-	if(overlay.style.display == "flex"){
-		overlay.style.display = "none";
-		specialBox.style.display = "none";
-	} else {
-		overlay.style.display = "flex";
-		specialBox.style.display = "flex";
-	}
+	ReactDOM.render(<Intro />, document.getElementById('intro'));
+	ReactDOM.render(<IntroHeader />, document.getElementById('introHeader'));
+	ReactDOM.render(
+		<Provider store={store}>
+			<Filters />
+		</Provider>,
+		document.getElementById('filters'));
+	ReactDOM.render(<Overlay />, document.getElementById('overlay'));
+	ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
+	ReactDOM.render(
+		<Provider store={store}>
+			<PageContainer />
+		</Provider>,
+	document.getElementById('page-container'));
+	ReactDOM.render(<Footer />, document.getElementById('introStatic'));
 }
