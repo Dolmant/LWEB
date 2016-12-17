@@ -1,13 +1,13 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
+'use strict';
 
 exports.__esModule = true;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
@@ -23,14 +23,135 @@ var Overlay = (function (_React$Component) {
 	}
 
 	Overlay.prototype.render = function render() {
-		return _react2["default"].createElement("div", { className: "overlay_container" });
+		var inputStyle = {
+			width: '49.5%'
+		};
+		var spanStyle = {
+			width: '49.5%'
+		};
+		var displayStyle = {
+			display: 'none'
+		};
+		function OnMouseEventtrigger() {
+			return true;
+		}
+		return _react2['default'].createElement(
+			'div',
+			{ className: 'overlay_container' },
+			_react2['default'].createElement(
+				'form',
+				{ id: 'emf-form', target: '_self', className: 'topLabel', method: 'post', action: 'https://www.emailmeform.com/builder/form/h7V7fqvRe1wkf7L08m46Xaddr' },
+				_react2['default'].createElement(
+					'div',
+					{ id: 'emf-form-instruction', className: 'emf-head-widget' },
+					_react2['default'].createElement(
+						'div',
+						{ id: 'emf-form-title', className: 'emf-bold' },
+						'Contact EmailMeForm'
+					),
+					_react2['default'].createElement(
+						'div',
+						{ id: 'emf-form-description' },
+						'Fill out the form below to know more on how you can get these stunning themes on your forms & surveys.'
+					)
+				),
+				_react2['default'].createElement(
+					'ul',
+					null,
+					_react2['default'].createElement(
+						'li',
+						{ id: 'emf-li-0', className: 'emf-li-field emf-field-new_name data_container   cell_align_left' },
+						_react2['default'].createElement(
+							'label',
+							{ className: 'emf-label-desc', htmlFor: 'element_0' },
+							'Name ',
+							_react2['default'].createElement(
+								'span',
+								null,
+								'*'
+							)
+						),
+						_react2['default'].createElement(
+							'div',
+							{ className: 'emf-div-field' },
+							_react2['default'].createElement(
+								'span',
+								{ style: spanStyle },
+								_react2['default'].createElement('input', { className: 'validate[required]', style: inputStyle, value: '', id: 'element_2', name: 'element_2', type: 'text' }),
+								_react2['default'].createElement(
+									'label',
+									{ htmlFor: 'element_2', className: 'emf-bottom-label emf-text-center' },
+									'First'
+								)
+							),
+							_react2['default'].createElement(
+								'span',
+								{ style: spanStyle },
+								_react2['default'].createElement('input', { className: 'validate[required]', style: inputStyle, value: '', id: 'element_3', name: 'element_3', type: 'text' }),
+								_react2['default'].createElement(
+									'label',
+									{ htmlFor: 'element_3', className: 'emf-bottom-label emf-text-center' },
+									'Last'
+								)
+							)
+						),
+						_react2['default'].createElement('div', { className: 'emf-clear' })
+					),
+					_react2['default'].createElement(
+						'li',
+						{ id: 'emf-li-7', className: 'emf-li-field emf-field-email data_container   ' },
+						_react2['default'].createElement(
+							'label',
+							{ className: 'emf-label-desc', htmlFor: 'element_7' },
+							'Email ',
+							_react2['default'].createElement(
+								'span',
+								null,
+								'*'
+							)
+						),
+						_react2['default'].createElement(
+							'div',
+							{ className: 'emf-div-field' },
+							_react2['default'].createElement('input', { id: 'element_7', name: 'element_7', className: 'validate[required,custom[email]]', value: '', style: inputStyle, type: 'text' })
+						),
+						_react2['default'].createElement('div', { className: 'emf-clear' })
+					),
+					_react2['default'].createElement(
+						'li',
+						{ id: 'emf-li-8', className: 'emf-li-field emf-field-textarea data_container   ' },
+						_react2['default'].createElement(
+							'label',
+							{ className: 'emf-label-desc', htmlFor: 'element_8' },
+							'Message'
+						),
+						_react2['default'].createElement(
+							'div',
+							{ className: 'emf-div-field' },
+							_react2['default'].createElement('textarea', { id: 'element_8', name: 'element_8', cols: '45', rows: '10', className: 'validate[optional]' })
+						),
+						_react2['default'].createElement('div', { className: 'emf-clear' })
+					),
+					_react2['default'].createElement('li', { id: 'emf-li-recaptcha', style: displayStyle }),
+					_react2['default'].createElement(
+						'li',
+						{ id: 'emf-li-post-button', className: 'middle' },
+						_react2['default'].createElement('input', { value: 'Submit', type: 'submit', onMouseOver: OnMouseEventtrigger })
+					)
+				),
+				_react2['default'].createElement('input', { name: 'element_counts', value: '9', type: 'hidden' }),
+				_react2['default'].createElement('input', { name: 'embed', value: 'form', type: 'hidden' }),
+				_react2['default'].createElement('input', { type: 'hidden', name: 'http_referer', value: 'http://www.emailmeform.com/' }),
+				_react2['default'].createElement('input', { type: 'hidden', name: 'javascript_executed', value: 'true' })
+			)
+		);
 	};
 
 	return Overlay;
-})(_react2["default"].Component);
+})(_react2['default'].Component);
 
-exports["default"] = Overlay;
-module.exports = exports["default"];
+exports['default'] = Overlay;
+module.exports = exports['default'];
 
 },{"react":205}],2:[function(require,module,exports){
 'use strict';
@@ -104,6 +225,7 @@ var HT = {
 			setTimeout(function () {
 				_jqueryMin2['default']('.filters').toggleClass('open');
 			}, num);
+			_jqueryMin2['default']('header a').addClass('scrolled');
 		},
 		parallax: function parallax() {
 			if (_jqueryMin2['default'](window).scrollTop() < HT.intro.scrollPoint) {
@@ -2545,13 +2667,12 @@ var Intro = (function (_React$Component) {
 			_react2['default'].createElement(
 				'div',
 				{ className: 'intro-logo' },
-				_react2['default'].createElement('img', { src: './assets/images/bigderp.png' })
+				_react2['default'].createElement('img', { src: './assets/images/Logo01.png' })
 			),
 			_react2['default'].createElement(
 				'video',
-				{ className: 'introVideo', autoPlay: '', loop: '' },
-				_react2['default'].createElement('source', { src: 'http://hightide.vaesite.net/__data/c2a165d9d5bfafc75d164f1cc461086f.mp4', type: 'video/mp4' }),
-				_react2['default'].createElement('source', { src: 'http://hightide.vaesite.net/__data/ebb929a4ee2f8e8409f503dab0d8e4e7.ogv', type: 'video/ogg' })
+				{ className: 'introVideo', autoPlay: '1', loop: '' },
+				_react2['default'].createElement('source', { src: './assets/vids/Nucleus03.mov', type: 'video/mp4' })
 			)
 		);
 	};
@@ -2577,8 +2698,8 @@ var IntroHeader = (function (_React$Component2) {
 				null,
 				_react2['default'].createElement(
 					'a',
-					{ className: 'fade', href: 'http://derpspace.usite.pro/Lweb.html' },
-					_react2['default'].createElement('img', { src: './assets/images/logo2.png', alt: 'High Tide' })
+					{ className: 'fade', href: '' },
+					_react2['default'].createElement('img', { src: './assets/images/Logo03.png', alt: 'LeoTide' })
 				)
 			),
 			_react2['default'].createElement(
@@ -2594,7 +2715,7 @@ var IntroHeader = (function (_React$Component2) {
 				'div',
 				{ className: 'right' },
 				_react2['default'].createElement(
-					'div',
+					'a',
 					{ className: 'about-me' },
 					'About Leo'
 				)
@@ -2629,9 +2750,20 @@ var Filters = (function (_React$Component3) {
 					_react2['default'].createElement(
 						'a',
 						{ onClick: function () {
+								return _this.props.oncatClick('CAROUSEL');
+							}, id: 'carousel' },
+						'Leo Over Time'
+					)
+				),
+				_react2['default'].createElement(
+					'li',
+					null,
+					_react2['default'].createElement(
+						'a',
+						{ onClick: function () {
 								return _this.props.oncatClick('PROJECTS');
 							}, id: 'projects' },
-						'Leo\'s Projects'
+						'All Leo'
 					)
 				),
 				_react2['default'].createElement(
@@ -2643,17 +2775,6 @@ var Filters = (function (_React$Component3) {
 								return _this.props.oncatClick('ANIMALS');
 							}, id: 'animals' },
 						'Leo\'s Animals'
-					)
-				),
-				_react2['default'].createElement(
-					'li',
-					null,
-					_react2['default'].createElement(
-						'a',
-						{ onClick: function () {
-								return _this.props.oncatClick('INSECTS');
-							}, id: 'insects' },
-						'Leo\'s Insects'
 					)
 				),
 				_react2['default'].createElement(
@@ -2714,9 +2835,64 @@ var Sidebar = (function (_React$Component4) {
 
 	Sidebar.prototype.render = function render() {
 		return _react2['default'].createElement(
-			'p',
+			'div',
 			null,
-			'Hello!'
+			_react2['default'].createElement(
+				'p',
+				null,
+				'Hello!'
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'I am a multidisciplinary, multitalented and multi-limbed Masters student from the University of Technology Sydney engaging in both science research and design in biomedical animation whilst following my passion as a freelance scientific illustrator. Feel free to drop me a message and say hello!'
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'COMMISSIONS'
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'Please follow the instructions below!'
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'Type of commission:'
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'Scientific illustration'
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'Biomedical animation'
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'General illustration '
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'General animation '
+			),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'Please add any details you might require for your commission (e.g. subject matter, size, colour image or sketch etc.). For illustrations, if there is a specific art style from one of my previous works that interests you please let me know!'
+			),
+			_react2['default'].createElement('p', null),
+			_react2['default'].createElement(
+				'p',
+				null,
+				'Please be aware an extra 25% of the total fee will be charged upon cancellation'
+			)
 		);
 	};
 
@@ -2831,11 +3007,9 @@ PageContainer = _reactRedux.connect(mapStateToProps)(PageContainer);
 function toggleOverlay(state) {
 	var overlay = _jqueryMin2['default']('.overlay');
 	if (state) {
-		overlay.css('display', 'flex');
 		overlay.addClass('active');
 		_jqueryMin2['default']('html').addClass('overlay-open');
 	} else {
-		overlay.css('display', 'flex');
 		overlay.removeClass('active');
 		_jqueryMin2['default']('html').removeClass('overlay-open');
 	}

@@ -270,8 +270,8 @@ header .left {
 header .left a {
   margin-right: 30px; }
 
-header a, header .filter-work, .filters li a, header .about-me {
-  color: #000;
+header a, header .filter-work, .filters li a {
+  color: white;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.7rem;
@@ -281,6 +281,9 @@ header a, header .filter-work, .filters li a, header .about-me {
   -moz-transition: color .2s,opacity .2s;
   -ms-transition: color .2s,opacity .2s;
   -o-transition: color 0.2s, opacity 0.2s; }
+
+header a.scrolled {
+  color: black; }
 
 @media only screen and (max-width: 675px) {
   header .filter-work {
@@ -440,11 +443,11 @@ footer #newsForm input[type=text] {
     width: 100%; } }
 .overlay {
   background-color: transparent;
-  width: 0;
-  height: 0; }
+  display: none; }
 
 .overlay.active {
   position: fixed;
+  display: block;
   top: 0;
   left: 0;
   width: 100%;

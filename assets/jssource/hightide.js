@@ -54,9 +54,10 @@ const HT = {
 			$('footer').removeClass('introStatic');
 			$(window).scrollTop(0);
 			const num = 0;
-			setTimeout(function () {
+			setTimeout(() => {
 				$('.filters').toggleClass('open');
 			}, num);
+			$('header a').addClass('scrolled');
 		},
 		parallax: function () {
 			if ($(window).scrollTop() < HT.intro.scrollPoint) {

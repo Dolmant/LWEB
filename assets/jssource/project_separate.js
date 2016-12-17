@@ -151,11 +151,10 @@ class Intro extends React.Component {
 		return (
 			<div>
 				<div className="intro-logo" >
-					<img src="./assets/images/bigderp.png"></img>
+					<img src="./assets/images/Logo01.png"></img>
 				</div>
-				<video className="introVideo" autoPlay="" loop="">
-					<source src="http://hightide.vaesite.net/__data/c2a165d9d5bfafc75d164f1cc461086f.mp4" type="video/mp4"></source>
-					<source src="http://hightide.vaesite.net/__data/ebb929a4ee2f8e8409f503dab0d8e4e7.ogv" type="video/ogg"></source>
+				<video className="introVideo" autoPlay="1" loop="">
+					<source src="./assets/vids/Nucleus03.mov" type="video/mp4"></source>
 				</video>
 			</div>
 		);
@@ -167,15 +166,15 @@ class IntroHeader extends React.Component {
 		return (
 			<div className="container">
 				<h1>
-					<a className="fade" href="http://derpspace.usite.pro/Lweb.html">
-						<img src="./assets/images/logo2.png" alt="High Tide"></img>
+					<a className="fade" href="">
+						<img src="./assets/images/Logo03.png" alt="LeoTide"></img>
 					</a>
 				</h1>
 				<div className="left">
 					<a className="fade" href="http://leotide.tumblr.com/">Tumblr!</a>
 				</div>
 				<div className="right">
-					<div className="about-me">About Leo</div>
+					<a className="about-me">About Leo</a>
 				</div>
 			</div>
 		);
@@ -187,9 +186,9 @@ class Filters extends React.Component {
 		return (
 			<div className="container">
 				<ul>
-					<li><a onClick={() => this.props.oncatClick('PROJECTS')} id="projects">Leo&apos;s Projects</a></li>
+					<li><a onClick={() => this.props.oncatClick('CAROUSEL')} id="carousel">Leo Over Time</a></li>
+					<li><a onClick={() => this.props.oncatClick('PROJECTS')} id="projects">All Leo</a></li>
 					<li><a onClick={() => this.props.oncatClick('ANIMALS')} id="animals">Leo&apos;s Animals</a></li>
-					<li><a onClick={() => this.props.oncatClick('INSECTS')} id="insects">Leo&apos;s Insects</a></li>
 					<li><a onClick={() => this.props.oncatClick('SCIENCE')} id="science">Leo&apos;s Science</a></li>
 					<li><a onClick={() => this.props.oncatClick('FACTS')} id="facts">Leo&apos;s Facts</a></li>
 				</ul>
@@ -218,7 +217,20 @@ Filters = connect(
 class Sidebar extends React.Component {
 	render() {
 		return (
-			<p>Hello!</p>
+			<div>
+				<p>Hello!</p>
+				<p>I am a multidisciplinary, multitalented and multi-limbed Masters student from the University of Technology Sydney engaging in both science research and design in biomedical animation whilst following my passion as a freelance scientific illustrator. Feel free to drop me a message and say hello!</p>
+				<p>COMMISSIONS</p>
+				<p>Please follow the instructions below!</p>
+				<p>Type of commission:</p>
+				<p>Scientific illustration</p>
+				<p>Biomedical animation</p>
+				<p>General illustration </p>
+				<p>General animation </p>
+				<p>Please add any details you might require for your commission (e.g. subject matter, size, colour image or sketch etc.). For illustrations, if there is a specific art style from one of my previous works that interests you please let me know!</p>
+				<p></p>
+				<p>Please be aware an extra 25% of the total fee will be charged upon cancellation</p>
+			</div>
 		);
 	}
 }
@@ -318,11 +330,9 @@ PageContainer = connect(
 export function toggleOverlay(state) {
 	const overlay = $('.overlay');
 	if (state) {
-		overlay.css('display', 'flex');
 		overlay.addClass('active');
 		$('html').addClass('overlay-open');
 	} else {
-		overlay.css('display', 'flex');
 		overlay.removeClass('active');
 		$('html').removeClass('overlay-open');
 	}
