@@ -2,311 +2,35 @@
 "use strict";
 
 exports.__esModule = true;
-exports.animals = animals;
-exports.science = science;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-function animals() {
-	return [_react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Animals/Binturong.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Binturong"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Animals/BlackBear.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"BlackBear"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Animals/RedPanda.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"RedPanda"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Insects/DragonflySigned.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Dragonfly"
-			)
-		)
-	)];
-}
+var Overlay = (function (_React$Component) {
+	_inherits(Overlay, _React$Component);
 
-function science() {
-	return [_react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/mouse02 copy.png" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Binturong"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/3D/06_Cell_Internal.png" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"3D Cell internals"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/Medical Illustration/CatAnatomy2.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Cat Anatomy"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/Medical Illustration/COPD2_sign.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"COPD2"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/Medical Illustration/Hand_Anatomy02.png" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Hand Anatomy"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/Medical Illustration/StomachLayers_01.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Stomach Layers"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/Typography/Blood_Components2.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Blood Components"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/Typography/Micro2.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Micro"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/Typography/Neuroscience.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Neuroscience"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/Typography/Proteomics_Typo_02.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Proteomics"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/VizbiPlus/08_Vizbi_DataTransfer.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Data Transfer"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/VizbiPlus/09_Vizbi_WINNER_FibrilForest.jpg" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Fibril Forest"
-			)
-		)
-	), _react2["default"].createElement(
-		"li",
-		null,
-		_react2["default"].createElement(
-			"a",
-			{ href: "" },
-			_react2["default"].createElement(
-				"div",
-				{ className: "img-wrap" },
-				_react2["default"].createElement("img", { src: "./assets/images/Science/VizbiPlus/FriesWithThat3.png" })
-			),
-			_react2["default"].createElement(
-				"span",
-				null,
-				"Fries With That?"
-			)
-		)
-	)];
-}
+	function Overlay() {
+		_classCallCheck(this, Overlay);
+
+		_React$Component.apply(this, arguments);
+	}
+
+	Overlay.prototype.render = function render() {
+		return _react2["default"].createElement("div", { className: "overlay_container" });
+	};
+
+	return Overlay;
+})(_react2["default"].Component);
+
+exports["default"] = Overlay;
+module.exports = exports["default"];
 
 },{"react":205}],2:[function(require,module,exports){
 'use strict';
@@ -323,26 +47,13 @@ var _jqueryMin = require('./jquery.min');
 
 var _jqueryMin2 = _interopRequireDefault(_jqueryMin);
 
-function toggleOverlay() {
-	var overlay = document.getElementById('overlay');
-	var specialBox = document.getElementById('specialBox');
-	overlay.style.opacity = 0.8;
-	if (overlay.style.display === 'flex') {
-		overlay.style.display = 'none';
-		specialBox.style.display = 'none';
-	} else {
-		overlay.style.display = 'flex';
-		specialBox.style.display = 'flex';
-	}
-}
-
 var HT = {
 	isTouch: function isTouch() {
 		return 'ontouchstart' in document.documentElement;
 	},
 	ready: function ready() {
 		HT.fajax();
-		HT.filters();
+		HT.overlay();
 		HT.sidebar();
 		HT.newsletter();
 		if (_jqueryMin2['default']('.intro').length) {
@@ -509,7 +220,9 @@ var HT = {
 		});
 	},
 
-	filters: function filters() {},
+	overlay: function overlay() {
+		projectSeparate.toggleOverlay(false);
+	},
 
 	sidebar: function sidebar() {
 		var sidebar = _jqueryMin2['default']('.sidebar');
@@ -2669,9 +2382,8 @@ _jqueryMin2['default'](window).resize(function () {
 
 exports.__esModule = true;
 exports.updatecat = updatecat;
+exports.toggleOverlay = toggleOverlay;
 exports.renderhtml = renderhtml;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -2691,9 +2403,13 @@ var _reactRedux = require('react-redux');
 
 var _redux = require('redux');
 
-var _assets = require('./assets');
+var _contact_overlay = require('./contact_overlay');
 
-var assetsDisplay = _interopRequireWildcard(_assets);
+var _contact_overlay2 = _interopRequireDefault(_contact_overlay);
+
+var _jqueryMin = require('./jquery.min');
+
+var _jqueryMin2 = _interopRequireDefault(_jqueryMin);
 
 // actions you can send to the state:
 var UPDATE_CATEGORY = 'UPDATE_CATEGORY';
@@ -2703,6 +2419,106 @@ function updatecat(category) {
 	return { type: UPDATE_CATEGORY, category: category };
 }
 
+var projectList = {
+	ANIMALS: [{
+		item_number: 1,
+		img_src: './assets/images/Animals/Binturong.jpg',
+		img_txt: 'Binturong'
+	}, {
+		item_number: 2,
+		img_src: './assets/images/Animals/BlackBear.jpg',
+		img_txt: 'BlackBear'
+	}, {
+		item_number: 3,
+		img_src: './assets/images/Animals/RedPanda.jpg',
+		img_txt: 'RedPanda'
+	}, {
+		item_number: 4,
+		img_src: './assets/images/Insects/DragonflySigned.jpg',
+		img_txt: 'Dragonfly'
+	}],
+	SCIENCE: [{
+		item_number: 5,
+		img_src: './assets/images/Science/mouse02 copy.png',
+		img_txt: 'Mice'
+	}, {
+		item_number: 6,
+		img_src: './assets/images/Science/3D/06_Cell_Internal.png',
+		img_txt: '3D Cell internals'
+	}, {
+		item_number: 7,
+		img_src: './assets/images/Science/Medical Illustration/CatAnatomy2.jpg',
+		img_txt: 'Cat Anatomy'
+	}, {
+		item_number: 8,
+		img_src: './assets/images/Science/Medical Illustration/COPD2_sign.jpg',
+		img_txt: 'COPD2'
+	}, {
+		item_number: 9,
+		img_src: './assets/images/Science/Medical Illustration/Hand_Anatomy02.png',
+		img_txt: 'Hand Anatomy'
+	}, {
+		item_number: 10,
+		img_src: './assets/images/Science/Medical Illustration/StomachLayers_01.jpg',
+		img_txt: 'Stomach Layers'
+	}, {
+		item_number: 11,
+		img_src: './assets/images/Science/Typography/Blood_Components2.jpg',
+		img_txt: 'Blood Components'
+	}, {
+		item_number: 12,
+		img_src: './assets/images/Science/Typography/Micro2.jpg',
+		img_txt: 'Micro'
+	}, {
+		item_number: 13,
+		img_src: './assets/images/Science/Typography/Neuroscience.jpg',
+		img_txt: 'Neruoscience'
+	}, {
+		item_number: 14,
+		img_src: './assets/images/Science/Typography/Proteomics_Typo_02.jpg',
+		img_txt: 'Proteomics'
+	}, {
+		item_number: 15,
+		img_src: './assets/images/Science/VizbiPlus/08_Vizbi_DataTransfer.jpg',
+		img_txt: 'Data Transfer'
+	}, {
+		item_number: 16,
+		img_src: './assets/images/Science/VizbiPlus/09_Vizbi_WINNER_FibrilForest.jpg',
+		img_txt: 'Fibril Forest'
+	}, {
+		item_number: 17,
+		img_src: './assets/images/Science/VizbiPlus/FriesWithThat3.png',
+		img_txt: 'Fries with that?'
+	}],
+	INSECTS: [{
+		item_number: 18,
+		img_src: './assets/images/Animals/Binturong.jpg',
+		img_txt: 'Binturong'
+	}, {
+		item_number: 19,
+		img_src: './assets/images/Animals/Binturong.jpg',
+		img_txt: 'Binturong'
+	}, {
+		item_number: 20,
+		img_src: './assets/images/Animals/Binturong.jpg',
+		img_txt: 'Binturong'
+	}],
+	FACTS: [{
+		item_number: 21,
+		img_src: './assets/images/Animals/Binturong.jpg',
+		img_txt: 'Binturong'
+	}, {
+		item_number: 22,
+		img_src: './assets/images/Animals/Binturong.jpg',
+		img_txt: 'Binturong'
+	}, {
+		item_number: 23,
+		img_src: './assets/images/Animals/Binturong.jpg',
+		img_txt: 'Binturong'
+	}]
+};
+
+exports.projectList = projectList;
 var category = {
 	PROJECTS: 'PROJECTS',
 	ANIMALS: 'ANIMALS',
@@ -2770,8 +2586,8 @@ var IntroHeader = (function (_React$Component2) {
 				{ className: 'left' },
 				_react2['default'].createElement(
 					'a',
-					{ className: 'fade', href: '' },
-					'Instagram?'
+					{ className: 'fade', href: 'http://leotide.tumblr.com/' },
+					'Tumblr!'
 				)
 			),
 			_react2['default'].createElement(
@@ -2809,56 +2625,56 @@ var Filters = (function (_React$Component3) {
 				null,
 				_react2['default'].createElement(
 					'li',
-					{ onClick: function () {
-							return _this.props.oncatClick('PROJECTS');
-						} },
+					null,
 					_react2['default'].createElement(
 						'a',
-						{ id: 'projects' },
+						{ onClick: function () {
+								return _this.props.oncatClick('PROJECTS');
+							}, id: 'projects' },
 						'Leo\'s Projects'
 					)
 				),
 				_react2['default'].createElement(
 					'li',
-					{ onClick: function () {
-							return _this.props.oncatClick('ANIMALS');
-						} },
+					null,
 					_react2['default'].createElement(
 						'a',
-						{ id: 'animals' },
+						{ onClick: function () {
+								return _this.props.oncatClick('ANIMALS');
+							}, id: 'animals' },
 						'Leo\'s Animals'
 					)
 				),
 				_react2['default'].createElement(
 					'li',
-					{ onClick: function () {
-							return _this.props.oncatClick('INSECTS');
-						} },
+					null,
 					_react2['default'].createElement(
 						'a',
-						{ id: 'insects' },
+						{ onClick: function () {
+								return _this.props.oncatClick('INSECTS');
+							}, id: 'insects' },
 						'Leo\'s Insects'
 					)
 				),
 				_react2['default'].createElement(
 					'li',
-					{ onClick: function () {
-							return _this.props.oncatClick('SCIENCE');
-						} },
+					null,
 					_react2['default'].createElement(
 						'a',
-						{ id: 'science' },
+						{ onClick: function () {
+								return _this.props.oncatClick('SCIENCE');
+							}, id: 'science' },
 						'Leo\'s Science'
 					)
 				),
 				_react2['default'].createElement(
 					'li',
-					{ onClick: function () {
-							return _this.props.oncatClick('FACTS');
-						} },
+					null,
 					_react2['default'].createElement(
 						'a',
-						{ id: 'facts' },
+						{ onClick: function () {
+								return _this.props.oncatClick('FACTS');
+							}, id: 'facts' },
 						'Leo\'s Facts'
 					)
 				)
@@ -2874,9 +2690,7 @@ Filters.propTypes = {
 };
 
 var mapStateToProps1 = function mapStateToProps1(state) {
-	return {
-		state: state
-	};
+	return state;
 };
 
 var mapDispatchToProps1 = function mapDispatchToProps1(dispatch) {
@@ -2889,29 +2703,13 @@ var mapDispatchToProps1 = function mapDispatchToProps1(dispatch) {
 
 Filters = _reactRedux.connect(mapStateToProps1, mapDispatchToProps1)(Filters);
 
-var Overlay = (function (_React$Component4) {
-	_inherits(Overlay, _React$Component4);
-
-	function Overlay() {
-		_classCallCheck(this, Overlay);
-
-		_React$Component4.apply(this, arguments);
-	}
-
-	Overlay.prototype.render = function render() {
-		return _react2['default'].createElement('p', null);
-	};
-
-	return Overlay;
-})(_react2['default'].Component);
-
-var Sidebar = (function (_React$Component5) {
-	_inherits(Sidebar, _React$Component5);
+var Sidebar = (function (_React$Component4) {
+	_inherits(Sidebar, _React$Component4);
 
 	function Sidebar() {
 		_classCallCheck(this, Sidebar);
 
-		_React$Component5.apply(this, arguments);
+		_React$Component4.apply(this, arguments);
 	}
 
 	Sidebar.prototype.render = function render() {
@@ -2925,49 +2723,40 @@ var Sidebar = (function (_React$Component5) {
 	return Sidebar;
 })(_react2['default'].Component);
 
-var PageContainer = (function (_React$Component6) {
-	_inherits(PageContainer, _React$Component6);
+var PageContainer = (function (_React$Component5) {
+	_inherits(PageContainer, _React$Component5);
 
 	function PageContainer() {
 		_classCallCheck(this, PageContainer);
 
-		_React$Component6.apply(this, arguments);
+		_React$Component5.apply(this, arguments);
 	}
 
 	PageContainer.prototype.render = function render() {
-		if (this.props.category === 'PROJECTS') {
+		var listItems = this.props.list.map(function (item) {
 			return _react2['default'].createElement(
-				'ul',
-				{ className: 'projects' },
-				assetsDisplay.science(),
-				assetsDisplay.animals()
+				'li',
+				{ key: item.item_number.toString() },
+				_react2['default'].createElement(
+					'a',
+					{ href: '' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'img-wrap' },
+						_react2['default'].createElement('img', { src: item.img_src.toString() })
+					),
+					_react2['default'].createElement(
+						'span',
+						null,
+						item.img_txt.toString()
+					)
+				)
 			);
-		} else if (this.props.category === 'ANIMALS') {
-			return _react2['default'].createElement(
-				'ul',
-				{ className: 'projects' },
-				assetsDisplay.animals()
-			);
-		} else if (this.props.category === 'SCIENCE') {
-			return _react2['default'].createElement(
-				'ul',
-				{ className: 'projects' },
-				assetsDisplay.science()
-			);
-		}
+		});
 		return _react2['default'].createElement(
-			'a',
-			{ href: '' },
-			_react2['default'].createElement(
-				'div',
-				{ className: 'img-wrap' },
-				_react2['default'].createElement('img', { src: './assets/b418719d6a25ee5cd4542c627a5fd762.jpg' })
-			),
-			_react2['default'].createElement(
-				'span',
-				null,
-				'Leonie - Branding'
-			)
+			'ul',
+			{ className: 'projects' },
+			listItems
 		);
 	};
 
@@ -2975,19 +2764,50 @@ var PageContainer = (function (_React$Component6) {
 })(_react2['default'].Component);
 
 PageContainer.propTypes = {
-	category: _react.PropTypes.string.isRequired
+	category: _react.PropTypes.string.isRequired,
+	list: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+		item_number: _react2['default'].PropTypes.number,
+		img_src: _react2['default'].PropTypes.string,
+		img_txt: _react2['default'].PropTypes.string
+	})).isRequired
 };
 
 // reducer handles how the state updates
 
-function projectswitcher(state, action) {
-	if (state === undefined) state = { category: category.PROJECTS };
+function initalState() {
+	return {
+		category: category.PROJECTS,
+		list: projectList.ANIMALS.concat(projectList.SCIENCE.concat(projectList.FACTS.concat(projectList.INSECTS)))
+	};
+}
 
+function projectswitcher(state, action) {
+	if (state === undefined) state = initalState();
+
+	var list = [];
 	switch (action.type) {
 		case UPDATE_CATEGORY:
-			return {
-				category: action.category
-			};
+			switch (action.category) {
+				case 'ANIMALS':
+					list = projectList.ANIMALS;
+					break;
+				case 'SCIENCE':
+					list = projectList.SCIENCE;
+					break;
+				case 'FACTS':
+					list = projectList.FACTS;
+					break;
+				case 'PROJECTS':
+					list = projectList.ANIMALS.concat(projectList.SCIENCE.concat(projectList.FACTS.concat(projectList.INSECTS)));
+					break;
+				default:
+					list = projectList.ANIMALS.concat(projectList.SCIENCE.concat(projectList.FACTS.concat(projectList.INSECTS)));
+					break;
+			}
+			return Object.assign({}, state, {
+				category: action.category,
+				list: list
+			});
 		default:
 			return state;
 	}
@@ -3001,22 +2821,38 @@ var store = _redux.createStore(projectswitcher);
 
 var mapStateToProps = function mapStateToProps(state) {
 	return {
-		category: projectswitcher(state.category, state.category)
+		category: state.category,
+		list: state.list
 	};
 };
 
 PageContainer = _reactRedux.connect(mapStateToProps)(PageContainer);
 
-var Footer = (function (_React$Component7) {
-	_inherits(Footer, _React$Component7);
+function toggleOverlay(state) {
+	var overlay = _jqueryMin2['default']('.overlay');
+	if (state) {
+		overlay.css('display', 'flex');
+		overlay.addClass('active');
+		_jqueryMin2['default']('html').addClass('overlay-open');
+	} else {
+		overlay.css('display', 'flex');
+		overlay.removeClass('active');
+		_jqueryMin2['default']('html').removeClass('overlay-open');
+	}
+}
+
+var Footer = (function (_React$Component6) {
+	_inherits(Footer, _React$Component6);
 
 	function Footer() {
 		_classCallCheck(this, Footer);
 
-		_React$Component7.apply(this, arguments);
+		_React$Component6.apply(this, arguments);
 	}
 
 	Footer.prototype.render = function render() {
+		var _this2 = this;
+
 		return _react2['default'].createElement(
 			'footer',
 			{ className: 'introStatic' },
@@ -3075,17 +2911,13 @@ var Footer = (function (_React$Component7) {
 				),
 				_react2['default'].createElement(
 					'div',
-					{ className: 'newsletter' },
+					{ className: 'contact_me' },
 					_react2['default'].createElement(
-						'form',
-						{ id: 'newsForm' },
-						_react2['default'].createElement(
-							'label',
-							null,
-							'Newsletter'
-						),
-						_react2['default'].createElement('input', { type: 'text', name: 'e_mail_address', placeholder: 'Enter Email' }),
-						_react2['default'].createElement('input', { type: 'submit', value: 'submit' })
+						'a',
+						{ onClick: function () {
+								return _this2.props.oncontactClick();
+							}, id: 'contact_overlay' },
+						'Contact Me!'
 					)
 				),
 				_react2['default'].createElement(
@@ -3099,8 +2931,26 @@ var Footer = (function (_React$Component7) {
 							null,
 							_react2['default'].createElement(
 								'a',
+								{ target: '_blank', rel: 'noopener noreferrer', href: '' },
+								_react2['default'].createElement('img', { no_src: './assets/icons/twittericon.png' })
+							)
+						),
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'a',
+								{ target: '_blank', rel: 'noopener noreferrer', href: '' },
+								_react2['default'].createElement('img', { no_src: './assets/icons/instagramicon.png' })
+							)
+						),
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'a',
 								{ target: '_blank', rel: 'noopener noreferrer', href: 'https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE' },
-								_react2['default'].createElement('img', { src: './assets/4f480432915ecef876d62eefbeb5bc5e.png' })
+								_react2['default'].createElement('img', { src: './assets/icons/facebookicon.png' })
 							)
 						),
 						_react2['default'].createElement(
@@ -3108,26 +2958,8 @@ var Footer = (function (_React$Component7) {
 							null,
 							_react2['default'].createElement(
 								'a',
-								{ target: '_blank', rel: 'noopener noreferrer', href: '' },
-								_react2['default'].createElement('img', { src: './assets/ed77402fcfb11e210044097a336ad1e6.png' })
-							)
-						),
-						_react2['default'].createElement(
-							'li',
-							null,
-							_react2['default'].createElement(
-								'a',
-								{ target: '_blank', rel: 'noopener noreferrer', href: '' },
-								_react2['default'].createElement('img', { src: './assets/727a0a72ba2341e0bf8b5e0f1190c5f0.png' })
-							)
-						),
-						_react2['default'].createElement(
-							'li',
-							null,
-							_react2['default'].createElement(
-								'a',
-								{ target: '_blank', rel: 'noopener noreferrer', href: '' },
-								_react2['default'].createElement('img', { src: './assets/60e3bc9b85b3431ff89f231cf0a84f5d.png' })
+								{ target: '_blank', rel: 'noopener noreferrer', href: 'http://leotide.tumblr.com/' },
+								_react2['default'].createElement('img', { src: './assets/icons/tumblricon.png' })
 							)
 						)
 					)
@@ -3139,6 +2971,26 @@ var Footer = (function (_React$Component7) {
 	return Footer;
 })(_react2['default'].Component);
 
+Footer.propTypes = {
+	oncontactClick: _react.PropTypes.func.isRequired
+};
+
+var mapStateToProps2 = function mapStateToProps2(state) {
+	return {
+		state: state
+	};
+};
+
+var mapDispatchToProps2 = function mapDispatchToProps2(dispatch) {
+	return {
+		oncontactClick: function oncontactClick() {
+			toggleOverlay(true);
+		}
+	};
+};
+
+Footer = _reactRedux.connect(mapStateToProps2, mapDispatchToProps2)(Footer);
+
 function renderhtml() {
 	_reactDom2['default'].render(_react2['default'].createElement(Intro, null), document.getElementById('intro'));
 	_reactDom2['default'].render(_react2['default'].createElement(IntroHeader, null), document.getElementById('introHeader'));
@@ -3147,17 +2999,21 @@ function renderhtml() {
 		{ store: store },
 		_react2['default'].createElement(Filters, null)
 	), document.getElementById('filters'));
-	_reactDom2['default'].render(_react2['default'].createElement(Overlay, null), document.getElementById('overlay'));
+	_reactDom2['default'].render(_react2['default'].createElement(_contact_overlay2['default'], null), document.getElementById('overlay'));
 	_reactDom2['default'].render(_react2['default'].createElement(Sidebar, null), document.getElementById('sidebar'));
 	_reactDom2['default'].render(_react2['default'].createElement(
 		_reactRedux.Provider,
 		{ store: store },
 		_react2['default'].createElement(PageContainer, null)
 	), document.getElementById('page-container'));
-	_reactDom2['default'].render(_react2['default'].createElement(Footer, null), document.getElementById('introStatic'));
+	_reactDom2['default'].render(_react2['default'].createElement(
+		_reactRedux.Provider,
+		{ store: store },
+		_react2['default'].createElement(Footer, null)
+	), document.getElementById('introStatic'));
 }
 
-},{"./assets":1,"react":205,"react-dom":6,"react-redux":159,"redux":211}],5:[function(require,module,exports){
+},{"./contact_overlay":1,"./jquery.min":3,"react":205,"react-dom":6,"react-redux":159,"redux":211}],5:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 

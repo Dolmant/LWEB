@@ -1,2 +1,3 @@
 run gruntfile (run 'grunt watch') to autocompile your js
-run some sort of scss compiler to do the css automatically
+scss compiler needs ruby and sass
+gem install sass on the ruby command line

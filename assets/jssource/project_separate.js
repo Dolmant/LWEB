@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
-import * as assetsDisplay from './assets';
+import Overlay from './contact_overlay';
+import $ from './jquery.min';
 
 
 // actions you can send to the state:
@@ -10,6 +11,132 @@ export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 export function updatecat(category) {
 	return { type: UPDATE_CATEGORY, category };
 }
+
+export const projectList = {
+	ANIMALS: [
+		{
+			item_number: 1,
+			img_src: './assets/images/Animals/Binturong.jpg',
+			img_txt: 'Binturong',
+		},
+		{
+			item_number: 2,
+			img_src: './assets/images/Animals/BlackBear.jpg',
+			img_txt: 'BlackBear',
+		},
+		{
+			item_number: 3,
+			img_src: './assets/images/Animals/RedPanda.jpg',
+			img_txt: 'RedPanda',
+		},
+		{
+			item_number: 4,
+			img_src: './assets/images/Insects/DragonflySigned.jpg',
+			img_txt: 'Dragonfly',
+		},
+	],
+	SCIENCE: [
+		{
+			item_number: 5,
+			img_src: './assets/images/Science/mouse02 copy.png',
+			img_txt: 'Mice',
+		},
+		{
+			item_number: 6,
+			img_src: './assets/images/Science/3D/06_Cell_Internal.png',
+			img_txt: '3D Cell internals',
+		},
+		{
+			item_number: 7,
+			img_src: './assets/images/Science/Medical Illustration/CatAnatomy2.jpg',
+			img_txt: 'Cat Anatomy',
+		},
+		{
+			item_number: 8,
+			img_src: './assets/images/Science/Medical Illustration/COPD2_sign.jpg',
+			img_txt: 'COPD2',
+		},
+		{
+			item_number: 9,
+			img_src: './assets/images/Science/Medical Illustration/Hand_Anatomy02.png',
+			img_txt: 'Hand Anatomy',
+		},
+		{
+			item_number: 10,
+			img_src: './assets/images/Science/Medical Illustration/StomachLayers_01.jpg',
+			img_txt: 'Stomach Layers',
+		},
+		{
+			item_number: 11,
+			img_src: './assets/images/Science/Typography/Blood_Components2.jpg',
+			img_txt: 'Blood Components',
+		},
+		{
+			item_number: 12,
+			img_src: './assets/images/Science/Typography/Micro2.jpg',
+			img_txt: 'Micro',
+		},
+		{
+			item_number: 13,
+			img_src: './assets/images/Science/Typography/Neuroscience.jpg',
+			img_txt: 'Neruoscience',
+		},
+		{
+			item_number: 14,
+			img_src: './assets/images/Science/Typography/Proteomics_Typo_02.jpg',
+			img_txt: 'Proteomics',
+		},
+		{
+			item_number: 15,
+			img_src: './assets/images/Science/VizbiPlus/08_Vizbi_DataTransfer.jpg',
+			img_txt: 'Data Transfer',
+		},
+		{
+			item_number: 16,
+			img_src: './assets/images/Science/VizbiPlus/09_Vizbi_WINNER_FibrilForest.jpg',
+			img_txt: 'Fibril Forest',
+		},
+		{
+			item_number: 17,
+			img_src: './assets/images/Science/VizbiPlus/FriesWithThat3.png',
+			img_txt: 'Fries with that?',
+		},
+	],
+	INSECTS: [
+		{
+			item_number: 18,
+			img_src: './assets/images/Animals/Binturong.jpg',
+			img_txt: 'Binturong',
+		},
+		{
+			item_number: 19,
+			img_src: './assets/images/Animals/Binturong.jpg',
+			img_txt: 'Binturong',
+		},
+		{
+			item_number: 20,
+			img_src: './assets/images/Animals/Binturong.jpg',
+			img_txt: 'Binturong',
+		},
+	],
+	FACTS: [
+		{
+			item_number: 21,
+			img_src: './assets/images/Animals/Binturong.jpg',
+			img_txt: 'Binturong',
+		},
+		{
+			item_number: 22,
+			img_src: './assets/images/Animals/Binturong.jpg',
+			img_txt: 'Binturong',
+		},
+		{
+			item_number: 23,
+			img_src: './assets/images/Animals/Binturong.jpg',
+			img_txt: 'Binturong',
+		},
+	],
+};
 
 export const category = {
 	PROJECTS: 'PROJECTS',
@@ -45,7 +172,7 @@ class IntroHeader extends React.Component {
 					</a>
 				</h1>
 				<div className="left">
-					<a className="fade" href="">Instagram?</a>
+					<a className="fade" href="http://leotide.tumblr.com/">Tumblr!</a>
 				</div>
 				<div className="right">
 					<div className="about-me">About Leo</div>
@@ -60,11 +187,11 @@ class Filters extends React.Component {
 		return (
 			<div className="container">
 				<ul>
-					<li onClick={() => this.props.oncatClick('PROJECTS')}><a id="projects">Leo&apos;s Projects</a></li>
-					<li onClick={() => this.props.oncatClick('ANIMALS')}><a id="animals">Leo&apos;s Animals</a></li>
-					<li onClick={() => this.props.oncatClick('INSECTS')}><a id="insects">Leo&apos;s Insects</a></li>
-					<li onClick={() => this.props.oncatClick('SCIENCE')}><a id="science">Leo&apos;s Science</a></li>
-					<li onClick={() => this.props.oncatClick('FACTS')}><a id="facts">Leo&apos;s Facts</a></li>
+					<li><a onClick={() => this.props.oncatClick('PROJECTS')} id="projects">Leo&apos;s Projects</a></li>
+					<li><a onClick={() => this.props.oncatClick('ANIMALS')} id="animals">Leo&apos;s Animals</a></li>
+					<li><a onClick={() => this.props.oncatClick('INSECTS')} id="insects">Leo&apos;s Insects</a></li>
+					<li><a onClick={() => this.props.oncatClick('SCIENCE')} id="science">Leo&apos;s Science</a></li>
+					<li><a onClick={() => this.props.oncatClick('FACTS')} id="facts">Leo&apos;s Facts</a></li>
 				</ul>
 			</div>
 		);
@@ -75,11 +202,7 @@ Filters.propTypes = {
 	oncatClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps1 = (state) => {
-	return {
-		state,
-	};
-};
+const mapStateToProps1 = state => state;
 
 const mapDispatchToProps1 = dispatch => ({
 	oncatClick: (id) => {
@@ -92,14 +215,6 @@ Filters = connect(
 	mapDispatchToProps1,
 )(Filters);
 
-class Overlay extends React.Component {
-	render() {
-		return (
-			<p></p>
-		);
-	}
-}
-
 class Sidebar extends React.Component {
 	render() {
 		return (
@@ -109,50 +224,77 @@ class Sidebar extends React.Component {
 }
 
 class PageContainer extends React.Component {
+
 	render() {
-		if (this.props.category === 'PROJECTS')	{
-			return (
-				<ul className="projects">
-					{ assetsDisplay.science() }
-					{ assetsDisplay.animals() }
-				</ul>
-			);
-		} else if (this.props.category === 'ANIMALS') {
-			return (
-				<ul className="projects">
-					{ assetsDisplay.animals() }
-				</ul>
-			);
-		} else if (this.props.category === 'SCIENCE') {
-			return (
-				<ul className="projects">
-					{ assetsDisplay.science() }
-				</ul>
-			);
-		}
+		const listItems = this.props.list.map(item =>
+			<li key={item.item_number.toString()}>
+				<a href="">
+					<div className="img-wrap">
+						<img src={item.img_src.toString()}></img>
+					</div>
+					<span>{item.img_txt.toString()}</span>
+				</a>
+			</li>,
+		);
 		return (
-			<a href="">
-				<div className="img-wrap">
-					<img src="./assets/b418719d6a25ee5cd4542c627a5fd762.jpg"></img>
-				</div>
-				<span>Leonie - Branding</span>
-			</a>
+			<ul className="projects">
+				{ listItems }
+			</ul>
 		);
 	}
 }
 
 PageContainer.propTypes = {
 	category: PropTypes.string.isRequired,
+	list: PropTypes.arrayOf(PropTypes.shape({
+		item_number: React.PropTypes.number,
+		img_src: React.PropTypes.string,
+		img_txt: React.PropTypes.string,
+	})).isRequired,
 };
 
 // reducer handles how the state updates
 
-function projectswitcher(state = { category: category.PROJECTS }, action) {
+function initalState() {
+	return {
+		category: category.PROJECTS,
+		list: projectList.ANIMALS.concat(
+			projectList.SCIENCE.concat(
+				projectList.FACTS.concat(projectList.INSECTS))),
+	};
+}
+
+function projectswitcher(state = initalState(), action) {
+	let list = [];
 	switch (action.type) {
 	case UPDATE_CATEGORY:
-		return {
+		switch (action.category) {
+		case 'ANIMALS':
+			list = projectList.ANIMALS;
+			break;
+		case 'SCIENCE':
+			list = projectList.SCIENCE;
+			break;
+		case 'FACTS':
+			list = projectList.FACTS;
+			break;
+		case 'PROJECTS':
+			list = projectList.ANIMALS.concat(
+				projectList.SCIENCE.concat(
+					projectList.FACTS.concat(
+						projectList.INSECTS)))
+			break;
+		default:
+			list = projectList.ANIMALS.concat(
+				projectList.SCIENCE.concat(
+					projectList.FACTS.concat(
+						projectList.INSECTS)))
+			break;
+		}
+		return Object.assign({}, state, {
 			category: action.category,
-		};
+			list,
+		});
 	default:
 		return state;
 	}
@@ -165,12 +307,26 @@ const store = createStore(projectswitcher);
 // mapping to react
 
 const mapStateToProps = state => ({
-	category: projectswitcher(state.category, state.category),
+	category: state.category,
+	list: state.list,
 });
 
 PageContainer = connect(
 	mapStateToProps,
 )(PageContainer);
+
+export function toggleOverlay(state) {
+	const overlay = $('.overlay');
+	if (state) {
+		overlay.css('display', 'flex');
+		overlay.addClass('active');
+		$('html').addClass('overlay-open');
+	} else {
+		overlay.css('display', 'flex');
+		overlay.removeClass('active');
+		$('html').removeClass('overlay-open');
+	}
+}
 
 class Footer extends React.Component {
 	render() {
@@ -184,33 +340,29 @@ class Footer extends React.Component {
 							<li><span>a</span><address>231 Derp Street, Snurf 209 | Brooklyn, NY</address></li>
 						</ul>
 					</div>
-					<div className="newsletter">
-						<form id="newsForm">
-							<label>Newsletter</label>
-							<input type="text" name="e_mail_address" placeholder="Enter Email"></input>
-							<input type="submit" value="submit"></input>
-						</form>
+					<div className="contact_me">
+						<a onClick={() => this.props.oncontactClick()} id="contact_overlay">Contact Me!</a>
 					</div>
 					<div className="social">
 						<ul>
 							<li>
+								<a target="_blank" rel="noopener noreferrer" href="">
+									<img no_src="./assets/icons/twittericon.png"></img>
+								</a>
+							</li>
+							<li>
+								<a target="_blank" rel="noopener noreferrer" href="">
+									<img no_src="./assets/icons/instagramicon.png"></img>
+								</a>
+							</li>
+							<li>
 								<a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE">
-									<img src="./assets/4f480432915ecef876d62eefbeb5bc5e.png"></img>
+									<img src="./assets/icons/facebookicon.png"></img>
 								</a>
 							</li>
 							<li>
-								<a target="_blank" rel="noopener noreferrer" href="">
-									<img src="./assets/ed77402fcfb11e210044097a336ad1e6.png"></img>
-								</a>
-							</li>
-							<li>
-								<a target="_blank" rel="noopener noreferrer" href="">
-									<img src="./assets/727a0a72ba2341e0bf8b5e0f1190c5f0.png"></img>
-								</a>
-							</li>
-							<li>
-								<a target="_blank" rel="noopener noreferrer" href="">
-									<img src="./assets/60e3bc9b85b3431ff89f231cf0a84f5d.png"></img>
+								<a target="_blank" rel="noopener noreferrer" href="http://leotide.tumblr.com/">
+									<img src="./assets/icons/tumblricon.png"></img>
 								</a>
 							</li>
 						</ul>
@@ -220,6 +372,27 @@ class Footer extends React.Component {
 		);
 	}
 }
+
+Footer.propTypes = {
+	oncontactClick: PropTypes.func.isRequired,
+};
+
+const mapStateToProps2 = (state) => {
+	return {
+		state,
+	};
+};
+
+const mapDispatchToProps2 = dispatch => ({
+	oncontactClick: () => {
+		toggleOverlay(true);
+	},
+});
+
+Footer = connect(
+	mapStateToProps2,
+	mapDispatchToProps2,
+)(Footer);
 
 export function renderhtml() {
 	ReactDOM.render(<Intro />, document.getElementById('intro'));
@@ -236,5 +409,9 @@ export function renderhtml() {
 			<PageContainer />
 		</Provider>,
 	document.getElementById('page-container'));
-	ReactDOM.render(<Footer />, document.getElementById('introStatic'));
+	ReactDOM.render(
+		<Provider store={store}>
+			<Footer />
+		</Provider>,
+		document.getElementById('introStatic'));
 }

@@ -1,26 +1,13 @@
 import * as projectSeparate from './project_separate';
 import $ from './jquery.min';
 
-function toggleOverlay() {
-	const overlay = document.getElementById('overlay');
-	const specialBox = document.getElementById('specialBox');
-	overlay.style.opacity = 0.8;
-	if (overlay.style.display === 'flex') {
-		overlay.style.display = 'none';
-		specialBox.style.display = 'none';
-	} else {
-		overlay.style.display = 'flex';
-		specialBox.style.display = 'flex';
-	}
-}
-
 const HT = {
 	isTouch: function () {
 		return 'ontouchstart' in document.documentElement;
 	},
 	ready: function () {
 		HT.fajax();
-		HT.filters();
+		HT.overlay();
 		HT.sidebar();
 		HT.newsletter();
 		if ($('.intro').length) {
@@ -186,22 +173,22 @@ const HT = {
 		});
 	},
 
-	filters: function () {
-
+	overlay: function () {
+		projectSeparate.toggleOverlay(false);
 	},
 
 	sidebar: function () {
 		const sidebar = $('.sidebar');
-		$('header .about-me').click(function () {
+		$('header .about-me').click(() => {
 			if (!$('header').hasClass('introHeader')) {
 				if (parseInt($('footer').css('padding-right'), 10) > 0) {
 					$('footer, header, body, .filters.open').css('padding-right', 0);
-					$('.overlay, header, footer').unbind('touchmove', function (e) {
+					$('.overlay, header, footer').unbind('touchmove', (e) => {
 						e.preventDefault();
 					});
 				} else {
 					$('footer, header, body, .filters.open').css('padding-right', HT.scrollbarWidth);
-					$('.overlay, header, footer').bind('touchmove', function (e) {
+					$('.overlay, header, footer').bind('touchmove', (e) => {
 						e.preventDefault();
 					});
 				}
