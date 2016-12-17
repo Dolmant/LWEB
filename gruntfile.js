@@ -38,6 +38,6 @@ module.exports = function (grunt) {
    grunt.loadNpmTasks('grunt-contrib-sass');
 
    grunt.registerTask("default", ["watch"]);
-   grunt.registerTask("build", ["browserify"]);
+   grunt.registerTask("build", ["browserify", "sass"]);
    grunt.registerTask("build_sass", ["sass"]);
 };
