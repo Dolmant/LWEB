@@ -261,11 +261,10 @@ height:65px;
 border-bottom:1px solid #000;
 width:100%;
 position:fixed;
-z-index:10000;
+z-index:30;
 top:0;
 left:0;
 background-color:#ffffff;
-padding-top:23px;
 -webkit-transition:border 0.5s ease-in-out,background 0.5s ease-in-out;
 -moz-transition:border 0.5s ease-in-out,background 0.5s ease-in-out;
 -ms-transition:border 0.5s ease-in-out,background 0.5s ease-in-out;
@@ -276,14 +275,20 @@ border-bottom:1px solid transparent;
 background-color:transparent
 }
 header .container {
-position:relative
+position:relative;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+height: 100%
 }
 header h1 {
-width:84px;
-height:14px;
-top:3px;
+max-width:5rem;
+max-height:1.5rem;
+width:auto;
+height:auto;
 left:50%;
-margin-left:-42px;
+margin-left:-2.5rem;
 position:absolute;
 background-color:#000;
 opacity:1;
@@ -300,18 +305,13 @@ opacity:0
 header h1:hover {
 background-color:#67c6b6
 }
-header h1 a img {
-width:84px
-}
 header .right {
-float:right;
 text-align:right
 }
 header .right a {
 margin-left:30px
 }
 header .left {
-float:left
 }
 header .left a {
 margin-right:30px
@@ -390,7 +390,7 @@ width:100%;
 overflow:hidden;
 background-color:#fafafa;
 border-top:1px solid #000;
-z-index:9998;
+z-index:15;
 -webkit-transition:max-height 0.35s,border 0.35s ease-out,background 0.35s ease-out;
 -moz-transition:max-height 0.35s,border 0.35s ease-out,background 0.35s ease-out;
 -ms-transition:max-height 0.35s,border 0.35s ease-out,background 0.35s ease-out;
@@ -449,7 +449,7 @@ text-transform:uppercase;
 font-size:10px;
 line-height:15px;
 letter-spacing:.05em;
-z-index:10000
+z-index:15
 }
 @media only screen and (max-width: 1000px) {
 footer {
@@ -522,22 +522,100 @@ display: none;
 
 .overlay.active {
 position:fixed;
-display: block;
+display:block;
 top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:9999;
-background-color: rgba(0,0,0,0.5);
+z-index:20;
+background-color:rgba(0,0,0,0.5);
 -webkit-transition:background-color .2s;
 -moz-transition:background-color .2s;
 -ms-transition:background-color .2s;
 -o-transition:background-color .2s
 }
 
-.contact_overlay form {
-position:relative
+.overlay_top {
+	width:100%;
+	height:100%;
 }
+
+.overlay_container {
+position:relative;
+display:inline-block;
+top:10%;
+left:10%;
+width:80%;
+height:80%;
+background-color:white;
+box-sizing:border-box;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+z-index:21;
+}
+
+.overlay_container form {
+position:relative;
+display:flex;
+flex-direction:column;
+align-items:center
+}
+.overlay_container form ul {
+width:50%;
+flex-direction:column;
+display:flex;
+}
+
+.overlay_container form input, .overlay_container form textarea {
+border:1px solid #ccc;
+display:block;
+width:90%;
+}
+
+.overlay_container form .emf-div-field span {
+padding:0;
+width:49.5%;
+vertical-align:top;
+display: inline-block;
+}
+
+.overlay_container .emf-bottom-label {
+font-style:italic;
+font-weight:300;
+font-size:16px;
+color:#666666;
+float:left;
+padding-bottom:3px;
+text-align:center;
+display:block;
+}
+
+.backgroundOverlay{
+    background-color:transparent;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display:block;
+}
+
+.closebutton {
+	color: black;
+    font: 14px/100% arial, sans-serif;
+    position: absolute;
+    right: 5px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 grey;
+    top: 5px;
+	cursor: pointer;
+	z-index:31;
+}
+
+.closebutton:hover {
+	color:grey;
+}
+
 .contact_me label {
 margin-right:12px;
 float:left
@@ -1149,7 +1227,7 @@ position:fixed;
 right:-50%;
 top:65px;
 overflow:hidden;
-z-index:9999;
+z-index:21;
 background:#fff;
 -webkit-overflow-scrolling:touch;
 overflow-y:scroll;
@@ -1366,6 +1444,9 @@ z-index:1;
 top:48%
 }
 .intro-logo img {
-width:250px;
+height: auto;
+width: auto;
+max-width: 250px;
+max-height: 300px;
 cursor:pointer
 }

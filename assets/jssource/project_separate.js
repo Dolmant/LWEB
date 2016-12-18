@@ -151,7 +151,7 @@ class Intro extends React.Component {
 		return (
 			<div>
 				<div className="intro-logo" >
-					<img src="./assets/images/Logo01.png"></img>
+					<img alt="It's not loading!" src="./assets/images/LEOTIDE.png"></img>
 				</div>
 				<video className="introVideo" autoPlay="1" loop="">
 					<source src="./assets/vids/Nucleus03.mov" type="video/mp4"></source>
@@ -165,14 +165,12 @@ class IntroHeader extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<h1>
-					<a className="fade" href="">
-						<img src="./assets/images/Logo03.png" alt="LeoTide"></img>
-					</a>
-				</h1>
 				<div className="left">
 					<a className="fade" href="http://leotide.tumblr.com/">Tumblr!</a>
 				</div>
+				<h1>
+					<img src="./assets/images/LEOTIDErev.png" alt="LeoTide"></img>
+				</h1>
 				<div className="right">
 					<a className="about-me">About Leo</a>
 				</div>
@@ -235,17 +233,40 @@ class Sidebar extends React.Component {
 	}
 }
 
-class PageContainer extends React.Component {
+export function toggleOverlay(state, image, src) {
+	const overlay = $('.overlay');
+	if (state) {
+		overlay.addClass('active');
+		$('html').addClass('overlay-open');
+		$('.backgroundOverlay').show();
+		$('.backgroundOverlay').click((event) => {
+			if (!$(event.target).is('.overlay_container'))	{
+				toggleOverlay(false, false, false);
+			}
+		});
+	} else {
+		overlay.removeClass('active');
+		$('html').removeClass('overlay-open');
+		$('.backgroundOverlay').hide();
+	}
+	if (image) {
+		$('.overlayimage').attr({ src });
+		$('.overlayimagecontrol').show();
+		$('.overlayform').hide();
+	} else {
+		$('.overlayimagecontrol').hide();
+		$('.overlayform').show();
+	}
+}
 
+class PageContainer extends React.Component {
 	render() {
 		const listItems = this.props.list.map(item =>
 			<li key={item.item_number.toString()}>
-				<a href="">
-					<div className="img-wrap">
-						<img src={item.img_src.toString()}></img>
-					</div>
-					<span>{item.img_txt.toString()}</span>
-				</a>
+				<div className="img-wrap">
+					<img alt="It's not loading!" onClick={() => { toggleOverlay(true, true, item.img_src.toString(), item.img_txt.toString()); }} src={item.img_src.toString()}></img>
+				</div>
+				<span>{item.img_txt.toString()}</span>
 			</li>,
 		);
 		return (
@@ -294,13 +315,13 @@ function projectswitcher(state = initalState(), action) {
 			list = projectList.ANIMALS.concat(
 				projectList.SCIENCE.concat(
 					projectList.FACTS.concat(
-						projectList.INSECTS)))
+						projectList.INSECTS)));
 			break;
 		default:
 			list = projectList.ANIMALS.concat(
 				projectList.SCIENCE.concat(
 					projectList.FACTS.concat(
-						projectList.INSECTS)))
+						projectList.INSECTS)));
 			break;
 		}
 		return Object.assign({}, state, {
@@ -327,17 +348,6 @@ PageContainer = connect(
 	mapStateToProps,
 )(PageContainer);
 
-export function toggleOverlay(state) {
-	const overlay = $('.overlay');
-	if (state) {
-		overlay.addClass('active');
-		$('html').addClass('overlay-open');
-	} else {
-		overlay.removeClass('active');
-		$('html').removeClass('overlay-open');
-	}
-}
-
 class Footer extends React.Component {
 	render() {
 		return (
@@ -356,23 +366,13 @@ class Footer extends React.Component {
 					<div className="social">
 						<ul>
 							<li>
-								<a target="_blank" rel="noopener noreferrer" href="">
-									<img no_src="./assets/icons/twittericon.png"></img>
-								</a>
-							</li>
-							<li>
-								<a target="_blank" rel="noopener noreferrer" href="">
-									<img no_src="./assets/icons/instagramicon.png"></img>
-								</a>
-							</li>
-							<li>
 								<a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE">
-									<img src="./assets/icons/facebookicon.png"></img>
+									<img alt="It's not loading!" src="./assets/icons/facebookicon.png"></img>
 								</a>
 							</li>
 							<li>
 								<a target="_blank" rel="noopener noreferrer" href="http://leotide.tumblr.com/">
-									<img src="./assets/icons/tumblricon.png"></img>
+									<img alt="It's not loading!" src="./assets/icons/tumblricon.png"></img>
 								</a>
 							</li>
 						</ul>
@@ -395,7 +395,7 @@ const mapStateToProps2 = (state) => {
 
 const mapDispatchToProps2 = dispatch => ({
 	oncontactClick: () => {
-		toggleOverlay(true);
+		toggleOverlay(true, false, false);
 	},
 });
 
