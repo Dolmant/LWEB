@@ -10,4 +10,6 @@ http://www.3fx.com/#home[iframes]/0/
 
 cache the images and possibly video
 
+stack images and show arrows for nav up and down
+
 fix the inital load with bar bug (probably because its in the html file, fix it to be patched in later)
