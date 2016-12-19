@@ -7,3 +7,7 @@ http://www.petersen-illustration.com/blog/
 
 Start page full screen carousel like
 http://www.3fx.com/#home[iframes]/0/
+
+cache the images and possibly video
+
+fix the inital load with bar bug (probably because its in the html file, fix it to be patched in later)
