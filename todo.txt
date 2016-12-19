@@ -1,0 +1,9 @@
+Fullscreen click overview like 
+http://www.courtneyardenwhite.com/portfolio/
+with left/right arrows
+
+fullscreen tiles for images like
+http://www.petersen-illustration.com/blog/
+
+Start page full screen carousel like
+http://www.3fx.com/#home[iframes]/0/
