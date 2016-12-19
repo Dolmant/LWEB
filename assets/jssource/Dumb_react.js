@@ -6,7 +6,7 @@ export const Intro = () => (
 			<img alt="It's not loading!" src="./assets/images/LEOTIDE.png"></img>
 		</div>
 		<video className="introVideo" autoPlay="1" loop="">
-			<source src="./assets/vids/Nucleus03.mov" type="video/mp4"></source>
+			<source src="./assets/vids/Nucleus03.mp4" type="video/mp4"></source>
 		</video>
 	</div>
 );
