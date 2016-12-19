@@ -17,12 +17,12 @@ export const projectList = {
 		},
 		{
 			item_number: 8,
-			img_src: './assets/images/SciIllustration/COPD2_sign.jpg',
+			img_src: './assets/images/SciIllustration/COPD2.jpg',
 			img_txt: 'COPD study',
 		},
 		{
 			item_number: 9,
-			img_src: './assets/images/SciIllustration/Hand_Anatomy02.png',
+			img_src: './assets/images/SciIllustration/Hand_Anatomy01.png',
 			img_txt: 'Hand Anatomy',
 		},
 		{
@@ -57,12 +57,12 @@ export const projectList = {
 		},
 		{
 			item_number: 15,
-			img_src: './assets/images/SciIllustration/08_Vizbi_DataTransfer.jpg',
+			img_src: './assets/images/SciIllustration/08_Vizbi_DataTransfer.png',
 			img_txt: 'Data Transfer',
 		},
 		{
 			item_number: 16,
-			img_src: './assets/images/SciIllustration/09_Vizbi_WINNER_FibrilForest.jpg',
+			img_src: './assets/images/SciIllustration/09_Vizbi_WINNER_FibrilForest.png',
 			img_txt: 'Fibril Forest',
 		},
 		{
@@ -72,12 +72,12 @@ export const projectList = {
 		},
 		{
 			item_number: 11,
-			img_src: './assets/images/Typography/Blood_Components2.jpg',
+			img_src: './assets/images/Typography/Blood_Components2.png',
 			img_txt: 'Blood',
 		},
 		{
 			item_number: 12,
-			img_src: './assets/images/Typography/Epidemiology2.jpg',
+			img_src: './assets/images/Typography/Epidemiology2.png',
 			img_txt: 'Microbiology',
 		},
 		{
@@ -87,12 +87,12 @@ export const projectList = {
 		},
 		{
 			item_number: 13,
-			img_src: './assets/images/Typography/Flagellum.jpg',
+			img_src: './assets/images/Typography/Flagellum.png',
 			img_txt: 'Flagellum',
 		},
 		{
 			item_number: 14,
-			img_src: './assets/images/Typography/Proteomics_Typo_02.jpg',
+			img_src: './assets/images/Typography/Proteomics_Typo_02 copy.jpg',
 			img_txt: 'Proteomics',
 		},
 	],
@@ -136,7 +136,7 @@ export const projectList = {
 		},
 		{
 			item_number: 4,
-			img_src: './assets/images/Animals/DragonflySigned.jpg',
+			img_src: './assets/images/Animals/Dragonfly2Signed.jpg',
 			img_txt: 'Dragonfly with prey',
 		},
 		{
@@ -159,12 +159,12 @@ export const projectList = {
 		{
 			item_number: 22,
 			img_src: './assets/images/Facts/EelFacts.jpg',
-			img_txt: 'Mud crabs',
+			img_txt: 'Electric eel + electrolocation',
 		},
 		{
 			item_number: 23,
 			img_src: './assets/images/Facts/MudCrabFacts.jpg',
-			img_txt: 'Electric eel + electrolocation',
+			img_txt: 'Mud crabs',
 		},
 		{
 			item_number: 24,
