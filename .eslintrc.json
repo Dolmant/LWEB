@@ -11,6 +11,7 @@
         "indent": ["error", "tab"],
         "no-mixed-spaces-and-tabs": ["error"],
         "no-tabs": "off",
+		"camelcase": ["off", {"properties": "never"}],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/jsx-indent": ["error", "tab"],
         "react/self-closing-comp": ["error", {

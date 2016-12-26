@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
-import { updatecat } from './../consts';
+import { updateCategory } from './../consts';
 
 const Filters = props => (
 	<div className="container">
@@ -23,7 +23,7 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
 	oncatClick: (id) => {
-		dispatch(updatecat(id));
+		dispatch(updateCategory(id));
 	},
 });
 

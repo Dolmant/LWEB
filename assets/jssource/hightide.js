@@ -157,7 +157,7 @@ const HT = {
 
 		$('#emf-form').on('submit', function formoverride(e) {
 			e.preventDefault();
-			projectSeparate.toggleOverlay(false, false, false);
+			projectSeparate.toggleOverlay(false, false);
 			$.ajax({
 				url: $(this).attr('action'),
 				type: 'POST',
@@ -172,7 +172,7 @@ const HT = {
 		});
 		$('.closebutton').click((event) => {
 			event.preventDefault();
-			projectSeparate.toggleOverlay(false, false, false);
+			projectSeparate.toggleOverlay(false, false);
 		});
 
 		$('a.fade, .projects a, .pager a').click((event) => {
@@ -195,7 +195,7 @@ const HT = {
 	},
 
 	overlay() {
-		projectSeparate.toggleOverlay(false, false, false);
+		projectSeparate.toggleOverlay(false, false);
 	},
 
 	sidebar() {
@@ -225,9 +225,9 @@ const HT = {
 			$.ajax({
 				url: '/assets/includes/newsletter.php',
 				data: form.serialize(),
-				beforeSend:  function () {
+				beforeSend() {
 				},
-				success: function (response) {
+				success(response) {
 					var resp = $.parseJSON(response);
 					form.find('input[type=text]').val(resp.msg);
 					if (resp.msg !== 'Thanks!') {
