@@ -139,6 +139,7 @@ src:url("../fonts/DINMed.eot?#iefix") format("embedded-opentype"),url("../fonts/
 font-weight:700;
 font-style:normal
 }
+
 body {
 color:#000;
 line-height:20px;
@@ -147,19 +148,23 @@ font-weight:500;
 font-size:12px;
 letter-spacing:.025em
 }
+
 p {
 max-width:800px;
 margin-bottom:10px;
 line-height:21px
 }
+
 ul {
 line-height:21px
 }
+
 h2 {
 font-size:18px;
 font-weight:100;
 line-height:25px
 }
+
 a {
 text-decoration:none;
 color:#67c6b6;
