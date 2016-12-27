@@ -370,6 +370,50 @@ var _react2 = _interopRequireDefault(_react);
 var _consts = require('./../consts');
 
 var Overlay = function Overlay(props) {
+	var Arrows = function Arrows() {
+		var arrowreturn = [];
+		if (props.overlayarrows.left) {
+			arrowreturn.push(_react2['default'].createElement(
+				'div',
+				{ className: 'img-wrap-left-overlay' },
+				_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: './assets/icons/LeftIcon.png', onClick: function () {
+						return props.onDirectionClick('left');
+					}, className: 'leftnav_overlay' })
+			));
+		}
+		if (props.overlayarrows.right) {
+			arrowreturn.push(_react2['default'].createElement(
+				'div',
+				{ className: 'img-wrap-right-overlay' },
+				_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: './assets/icons/RightIcon.png', onClick: function () {
+						return props.onDirectionClick('right');
+					}, className: 'rightnav_overlay' })
+			));
+		}
+		if (props.overlayarrows.up) {
+			arrowreturn.push(_react2['default'].createElement(
+				'div',
+				{ className: 'img-wrap-up-overlay' },
+				_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: './assets/icons/UpIcon.png', onClick: function () {
+						return props.onDirectionClick('up');
+					}, className: 'upnav_overlay' })
+			));
+		}
+		if (props.overlayarrows.down) {
+			arrowreturn.push(_react2['default'].createElement(
+				'div',
+				{ className: 'img-wrap-down-overlay' },
+				_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: './assets/icons/DownIcon.png', onClick: function () {
+						return props.onDirectionClick('down');
+					}, className: 'downnav_overlay' })
+			));
+		}
+		return _react2['default'].createElement(
+			'div',
+			null,
+			arrowreturn
+		);
+	};
 	return _react2['default'].createElement(
 		'div',
 		{ className: 'overlay_top' },
@@ -379,7 +423,7 @@ var Overlay = function Overlay(props) {
 			{ className: 'overlay_container' },
 			_react2['default'].createElement(
 				'a',
-				{ className: 'closebutton' },
+				{ className: 'closebutton strokeme' },
 				'✖'
 			),
 			_react2['default'].createElement(
@@ -493,34 +537,7 @@ var Overlay = function Overlay(props) {
 			_react2['default'].createElement(
 				'div',
 				{ className: 'overlayimagecontrol' },
-				_react2['default'].createElement(
-					'div',
-					{ className: 'img-wrap-left-overlay' },
-					_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: '', onClick: function () {
-							return props.onDirectionClick('left');
-						}, className: 'leftnav_overlay' })
-				),
-				_react2['default'].createElement(
-					'div',
-					{ className: 'img-wrap-right-overlay' },
-					_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: '', onClick: function () {
-							return props.onDirectionClick('right');
-						}, className: 'rightnav_overlay' })
-				),
-				_react2['default'].createElement(
-					'div',
-					{ className: 'img-wrap-up-overlay' },
-					_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: '', onClick: function () {
-							return props.onDirectionClick('up');
-						}, className: 'upnav_overlay' })
-				),
-				_react2['default'].createElement(
-					'div',
-					{ className: 'img-wrap-down-overlay' },
-					_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: '', onClick: function () {
-							return props.onDirectionClick('down');
-						}, className: 'downnav_overlay' })
-				),
+				Arrows(),
 				_react2['default'].createElement(
 					'div',
 					{ className: 'img-wrap-overlay' },
@@ -534,12 +551,19 @@ var Overlay = function Overlay(props) {
 
 Overlay.propTypes = {
 	onDirectionClick: _react.PropTypes.func.isRequired,
+	overlayarrows: _react.PropTypes.shape({
+		left: _react.PropTypes.boolean,
+		right: _react.PropTypes.boolean,
+		up: _react.PropTypes.boolean,
+		down: _react.PropTypes.boolean
+	}).isRequired,
 	overlay_image_src: _react.PropTypes.string.isRequired
 };
 
 var mapStateToProps = function mapStateToProps(state) {
 	return {
-		overlay_image_src: state.overlay_image_src
+		overlay_image_src: state.overlay_image_src,
+		overlayarrows: state.overlayarrows
 	};
 };
 
@@ -579,7 +603,7 @@ var PageContainer = function PageContainer(props) {
 			_react2['default'].createElement(
 				'div',
 				{ className: 'img-wrap' },
-				_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: item.img_src.toString(), onClick: function () {
+				_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: item.thumbs_src.toString(), onClick: function () {
 						return props.onImageClick(item.item_number);
 					} })
 			),
@@ -600,7 +624,7 @@ var PageContainer = function PageContainer(props) {
 PageContainer.propTypes = {
 	list: _react.PropTypes.arrayOf(_react.PropTypes.shape({
 		item_number: _react.PropTypes.number,
-		img_src: _react.PropTypes.string,
+		img_src: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.arrayOf(_react.PropTypes.string)]),
 		img_txt: _react.PropTypes.string
 	})).isRequired,
 	onImageClick: _react.PropTypes.func.isRequired
@@ -639,45 +663,66 @@ var _consts = require('./../consts');
 
 var InitalState = {
 	category: _consts.category.PROJECTS,
-	list: _consts.projectList.ANIMALS.concat(_consts.projectList.SCIENCE.concat(_consts.projectList.FACTS.concat(_consts.projectList.MODELLING))),
-	overlay_image: 1
+	list: _consts.projectList.SCIENCE.concat(_consts.projectList.MODELLING.concat(_consts.projectList.ANIMALS.concat(_consts.projectList.FACTS.concat(_consts.projectList.MISC)))),
+	overlay_image: 1,
+	arrows: {
+		left: true,
+		right: true,
+		up: false,
+		down: false
+	},
+	overlay_vertical_index: 0
 };
 
-function selectedOverlayImageNum(state, action) {
-	if (state === undefined) state = InitalState.overlay_image;
+function computedarrows(overlay_image_num, current_category, overlay_vertical_index) {
+	var overlayarrows = {};
+	Object.assign(overlayarrows, InitalState.arrows);
+	var leftlimits = _consts.ArrayLimits.left;
+	var rightlimits = _consts.ArrayLimits.right;
+	var downlimits = _consts.ArrayLimits.up;
+	var uplimits = _consts.ArrayLimits.down;
+	if (current_category === _consts.category.PROJECTS) {
+		leftlimits = [1];
+		rightlimits = [_consts.NumberOfImages];
+	}
+	if (_consts.ArrayContains(leftlimits, overlay_image_num)) {
+		overlayarrows.left = false;
+	}
+	if (_consts.ArrayContains(rightlimits, overlay_image_num)) {
+		overlayarrows.right = false;
+	}
+	// reversed logic here to make things easier
+	if (_consts.ArrayContains(uplimits, overlay_image_num) && overlay_vertical_index !== _consts.NumberofVertical - 1) {
+		overlayarrows.up = true;
+	}
+	if (_consts.ArrayContains(downlimits, overlay_image_num) && overlay_vertical_index !== 0) {
+		overlayarrows.down = true;
+	}
+	return overlayarrows;
+}
 
-	var overlay_image_num = state;
+function selectedOverlayImageNum(overlay_image_num_, current_category, overlay_vertical_index_, action) {
+	if (overlay_image_num_ === undefined) overlay_image_num_ = InitalState.overlay_image;
+	if (current_category === undefined) current_category = InitalState.category;
+	if (overlay_vertical_index_ === undefined) overlay_vertical_index_ = InitalState.overlay_vertical_index;
+
+	var overlay_image_num = overlay_image_num_;
+	var overlay_vertical_index = overlay_vertical_index_;
 	switch (action.type) {
 		case _consts.NAV_OVERLAY_IMAGE:
 			switch (action.direction) {
 				case 'left':
-					if (overlay_image_num === 1) {
-						overlay_image_num = _consts.NumberOfImages;
-					} else {
-						overlay_image_num -= 1;
-					}
+					overlay_image_num -= 1;
 					break;
 				case 'right':
-					if (overlay_image_num === _consts.NumberOfImages) {
-						overlay_image_num = 1;
-					} else {
-						overlay_image_num += 1;
-					}
+					overlay_image_num += 1;
 					break;
 				// deal with this later
 				case 'up':
-					if (overlay_image_num === 1) {
-						overlay_image_num = _consts.NumberOfImages;
-					} else {
-						overlay_image_num -= 1;
-					}
+					overlay_vertical_index += 1;
 					break;
 				case 'down':
-					if (overlay_image_num === 1) {
-						overlay_image_num = _consts.NumberOfImages;
-					} else {
-						overlay_image_num -= 1;
-					}
+					overlay_vertical_index -= 1;
 					break;
 				default:
 					break;
@@ -689,10 +734,19 @@ function selectedOverlayImageNum(state, action) {
 		default:
 			break;
 	}
-	var overlay_image_src = _consts.getImageSrc(overlay_image_num);
+	var temp = _consts.getImageSrc(overlay_image_num);
+	var overlay_image_src = '';
+	if (Array.isArray(temp)) {
+		overlay_image_src = temp[overlay_vertical_index];
+	} else {
+		overlay_image_src = temp;
+	}
+	var overlayarrows = computedarrows(overlay_image_num, current_category, overlay_vertical_index);
 	return {
+		overlay_vertical_index: overlay_vertical_index,
 		overlay_image_num: overlay_image_num,
-		overlay_image_src: overlay_image_src
+		overlay_image_src: overlay_image_src,
+		overlayarrows: overlayarrows
 	};
 }
 
@@ -703,15 +757,13 @@ function selectedCategory(state, action) {
 	if (action.type === _consts.UPDATE_CATEGORY) {
 		selectedcat = action.category;
 	}
-	return {
-		selectedcat: selectedcat
-	};
+	return selectedcat;
 }
 
 function selectedList(state, action) {
 	if (state === undefined) state = InitalState.list;
 
-	var list = state;
+	var list = state.slice();
 	if (action.type === _consts.UPDATE_CATEGORY) {
 		switch (action.category) {
 			case 'ANIMALS':
@@ -724,15 +776,13 @@ function selectedList(state, action) {
 				list = _consts.projectList.FACTS;
 				break;
 			case 'PROJECTS':
-				list = _consts.projectList.ANIMALS.concat(_consts.projectList.SCIENCE.concat(_consts.projectList.FACTS.concat(_consts.projectList.MODELLING)));
+				list = _consts.projectList.SCIENCE.concat(_consts.projectList.MODELLING.concat(_consts.projectList.ANIMALS.concat(_consts.projectList.FACTS.concat(_consts.projectList.MISC))));
 				break;
 			default:
-				list = _consts.projectList.ANIMALS.concat(_consts.projectList.SCIENCE.concat(_consts.projectList.FACTS.concat(_consts.projectList.MODELLING)));
+				list = _consts.projectList.SCIENCE.concat(_consts.projectList.MODELLING.concat(_consts.projectList.ANIMALS.concat(_consts.projectList.FACTS.concat(_consts.projectList.MISC))));
 				break;
 		}
-		return {
-			list: list
-		};
+		return list;
 	}
 	return list;
 }
@@ -743,7 +793,7 @@ function allReducers(state, action) {
 	return _extends({
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action)
-	}, selectedOverlayImageNum(state.overlay_image_num, action));
+	}, selectedOverlayImageNum(state.overlay_image_num, state.category, state.overlay_vertical_index, action));
 }
 
 // create store
@@ -754,14 +804,15 @@ module.exports = exports['default'];
 'use strict';
 
 exports.__esModule = true;
-exports.updatecat = updatecat;
+exports.updateCategory = updateCategory;
 exports.updateOverlayImage = updateOverlayImage;
 exports.navOverlayImage = navOverlayImage;
 exports.getImageSrc = getImageSrc;
+exports.ArrayContains = ArrayContains;
 var UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 exports.UPDATE_CATEGORY = UPDATE_CATEGORY;
 
-function updatecat(category) {
+function updateCategory(category) {
 	return { type: UPDATE_CATEGORY, category: category };
 }
 
@@ -779,154 +830,191 @@ function navOverlayImage(direction) {
 	return { type: NAV_OVERLAY_IMAGE, direction: direction };
 }
 
+var NumberofVertical = 5;
+exports.NumberofVertical = NumberofVertical;
 var NumberOfImages = 35;
 exports.NumberOfImages = NumberOfImages;
 var projectList = {
 	SCIENCE: [{
 		item_number: 1,
 		img_src: './assets/images/SciIllustration/mouse02 copy.png',
-		img_txt: 'Mice'
+		img_txt: 'Mice',
+		thumbs_src: './assets/thumbs/SciIllustration/mouse02 copy.png'
 	}, {
 		item_number: 2,
 		img_src: './assets/images/SciIllustration/CatAnatomy2.jpg',
-		img_txt: 'Cat Anatomy'
+		img_txt: 'Cat Anatomy',
+		thumbs_src: './assets/thumbs/SciIllustration/CatAnatomy2.jpg'
 	}, {
 		item_number: 3,
 		img_src: './assets/images/SciIllustration/COPD2.jpg',
-		img_txt: 'COPD study'
+		img_txt: 'COPD study',
+		thumbs_src: './assets/thumbs/SciIllustration/COPD2.jpg'
 	}, {
 		item_number: 4,
 		img_src: './assets/images/SciIllustration/Hand_Anatomy01.png',
-		img_txt: 'Hand Anatomy'
+		img_txt: 'Hand Anatomy',
+		thumbs_src: './assets/thumbs/SciIllustration/Hand_Anatomy01.png'
 	}, {
 		item_number: 5,
 		img_src: './assets/images/SciIllustration/Cell_comp03.jpg',
-		img_txt: 'Cell comp'
+		img_txt: 'Cell comp',
+		thumbs_src: './assets/thumbs/SciIllustration/Cell_comp03.jpg'
 	}, {
 		item_number: 6,
 		img_src: './assets/images/SciIllustration/DNAtetris.jpg',
-		img_txt: 'DNAtetris'
+		img_txt: 'DNAtetris',
+		thumbs_src: './assets/thumbs/SciIllustration/DNAtetris.jpg'
 	}, {
 		item_number: 7,
 		img_src: './assets/images/SciIllustration/IBS_04.jpg',
-		img_txt: 'IBS'
+		img_txt: 'IBS',
+		thumbs_src: './assets/thumbs/SciIllustration/IBS_04.jpg'
 	}, {
 		item_number: 8,
 		img_src: './assets/images/SciIllustration/MVintroV2.png',
-		img_txt: 'MVintro'
+		img_txt: 'MVintro',
+		thumbs_src: './assets/thumbs/SciIllustration/MVintroV2.png'
 	}, {
 		item_number: 9,
 		img_src: './assets/images/SciIllustration/RamenCellNew5.png',
-		img_txt: 'Ramen Cell'
+		img_txt: 'Ramen Cell',
+		thumbs_src: './assets/thumbs/SciIllustration/RamenCellNew5.png'
 	}, {
 		item_number: 10,
 		img_src: './assets/images/SciIllustration/StomachLayers_01.png',
-		img_txt: 'Stomach Layers'
+		img_txt: 'Stomach Layers',
+		thumbs_src: './assets/thumbs/SciIllustration/StomachLayers_01.png'
 	}, {
 		item_number: 11,
 		img_src: './assets/images/SciIllustration/08_Vizbi_DataTransfer.png',
-		img_txt: 'Data Transfer'
+		img_txt: 'Data Transfer',
+		thumbs_src: './assets/thumbs/SciIllustration/08_Vizbi_DataTransfer.png'
 	}, {
 		item_number: 12,
 		img_src: './assets/images/SciIllustration/09_Vizbi_WINNER_FibrilForest.png',
-		img_txt: 'Fibril Forest'
+		img_txt: 'Fibril Forest',
+		thumbs_src: './assets/thumbs/SciIllustration/09_Vizbi_WINNER_FibrilForest.png'
 	}, {
 		item_number: 13,
 		img_src: './assets/images/SciIllustration/FriesWithThat3.png',
-		img_txt: '"Do you want fries with that?" Microbiological study of IBS'
+		img_txt: '"Do you want fries with that?" Microbiological study of IBS',
+		thumbs_src: './assets/thumbs/SciIllustration/FriesWithThat3.png'
 	}, {
 		item_number: 14,
 		img_src: './assets/images/Typography/Blood_Components2.png',
-		img_txt: 'Blood'
+		img_txt: 'Blood',
+		thumbs_src: './assets/thumbs/Typography/Blood_Components2.png'
 	}, {
 		item_number: 15,
 		img_src: './assets/images/Typography/Epidemiology2.png',
-		img_txt: 'Microbiology'
+		img_txt: 'Microbiology',
+		thumbs_src: './assets/thumbs/Typography/Epidemiology2.png'
 	}, {
 		item_number: 16,
 		img_src: './assets/images/Typography/Neuroscience.jpg',
-		img_txt: 'Neruoscience'
+		img_txt: 'Neruoscience',
+		thumbs_src: './assets/thumbs/Typography/Neuroscience.jpg'
 	}, {
 		item_number: 17,
 		img_src: './assets/images/Typography/Flagellum.png',
-		img_txt: 'Flagellum'
+		img_txt: 'Flagellum',
+		thumbs_src: './assets/thumbs/Typography/Flagellum.png'
 	}, {
 		item_number: 18,
 		img_src: './assets/images/Typography/Proteomics_Typo_02 copy.jpg',
-		img_txt: 'Proteomics'
+		img_txt: 'Proteomics',
+		thumbs_src: './assets/thumbs/Typography/Proteomics_Typo_02 copy.jpg'
 	}],
 	MODELLING: [{
 		item_number: 19,
 		img_src: './assets/images/SciModelling/06_Cell_Internal.png',
-		img_txt: '3D Cell internals'
+		img_txt: '3D Cell internals',
+		thumbs_src: './assets/thumbs/SciModelling/06_Cell_Internal.png'
 	}, {
 		item_number: 20,
-		img_src: './assets/images/SciModelling/CLICblue.png',
-		img_txt: 'CLIC'
+		img_src: './assets/images/SciModelling/CLICblue.jpg',
+		img_txt: 'CLIC',
+		thumbs_src: './assets/thumbs/SciModelling/CLICblue.jpg'
 	}, {
 		item_number: 21,
 		img_src: './assets/images/SciModelling/EyeRend02.png',
-		img_txt: 'Eye'
+		img_txt: 'Eye',
+		thumbs_src: './assets/thumbs/SciModelling/EyeRend02.png'
 	}, {
 		item_number: 22,
-		img_src: './assets/images/SciModelling/SC_Compare.png',
-		img_txt: 'SC Compare'
+		img_src: './assets/images/SciModelling/SC_Compare.jpg',
+		img_txt: 'SC Compare',
+		thumbs_src: './assets/thumbs/SciModelling/SC_Compare.jpg'
 	}],
 	ANIMALS: [{
 		item_number: 23,
 		img_src: './assets/images/Animals/Binturong.jpg',
-		img_txt: 'Binturong'
+		img_txt: 'Binturong',
+		thumbs_src: './assets/thumbs/Animals/Binturong.jpg'
 	}, {
 		item_number: 24,
 		img_src: './assets/images/Animals/BlackBear.jpg',
-		img_txt: 'Black Bear'
+		img_txt: 'Black Bear',
+		thumbs_src: './assets/thumbs/Animals/BlackBear.jpg'
 	}, {
 		item_number: 25,
 		img_src: './assets/images/Animals/RedPanda.jpg',
-		img_txt: 'Red Panda'
+		img_txt: 'Red Panda',
+		thumbs_src: './assets/thumbs/Animals/RedPanda.jpg'
 	}, {
 		item_number: 26,
 		img_src: './assets/images/Animals/Dragonfly2Signed.jpg',
-		img_txt: 'Dragonfly with prey'
+		img_txt: 'Dragonfly with prey',
+		thumbs_src: './assets/thumbs/Animals/Dragonfly2Signed.jpg'
 	}, {
 		item_number: 27,
 		img_src: './assets/images/Animals/Chameleon.jpg',
-		img_txt: 'Chameleon'
+		img_txt: 'Chameleon',
+		thumbs_src: './assets/thumbs/Animals/Chameleon.jpg'
 	}, {
 		item_number: 28,
 		img_src: './assets/images/Animals/HiveBeetle2.jpg',
-		img_txt: 'Hive Beetle'
+		img_txt: 'Hive Beetle',
+		thumbs_src: './assets/thumbs/Animals/HiveBeetle2.jpg'
 	}],
 	FACTS: [{
 		item_number: 29,
 		img_src: './assets/images/Facts/CatFacts.jpg',
-		img_txt: 'Maine Coon Cats + polydactylism'
+		img_txt: 'Maine Coon Cats + polydactylism',
+		thumbs_src: './assets/thumbs/Facts/CatFacts.jpg'
 	}, {
 		item_number: 30,
 		img_src: './assets/images/Facts/EelFacts.jpg',
-		img_txt: 'Electric eel + electrolocation'
+		img_txt: 'Electric eel + electrolocation',
+		thumbs_src: './assets/thumbs/Facts/EelFacts.jpg'
 	}, {
 		item_number: 31,
 		img_src: './assets/images/Facts/MudCrabFacts.jpg',
-		img_txt: 'Mud crabs'
+		img_txt: 'Mud crabs',
+		thumbs_src: './assets/thumbs/Facts/MudCrabFacts.jpg'
 	}, {
 		item_number: 32,
 		img_src: './assets/images/Facts/SeadragonFactsV2.jpg',
-		img_txt: 'Seadragons'
+		img_txt: 'Seadragons',
+		thumbs_src: './assets/thumbs/Facts/SeadragonFactsV2.jpg'
 	}],
 	POSTERS: [{
 		item_number: 33,
 		img_src: './assets/images/Posters/rsz_nh_posterportraitfinal.jpg',
-		img_txt: 'Poster1'
+		img_txt: 'Poster1',
+		thumbs_src: './assets/thumbs/Posters/rsz_nh_posterportraitfinal.jpg'
 	}, {
 		item_number: 34,
 		img_src: './assets/images/Posters/somepdf.jpg',
-		img_txt: 'somepdf I cant use'
+		img_txt: 'somepdf I cant use',
+		thumbs_src: './assets/thumbs/Posters/somepdf.jpg'
 	}],
 	MISC: [{
 		item_number: 35,
-		img_src: './assets/images/UterineInversion',
-		img_txt: ''
+		img_src: ['./assets/images/UterineInversion/UterineInversion_Colour01.jpg', './assets/images/UterineInversion/UterineInversion_Colour02.jpg', './assets/images/UterineInversion/UterineInversion_Colour03.jpg', './assets/images/UterineInversion/UterineInversion_Colour04.jpg', './assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
+		img_txt: '',
+		thumbs_src: './assets/thumbs/UterineInversion/tn_UIFolder.png'
 	}]
 };
 
@@ -944,6 +1032,36 @@ function getImageSrc(ImageNum) {
 	return false;
 }
 
+function getArrayLimits() {
+	var left = [];
+	var right = [];
+	var up = [35];
+	var down = [35];
+	for (var arrayNames in projectList) {
+		var arrayRaw = projectList[arrayNames];
+		left.push(arrayRaw[0].item_number);
+		right.push(arrayRaw[arrayRaw.length - 1].item_number);
+	}
+	return {
+		left: left,
+		right: right,
+		up: up,
+		down: down
+	};
+}
+
+function ArrayContains(a, obj) {
+	for (var i = 0; i < a.length; i += 1) {
+		if (a[i] === obj) {
+			return true;
+		}
+	}
+	return false;
+}
+
+var ArrayLimits = getArrayLimits();
+
+exports.ArrayLimits = ArrayLimits;
 // actions youcan send to the state
 var category = {
 	PROJECTS: 'PROJECTS',

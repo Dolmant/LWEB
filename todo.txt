@@ -13,3 +13,7 @@ cache the images and possibly video
 stack images and show arrows for nav up and down
 
 fix the inital load with bar bug (probably because its in the html file, fix it to be patched in later)
+
+fix the super slow scroll - probably the inital jquery html
+
+fix images to load bits at a time

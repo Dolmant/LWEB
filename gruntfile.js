@@ -34,6 +34,10 @@ module.exports = function (grunt) {
 				files: ['./assets/jssource/*.js'],
 				tasks: ['browserify'],
 			},
+			watchreactjs: {
+				files: ['./assets/jssource/DynamicReact/*.js'],
+				tasks: ['browserify'],
+			},
 		},
 	});
 
