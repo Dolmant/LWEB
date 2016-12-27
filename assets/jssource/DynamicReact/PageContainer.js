@@ -1,17 +1,53 @@
 import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
+import Slider from 'react-slick';
 import { toggleOverlay } from './../project_separate';
-import { updateOverlayImage } from './../consts';
+import { updateOverlayImage, category } from './../consts';
 
 const PageContainer = (props) => {
+	const settings = {
+		dots: true,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		autoplay: 1,
+		autoplaySpeed: 1000,
+		pauseOnHover: true,
+		arrows: true,
+	};
+
+	const parseImgSrc = (img_src) => {
+		if (Array.isArray(img_src)) {
+			return img_src[0];
+		}
+		return img_src;
+	};
+
 	const listItems = props.list.map(item =>
-		<li key={item.item_number.toString()}>
+		<li onClick={() => props.onImageClick(item.item_number)} key={item.item_number.toString()}>
 			<div className="img-wrap">
-				<img alt="It's not loading!" src={item.thumbs_src.toString()} onClick={() => props.onImageClick(item.item_number)}></img>
+				<img alt="It's not loading!" src={item.thumbs_src.toString()}></img>
 			</div>
 			<span>{item.img_txt.toString()}</span>
 		</li>,
 	);
+
+	const listScroller = props.list.map(item =>
+		<div key={item.item_number.toString()} className="img-wrap1">
+			<img alt="It's not loading!" src={parseImgSrc(item.thumbs_src).toString()}></img>
+		</div>,
+	);
+
+	if (props.category === category.CAROUSEL) {
+		return (
+			<div className="sidescroller">
+				<Slider {...settings}>
+					{ listScroller }
+				</Slider>
+			</div>
+		);
+	}
 	return (
 		<ul className="projects">
 			{ listItems }
@@ -29,10 +65,12 @@ PageContainer.propTypes = {
 		img_txt: PropTypes.string,
 	})).isRequired,
 	onImageClick: PropTypes.func.isRequired,
+	category: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
 	list: state.list,
+	category: state.category,
 });
 
 const mapDispatchToProps = dispatch => ({

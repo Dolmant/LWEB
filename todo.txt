@@ -17,3 +17,6 @@ fix the inital load with bar bug (probably because its in the html file, fix it 
 fix the super slow scroll - probably the inital jquery html
 
 fix images to load bits at a time
+
+about leo needs work
+fix address and everything

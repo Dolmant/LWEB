@@ -2,36 +2,35 @@ import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
 import { navOverlayImage } from './../consts';
 
-const Overlay = props => {
-	const Arrows = () =>
-	{
+const Overlay = (props) => {
+	const Arrows = () => {
 		const arrowreturn = [];
 		if (props.overlayarrows.left) {
 			arrowreturn.push(
-				<div className="img-wrap-left-overlay">
+				<div key="1" className="img-wrap-left-overlay">
 					<img alt="It's not loading!" src="./assets/icons/LeftIcon.png" onClick={() => props.onDirectionClick('left')} className="leftnav_overlay"></img>
-				</div>
+				</div>,
 			);
 		}
 		if (props.overlayarrows.right) {
 			arrowreturn.push(
-				<div className="img-wrap-right-overlay">
+				<div key="2" className="img-wrap-right-overlay">
 					<img alt="It's not loading!" src="./assets/icons/RightIcon.png" onClick={() => props.onDirectionClick('right')} className="rightnav_overlay"></img>
-				</div>
+				</div>,
 			);
 		}
 		if (props.overlayarrows.up) {
 			arrowreturn.push(
-				<div className="img-wrap-up-overlay">
+				<div key="3" className="img-wrap-up-overlay">
 					<img alt="It's not loading!" src="./assets/icons/UpIcon.png" onClick={() => props.onDirectionClick('up')} className="upnav_overlay"></img>
-				</div>
+				</div>,
 			);
 		}
 		if (props.overlayarrows.down) {
 			arrowreturn.push(
-				<div className="img-wrap-down-overlay">
+				<div key="4" className="img-wrap-down-overlay">
 					<img alt="It's not loading!" src="./assets/icons/DownIcon.png" onClick={() => props.onDirectionClick('down')} className="downnav_overlay"></img>
-				</div>
+				</div>,
 			);
 		}
 		return (
@@ -39,8 +38,9 @@ const Overlay = props => {
 				{ arrowreturn }
 			</div>
 		);
-	}
-		return (
+	};
+
+	return (
 		<div className="overlay_top">
 			<div id="backgroundOverlay" className="backgroundOverlay"></div>
 			<div className="overlay_container">
@@ -98,8 +98,8 @@ const Overlay = props => {
 				</div>
 			</div>
 		</div>
-		);
-}
+	);
+};
 
 Overlay.propTypes = {
 	onDirectionClick: PropTypes.func.isRequired,

@@ -234,7 +234,7 @@ export const projectList = {
 		{
 			item_number: 35,
 			img_src: ['./assets/images/UterineInversion/UterineInversion_Colour01.jpg', './assets/images/UterineInversion/UterineInversion_Colour02.jpg', './assets/images/UterineInversion/UterineInversion_Colour03.jpg', './assets/images/UterineInversion/UterineInversion_Colour04.jpg', './assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
-			img_txt: '',
+			img_txt: 'Uterine Inversion Collection',
 			thumbs_src: './assets/thumbs/UterineInversion/tn_UIFolder.png',
 		},
 	],
@@ -288,4 +288,5 @@ export const category = {
 	MODELLING: 'MODELLING',
 	SCIENCE: 'SCIENCE',
 	FACTS: 'FACTS',
+	CAROUSEL: 'CAROUSEL',
 };
