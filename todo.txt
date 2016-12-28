@@ -1,22 +1,14 @@
-Fullscreen click overview like 
-http://www.courtneyardenwhite.com/portfolio/
-with left/right arrows
-
-fullscreen tiles for images like
-http://www.petersen-illustration.com/blog/
-
 Start page full screen carousel like
 http://www.3fx.com/#home[iframes]/0/
 
 cache the images and possibly video
 
-stack images and show arrows for nav up and down
-
 fix the inital load with bar bug (probably because its in the html file, fix it to be patched in later)
+fix after inital load remove html css - the blob is always animating in the background
 
-fix the super slow scroll - probably the inital jquery html
+fix the super slow scroll - probably the inital jquery html calculating on the scroll. This was helped immensely by the switch to thumbs
 
 fix images to load bits at a time
 
 about leo needs work
-fix address and everything
+fix address and everything (font as well)

@@ -1,3 +1,17 @@
-run gruntfile (run 'grunt watch') to autocompile your js
+run gruntfile (run 'grunt watch') to autocompile your js based on changes. grunt build does this as a once off
+
 scss compiler needs ruby and sass
 gem install sass on the ruby command line
+
+install git lfs command line and put this in your git config:
+[filter "lfs"]
+
+	clean = git-lfs clean %f
+
+	smudge = git-lfs smudge %f
+
+	required = true
+
+to run your server simply use 
+node server.js
+this uses your mailgun server to send emails
