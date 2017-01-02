@@ -47,9 +47,9 @@ const Overlay = (props) => {
 				<a className="closebutton strokeme">✖</a>
 				<div className="overlayform">
 					<form id="emf-form" target="_self" className="topLabel" method="post" action="/postform">
-						<div id="emf-form-instruction" className="emf-head-widget">
-							<div id="emf-form-title" className="emf-bold">Contact EmailMeForm</div>
-							<div id="emf-form-description">Fill out the form below to know more on how you can get these stunning themes on your forms &amp; surveys.</div>
+						<div className="emf-head-widget">
+							<h3>The Leo Signal</h3>
+							<h4>Fill out the form below to get in contact with Me!</h4>
 						</div>
 						<ul>
 							<li id="emf-li-0" className="emf-li-field emf-field-new_name data_container   cell_align_left">
@@ -64,24 +64,18 @@ const Overlay = (props) => {
 										<label htmlFor="element_3" className="emf-bottom-label emf-text-center">Last</label>
 									</span>
 								</div>
-								<div className="emf-clear"></div>
 							</li>
-							<li id="emf-li-7" className="emf-li-field emf-field-email data_container   ">
+							<li className="emf-field-email">
 								<label className="emf-label-desc" htmlFor="element_7">Email <span>*</span></label>
 								<div className="emf-div-field">
 									<input id="element_7" name="Email" className="validate[required,custom[email]]" type="text"></input>
 								</div>
-								<div className="emf-clear"></div>
 							</li>
-							<li id="emf-li-8" className="emf-li-field emf-field-textarea data_container   ">
+							<li className="emf-field-textarea">
 								<label className="emf-label-desc" htmlFor="element_8">Message</label>
 								<div className="emf-div-field"><textarea id="element_8" name="Message" cols="45" rows="10" className="validate[optional]"></textarea></div>
-								<div className="emf-clear"></div>
 							</li>
-							<li id="emf-li-recaptcha">
-
-							</li>
-							<li id="emf-li-post-button" className="middle">
+							<li className="emf-li-post-button">
 								<input value="Submit" type="submit"></input>
 							</li>
 						</ul>

@@ -7,9 +7,9 @@ const Footer = props => (
 		<div className="container">
 			<div className="contact">
 				<ul>
-					<li><span>e</span><a href="mailto:info@hightidenyc.co">info@hightidenyc.co</a></li>
-					<li><span>p</span><a href="http://derpspace.usite.pro/(917)%20723-4614">(917) 723-4614</a></li>
-					<li><span>a</span><address>231 Derp Street, Snurf 209 | Brooklyn, NY</address></li>
+					<li><span>e</span><a href="mailto:leo.herson@gmail.com">leo.herson@gmail.com</a></li>
+					<li><span>p</span><a>Just kidding, email me!</a></li>
+					<li><span>a</span><address>231 Derp Street, CBD 2000 | Sydney, Australia</address></li>
 				</ul>
 			</div>
 			<div className="contact_me">

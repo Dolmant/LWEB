@@ -27,17 +27,48 @@ export const IntroHeader = () => (
 
 export const Sidebar = () => (
 	<div>
-		<p>Hello!</p>
-		<p>I am a multidisciplinary, multitalented and multi-limbed Masters student from the University of Technology Sydney engaging in both science research and design in biomedical animation whilst following my passion as a freelance scientific illustrator. Feel free to drop me a message and say hello!</p>
-		<p>COMMISSIONS</p>
-		<p>Please follow the instructions below!</p>
-		<p>Type of commission:</p>
-		<p>Scientific illustration</p>
-		<p>Biomedical animation</p>
-		<p>General illustration </p>
-		<p>General animation </p>
-		<p>Please add any details you might require for your commission (e.g. subject matter, size, colour image or sketch etc.). For illustrations, if there is a specific art style from one of my previous works that interests you please let me know!</p>
-		<p></p>
-		<p>Please be aware an extra 25% of the total fee will be charged upon cancellation</p>
+		<div className="sidebar-text">
+			<img src="./assets/images/TextImage.png" alt="Not Loading!"></img>
+		</div>
+		<h3>COMMISSIONS</h3>
+		<h4>Please use the &quot;Contact Me&quot; button in the bottom right of your screen to make an enquiry and ensure you at least include the following detail!</h4>
+		<h4>Type of commission, for example:</h4>
+		<ul>
+			<li>
+				<div className="sidebar-img-wrap">
+					<img alt="Not Loading!" src="./assets/icons/rightarrow.png"></img>
+				</div>
+				<div>
+					<h6>Scientific illustration</h6>
+				</div>
+			</li>
+			<li>
+				<div className="sidebar-img-wrap">
+					<img alt="Not Loading!" src="./assets/icons/rightarrow.png"></img>
+				</div>
+				<div>
+					<h6>Biomedical animation</h6>
+				</div>
+			</li>
+			<li>
+				<div className="sidebar-img-wrap">
+					<img alt="Not Loading!" src="./assets/icons/rightarrow.png"></img>
+				</div>
+				<h6>General Sketch</h6>
+			</li>
+			<li>
+				<div className="sidebar-img-wrap">
+					<img alt="Not Loading!" src="./assets/icons/rightarrow.png"></img>
+				</div>
+				<h6>Detailed Sketch</h6>
+			</li>
+			<li>
+				<div className="sidebar-img-wrap">
+					<img alt="Not Loading!" src="./assets/icons/rightarrow.png"></img>
+				</div>
+				<h6>3D Model</h6>
+			</li>
+		</ul>
+		<h4>Please add any other details you might require for your commission (e.g. subject matter, size, colours etc.). If there is a specific art style from one of my previous works that interests you please let me know!</h4>
 	</div>
 );

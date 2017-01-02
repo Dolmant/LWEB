@@ -270,6 +270,41 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
   font-weight: normal; }
 
+h3 {
+  max-width: 800px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-family: "helvetica";
+  line-height: 1.3em;
+  text-transform: none;
+  letter-spacing: 0px;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 26px; }
+
+h4 {
+  max-width: 800px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-family: "helvetica";
+  line-height: 1.3em;
+  text-transform: none;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px; }
+
+h6 {
+  font-family: "helvetica";
+  line-height: 1.3em;
+  text-transform: none;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px; }
+
 blockquote:before, blockquote:after, q:before, q:after {
   content: ""; }
 
@@ -288,30 +323,12 @@ img {
   max-width: 100%;
   height: auto; }
 
-@font-face {
-  font-family: 'FF Din';
-  src: url("../fonts/DINLig.eot");
-  src: url("../fonts/DINLig.eot?#iefix") format("embedded-opentype"), url("../fonts/DINLig.woff") format("woff"), url("../fonts/DINLig.ttf") format("truetype"), url("../fonts/DINLig.svg#din-light") format("svg");
-  font-weight: 100;
-  font-style: normal; }
-@font-face {
-  font-family: 'FF Din';
-  src: url("../fonts/DINReg.eot");
-  src: url("../fonts/DINReg.eot?#iefix") format("embedded-opentype"), url("../fonts/DINReg.woff") format("woff"), url("../fonts/DINReg.ttf") format("truetype"), url("../fonts/DINReg.svg#din-reg") format("svg");
-  font-weight: 500;
-  font-style: normal; }
-@font-face {
-  font-family: 'FF Din';
-  src: url("../fonts/DINMed.eot");
-  src: url("../fonts/DINMed.eot?#iefix") format("embedded-opentype"), url("../fonts/DINMed.woff") format("woff"), url("../fonts/DINMed.ttf") format("truetype"), url("../fonts/DINMed.svg#din-med") format("svg");
-  font-weight: 700;
-  font-style: normal; }
 body {
   color: #000;
   line-height: 20px;
-  font-family: 'FF Din', sans-serif;
+  font-family: "helvetica";
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.025em; }
 
 p {
@@ -467,7 +484,19 @@ header a, header .filter-work, .filters li a {
   color: white;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 11px;
+  letter-spacing: .05em;
+  cursor: pointer;
+  -webkit-transition: color .2s,opacity .2s;
+  -moz-transition: color .2s,opacity .2s;
+  -ms-transition: color .2s,opacity .2s;
+  -o-transition: color 0.2s, opacity 0.2s; }
+
+header .filter-work, .filters li a {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
   letter-spacing: .05em;
   cursor: pointer;
   -webkit-transition: color .2s,opacity .2s;
@@ -581,7 +610,7 @@ footer {
   bottom: 0px;
   left: 0px;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 15px;
   letter-spacing: .05em;
   z-index: 15; }
@@ -674,7 +703,9 @@ footer #newsForm input[type=text] {
 
 .overlayform {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  display: flex;
+  justify-content: center; }
 
 .img-wrap-overlay {
   display: flex;
@@ -729,26 +760,54 @@ footer #newsForm input[type=text] {
   background: white; }
 
 .overlay_container form {
+  width: 75%;
   position: relative;
   display: flex;
+  background-color: white;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  background-size: 100% 100%;
+  background-image: url("./../images/SciIllustration/mouse02 copy.png"); }
 
 .overlay_container form ul {
-  width: 50%;
+  width: 66%;
+  height: 100%;
   flex-direction: column;
   display: flex; }
 
-.overlay_container form input, .overlay_container form textarea {
+.overlay_container form ul li {
+  height: 15%; }
+
+.overlay_container form ul .emf-li-post-button {
+  height: auto; }
+
+.overlay_container form ul .emf-field-textarea {
+  height: 50%; }
+
+.overlay_container form input {
   border: 1px solid #ccc;
   display: block;
-  width: 90%; }
+  width: 90%;
+  height: 50%; }
+
+.overlay_container form textarea {
+  border: 1px solid #ccc;
+  display: block;
+  width: 90%;
+  height: 100%; }
+
+.emf-div-field {
+  height: 75%; }
 
 .overlay_container form .emf-div-field span {
   padding: 0;
   width: 49.5%;
   vertical-align: top;
-  display: inline-block; }
+  display: inline-block;
+  height: 100%; }
+
+.overlay_container .emf-head-widget {
+  width: 75%; }
 
 .overlay_container .emf-bottom-label {
   font-style: italic;
@@ -758,7 +817,8 @@ footer #newsForm input[type=text] {
   float: left;
   padding-bottom: 3px;
   text-align: center;
-  display: block; }
+  display: block;
+  height: 50%; }
 
 .backgroundOverlay {
   background-color: transparent;
@@ -1307,9 +1367,10 @@ li.image-logo div {
   margin-bottom: 10px; }
 
 .sidebar {
-  width: 50%;
+  width: 30%;
   position: fixed;
   right: -50%;
+  min-width: 500px;
   top: 65px;
   overflow: hidden;
   z-index: 21;
@@ -1371,48 +1432,36 @@ li.image-logo div {
   -webkit-backface-visibility: hidden;
   -webkit-transform: translateZ(0); }
 
+.sidebar ul {
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+
 .sidebar li {
-  height: 180px;
   width: 100%;
-  float: left; }
+  float: left;
+  align-items: flex-start;
+  height: 30px;
+  display: flex; }
 
 @media only screen and (max-width: 770px) {
   .sidebar li {
     height: 125px; } }
-.sidebar li a {
-  height: 100%;
+.sidebar-text {
   width: 100%;
   float: left;
-  display: block; }
+  max-height: 50%; }
 
-.sidebar li {
-  margin-bottom: 0px;
-  border-bottom: 1px solid #000; }
-
-.sidebar li a {
-  padding: 20px; }
-
-.sidebar li span {
-  color: black; }
-
-.sidebar li p {
-  color: #b3b3b3; }
-
-.sidebar li .img-wrap {
-  width: auto;
+.sidebar-img-wrap {
+  width: 60px;
   float: left;
-  margin: 0 20px 0 0;
+  margin: 0 10px 0 40px;
   max-height: 100%;
-  height: 140px; }
+  height: 100%; }
 
 @media only screen and (max-width: 770px) {
   .sidebar li .img-wrap {
     height: 85px; } }
-.sidebar li .img-wrap img {
-  max-height: 100%;
-  width: auto;
-  display: block; }
-
 .journal h2 {
   text-align: center; }
 

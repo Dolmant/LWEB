@@ -63,60 +63,111 @@ var Sidebar = function Sidebar() {
 		"div",
 		null,
 		_react2["default"].createElement(
-			"p",
-			null,
-			"Hello!"
+			"div",
+			{ className: "sidebar-text" },
+			_react2["default"].createElement("img", { src: "./assets/images/TextImage.png", alt: "Not Loading!" })
 		),
 		_react2["default"].createElement(
-			"p",
-			null,
-			"I am a multidisciplinary, multitalented and multi-limbed Masters student from the University of Technology Sydney engaging in both science research and design in biomedical animation whilst following my passion as a freelance scientific illustrator. Feel free to drop me a message and say hello!"
-		),
-		_react2["default"].createElement(
-			"p",
+			"h3",
 			null,
 			"COMMISSIONS"
 		),
 		_react2["default"].createElement(
-			"p",
+			"h4",
 			null,
-			"Please follow the instructions below!"
+			"Please use the \"Contact Me\" button in the bottom right of your screen to make an enquiry and ensure you at least include the following detail!"
 		),
 		_react2["default"].createElement(
-			"p",
+			"h4",
 			null,
-			"Type of commission:"
+			"Type of commission, for example:"
 		),
 		_react2["default"].createElement(
-			"p",
+			"ul",
 			null,
-			"Scientific illustration"
+			_react2["default"].createElement(
+				"li",
+				null,
+				_react2["default"].createElement(
+					"div",
+					{ className: "sidebar-img-wrap" },
+					_react2["default"].createElement("img", { alt: "Not Loading!", src: "./assets/icons/rightarrow.png" })
+				),
+				_react2["default"].createElement(
+					"div",
+					null,
+					_react2["default"].createElement(
+						"h6",
+						null,
+						"Scientific illustration"
+					)
+				)
+			),
+			_react2["default"].createElement(
+				"li",
+				null,
+				_react2["default"].createElement(
+					"div",
+					{ className: "sidebar-img-wrap" },
+					_react2["default"].createElement("img", { alt: "Not Loading!", src: "./assets/icons/rightarrow.png" })
+				),
+				_react2["default"].createElement(
+					"div",
+					null,
+					_react2["default"].createElement(
+						"h6",
+						null,
+						"Biomedical animation"
+					)
+				)
+			),
+			_react2["default"].createElement(
+				"li",
+				null,
+				_react2["default"].createElement(
+					"div",
+					{ className: "sidebar-img-wrap" },
+					_react2["default"].createElement("img", { alt: "Not Loading!", src: "./assets/icons/rightarrow.png" })
+				),
+				_react2["default"].createElement(
+					"h6",
+					null,
+					"General Sketch"
+				)
+			),
+			_react2["default"].createElement(
+				"li",
+				null,
+				_react2["default"].createElement(
+					"div",
+					{ className: "sidebar-img-wrap" },
+					_react2["default"].createElement("img", { alt: "Not Loading!", src: "./assets/icons/rightarrow.png" })
+				),
+				_react2["default"].createElement(
+					"h6",
+					null,
+					"Detailed Sketch"
+				)
+			),
+			_react2["default"].createElement(
+				"li",
+				null,
+				_react2["default"].createElement(
+					"div",
+					{ className: "sidebar-img-wrap" },
+					_react2["default"].createElement("img", { alt: "Not Loading!", src: "./assets/icons/rightarrow.png" })
+				),
+				_react2["default"].createElement(
+					"h6",
+					null,
+					"3D Model"
+				)
+			)
 		),
 		_react2["default"].createElement(
-			"p",
+			"h4",
 			null,
-			"Biomedical animation"
-		),
-		_react2["default"].createElement(
-			"p",
-			null,
-			"General illustration "
-		),
-		_react2["default"].createElement(
-			"p",
-			null,
-			"General animation "
-		),
-		_react2["default"].createElement(
-			"p",
-			null,
-			"Please add any details you might require for your commission (e.g. subject matter, size, colour image or sketch etc.). For illustrations, if there is a specific art style from one of my previous works that interests you please let me know!"
-		),
-		_react2["default"].createElement("p", null),
-		_react2["default"].createElement(
-			"p",
-			null,
-			"Please be aware an extra 25% of the total fee will be charged upon cancellation"
+			"Please add any other details you might require for your commission (e.g. subject matter, size, colours etc.). If there is a specific art style from one of my previous works that interests you please let me know!"
 		)
 	);
 };
@@ -260,8 +311,8 @@ var Footer = function Footer(props) {
 						),
 						_react2['default'].createElement(
 							'a',
-							{ href: 'mailto:info@hightidenyc.co' },
-							'info@hightidenyc.co'
+							{ href: 'mailto:leo.herson@gmail.com' },
+							'leo.herson@gmail.com'
 						)
 					),
 					_react2['default'].createElement(
@@ -274,8 +325,8 @@ var Footer = function Footer(props) {
 						),
 						_react2['default'].createElement(
 							'a',
-							{ href: 'http://derpspace.usite.pro/(917)%20723-4614' },
-							'(917) 723-4614'
+							null,
+							'Just kidding, email me!'
 						)
 					),
 					_react2['default'].createElement(
@@ -289,7 +340,7 @@ var Footer = function Footer(props) {
 						_react2['default'].createElement(
 							'address',
 							null,
-							'231 Derp Street, Snurf 209 | Brooklyn, NY'
+							'231 Derp Street, CBD 2000 | Sydney, Australia'
 						)
 					)
 				)
@@ -435,16 +486,16 @@ var Overlay = function Overlay(props) {
 					{ id: 'emf-form', target: '_self', className: 'topLabel', method: 'post', action: '/postform' },
 					_react2['default'].createElement(
 						'div',
-						{ id: 'emf-form-instruction', className: 'emf-head-widget' },
+						{ className: 'emf-head-widget' },
 						_react2['default'].createElement(
-							'div',
-							{ id: 'emf-form-title', className: 'emf-bold' },
-							'Contact EmailMeForm'
+							'h3',
+							null,
+							'The Leo Signal'
 						),
 						_react2['default'].createElement(
-							'div',
-							{ id: 'emf-form-description' },
-							'Fill out the form below to know more on how you can get these stunning themes on your forms & surveys.'
+							'h4',
+							null,
+							'Fill out the form below to get in contact with Me!'
 						)
 					),
 					_react2['default'].createElement(
@@ -486,12 +537,11 @@ var Overlay = function Overlay(props) {
 										'Last'
 									)
 								)
-							),
-							_react2['default'].createElement('div', { className: 'emf-clear' })
+							)
 						),
 						_react2['default'].createElement(
 							'li',
-							{ id: 'emf-li-7', className: 'emf-li-field emf-field-email data_container   ' },
+							{ className: 'emf-field-email' },
 							_react2['default'].createElement(
 								'label',
 								{ className: 'emf-label-desc', htmlFor: 'element_7' },
@@ -506,12 +556,11 @@ var Overlay = function Overlay(props) {
 								'div',
 								{ className: 'emf-div-field' },
 								_react2['default'].createElement('input', { id: 'element_7', name: 'Email', className: 'validate[required,custom[email]]', type: 'text' })
-							),
-							_react2['default'].createElement('div', { className: 'emf-clear' })
+							)
 						),
 						_react2['default'].createElement(
 							'li',
-							{ id: 'emf-li-8', className: 'emf-li-field emf-field-textarea data_container   ' },
+							{ className: 'emf-field-textarea' },
 							_react2['default'].createElement(
 								'label',
 								{ className: 'emf-label-desc', htmlFor: 'element_8' },
@@ -521,13 +570,11 @@ var Overlay = function Overlay(props) {
 								'div',
 								{ className: 'emf-div-field' },
 								_react2['default'].createElement('textarea', { id: 'element_8', name: 'Message', cols: '45', rows: '10', className: 'validate[optional]' })
-							),
-							_react2['default'].createElement('div', { className: 'emf-clear' })
+							)
 						),
-						_react2['default'].createElement('li', { id: 'emf-li-recaptcha' }),
 						_react2['default'].createElement(
 							'li',
-							{ id: 'emf-li-post-button', className: 'middle' },
+							{ className: 'emf-li-post-button' },
 							_react2['default'].createElement('input', { value: 'Submit', type: 'submit' })
 						)
 					),
@@ -1280,8 +1327,6 @@ var HT = {
 	},
 
 	fajax: function fajax() {
-		var _this = this;
-
 		_jqueryMin2['default']('body').hide();
 
 		_jqueryMin2['default'](window).load(function () {
@@ -1309,24 +1354,6 @@ var HT = {
 		_jqueryMin2['default']('.closebutton').click(function (event) {
 			event.preventDefault();
 			projectSeparate.toggleOverlay(false, false);
-		});
-
-		_jqueryMin2['default']('a.fade, .projects a, .pager a').click(function (event) {
-			event.preventDefault();
-			var num = 0;
-			var link = _jqueryMin2['default'](_this);
-			if (_jqueryMin2['default']('header').hasClass('introHeader') && link.hasClass('fade')) {
-				_jqueryMin2['default']('header.introHeader .intro-down').trigger('click');
-				num = 1300;
-			}
-			setTimeout(function () {
-				var linkLocation = link.attr('href');
-
-				function redirectPage() {
-					window.location = linkLocation;
-				}
-				_jqueryMin2['default']('body').fadeOut(400, redirectPage);
-			}, num);
 		});
 	},
 

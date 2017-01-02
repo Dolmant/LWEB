@@ -174,24 +174,6 @@ const HT = {
 			event.preventDefault();
 			projectSeparate.toggleOverlay(false, false);
 		});
-
-		$('a.fade, .projects a, .pager a').click((event) => {
-			event.preventDefault();
-			let num = 0;
-			const link = $(this);
-			if ($('header').hasClass('introHeader') && link.hasClass('fade')) {
-				$('header.introHeader .intro-down').trigger('click');
-				num = 1300;
-			}
-			setTimeout(() => {
-				const linkLocation = link.attr('href');
-
-				function redirectPage() {
-					window.location = linkLocation;
-				}
-				$('body').fadeOut(400, redirectPage);
-			}, num);
-		});
 	},
 
 	overlay() {
