@@ -1,6 +1,9 @@
 {
   "name": "lweb",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "devDependencies": {
     "babelify": "^6.1.0",
     "grunt": "^0.4.5",
