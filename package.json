@@ -1,6 +1,6 @@
 {
   "name": "lweb",
-  "main": "asset/js/bundle.js",
+  "main": "server.js",
   "devDependencies": {
     "babelify": "^6.1.0",
     "grunt": "^0.4.5",
