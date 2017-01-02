@@ -44,4 +44,4 @@ app.get('/', (req, res) => {
 
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
-app.listen(8001);
+app.listen(process.env.PORT || 8001);
