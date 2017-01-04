@@ -98,10 +98,10 @@ const Overlay = (props) => {
 Overlay.propTypes = {
 	onDirectionClick: PropTypes.func.isRequired,
 	overlayarrows: PropTypes.shape({
-		left: PropTypes.boolean,
-		right: PropTypes.boolean,
-		up: PropTypes.boolean,
-		down: PropTypes.boolean,
+		left: PropTypes.bool,
+		right: PropTypes.bool,
+		up: PropTypes.bool,
+		down: PropTypes.bool,
 	}).isRequired,
 	overlay_image_src: PropTypes.string.isRequired,
 };

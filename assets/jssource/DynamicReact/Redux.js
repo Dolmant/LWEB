@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { category, NumberofVertical, UPDATE_CATEGORY, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
+import { category, isTouch, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
 // reducer handles how the state updates
 
 const InitalState = {
@@ -17,6 +17,8 @@ const InitalState = {
 		down: false,
 	},
 	overlay_vertical_index: 0,
+	isTouch,
+	introOn: true,
 };
 
 function computedarrows(overlay_image_num,
@@ -144,10 +146,21 @@ function selectedList(state = InitalState.list, action) {
 	return list;
 }
 
+function introToggle(state = InitalState.introOn, action) {
+	if (action.type === UPDATE_INTROSTATE) {
+		return action.statebool
+	}
+	return state;
+}
+
+// concatenate all the reducers
+
 function allReducers(state = {}, action) {
 	return {
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action),
+		isTouch,
+		introOn: introToggle(state.introOn, action),
 		...selectedOverlayImageNum(state.overlay_image_num,
 			state.category,
 			state.overlay_vertical_index, action),

@@ -11,6 +11,17 @@ color:#fff
 color:#fff
 }
 
+@keyframes heightzero {
+ from {
+	 margin-top:0;
+	 margin-bottom:0;
+}
+ to {
+	 margin-top:-100%;
+	 margin-bottom:110px;
+}
+}
+
 @keyframes fadein {
  from {
   opacity:0
@@ -356,8 +367,21 @@ cursor:pointer;
 -o-transition:color .2s,opacity .2s
 }
 
+.animateHeight {
+-moz-animation:heightzero 1s;
+-webkit-animation:heightzero 1s;
+-o-animation:heightzero 1s;
+-ms-animation:heightzero 1s;
+animation:heightzero 1s;
+-webkit-animation-fill-mode: forwards;
+-moz-animation-fill-mode: forwards;
+-ms-animation-fill-mode: forwards;
+-o-animation-fill-mode: forwards;
+animation-fill-mode: forwards;
+}
+
 header a.scrolled {
-	color:black;
+color:black;
 }
 @media only screen and (max-width: 675px) {
 header .filter-work {
@@ -1582,10 +1606,8 @@ padding-top:0
 width:100%;
 height:100%;
 overflow:hidden;
-position:fixed;
 z-index:0;
-top:0;
-display:none
+position: relative;
 }
 .subIntro {
 position:relative;
@@ -1598,9 +1620,6 @@ overflow:hidden
 background-color:white
 }
 .introVideo {
-position:absolute;
-top:0;
-left:0;
 min-width:100%;
 min-height:100%;
 height:auto;
@@ -1609,7 +1628,7 @@ width:auto
 .intro-logo {
 width:100%;
 text-align:center;
-position:fixed;
+position:absolute;
 z-index:1;
 top:48%
 }

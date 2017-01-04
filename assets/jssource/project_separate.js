@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Intro, IntroHeader, Sidebar } from './Dumb_react';
+import { Sidebar } from './Dumb_react';
 import $ from './jquery.min';
+import IntroController from './DynamicReact/IntroController';
+import IntroHeader from './DynamicReact/IntroHeader';
 import Filters from './DynamicReact/Filters';
 import Overlay from './DynamicReact/Overlay';
 import PageContainer from './DynamicReact/PageContainer';
@@ -39,7 +41,10 @@ export function toggleOverlay(state, image) {
 }
 
 export function renderhtml() {
-	ReactDOM.render(<Intro />, document.getElementById('intro'));
+	ReactDOM.render(
+		<Provider store={store}>
+			<IntroController />
+		</Provider>, document.getElementById('intro'));
 	ReactDOM.render(<IntroHeader />, document.getElementById('introHeader'));
 	ReactDOM.render(
 		<Provider store={store}>

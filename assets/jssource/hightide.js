@@ -10,14 +10,14 @@ const HT = {
 		HT.overlay();
 		HT.sidebar();
 		HT.newsletter();
-		if ($('.intro').length) {
-			if ($(window).width() && !HT.isTouch()) { // HANDLE FULL BLEED VIDEO
-				HT.intro.setup();
-			} else {
-				$('.intro').remove();
-				$('header').removeClass('introHeader');
-			}
-		}
+		// if ($('.intro').length) {
+		// 	if ($(window).width() && !HT.isTouch()) { // HANDLE FULL BLEED VIDEO
+		// 		HT.intro.setup();
+		// 	} else {
+		// 		$('.intro').remove();
+		// 		$('header').removeClass('introHeader');
+		// 	}
+		// }
 		if ($('body.home').length) {
 			return undefined;
 		}
@@ -32,11 +32,11 @@ const HT = {
 			$('.intro').show();
 			$(window).scrollTop(0);
 			$('footer').addClass('introStatic');
-			$('body').css('padding-top', $(window).height() + 'px');
+			$('body').css('padding-top', `${$(window).height()}px`);
 			$('.page.container').addClass('noPad');
 			HT.intro.scrollPoint = $(window).height();
 			HT.intro.on = true;
-			$('.intro-logo').css({ 'top': ((HT.intro.scrollPoint / 2) - 21) });
+			$('.intro-logo').css({ top: ((HT.intro.scrollPoint / 2) - 21) });
 			$('.intro .intro-logo img').click(() => {
 				$('html, body').animate({ scrollTop: HT.intro.scrollPoint - 65 }, 1000);
 			});
@@ -58,23 +58,23 @@ const HT = {
 		},
 		parallax() {
 			if ($(window).scrollTop() < HT.intro.scrollPoint) {
-				$('.introVideo').css({ 'top': ($(window).scrollTop() / -3) });
+				$('.introVideo').css({ top: ($(window).scrollTop() / -3) });
 			}
 		},
 		logoScroll() {
 			const top = ((HT.intro.scrollPoint / 2) - 21);
-			$('.intro-logo').css({ 'top': (top - $(window).scrollTop()) });
+			$('.intro-logo').css({ top: (top - $(window).scrollTop()) });
 		},
 		scroll() {
 			HT.intro.parallax();
 			HT.intro.logoScroll();
 			if ($(window).scrollTop() < HT.intro.scrollPoint) {
-				$('.intro').css({ 'height': HT.intro.scrollPoint - $(window).scrollTop() });
+				$('.intro').css({ height: HT.intro.scrollPoint - $(window).scrollTop() });
 			}
 		},
 		resize() {
 			if ($(window).scrollTop() === 0) {
-				$('.intro-logo').css({ 'top': (($(window).height() / 2) - 21) });
+				$('.intro-logo').css({ top: (($(window).height() / 2) - 21) });
 			}
 		},
 	},
@@ -117,7 +117,7 @@ const HT = {
 		return width;
 	},
 
-	loadPosts: function () {
+	loadPosts() {
 		const postContainer = $('.posts');
 		const page = parseInt(postContainer.data('p'), 10) + 1;
 		let	dataString = 'p=' + page + '&';
@@ -226,9 +226,9 @@ $(document).ready(() => {
 	HT.ready();
 });
 
-$(document).scroll(() => {
-	HT.scroll();
-});
+// $(document).scroll(() => {
+// 	HT.scroll();
+// });
 
 $(window).resize(() => {
 	HT.intro.resize();

@@ -15,3 +15,5 @@ fix address and everything (font as well)
 fix about me to work on the video page
 
 when you click on somethign inth eabout me section, brings up the contact me page pre filled
+
+show laoding screen when anything is loaded - background can be gifs for anything

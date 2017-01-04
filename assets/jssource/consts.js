@@ -1,6 +1,13 @@
+import $ from './jquery.min';
+
 export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 export function updateCategory(category) {
 	return { type: UPDATE_CATEGORY, category };
+}
+
+export const UPDATE_INTROSTATE = 'UPDATE_INTROSTATE';
+export function updateIntroState(statebool) {
+	return { type: UPDATE_INTROSTATE, statebool };
 }
 
 export const UPDATE_OVERLAY_IMAGE = 'UPDATE_OVERLAY_IMAGE';
@@ -12,6 +19,10 @@ export const NAV_OVERLAY_IMAGE = 'NAVE_OVERLAY_IMAGE';
 export function navOverlayImage(direction) {
 	return { type: NAV_OVERLAY_IMAGE, direction };
 }
+
+export const scrollPoint = $(window).height();
+
+export const isTouch = ($(window).width() && 'ontouchstart' in document.documentElement);
 
 export const NumberofVertical = 5;
 export const NumberOfImages = 35;
