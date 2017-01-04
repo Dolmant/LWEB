@@ -5,7 +5,7 @@ import { Sidebar } from './Dumb_react';
 import IntroController from './DynamicReact/IntroController';
 import IntroHeader from './DynamicReact/IntroHeader';
 import Filters from './DynamicReact/Filters';
-import Overlay from './DynamicReact/Overlay';
+import OverlayController from './DynamicReact/OverlayController';
 import PageContainer from './DynamicReact/PageContainer';
 import Footer from './DynamicReact/Footer';
 import store from './DynamicReact/Redux';
@@ -107,7 +107,7 @@ $(document).ready(() => {
 		document.getElementById('filters'));
 	ReactDOM.render(
 		<Provider store={store}>
-			<Overlay />
+			<OverlayController />
 		</Provider>,
 		document.getElementById('overlay'));
 	ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));

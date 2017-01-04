@@ -4,34 +4,6 @@ import { navOverlayImage, toggleOverlay } from './../consts';
 import $ from './../jquery.min';
 
 class Overlay extends React.Component {
-	checkUpdate() {
-		const overlay = $('.overlay');
-		if (this.props.overlay.state) {
-			overlay.addClass('active');
-			$('html').addClass('overlay-open');
-			$('.backgroundOverlay').show();
-			$('.backgroundOverlay').click((event) => {
-				if (!($(event.target).is('.overlay_container') ||
-				$(event.target).is('.downnav_overlay') ||
-				$(event.target).is('.upnav_overlay') ||
-				$(event.target).is('.rightnav_overlay') ||
-				$(event.target).is('.leftnav_overlay'))) {
-					this.props.toggleOverlayDispatch(false, false);
-				}
-			});
-		} else {
-			overlay.removeClass('active');
-			$('html').removeClass('overlay-open');
-			$('.backgroundOverlay').hide();
-		}
-		if (this.props.overlay.image) {
-			$('.overlayimagecontrol').show();
-			$('.overlayform').hide();
-		} else {
-			$('.overlayimagecontrol').hide();
-			$('.overlayform').show();
-		}
-	}
 	componentDidMount() {
 		$('.closebutton').click((event) => {
 			event.preventDefault();
@@ -52,11 +24,24 @@ class Overlay extends React.Component {
 				},
 			});
 		});
-		this.checkUpdate();
+		const overlay = $('.overlay');
+		overlay.addClass('active');
+		$('html').addClass('overlay-open');
+		$('.backgroundOverlay').click((event) => {
+			if (!($(event.target).is('.overlay_container') ||
+			$(event.target).is('.downnav_overlay') ||
+			$(event.target).is('.upnav_overlay') ||
+			$(event.target).is('.rightnav_overlay') ||
+			$(event.target).is('.leftnav_overlay'))) {
+				this.props.toggleOverlayDispatch(false, false);
+			}
+		});
 	}
 
-	componentDidUpdate() {
-		this.checkUpdate();
+	componentWillUnmount() {
+		const overlay = $('.overlay');
+		overlay.removeClass('active');
+		$('html').removeClass('overlay-open');
 	}
 
 	render() {
@@ -96,57 +81,59 @@ class Overlay extends React.Component {
 				</div>
 			);
 		};
-
 		return (
 			<div className="overlay_top">
 				<div id="backgroundOverlay" className="backgroundOverlay"></div>
 				<div className="overlay_container">
 					<a className="closebutton strokeme">✖</a>
-					<div className="overlayform">
-						<form id="emf-form" target="_self" className="topLabel" method="post" action="/postform">
-							<div className="emf-head-widget">
-								<h3>The Leo Signal</h3>
-								<h4>Fill out the form below to get in contact with Me!</h4>
+					if (this.props.overlay.image) {
+						<div className="overlayimagecontrol">
+							{ Arrows() }
+							<div className="img-wrap-overlay">
+								<img alt="It's not loading!" className="overlayimage" src={this.props.overlay_image_src.toString()}></img>
 							</div>
-							<ul>
-								<li id="emf-li-0" className="emf-li-field emf-field-new_name data_container   cell_align_left">
-									<label className="emf-label-desc" htmlFor="element_0">Name <span>*</span></label>
-									<div className="emf-div-field">
-										<span>
-											<input className="validate[required]" id="element_2" name="Firstname" type="text"></input>
-											<label htmlFor="element_2" className="emf-bottom-label emf-text-center">First</label>
-										</span>
-										<span>
-											<input className="validate[required]" id="element_3" name="Lastname" type="text"></input>
-											<label htmlFor="element_3" className="emf-bottom-label emf-text-center">Last</label>
-										</span>
-									</div>
-								</li>
-								<li className="emf-field-email">
-									<label className="emf-label-desc" htmlFor="element_7">Email <span>*</span></label>
-									<div className="emf-div-field">
-										<input id="element_7" name="Email" className="validate[required,custom[email]]" type="text"></input>
-									</div>
-								</li>
-								<li className="emf-field-textarea">
-									<label className="emf-label-desc" htmlFor="element_8">Message</label>
-									<div className="emf-div-field"><textarea id="element_8" name="Message" cols="45" rows="10" className="validate[optional]"></textarea></div>
-								</li>
-								<li className="emf-li-post-button">
-									<input value="Submit" type="submit"></input>
-								</li>
-							</ul>
-							<input name="embed" value="form" type="hidden"></input>
-							<input type="hidden" name="http_referer" value="http://www.leotide.com/"></input>
-						</form>
-					</div>
-					<div className="overlayimagecontrol">
-						{ Arrows() }
-						<div className="img-wrap-overlay">
-							<img alt="It's not loading!" className="overlayimage" src={this.props.overlay_image_src.toString()}></img>
+							<span className="overlaytext"></span>
 						</div>
-						<span className="overlaytext"></span>
-					</div>
+					} else {
+						<div className="overlayform">
+							<form id="emf-form" target="_self" className="topLabel" method="post" action="/postform">
+								<div className="emf-head-widget">
+									<h3>The Leo Signal</h3>
+									<h4>Fill out the form below to get in contact with Me!</h4>
+								</div>
+								<ul>
+									<li id="emf-li-0" className="emf-li-field emf-field-new_name data_container   cell_align_left">
+										<label className="emf-label-desc" htmlFor="element_0">Name <span>*</span></label>
+										<div className="emf-div-field">
+											<span>
+												<input className="validate[required]" id="element_2" name="Firstname" type="text"></input>
+												<label htmlFor="element_2" className="emf-bottom-label emf-text-center">First</label>
+											</span>
+											<span>
+												<input className="validate[required]" id="element_3" name="Lastname" type="text"></input>
+												<label htmlFor="element_3" className="emf-bottom-label emf-text-center">Last</label>
+											</span>
+										</div>
+									</li>
+									<li className="emf-field-email">
+										<label className="emf-label-desc" htmlFor="element_7">Email <span>*</span></label>
+										<div className="emf-div-field">
+											<input id="element_7" name="Email" className="validate[required,custom[email]]" type="text"></input>
+										</div>
+									</li>
+									<li className="emf-field-textarea">
+										<label className="emf-label-desc" htmlFor="element_8">Message</label>
+										<div className="emf-div-field"><textarea id="element_8" name="Message" cols="45" rows="10" className="validate[optional]"></textarea></div>
+									</li>
+									<li className="emf-li-post-button">
+										<input value="Submit" type="submit"></input>
+									</li>
+								</ul>
+								<input name="embed" value="form" type="hidden"></input>
+								<input type="hidden" name="http_referer" value="http://www.leotide.com/"></input>
+							</form>
+						</div>
+					}
 				</div>
 			</div>
 		);

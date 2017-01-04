@@ -6,8 +6,6 @@ cache the images and possibly video
 fix the inital load with bar bug (probably because its in the html file, fix it to be patched in later)
 fix after inital load remove html css - the blob is always animating in the background
 
-fix the super slow scroll - probably the inital jquery html calculating on the scroll. This was helped immensely by the switch to thumbs
-
 fix images to load bits at a time
 
 fix address and everything (font as well)
@@ -16,4 +14,12 @@ fix about me to work on the video page
 
 when you click on somethign inth eabout me section, brings up the contact me page pre filled
 
-show laoding screen when anything is loaded - background can be gifs for anything
+show loading screen when anything is loaded - background can be gifs for anything
+
+fix links to open in new tab
+
+get background for contact page from leonie
+
+rewrite all jquery into react
+
+put page transitions in for flicking between menus
