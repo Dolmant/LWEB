@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { category, isTouch, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
+import { category, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
 // reducer handles how the state updates
 
 const InitalState = {
@@ -10,15 +10,19 @@ const InitalState = {
 					projectList.FACTS.concat(
 						projectList.MISC)))),
 	overlay_image: 1,
-	arrows: {
-		left: true,
-		right: true,
-		up: false,
-		down: false,
-	},
 	overlay_vertical_index: 0,
 	isTouch,
 	introOn: true,
+	overlay: {
+		state: false,
+		image: false,
+		arrows: {
+			left: true,
+			right: true,
+			up: false,
+			down: false,
+		},
+	},
 };
 
 function computedarrows(overlay_image_num,
@@ -26,7 +30,7 @@ function computedarrows(overlay_image_num,
 	overlay_vertical_index,
 ) {
 	const overlayarrows = {};
-	Object.assign(overlayarrows, InitalState.arrows);
+	Object.assign(overlayarrows, InitalState.overlay.arrows);
 	let leftlimits = ArrayLimits.left;
 	let rightlimits = ArrayLimits.right;
 	const downlimits = ArrayLimits.up;
@@ -56,10 +60,13 @@ function computedarrows(overlay_image_num,
 function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	current_category = InitalState.category,
 	overlay_vertical_index_ = InitalState.overlay_vertical_index,
+	_overlay = InitalState.overlay,
 	action,
 ) {
 	let overlay_image_num = overlay_image_num_;
 	let overlay_vertical_index = overlay_vertical_index_;
+	let state = _overlay.state;
+	let image = _overlay.image;
 	switch (action.type) {
 	case NAV_OVERLAY_IMAGE:
 		switch (action.direction) {
@@ -83,6 +90,10 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	case UPDATE_OVERLAY_IMAGE:
 		overlay_image_num = action.index;
 		break;
+	case TOGGLE_OVERLAY:
+		state = action.state;
+		image = action.image;
+		break;
 	default:
 		break;
 	}
@@ -93,7 +104,7 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	} else {
 		overlay_image_src = temp;
 	}
-	const overlayarrows = computedarrows(
+	const arrows = computedarrows(
 		overlay_image_num,
 		current_category,
 		overlay_vertical_index);
@@ -101,7 +112,11 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 		overlay_vertical_index,
 		overlay_image_num,
 		overlay_image_src,
-		overlayarrows,
+		overlay: {
+			arrows,
+			state,
+			image,
+		},
 	};
 }
 
@@ -148,7 +163,7 @@ function selectedList(state = InitalState.list, action) {
 
 function introToggle(state = InitalState.introOn, action) {
 	if (action.type === UPDATE_INTROSTATE) {
-		return action.statebool
+		return action.statebool;
 	}
 	return state;
 }
@@ -163,7 +178,9 @@ function allReducers(state = {}, action) {
 		introOn: introToggle(state.introOn, action),
 		...selectedOverlayImageNum(state.overlay_image_num,
 			state.category,
-			state.overlay_vertical_index, action),
+			state.overlay_vertical_index,
+			state.overlay,
+			action),
 	};
 }
 

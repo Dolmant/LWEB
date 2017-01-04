@@ -23,8 +23,7 @@ class Intro extends React.Component {
 		$('.page.container').removeClass('noPad');
 		$('header').removeClass('introHeader');
 		$('footer').removeClass('introStatic');
-		$(window).scrollTop($(window).scrollTop() - scrollPoint);
-		const num = 500;
+		const num = 250;
 		$('header a').addClass('scrolled');
 		setTimeout(() => {
 			$('.filters').toggleClass('open');
@@ -35,6 +34,7 @@ class Intro extends React.Component {
 		if ($(window).scrollTop() >= scrollPoint - 0) {
 			event.stopPropagation();
 			$('.introVideo').get(0).pause();
+			$(window).scrollTop($(window).scrollTop() - scrollPoint);
 			this.props.onScrollOver();
 		}
 		this.bounce = false;
@@ -49,8 +49,8 @@ class Intro extends React.Component {
 							$('.introVideo').get(0).pause();
 							$('.intro').addClass('animateHeight');
 							setTimeout(() => {
-								$('.intro').removeClass('animateHeight');
 								this.props.onScrollOver();
+								$('.intro').removeClass('animateHeight');
 							}, 1000);
 						}}
 						alt="It's not loading!" src="./assets/images/LEOTIDE.png"></img>

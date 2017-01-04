@@ -15,7 +15,12 @@ export function updateOverlayImage(index) {
 	return { type: UPDATE_OVERLAY_IMAGE, index };
 }
 
-export const NAV_OVERLAY_IMAGE = 'NAVE_OVERLAY_IMAGE';
+export const TOGGLE_OVERLAY = 'TOGGLE_OVERLAY';
+export function toggleOverlay(state, image) {
+	return { type: TOGGLE_OVERLAY, state, image };
+}
+
+export const NAV_OVERLAY_IMAGE = 'NAV_OVERLAY_IMAGE';
 export function navOverlayImage(direction) {
 	return { type: NAV_OVERLAY_IMAGE, direction };
 }

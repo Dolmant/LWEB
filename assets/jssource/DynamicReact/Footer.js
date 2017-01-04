@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
-import { toggleOverlay } from './../project_separate';
+import { toggleOverlay } from './../consts';
 
 const Footer = props => (
 	<footer className="introStatic">
@@ -39,9 +39,9 @@ Footer.propTypes = {
 
 const mapStateToProps = state => state;
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = dispatch => ({
 	oncontactClick: () => {
-		toggleOverlay(true, false, false);
+		dispatch(toggleOverlay(true, false));
 	},
 });
 

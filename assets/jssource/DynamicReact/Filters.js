@@ -6,10 +6,10 @@ const Filters = props => (
 	<div className="container">
 		<ul>
 			<li><a onClick={() => props.oncatClick('CAROUSEL')} id="carousel">Leo Over Time</a></li>
-			<li><a onClick={() => props.oncatClick('PROJECTS')} id="projects">All Leo</a></li>
-			<li><a onClick={() => props.oncatClick('ANIMALS')} id="animals">Leo&apos;s Animals</a></li>
-			<li><a onClick={() => props.oncatClick('SCIENCE')} id="science">Leo&apos;s Science</a></li>
-			<li><a onClick={() => props.oncatClick('FACTS')} id="facts">Leo&apos;s Facts</a></li>
+			<li><a onClick={() => props.oncatClick('PROJECTS')} id="projects">All Images</a></li>
+			<li><a onClick={() => props.oncatClick('ANIMALS')} id="animals">Nature</a></li>
+			<li><a onClick={() => props.oncatClick('SCIENCE')} id="science">Scientific Illustration</a></li>
+			<li><a onClick={() => props.oncatClick('FACTS')} id="facts">Fact Studies</a></li>
 		</ul>
 	</div>
 );

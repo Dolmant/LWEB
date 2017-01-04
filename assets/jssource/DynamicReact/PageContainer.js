@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
 import Slider from 'react-slick';
-import { toggleOverlay } from './../project_separate';
-import { updateOverlayImage, category } from './../consts';
+import { updateOverlayImage, category, toggleOverlay } from './../consts';
 
 const PageContainer = (props) => {
 	const settings = {
@@ -76,7 +75,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	onImageClick: (index) => {
 		dispatch(updateOverlayImage(index));
-		toggleOverlay(true, true);
+		dispatch(toggleOverlay(true, true));
 	},
 });
 
