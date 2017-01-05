@@ -5,17 +5,17 @@ import { updateCategory } from './../consts';
 const Filters = props => (
 	<div className="container">
 		<ul>
-			<li><a onClick={() => props.oncatClick('CAROUSEL')} id="carousel">Leo Over Time</a></li>
 			<li><a onClick={() => props.oncatClick('PROJECTS')} id="projects">All Images</a></li>
 			<li><a onClick={() => props.oncatClick('ANIMALS')} id="animals">Nature</a></li>
 			<li><a onClick={() => props.oncatClick('SCIENCE')} id="science">Scientific Illustration</a></li>
 			<li><a onClick={() => props.oncatClick('FACTS')} id="facts">Fact Studies</a></li>
-			<li><a onClick={() => props.oncatClick('SVSM')} id="svsm">Strategic Visualisation/Scientific Methods</a></li>
+			<li><a onClick={() => props.oncatClick('SVSM')} id="svsm">Strategic Visualisation</a></li>
 			<li><a onClick={() => props.oncatClick('TYPOGRAPHY')} id="typogrphy">Typography</a></li>
 		</ul>
 	</div>
 );
 
+// Removed Caruosel <li><a onClick={() => props.oncatClick('CAROUSEL')} id="carousel">Leo Over Time</a></li>
 
 Filters.propTypes = {
 	oncatClick: PropTypes.func.isRequired,

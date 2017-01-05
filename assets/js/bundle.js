@@ -26,17 +26,6 @@ var Filters = function Filters(props) {
 				_react2['default'].createElement(
 					'a',
 					{ onClick: function () {
-							return props.oncatClick('CAROUSEL');
-						}, id: 'carousel' },
-					'Leo Over Time'
-				)
-			),
-			_react2['default'].createElement(
-				'li',
-				null,
-				_react2['default'].createElement(
-					'a',
-					{ onClick: function () {
 							return props.oncatClick('PROJECTS');
 						}, id: 'projects' },
 					'All Images'
@@ -83,7 +72,7 @@ var Filters = function Filters(props) {
 					{ onClick: function () {
 							return props.oncatClick('SVSM');
 						}, id: 'svsm' },
-					'Strategic Visualisation/Scientific Methods'
+					'Strategic Visualisation'
 				)
 			),
 			_react2['default'].createElement(
@@ -100,6 +89,8 @@ var Filters = function Filters(props) {
 		)
 	);
 };
+
+// Removed Caruosel <li><a onClick={() => props.oncatClick('CAROUSEL')} id="carousel">Leo Over Time</a></li>
 
 Filters.propTypes = {
 	oncatClick: _react.PropTypes.func.isRequired
