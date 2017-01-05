@@ -237,6 +237,7 @@ background-repeat:no-repeat;
 min-height:100%;
 overflow-y:scroll
 }
+
 html.sidebar-open {
 max-height:100%;
 overflow:hidden
@@ -568,28 +569,23 @@ width:100%
 }
 
 .overlay {
-background-color:transparent;
-display: none;
-}
-
-.overlay.active {
-position:fixed;
-display:block;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:40;
-background-color:rgba(0,0,0,0.5);
--webkit-transition:background-color .2s;
--moz-transition:background-color .2s;
--ms-transition:background-color .2s;
--o-transition:background-color .2s
+	width:100%;
+	height:100%;
 }
 
 .overlay_top {
+	position:fixed;
+	display:block;
+	top:0;
+	left:0;
 	width:100%;
 	height:100%;
+	z-index:40;
+	background-color:rgba(0,0,0,0.5);
+	-webkit-transition:background-color .2s;
+	-moz-transition:background-color .2s;
+	-ms-transition:background-color .2s;
+	-o-transition:background-color .2s
 }
 
 .overlay_container {
@@ -1268,24 +1264,27 @@ margin-top:40px;
 -ms-transition:border .2s ease-in-out;
 -o-transition:border .2s ease-in-out
 }
+
 .pager .title {
-margin-top:40px
+margin-top:40px;
 }
+
 @media only screen and (max-width: 1000px) {
 .pager .title {
 margin:40px 20px 0
 }
-
 }
+
 @media only screen and (max-width: 600px) {
 .pager .title {
 display:none
 }
-
 }
+
 .pager .all:hover span {
 border-color:#67c6b6
 }
+
 .pager a:hover {
 color:#67c6b6;
 -webkit-transition:all 0.2s ease-in-out;
@@ -1293,6 +1292,7 @@ color:#67c6b6;
 -ms-transition:all 0.2s ease-in-out;
 -o-transition:all 0.2s ease-in-out
 }
+
 .pager .arrow {
 display:block;
 height:13px;
@@ -1308,24 +1308,29 @@ background-repeat:no-repeat;
 -o-transition:all 0.2s ease-in-out;
 background-image:url(../images/next-prev-2x.png)
 }
+
 .pager .next .arrow,.pager .next .img-wrap,.pager .next .title {
 float:right
 }
+
 .pager .next .arrow {
 background-position:-25px 0
 }
+
 .pager .prev .arrow,.pager .prev .img-wrap,.pager .prev .title {
 float:left
 }
+
 .pager .img-wrap {
 margin:0 20px
 }
+
 @media only screen and (max-width: 1000px) {
 .pager .img-wrap {
 display:none
 }
-
 }
+
 .pager img {
 width:150px;
 height:100px;
@@ -1334,6 +1339,7 @@ height:100px;
 -ms-transition:all 0.2s ease-in-out;
 -o-transition:all 0.2s ease-in-out
 }
+
 .pager a:hover img {
 filter:alpha(opacity=50);
 -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -1351,63 +1357,72 @@ opacity:.5;
 filter:grayscale(100%);
 filter:gray
 }
+
 .pager a:hover .arrow {
 background-color:#67c6b6
 }
+
 .about {
 padding-top:65px;
 padding-bottom:65px;
 overflow-y:hidden
 }
+
 @media only screen and (max-width: 770px) {
 .about {
 padding-top:10%
 }
-
 }
+
 .about img {
 display:block
 }
+
 .about hr {
 margin-bottom:23px
 }
+
 .about-info {
 width:100%;
 float:left
 }
+
 .about-general {
 float:left;
 width:66.66666%;
 padding-bottom:75px
 }
+
 @media only screen and (max-width: 1000px) {
 .about-general {
 padding-bottom:0px
 }
-
 }
+
 @media only screen and (max-width: 450px) {
 .about-general {
 float:none;
 width:100%
 }
-
 }
+
 .about p {
 font-size:14px;
 line-height:23px
 }
+
 @media only screen and (max-width: 770px) {
 .about p {
 font-size:12px;
 line-height:21px
 }
-
 }
+
 .disciplines {
 width:25%;
 float:right
 }
+
 @media only screen and (max-width: 770px) {
 .disciplines {
 clear:left;
@@ -1415,17 +1430,19 @@ padding-top:20px;
 float:none;
 width:100%
 }
-
 }
+
 .disciplines h5 {
 font-weight:bold;
 text-transform:uppercase;
 margin-bottom:10px
 }
+
 .sidebar {
+right:0;
+border-left:1px solid #000;
 width:30%;
 position:fixed;
-right:-50%;
 min-width: 500px;
 top:65px;
 overflow:hidden;
@@ -1461,10 +1478,7 @@ right:calc(-100% - 1px)
 }
 
 }
-.sidebar.active {
-right:0;
-border-left:1px solid #000
-}
+
 .sidebar li .img-wrap {
 -webkit-transition:opacity .2s;
 -moz-transition:opacity .2s;
@@ -1520,7 +1534,6 @@ height:125px
 .sidebar-text {
 width:100%;
 float:left;
-max-height:50%;
 }
 
 .sidebar-img-wrap {

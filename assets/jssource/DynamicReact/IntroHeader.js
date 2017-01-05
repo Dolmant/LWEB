@@ -1,5 +1,7 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import React, { PropTypes } from 'react';
 import $ from './../jquery.min';
+import { toggleSidebar, updateIntroState } from './../consts';
 
 class IntroHeader extends React.Component {
 	static scrollbarWidth() {
@@ -15,25 +17,34 @@ class IntroHeader extends React.Component {
 		return width;
 	}
 
-	componentDidMount() {
-		const sidebar = $('.sidebar');
-		$('header .about-me').click(() => {
-			if (!$('header').hasClass('introHeader')) {
-				if (parseInt($('footer').css('padding-right'), 10) > 0) {
-					$('footer, header, body, .filters.open').css('padding-right', 0);
-					$('.overlay, header, footer').unbind('touchmove', (e) => {
-						e.preventDefault();
-					});
-				} else {
-					$('footer, header, body, .filters.open').css('padding-right', IntroHeader.scrollbarWidth);
-					$('.overlay, header, footer').bind('touchmove', (e) => {
-						e.preventDefault();
-					});
-				}
-				sidebar.toggleClass('active');
-				$('html').toggleClass('sidebar-open');
-			}
-		});
+	SidebarHelper() {
+		if (parseInt($('footer').css('padding-right'), 10) > 0) {
+			$('footer, header, body, .filters.open').css('padding-right', 0);
+			$('.overlay, header, footer').unbind('touchmove', (event) => {
+				event.preventDefault();
+			});
+		} else {
+			$('footer, header, body, .filters.open').css('padding-right', IntroHeader.scrollbarWidth);
+			$('.overlay, header, footer').bind('touchmove', (event) => {
+				event.preventDefault();
+			});
+		}
+		this.props.onSidebarOpen();
+		$('html').toggleClass('sidebar-open');
+	}
+
+	aboutMeClick() {
+		if (this.props.introOn) {
+			$('.introVideo').get(0).pause();
+			$('.intro').addClass('animateHeight');
+			setTimeout(() => {
+				this.props.onScrollOver();
+				$('.intro').removeClass('animateHeight');
+				this.SidebarHelper();
+			}, 1000);
+		} else {
+			this.SidebarHelper();
+		}
 	}
 
 	render() {
@@ -46,11 +57,33 @@ class IntroHeader extends React.Component {
 					<img src="./assets/images/LEOTIDErev.png" alt="LeoTide"></img>
 				</h1>
 				<div className="right">
-					<a className="about-me">About Leo</a>
+					<a className="about-me" onClick={() => this.aboutMeClick()}>About Leo</a>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default IntroHeader;
+IntroHeader.propTypes = {
+	introOn: PropTypes.bool.isRequired,
+	onSidebarOpen: PropTypes.func.isRequired,
+	onScrollOver: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+	introOn: state.introOn,
+});
+
+const mapDispatchToProps = dispatch => ({
+	onSidebarOpen: () => {
+		dispatch(toggleSidebar());
+	},
+	onScrollOver: () => {
+		dispatch(updateIntroState(false));
+	},
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(IntroHeader);

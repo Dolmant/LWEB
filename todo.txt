@@ -23,3 +23,7 @@ get background for contact page from leonie
 rewrite all jquery into react
 
 put page transitions in for flicking between menus
+
+assets/thumbs/SVSM needs regenerting - I have 4MB files in there
+
+move the "animateHeight" transition into a common function as I use it in three spots

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Sidebar } from './Dumb_react';
+import Sidebar from './DynamicReact/Sidebar';
 import IntroController from './DynamicReact/IntroController';
 import IntroHeader from './DynamicReact/IntroHeader';
 import Filters from './DynamicReact/Filters';
@@ -98,8 +98,13 @@ $(document).ready(() => {
 	ReactDOM.render(
 		<Provider store={store}>
 			<IntroController />
-		</Provider>, document.getElementById('intro'));
-	ReactDOM.render(<IntroHeader />, document.getElementById('introHeader'));
+		</Provider>,
+		document.getElementById('intro'));
+	ReactDOM.render(
+		<Provider store={store}>
+			<IntroHeader />
+		</Provider>,
+		document.getElementById('introHeader'));
 	ReactDOM.render(
 		<Provider store={store}>
 			<Filters />
@@ -110,7 +115,11 @@ $(document).ready(() => {
 			<OverlayController />
 		</Provider>,
 		document.getElementById('overlay'));
-	ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
+	ReactDOM.render(
+		<Provider store={store}>
+			<Sidebar />
+		</Provider>,
+		document.getElementById('sidebar'));
 	ReactDOM.render(
 		<Provider store={store}>
 			<PageContainer />

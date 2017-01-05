@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { category, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
+import { category, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
 // reducer handles how the state updates
 
 const InitalState = {
@@ -8,11 +8,14 @@ const InitalState = {
 		projectList.MODELLING.concat(
 				projectList.ANIMALS.concat(
 					projectList.FACTS.concat(
-						projectList.MISC)))),
+						projectList.SVSM.concat(
+							projectList.TYPOGRAPHY.concat(
+								projectList.MISC)))))),
 	overlay_image: 1,
 	overlay_vertical_index: 0,
 	isTouch,
 	introOn: true,
+	sidebarOpen: false,
 	overlay: {
 		state: false,
 		image: false,
@@ -136,24 +139,25 @@ function selectedList(state = InitalState.list, action) {
 			list = projectList.ANIMALS;
 			break;
 		case 'SCIENCE':
-			list = projectList.SCIENCE;
+			list = projectList.SCIENCE.concat(projectList.MODELLING);
 			break;
 		case 'FACTS':
 			list = projectList.FACTS;
 			break;
+		case 'TYPOGRAPHY':
+			list = projectList.TYPOGRAPHY;
+			break;
+		case 'SVSM':
+			list = projectList.SVSM;
+			break;
+		case 'MODELLING':
+			list = projectList.MODELLING;
+			break;
 		case 'PROJECTS':
-			list = projectList.SCIENCE.concat(
-				projectList.MODELLING.concat(
-						projectList.ANIMALS.concat(
-							projectList.FACTS.concat(
-								projectList.MISC))));
+			list = InitalState.list;
 			break;
 		default:
-			list = projectList.SCIENCE.concat(
-				projectList.MODELLING.concat(
-						projectList.ANIMALS.concat(
-							projectList.FACTS.concat(
-								projectList.MISC))));
+			list = InitalState.list;
 			break;
 		}
 		return list;
@@ -161,9 +165,16 @@ function selectedList(state = InitalState.list, action) {
 	return list;
 }
 
-function introToggle(state = InitalState.introOn, action) {
+function introState(state = InitalState.introOn, action) {
 	if (action.type === UPDATE_INTROSTATE) {
 		return action.statebool;
+	}
+	return state;
+}
+
+function sidebarToggle(state = InitalState.sidebarOpen, action) {
+	if (action.type === TOGGLE_SIDEBAR) {
+		return !state;
 	}
 	return state;
 }
@@ -175,7 +186,8 @@ function allReducers(state = {}, action) {
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action),
 		isTouch,
-		introOn: introToggle(state.introOn, action),
+		introOn: introState(state.introOn, action),
+		sidebarOpen: sidebarToggle(state.sidebarOpen, action),
 		...selectedOverlayImageNum(state.overlay_image_num,
 			state.category,
 			state.overlay_vertical_index,

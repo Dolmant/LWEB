@@ -10,6 +10,11 @@ export function updateIntroState(statebool) {
 	return { type: UPDATE_INTROSTATE, statebool };
 }
 
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+export function toggleSidebar(state) {
+	return { type: TOGGLE_SIDEBAR, state };
+}
+
 export const UPDATE_OVERLAY_IMAGE = 'UPDATE_OVERLAY_IMAGE';
 export function updateOverlayImage(index) {
 	return { type: UPDATE_OVERLAY_IMAGE, index };
@@ -111,6 +116,8 @@ export const projectList = {
 			img_txt: '"Do you want fries with that?" Microbiological study of IBS',
 			thumbs_src: './assets/thumbs/SciIllustration/FriesWithThat3.png',
 		},
+	],
+	TYPOGRAPHY: [
 		{
 			item_number: 14,
 			img_src: './assets/images/Typography/Blood_Components2.png',
@@ -232,23 +239,35 @@ export const projectList = {
 			thumbs_src: './assets/thumbs/Facts/SeadragonFactsV2.jpg',
 		},
 	],
-	POSTERS: [
+	SVSM: [
 		{
 			item_number: 33,
-			img_src: './assets/images/Posters/rsz_nh_posterportraitfinal.jpg',
-			img_txt: 'Poster1',
-			thumbs_src: './assets/thumbs/Posters/rsz_nh_posterportraitfinal.jpg',
+			img_src: './assets/images/SVSM/Liposome_Protocol copy2.jpg',
+			img_txt: 'Liposome Protocol',
+			thumbs_src: './assets/thumbs/SVSM/Liposome_Protocol copy2.jpg',
 		},
 		{
 			item_number: 34,
-			img_src: './assets/images/Posters/somepdf.jpg',
-			img_txt: 'somepdf I cant use',
-			thumbs_src: './assets/thumbs/Posters/somepdf.jpg',
+			img_src: './assets/images/SVSM/NH2016_Poster03.jpg',
+			img_txt: 'NH 2016 Poster',
+			thumbs_src: './assets/thumbs/SVSM/NH2016_Poster03.jpg',
+		},
+		{
+			item_number: 35,
+			img_src: './assets/images/SVSM/WBlot_Protocol01 copy2.jpg',
+			img_txt: 'Western Blot',
+			thumbs_src: './assets/thumbs/SVSM/WBlot_Protocol01 copy2.jpg',
+		},
+		{
+			item_number: 36,
+			img_src: './assets/images/SVSM/rsz_nh_posterportraitfinal.jpg',
+			img_txt: 'Poster Final',
+			thumbs_src: './assets/thumbs/SVSM/rsz_nh_posterportraitfinal.jpg',
 		},
 	],
 	MISC: [
 		{
-			item_number: 35,
+			item_number: 37,
 			img_src: ['./assets/images/UterineInversion/UterineInversion_Colour01.jpg', './assets/images/UterineInversion/UterineInversion_Colour02.jpg', './assets/images/UterineInversion/UterineInversion_Colour03.jpg', './assets/images/UterineInversion/UterineInversion_Colour04.jpg', './assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
 			img_txt: 'Uterine Inversion Collection',
 			thumbs_src: './assets/thumbs/UterineInversion/tn_UIFolder.png',
@@ -303,6 +322,8 @@ export const category = {
 	ANIMALS: 'ANIMALS',
 	MODELLING: 'MODELLING',
 	SCIENCE: 'SCIENCE',
+	SVSM: 'SVSM',
+	TYPOGRAPHY: 'TYPOGRAPHY',
 	FACTS: 'FACTS',
 	CAROUSEL: 'CAROUSEL',
 };
