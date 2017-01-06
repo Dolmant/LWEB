@@ -952,7 +952,7 @@ var PageContainer = function PageContainer(props) {
 		);
 	});
 
-	var listScroller = props.list.map(function (item) {
+	var listCaruosel = props.list.map(function (item) {
 		return _react2['default'].createElement(
 			'div',
 			{ key: item.item_number.toString(), className: 'img-wrap1' },
@@ -976,7 +976,7 @@ var PageContainer = function PageContainer(props) {
 			_react2['default'].createElement(
 				_reactSlick2['default'],
 				settings,
-				listScroller
+				listCaruosel
 			)
 		);
 	}

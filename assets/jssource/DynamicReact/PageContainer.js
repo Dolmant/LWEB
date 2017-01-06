@@ -33,7 +33,7 @@ const PageContainer = (props) => {
 		</li>,
 	);
 
-	const listScroller = props.list.map(item =>
+	const listCaruosel = props.list.map(item =>
 		<div key={item.item_number.toString()} className="img-wrap1">
 			<LazySizes dataSizes="auto" alt="It's not loading!" dataSrc={parseImgSrc(item.thumbs_src).toString()}></LazySizes>
 		</div>,
@@ -52,7 +52,7 @@ const PageContainer = (props) => {
 		return (
 			<div style={style()} className="sidescroller">
 				<Slider {...settings}>
-					{ listScroller }
+					{ listCaruosel }
 				</Slider>
 			</div>
 		);
