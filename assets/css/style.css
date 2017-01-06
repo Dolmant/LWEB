@@ -385,12 +385,14 @@ ul.services, ul.services a {
 ul.services a:hover {
   color: #000; }
 
-html {
-  background-color: #fafafb;
+html.loading {
   background-image: url(../images/MV_AniBlack.gif);
   background-size: 10rem 10rem;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; }
+
+html {
+  background-color: #fafafb;
   min-height: 100%;
   overflow-y: scroll; }
 
@@ -412,7 +414,22 @@ body {
   animation: fadein .75s;
   float: left;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  display: none; }
+
+.blur-up {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+  transition: filter 400ms, -webkit-filter 400ms; }
+
+.blur-up.lazyload, .blur-up.lazyloading {
+  max-width: 10%;
+  max-height: 10%;
+  transform: scale(10); }
+
+.blur-up.lazyloaded {
+  -webkit-filter: blur(0);
+  filter: blur(0); }
 
 .container {
   max-width: 1500px;
@@ -523,9 +540,6 @@ header .filter-work, .filters li a {
   -o-animation-fill-mode: forwards;
   animation-fill-mode: forwards; }
 
-header a.scrolled {
-  color: black; }
-
 @media only screen and (max-width: 675px) {
   header .filter-work {
     display: none; } }
@@ -626,7 +640,7 @@ footer {
   height: 65px;
   border-top: 1px solid #000;
   position: fixed;
-  bottom: 0px;
+  bottom: -1px;
   left: 0px;
   text-transform: uppercase;
   font-size: 11px;
@@ -1524,13 +1538,10 @@ li.image-logo div {
   width: 100%;
   height: 30px; }
 
-header.introStatic, footer.introStatic {
+header.introStatic {
   position: relative;
   background-color: white;
   z-index: 10; }
-
-.page.container.noPad {
-  padding-top: 0; }
 
 .intro {
   width: 100%;

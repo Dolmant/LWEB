@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
 import Slider from 'react-slick';
+import LazySizes from 'react-lazysizes';
 import { updateOverlayImage, category, toggleOverlay } from './../consts';
 
 const PageContainer = (props) => {
@@ -26,7 +27,7 @@ const PageContainer = (props) => {
 	const listItems = props.list.map(item =>
 		<li onClick={() => props.onImageClick(item.item_number)} key={item.item_number.toString()}>
 			<div className="img-wrap">
-				<img alt="It's not loading!" src={item.thumbs_src.toString()}></img>
+				<LazySizes dataSizes="auto" alt="It's not loading!" dataSrc={item.thumbs_src.toString()}></LazySizes>
 			</div>
 			<span>{item.img_txt.toString()}</span>
 		</li>,
@@ -34,21 +35,31 @@ const PageContainer = (props) => {
 
 	const listScroller = props.list.map(item =>
 		<div key={item.item_number.toString()} className="img-wrap1">
-			<img alt="It's not loading!" src={parseImgSrc(item.thumbs_src).toString()}></img>
+			<LazySizes dataSizes="auto" alt="It's not loading!" dataSrc={parseImgSrc(item.thumbs_src).toString()}></LazySizes>
 		</div>,
 	);
 
+	const style = () => {
+		if (props.introOn) {
+			return {
+				paddingTop: 0,
+			};
+		}
+		return null;
+	};
+
 	if (props.category === category.CAROUSEL) {
 		return (
-			<div className="sidescroller">
+			<div style={style()} className="sidescroller">
 				<Slider {...settings}>
 					{ listScroller }
 				</Slider>
 			</div>
 		);
 	}
+
 	return (
-		<ul className="projects">
+		<ul style={style()} className="projects">
 			{ listItems }
 		</ul>
 	);
@@ -65,11 +76,13 @@ PageContainer.propTypes = {
 	})).isRequired,
 	onImageClick: PropTypes.func.isRequired,
 	category: PropTypes.string.isRequired,
+	introOn: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
 	list: state.list,
 	category: state.category,
+	introOn: state.introOn,
 });
 
 const mapDispatchToProps = dispatch => ({

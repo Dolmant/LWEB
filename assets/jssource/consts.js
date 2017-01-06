@@ -30,8 +30,6 @@ export function navOverlayImage(direction) {
 	return { type: NAV_OVERLAY_IMAGE, direction };
 }
 
-export const scrollPoint = $(window).height();
-
 export const isTouch = ($(window).width() && 'ontouchstart' in document.documentElement);
 
 export const NumberofVertical = 5;
@@ -280,7 +278,7 @@ export function getImageSrc(ImageNum) {
 		const arrayRaw = projectList[arrayNames];
 		for (let i = 0, len = arrayRaw.length; i < len; i += 1) {
 			if (arrayRaw[i].item_number === ImageNum) {
-				return arrayRaw[i].img_src;
+				return [arrayRaw[i].img_src, arrayRaw[i].thumbs_src];
 			}
 		}
 	}
@@ -327,3 +325,5 @@ export const category = {
 	FACTS: 'FACTS',
 	CAROUSEL: 'CAROUSEL',
 };
+
+export const scrollPoint = $(window).height();

@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
+const cacheTime = 86400000 * 7;     // 7 days
 const app = express();
 
 const smtpConfig = {
@@ -39,9 +40,9 @@ app.post('/postform', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '/Lweb.html'));
+	res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-app.use('/assets', express.static(path.join(__dirname, '/assets')));
+app.use('/assets', express.static(path.join(__dirname, '/assets', { maxAge: cacheTime })));
 
 app.listen(process.env.PORT || 8001);

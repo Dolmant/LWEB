@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
 import $ from './../jquery.min';
-import { toggleSidebar, updateIntroState } from './../consts';
+import { toggleSidebar } from './../consts';
+import animateScroll from './../constFunctions';
 
 class IntroHeader extends React.Component {
 	static scrollbarWidth() {
@@ -17,47 +18,55 @@ class IntroHeader extends React.Component {
 		return width;
 	}
 
-	SidebarHelper() {
-		if (parseInt($('footer').css('padding-right'), 10) > 0) {
-			$('footer, header, body, .filters.open').css('padding-right', 0);
-			$('.overlay, header, footer').unbind('touchmove', (event) => {
-				event.preventDefault();
-			});
-		} else {
-			$('footer, header, body, .filters.open').css('padding-right', IntroHeader.scrollbarWidth);
-			$('.overlay, header, footer').bind('touchmove', (event) => {
-				event.preventDefault();
-			});
-		}
-		this.props.onSidebarOpen();
-		$('html').toggleClass('sidebar-open');
+	SidebarHelper(delay) {
+		setTimeout(() => {
+			if (parseInt($('footer').css('padding-right'), 10) > 0) {
+				$('footer, header, body, .filters.open').css('padding-right', 0);
+				$('.overlay, header, footer').unbind('touchmove', (event) => {
+					event.preventDefault();
+				});
+			} else {
+				$('footer, header, body, .filters.open').css('padding-right', IntroHeader.scrollbarWidth);
+				$('.overlay, header, footer').bind('touchmove', (event) => {
+					event.preventDefault();
+				});
+			}
+			this.props.onSidebarOpen();
+			$('html').toggleClass('sidebar-open');
+		}, delay);
 	}
 
 	aboutMeClick() {
 		if (this.props.introOn) {
-			$('.introVideo').get(0).pause();
-			$('.intro').addClass('animateHeight');
-			setTimeout(() => {
-				this.props.onScrollOver();
-				$('.intro').removeClass('animateHeight');
-				this.SidebarHelper();
-			}, 1000);
+			this.SidebarHelper(1000);
+			animateScroll(1000);
 		} else {
-			this.SidebarHelper();
+			this.SidebarHelper(0);
 		}
 	}
 
 	render() {
+		const style = () => {
+			if (this.props.introOn) {
+				return {
+					color: 'white',
+				};
+			}
+			return {
+				color: 'black',
+			};
+		};
+
 		return (
 			<div className="container">
 				<div className="left">
-					<a className="fade" href="http://leotide.tumblr.com/">Tumblr!</a>
+					<a className="fade" style={style()} target="_blank" href="http://leotide.tumblr.com/">Tumblr!</a>
 				</div>
 				<h1>
 					<img src="./assets/images/LEOTIDErev.png" alt="LeoTide"></img>
 				</h1>
 				<div className="right">
-					<a className="about-me" onClick={() => this.aboutMeClick()}>About Leo</a>
+					<a className="about-me" style={style()} onClick={() => this.aboutMeClick()}>About Leo</a>
 				</div>
 			</div>
 		);
@@ -67,7 +76,6 @@ class IntroHeader extends React.Component {
 IntroHeader.propTypes = {
 	introOn: PropTypes.bool.isRequired,
 	onSidebarOpen: PropTypes.func.isRequired,
-	onScrollOver: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -77,9 +85,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	onSidebarOpen: () => {
 		dispatch(toggleSidebar());
-	},
-	onScrollOver: () => {
-		dispatch(updateIntroState(false));
 	},
 });
 

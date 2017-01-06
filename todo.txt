@@ -1,31 +1,16 @@
-Start page full screen carousel like
-http://www.3fx.com/#home[iframes]/0/
-
-cache the images and possibly video
-
-fix the inital load with bar bug (probably because its in the html file, fix it to be patched in later)
-fix after inital load remove html css - the blob is always animating in the background
-
-fix images to load bits at a time
-
-fix address and everything (font as well)
-
-fix about me to work on the video page
-
-when you click on somethign inth eabout me section, brings up the contact me page pre filled
-
-show loading screen when anything is loaded - background can be gifs for anything
-
-fix links to open in new tab
-
-get background for contact page from leonie
-
-rewrite all jquery into react
-
-put page transitions in for flicking between menus
-
-assets/thumbs/SVSM needs regenerting - I have 4MB files in there
-
-move the "animateHeight" transition into a common function as I use it in three spots
-
+Now:
 animation still jumps when scrolling from the animation
+
+Later - easy:
+load common scripts (react, etc) from CDN?
+fix address and everything (font as well)
+get background for contact page from Leonie
+assets/thumbs/SVSM needs regenerating - I have 4MB files in there
+regenerate all images into jpegs with reasonable compression and add an even smaller placeholder + blurring for the thumbs stuff
+
+Later - hard:
+add videos to list of stuff so they display and play
+Add image URL fingerprints?
+when you click on something in the about me section, brings up the contact me page pre filled
+put page transitions in for flicking between menus
+mobile optimisation

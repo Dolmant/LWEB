@@ -14,7 +14,7 @@ const InitalState = {
 	overlay_image: 1,
 	overlay_vertical_index: 0,
 	isTouch,
-	introOn: true,
+	introOn: !isTouch,
 	sidebarOpen: false,
 	overlay: {
 		state: false,
@@ -100,12 +100,15 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	default:
 		break;
 	}
-	const temp = getImageSrc(overlay_image_num);
+	const [temp_image, temp_thumb] = getImageSrc(overlay_image_num);
 	let overlay_image_src = '';
-	if (Array.isArray(temp)) {
-		overlay_image_src = temp[overlay_vertical_index];
+	let overlay_thumb_src = '';
+	if (Array.isArray(temp_image)) {
+		overlay_image_src = temp_image[overlay_vertical_index];
+		overlay_thumb_src = temp_thumb[overlay_vertical_index];
 	} else {
-		overlay_image_src = temp;
+		overlay_image_src = temp_image;
+		overlay_thumb_src = temp_thumb;
 	}
 	const arrows = computedarrows(
 		overlay_image_num,
@@ -115,6 +118,7 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 		overlay_vertical_index,
 		overlay_image_num,
 		overlay_image_src,
+		overlay_thumb_src,
 		overlay: {
 			arrows,
 			state,

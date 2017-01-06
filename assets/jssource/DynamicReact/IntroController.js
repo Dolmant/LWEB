@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Intro from './Intro';
-import isTouch from './../consts';
 
 const IntroController = (props) => {
-	if (!isTouch && props.introOn) {
+	if (props.introOn) {
 		return <Intro />;
 	}
 	return null;

@@ -17,6 +17,7 @@
     "nodemailer": "^2.7.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-lazysizes": "^1.0.0",
     "react-redux": "^4.4.6",
     "react-slick": "^0.14.5",
     "redux": "^3.6.0"

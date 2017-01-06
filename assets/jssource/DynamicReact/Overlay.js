@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
-import { navOverlayImage, toggleOverlay } from './../consts';
+import LazySizes from 'react-lazysizes';
 import $ from './../jquery.min';
+import { navOverlayImage, toggleOverlay } from './../consts';
 
 class Overlay extends React.Component {
 	formOverride(event) {
@@ -78,7 +79,7 @@ class Overlay extends React.Component {
 					<div className="overlayimagecontrol">
 						{ Arrows() }
 						<div className="img-wrap-overlay">
-							<img alt="It's not loading!" className="overlayimage" src={this.props.overlay_image_src.toString()}></img>
+							<LazySizes dataSizes="auto" alt="It's not loading!" className="blur-up overlayimage" src={this.props.overlay_thumb_src.toString()} dataSrc={this.props.overlay_image_src.toString()}></LazySizes>
 						</div>
 						<span className="overlaytext"></span>
 					</div>
@@ -152,10 +153,12 @@ Overlay.propTypes = {
 		image: PropTypes.bool.isRequired,
 	}).isRequired,
 	overlay_image_src: PropTypes.string.isRequired,
+	overlay_thumb_src: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
 	overlay_image_src: state.overlay_image_src,
+	overlay_thumb_src: state.overlay_thumb_src,
 	overlay: state.overlay,
 });
 

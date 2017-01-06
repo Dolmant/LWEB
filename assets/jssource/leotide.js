@@ -13,24 +13,17 @@ import $ from './jquery.min';
 
 const HT = {
 	ready() {
-		HT.fajax();
+		$(window).load(() => {
+			setTimeout(() => {
+				$('body').show();
+				$('html').removeClass('loading');
+			}, 100);
+		});
 	},
 
 	resize() {
 		if ($(window).scrollTop() === 0) {
 			$('.intro-logo').css({ top: (($(window).height() / 2) - 21) });
-		}
-	},
-
-	checkPosts() {
-		const docViewTop = $(window).scrollTop();
-		const docViewBottom = docViewTop + $(window).height();
-		const elemTop = $('.posts-loader').offset().top;
-		const elemBottom = elemTop + $('.posts-loader').height();
-
-		if ((elemBottom <= docViewBottom) && (elemTop - 100 >= docViewTop) && $('.posts-loader').hasClass('inactive')) {
-			$('.posts-loader').addClass('active').removeClass('inactive');
-			HT.loadPosts();
 		}
 	},
 
@@ -42,10 +35,10 @@ const HT = {
 		if (postContainer.data('cat')) {
 			dataString += 'cat=' + cat;
 		}
-
+		const form = $(this);
 		$.ajax({
 			url: '/assets/includes/posts.php',
-			data: dataString,
+			data: form.serialize(),
 			dataType: 'html',
 			beforeSend() {
 				$('.posts-loader').addClass('loading');
@@ -58,40 +51,15 @@ const HT = {
 				} else {
 					$('.posts-loader').remove();
 				}
+				var resp = $.parseJSON(response);
+				form.find('input[type=text]').val(resp.msg);
+				if (resp.msg !== 'Thanks!') {
+					form.find('input[type=text]').addClass('err');
+				}
 			},
 		});
 	},
 
-	fajax() {
-		$('body').hide();
-
-		$(window).load(() => {
-			setTimeout(() => {
-				$('html').removeClass('loaded');
-				$('body').show();
-			}, 550);
-		});
-	},
-
-	newsletter() {
-		$('#newsForm').submit(function (e) {
-			e.preventDefault();
-			const form = $(this);
-			$.ajax({
-				url: '/assets/includes/newsletter.php',
-				data: form.serialize(),
-				beforeSend() {
-				},
-				success(response) {
-					var resp = $.parseJSON(response);
-					form.find('input[type=text]').val(resp.msg);
-					if (resp.msg !== 'Thanks!') {
-						form.find('input[type=text]').addClass('err');
-					}
-				},
-			});
-		});
-	},
 };
 
 $(document).ready(() => {
@@ -119,7 +87,7 @@ $(document).ready(() => {
 		<Provider store={store}>
 			<Sidebar />
 		</Provider>,
-		document.getElementById('sidebar'));
+		document.getElementById('sidebar-top'));
 	ReactDOM.render(
 		<Provider store={store}>
 			<PageContainer />
@@ -129,7 +97,7 @@ $(document).ready(() => {
 		<Provider store={store}>
 			<Footer />
 		</Provider>,
-		document.getElementById('introStatic'));
+		document.getElementById('footer'));
 	HT.ready();
 });
 
