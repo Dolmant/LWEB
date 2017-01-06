@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
@@ -21,7 +22,7 @@ app.use(bodyParser.urlencoded({
 	extended: true,
 }));
 
-app.use(express.compress());
+app.use(compression());
 
 app.use(bodyParser.json());
 
