@@ -21,6 +21,8 @@ app.use(bodyParser.urlencoded({
 	extended: true,
 }));
 
+app.use(express.compress());
+
 app.use(bodyParser.json());
 
 app.post('/postform', (req, res) => {
@@ -43,6 +45,6 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-app.use('/assets', express.static(path.join(__dirname, '/assets', { maxAge: cacheTime })));
+app.use('/assets', express.static(path.join(__dirname, '/assets'), { maxAge: cacheTime }));
 
 app.listen(process.env.PORT || 8001);
