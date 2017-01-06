@@ -942,7 +942,7 @@ var PageContainer = function PageContainer(props) {
 			_react2['default'].createElement(
 				'div',
 				{ className: 'img-wrap' },
-				_react2['default'].createElement(_reactLazysizes2['default'], { dataSizes: 'auto', alt: 'It\'s not loading!', src: item.super_thumbs_src.toString(), dataSrc: item.thumbs_src.toString() })
+				_react2['default'].createElement(_reactLazysizes2['default'], { className: 'superlazy', dataSizes: 'auto', alt: 'It\'s not loading!', src: item.super_thumbs_src.toString(), dataSrc: item.thumbs_src.toString() })
 			),
 			_react2['default'].createElement(
 				'span',
@@ -1121,20 +1121,15 @@ function selectedOverlayImageNum(overlay_image_num_, current_category, overlay_v
 		default:
 			break;
 	}
-
-	var _getImageSrc = _consts.getImageSrc(overlay_image_num);
-
-	var temp_image = _getImageSrc[0];
-	var temp_thumb = _getImageSrc[1];
-
+	var temp_image_data = _consts.getImageSrc(overlay_image_num);
 	var overlay_image_src = '';
 	var overlay_thumb_src = '';
-	if (Array.isArray(temp_image)) {
-		overlay_image_src = temp_image[overlay_vertical_index];
-		overlay_thumb_src = temp_thumb[overlay_vertical_index];
+	if (Array.isArray(temp_image_data.img_src)) {
+		overlay_image_src = temp_image_data.img_src[overlay_vertical_index];
+		overlay_thumb_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index];
 	} else {
-		overlay_image_src = temp_image;
-		overlay_thumb_src = temp_thumb;
+		overlay_image_src = temp_image_data.img_src;
+		overlay_thumb_src = temp_image_data.thumbs_src;
 	}
 	var arrows = computedarrows(overlay_image_num, current_category, overlay_vertical_index);
 	return {
@@ -1257,7 +1252,7 @@ var Sidebar = function Sidebar(props) {
 			_react2['default'].createElement(
 				'div',
 				{ className: 'sidebar-text' },
-				_react2['default'].createElement(_reactLazysizes2['default'], { dataSizes: 'auto', dataSrc: './assets/images/TextImage.png', src: './assets/thumbs/TextImage.png', alt: 'Not Loading!' })
+				_react2['default'].createElement(_reactLazysizes2['default'], { className: 'superlazy', dataSizes: 'auto', dataSrc: './assets/images/TextImage.jpg', src: './assets/thumbs/TextImage.jpg', alt: 'Not Loading!' })
 			),
 			_react2['default'].createElement(
 				'h3',
@@ -1493,7 +1488,7 @@ var projectList = {
 		img_src: './assets/images/SciIllustration/CatAnatomy2.jpg',
 		img_txt: 'Cat Anatomy',
 		thumbs_src: './assets/thumbs/SciIllustration/CatAnatomy2.jpg',
-		suiper_thumbs_src: './assets/superThumbs/SciIllustration/CatAnatomy2.jpg'
+		super_thumbs_src: './assets/superThumbs/SciIllustration/CatAnatomy2.jpg'
 	}, {
 		item_number: 3,
 		img_src: './assets/images/SciIllustration/COPD2.jpg',
@@ -1707,9 +1702,10 @@ var projectList = {
 	MISC: [{
 		item_number: 37,
 		img_src: ['./assets/images/UterineInversion/UterineInversion_Colour01.jpg', './assets/images/UterineInversion/UterineInversion_Colour02.jpg', './assets/images/UterineInversion/UterineInversion_Colour03.jpg', './assets/images/UterineInversion/UterineInversion_Colour04.jpg', './assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
+		overlay_thumbs_src: ['./assets/thumbs/UterineInversion/UterineInversion_Colour01.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour02.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour03.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour04.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour05.jpg'],
 		img_txt: 'Uterine Inversion Collection',
-		thumbs_src: './assets/thumbs/UterineInversion/tn_UIFolder.png',
-		super_thumbs_src: './assets/superThumbs/UterineInversion/tn_UIFolder.png'
+		thumbs_src: './assets/thumbs/UterineInversion/UIFolder.png',
+		super_thumbs_src: './assets/superThumbs/UterineInversion/UIFolder.png'
 	}]
 };
 
@@ -1720,7 +1716,7 @@ function getImageSrc(ImageNum) {
 		var arrayRaw = projectList[arrayNames];
 		for (var i = 0, len = arrayRaw.length; i < len; i += 1) {
 			if (arrayRaw[i].item_number === ImageNum) {
-				return [arrayRaw[i].img_src, arrayRaw[i].thumbs_src];
+				return arrayRaw[i];
 			}
 		}
 	}
@@ -22920,8 +22916,61 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 };
 
 },{}],180:[function(require,module,exports){
-arguments[4][17][0].apply(exports,arguments)
-},{"_process":16,"dup":17}],181:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+'use strict';
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
+
+}).call(this,require('_process'))
+},{"_process":16}],181:[function(require,module,exports){
 var root = require('./_root');
 
 /** Built-in value references. */
@@ -24954,8 +25003,91 @@ var camel2hyphen = function (str) {
 
 module.exports = camel2hyphen;
 },{}],205:[function(require,module,exports){
-arguments[4][169][0].apply(exports,arguments)
-},{"dup":169}],206:[function(require,module,exports){
+'use strict';
+/* eslint-disable no-unused-vars */
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (e) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (Object.getOwnPropertySymbols) {
+			symbols = Object.getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+},{}],206:[function(require,module,exports){
 var canUseDOM = require('can-use-dom');
 var enquire = canUseDOM && require('enquire.js');
 var json2mq = require('json2mq');

@@ -277,6 +277,12 @@ display:none;
 	transform: scale(10);
 }
 
+.superlazy.lazyloading, .superlazy.lazyload {
+	max-width: 10%;
+	max-height: 10%;
+	transform: scale(10);
+}
+
 .blur-up.lazyloaded {
 	-webkit-filter: blur(0);
 	filter: blur(0);

@@ -48,7 +48,7 @@ export const projectList = {
 			img_src: './assets/images/SciIllustration/CatAnatomy2.jpg',
 			img_txt: 'Cat Anatomy',
 			thumbs_src: './assets/thumbs/SciIllustration/CatAnatomy2.jpg',
-			suiper_thumbs_src: './assets/superThumbs/SciIllustration/CatAnatomy2.jpg',
+			super_thumbs_src: './assets/superThumbs/SciIllustration/CatAnatomy2.jpg',
 		},
 		{
 			item_number: 3,
@@ -303,9 +303,10 @@ export const projectList = {
 		{
 			item_number: 37,
 			img_src: ['./assets/images/UterineInversion/UterineInversion_Colour01.jpg', './assets/images/UterineInversion/UterineInversion_Colour02.jpg', './assets/images/UterineInversion/UterineInversion_Colour03.jpg', './assets/images/UterineInversion/UterineInversion_Colour04.jpg', './assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
+			overlay_thumbs_src: ['./assets/thumbs/UterineInversion/UterineInversion_Colour01.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour02.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour03.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour04.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour05.jpg'],
 			img_txt: 'Uterine Inversion Collection',
-			thumbs_src: './assets/thumbs/UterineInversion/tn_UIFolder.png',
-			super_thumbs_src: './assets/superThumbs/UterineInversion/tn_UIFolder.png',
+			thumbs_src: './assets/thumbs/UterineInversion/UIFolder.png',
+			super_thumbs_src: './assets/superThumbs/UterineInversion/UIFolder.png',
 		},
 	],
 };
@@ -315,7 +316,7 @@ export function getImageSrc(ImageNum) {
 		const arrayRaw = projectList[arrayNames];
 		for (let i = 0, len = arrayRaw.length; i < len; i += 1) {
 			if (arrayRaw[i].item_number === ImageNum) {
-				return [arrayRaw[i].img_src, arrayRaw[i].thumbs_src];
+				return arrayRaw[i];
 			}
 		}
 	}
