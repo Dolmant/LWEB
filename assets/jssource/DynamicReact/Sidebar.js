@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
+import LazySizes from 'react-lazysizes';
 
 const Sidebar = (props) => {
 	if (props.sidebarOpen) {
 		return (
 			<div className="sidebar">
 				<div className="sidebar-text">
-					<img src="./assets/images/TextImage.png" alt="Not Loading!"></img>
+					<LazySizes dataSizes="auto" dataSrc='./assets/images/TextImage.png'  src="./assets/thumbs/TextImage.png" alt="Not Loading!"></LazySizes>
 				</div>
 				<h3>COMMISSIONS</h3>
 				<h4>Please use the &quot;Contact Me&quot; button in the bottom right of your screen to make an enquiry and ensure you at least include the following detail!</h4>

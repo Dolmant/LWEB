@@ -942,7 +942,7 @@ var PageContainer = function PageContainer(props) {
 			_react2['default'].createElement(
 				'div',
 				{ className: 'img-wrap' },
-				_react2['default'].createElement(_reactLazysizes2['default'], { dataSizes: 'auto', alt: 'It\'s not loading!', dataSrc: item.thumbs_src.toString() })
+				_react2['default'].createElement(_reactLazysizes2['default'], { dataSizes: 'auto', alt: 'It\'s not loading!', src: item.super_thumbs_src.toString(), dataSrc: item.thumbs_src.toString() })
 			),
 			_react2['default'].createElement(
 				'span',
@@ -992,6 +992,8 @@ PageContainer.propTypes = {
 	list: _react.PropTypes.arrayOf(_react.PropTypes.shape({
 		item_number: _react.PropTypes.number,
 		img_src: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.arrayOf(_react.PropTypes.string)]),
+		thumbs_src: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.arrayOf(_react.PropTypes.string)]),
+		super_thumbs_src: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.arrayOf(_react.PropTypes.string)]),
 		img_txt: _react.PropTypes.string
 	})).isRequired,
 	onImageClick: _react.PropTypes.func.isRequired,
@@ -1243,6 +1245,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactLazysizes = require('react-lazysizes');
+
+var _reactLazysizes2 = _interopRequireDefault(_reactLazysizes);
+
 var Sidebar = function Sidebar(props) {
 	if (props.sidebarOpen) {
 		return _react2['default'].createElement(
@@ -1251,7 +1257,7 @@ var Sidebar = function Sidebar(props) {
 			_react2['default'].createElement(
 				'div',
 				{ className: 'sidebar-text' },
-				_react2['default'].createElement('img', { src: './assets/images/TextImage.png', alt: 'Not Loading!' })
+				_react2['default'].createElement(_reactLazysizes2['default'], { dataSizes: 'auto', dataSrc: './assets/images/TextImage.png', src: './assets/thumbs/TextImage.png', alt: 'Not Loading!' })
 			),
 			_react2['default'].createElement(
 				'h3',
@@ -1377,7 +1383,7 @@ var mapDispatchToProps = function mapDispatchToProps() {
 exports['default'] = _reactRedux.connect(mapStateToProps, mapDispatchToProps)(Sidebar);
 module.exports = exports['default'];
 
-},{"react":238,"react-redux":174}],11:[function(require,module,exports){
+},{"react":238,"react-lazysizes":171,"react-redux":174}],11:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1480,193 +1486,230 @@ var projectList = {
 		item_number: 1,
 		img_src: './assets/images/SciIllustration/mouse02 copy.png',
 		img_txt: 'Mice',
-		thumbs_src: './assets/thumbs/SciIllustration/mouse02 copy.png'
+		thumbs_src: './assets/thumbs/SciIllustration/mouse02 copy.png',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/mouse02 copy.png'
 	}, {
 		item_number: 2,
 		img_src: './assets/images/SciIllustration/CatAnatomy2.jpg',
 		img_txt: 'Cat Anatomy',
-		thumbs_src: './assets/thumbs/SciIllustration/CatAnatomy2.jpg'
+		thumbs_src: './assets/thumbs/SciIllustration/CatAnatomy2.jpg',
+		suiper_thumbs_src: './assets/superThumbs/SciIllustration/CatAnatomy2.jpg'
 	}, {
 		item_number: 3,
 		img_src: './assets/images/SciIllustration/COPD2.jpg',
 		img_txt: 'COPD study',
-		thumbs_src: './assets/thumbs/SciIllustration/COPD2.jpg'
+		thumbs_src: './assets/thumbs/SciIllustration/COPD2.jpg',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/COPD2.jpg'
 	}, {
 		item_number: 4,
 		img_src: './assets/images/SciIllustration/Hand_Anatomy01.png',
 		img_txt: 'Hand Anatomy',
-		thumbs_src: './assets/thumbs/SciIllustration/Hand_Anatomy01.png'
+		thumbs_src: './assets/thumbs/SciIllustration/Hand_Anatomy01.png',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/Hand_Anatomy01.png'
 	}, {
 		item_number: 5,
 		img_src: './assets/images/SciIllustration/Cell_comp03.jpg',
 		img_txt: 'Cell comp',
-		thumbs_src: './assets/thumbs/SciIllustration/Cell_comp03.jpg'
+		thumbs_src: './assets/thumbs/SciIllustration/Cell_comp03.jpg',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/Cell_comp03.jpg'
 	}, {
 		item_number: 6,
 		img_src: './assets/images/SciIllustration/DNAtetris.jpg',
 		img_txt: 'DNAtetris',
-		thumbs_src: './assets/thumbs/SciIllustration/DNAtetris.jpg'
+		thumbs_src: './assets/thumbs/SciIllustration/DNAtetris.jpg',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/DNAtetris.jpg'
 	}, {
 		item_number: 7,
 		img_src: './assets/images/SciIllustration/IBS_04.jpg',
 		img_txt: 'IBS',
-		thumbs_src: './assets/thumbs/SciIllustration/IBS_04.jpg'
+		thumbs_src: './assets/thumbs/SciIllustration/IBS_04.jpg',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/IBS_04.jpg'
 	}, {
 		item_number: 8,
 		img_src: './assets/images/SciIllustration/MVintroV2.png',
 		img_txt: 'MVintro',
-		thumbs_src: './assets/thumbs/SciIllustration/MVintroV2.png'
+		thumbs_src: './assets/thumbs/SciIllustration/MVintroV2.png',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/MVintroV2.png'
 	}, {
 		item_number: 9,
 		img_src: './assets/images/SciIllustration/RamenCellNew5.png',
 		img_txt: 'Ramen Cell',
-		thumbs_src: './assets/thumbs/SciIllustration/RamenCellNew5.png'
+		thumbs_src: './assets/thumbs/SciIllustration/RamenCellNew5.png',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/RamenCellNew5.png'
 	}, {
 		item_number: 10,
 		img_src: './assets/images/SciIllustration/StomachLayers_01.png',
 		img_txt: 'Stomach Layers',
-		thumbs_src: './assets/thumbs/SciIllustration/StomachLayers_01.png'
+		thumbs_src: './assets/thumbs/SciIllustration/StomachLayers_01.png',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/StomachLayers_01.png'
 	}, {
 		item_number: 11,
 		img_src: './assets/images/SciIllustration/08_Vizbi_DataTransfer.png',
 		img_txt: 'Data Transfer',
-		thumbs_src: './assets/thumbs/SciIllustration/08_Vizbi_DataTransfer.png'
+		thumbs_src: './assets/thumbs/SciIllustration/08_Vizbi_DataTransfer.png',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/08_Vizbi_DataTransfer.png'
 	}, {
 		item_number: 12,
 		img_src: './assets/images/SciIllustration/09_Vizbi_WINNER_FibrilForest.png',
 		img_txt: 'Fibril Forest',
-		thumbs_src: './assets/thumbs/SciIllustration/09_Vizbi_WINNER_FibrilForest.png'
+		thumbs_src: './assets/thumbs/SciIllustration/09_Vizbi_WINNER_FibrilForest.png',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/09_Vizbi_WINNER_FibrilForest.png'
 	}, {
 		item_number: 13,
 		img_src: './assets/images/SciIllustration/FriesWithThat3.png',
 		img_txt: '"Do you want fries with that?" Microbiological study of IBS',
-		thumbs_src: './assets/thumbs/SciIllustration/FriesWithThat3.png'
+		thumbs_src: './assets/thumbs/SciIllustration/FriesWithThat3.png',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/FriesWithThat3.png'
 	}],
 	TYPOGRAPHY: [{
 		item_number: 14,
 		img_src: './assets/images/Typography/Blood_Components2.png',
 		img_txt: 'Blood',
-		thumbs_src: './assets/thumbs/Typography/Blood_Components2.png'
+		thumbs_src: './assets/thumbs/Typography/Blood_Components2.png',
+		super_thumbs_src: './assets/superThumbs/Typography/Blood_Components2.png'
 	}, {
 		item_number: 15,
 		img_src: './assets/images/Typography/Epidemiology2.png',
 		img_txt: 'Microbiology',
-		thumbs_src: './assets/thumbs/Typography/Epidemiology2.png'
+		thumbs_src: './assets/thumbs/Typography/Epidemiology2.png',
+		super_thumbs_src: './assets/superThumbs/Typography/Epidemiology2.png'
 	}, {
 		item_number: 16,
 		img_src: './assets/images/Typography/Neuroscience.jpg',
 		img_txt: 'Neruoscience',
-		thumbs_src: './assets/thumbs/Typography/Neuroscience.jpg'
+		thumbs_src: './assets/thumbs/Typography/Neuroscience.jpg',
+		super_thumbs_src: './assets/superThumbs/Typography/Neuroscience.jpg'
 	}, {
 		item_number: 17,
 		img_src: './assets/images/Typography/Flagellum.png',
 		img_txt: 'Flagellum',
-		thumbs_src: './assets/thumbs/Typography/Flagellum.png'
+		thumbs_src: './assets/thumbs/Typography/Flagellum.png',
+		super_thumbs_src: './assets/superThumbs/Typography/Flagellum.png'
 	}, {
 		item_number: 18,
 		img_src: './assets/images/Typography/Proteomics_Typo_02 copy.jpg',
 		img_txt: 'Proteomics',
-		thumbs_src: './assets/thumbs/Typography/Proteomics_Typo_02 copy.jpg'
+		thumbs_src: './assets/thumbs/Typography/Proteomics_Typo_02 copy.jpg',
+		super_thumbs_src: './assets/superThumbs/Typography/Proteomics_Typo_02 copy.jpg'
 	}],
 	MODELLING: [{
 		item_number: 19,
 		img_src: './assets/images/SciModelling/06_Cell_Internal.png',
 		img_txt: '3D Cell internals',
-		thumbs_src: './assets/thumbs/SciModelling/06_Cell_Internal.png'
+		thumbs_src: './assets/thumbs/SciModelling/06_Cell_Internal.png',
+		super_thumbs_src: './assets/superThumbs/SciModelling/06_Cell_Internal.png'
 	}, {
 		item_number: 20,
 		img_src: './assets/images/SciModelling/CLICblue.jpg',
 		img_txt: 'CLIC',
-		thumbs_src: './assets/thumbs/SciModelling/CLICblue.jpg'
+		thumbs_src: './assets/thumbs/SciModelling/CLICblue.jpg',
+		super_thumbs_src: './assets/superThumbs/SciModelling/CLICblue.jpg'
 	}, {
 		item_number: 21,
 		img_src: './assets/images/SciModelling/EyeRend02.png',
 		img_txt: 'Eye',
-		thumbs_src: './assets/thumbs/SciModelling/EyeRend02.png'
+		thumbs_src: './assets/thumbs/SciModelling/EyeRend02.png',
+		super_thumbs_src: './assets/superThumbs/SciModelling/EyeRend02.png'
 	}, {
 		item_number: 22,
 		img_src: './assets/images/SciModelling/SC_Compare.jpg',
 		img_txt: 'SC Compare',
-		thumbs_src: './assets/thumbs/SciModelling/SC_Compare.jpg'
+		thumbs_src: './assets/thumbs/SciModelling/SC_Compare.jpg',
+		super_thumbs_src: './assets/superThumbs/SciModelling/SC_Compare.jpg'
 	}],
 	ANIMALS: [{
 		item_number: 23,
 		img_src: './assets/images/Animals/Binturong.jpg',
 		img_txt: 'Binturong',
-		thumbs_src: './assets/thumbs/Animals/Binturong.jpg'
+		thumbs_src: './assets/thumbs/Animals/Binturong.jpg',
+		super_thumbs_src: './assets/superThumbs/Animals/Binturong.jpg'
 	}, {
 		item_number: 24,
 		img_src: './assets/images/Animals/BlackBear.jpg',
 		img_txt: 'Black Bear',
-		thumbs_src: './assets/thumbs/Animals/BlackBear.jpg'
+		thumbs_src: './assets/thumbs/Animals/BlackBear.jpg',
+		super_thumbs_src: './assets/superThumbs/Animals/BlackBear.jpg'
 	}, {
 		item_number: 25,
 		img_src: './assets/images/Animals/RedPanda.jpg',
 		img_txt: 'Red Panda',
-		thumbs_src: './assets/thumbs/Animals/RedPanda.jpg'
+		thumbs_src: './assets/thumbs/Animals/RedPanda.jpg',
+		super_thumbs_src: './assets/superThumbs/Animals/RedPanda.jpg'
 	}, {
 		item_number: 26,
 		img_src: './assets/images/Animals/Dragonfly2Signed.jpg',
 		img_txt: 'Dragonfly with prey',
-		thumbs_src: './assets/thumbs/Animals/Dragonfly2Signed.jpg'
+		thumbs_src: './assets/thumbs/Animals/Dragonfly2Signed.jpg',
+		super_thumbs_src: './assets/superThumbs/Animals/Dragonfly2Signed.jpg'
 	}, {
 		item_number: 27,
 		img_src: './assets/images/Animals/Chameleon.jpg',
 		img_txt: 'Chameleon',
-		thumbs_src: './assets/thumbs/Animals/Chameleon.jpg'
+		thumbs_src: './assets/thumbs/Animals/Chameleon.jpg',
+		super_thumbs_src: './assets/superThumbs/Animals/Chameleon.jpg'
 	}, {
 		item_number: 28,
 		img_src: './assets/images/Animals/HiveBeetle2.jpg',
 		img_txt: 'Hive Beetle',
-		thumbs_src: './assets/thumbs/Animals/HiveBeetle2.jpg'
+		thumbs_src: './assets/thumbs/Animals/HiveBeetle2.jpg',
+		super_thumbs_src: './assets/superThumbs/Animals/HiveBeetle2.jpg'
 	}],
 	FACTS: [{
 		item_number: 29,
 		img_src: './assets/images/Facts/CatFacts.jpg',
 		img_txt: 'Maine Coon Cats + polydactylism',
-		thumbs_src: './assets/thumbs/Facts/CatFacts.jpg'
+		thumbs_src: './assets/thumbs/Facts/CatFacts.jpg',
+		super_thumbs_src: './assets/superThumbs/Facts/CatFacts.jpg'
 	}, {
 		item_number: 30,
 		img_src: './assets/images/Facts/EelFacts.jpg',
 		img_txt: 'Electric eel + electrolocation',
-		thumbs_src: './assets/thumbs/Facts/EelFacts.jpg'
+		thumbs_src: './assets/thumbs/Facts/EelFacts.jpg',
+		super_thumbs_src: './assets/superThumbs/Facts/EelFacts.jpg'
 	}, {
 		item_number: 31,
 		img_src: './assets/images/Facts/MudCrabFacts.jpg',
 		img_txt: 'Mud crabs',
-		thumbs_src: './assets/thumbs/Facts/MudCrabFacts.jpg'
+		thumbs_src: './assets/thumbs/Facts/MudCrabFacts.jpg',
+		super_thumbs_src: './assets/superThumbs/Facts/MudCrabFacts.jpg'
 	}, {
 		item_number: 32,
 		img_src: './assets/images/Facts/SeadragonFactsV2.jpg',
 		img_txt: 'Seadragons',
-		thumbs_src: './assets/thumbs/Facts/SeadragonFactsV2.jpg'
+		thumbs_src: './assets/thumbs/Facts/SeadragonFactsV2.jpg',
+		super_thumbs_src: './assets/superThumbs/Facts/SeadragonFactsV2.jpg'
 	}],
 	SVSM: [{
 		item_number: 33,
 		img_src: './assets/images/SVSM/Liposome_Protocol copy2.jpg',
 		img_txt: 'Liposome Protocol',
-		thumbs_src: './assets/thumbs/SVSM/Liposome_Protocol copy2.jpg'
+		thumbs_src: './assets/thumbs/SVSM/Liposome_Protocol copy2.jpg',
+		super_thumbs_src: './assets/superThumbs/SVSM/Liposome_Protocol copy2.jpg'
 	}, {
 		item_number: 34,
 		img_src: './assets/images/SVSM/NH2016_Poster03.jpg',
 		img_txt: 'NH 2016 Poster',
-		thumbs_src: './assets/thumbs/SVSM/NH2016_Poster03.jpg'
+		thumbs_src: './assets/thumbs/SVSM/NH2016_Poster03.jpg',
+		super_thumbs_src: './assets/superThumbs/SVSM/NH2016_Poster03.jpg'
 	}, {
 		item_number: 35,
 		img_src: './assets/images/SVSM/WBlot_Protocol01 copy2.jpg',
 		img_txt: 'Western Blot',
-		thumbs_src: './assets/thumbs/SVSM/WBlot_Protocol01 copy2.jpg'
+		thumbs_src: './assets/thumbs/SVSM/WBlot_Protocol01 copy2.jpg',
+		super_thumbs_src: './assets/superThumbs/SVSM/WBlot_Protocol01 copy2.jpg'
 	}, {
 		item_number: 36,
 		img_src: './assets/images/SVSM/rsz_nh_posterportraitfinal.jpg',
 		img_txt: 'Poster Final',
-		thumbs_src: './assets/thumbs/SVSM/rsz_nh_posterportraitfinal.jpg'
+		thumbs_src: './assets/thumbs/SVSM/rsz_nh_posterportraitfinal.jpg',
+		super_thumbs_src: './assets/superThumbs/SVSM/rsz_nh_posterportraitfinal.jpg'
 	}],
 	MISC: [{
 		item_number: 37,
 		img_src: ['./assets/images/UterineInversion/UterineInversion_Colour01.jpg', './assets/images/UterineInversion/UterineInversion_Colour02.jpg', './assets/images/UterineInversion/UterineInversion_Colour03.jpg', './assets/images/UterineInversion/UterineInversion_Colour04.jpg', './assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
 		img_txt: 'Uterine Inversion Collection',
-		thumbs_src: './assets/thumbs/UterineInversion/tn_UIFolder.png'
+		thumbs_src: './assets/thumbs/UterineInversion/tn_UIFolder.png',
+		super_thumbs_src: './assets/superThumbs/UterineInversion/tn_UIFolder.png'
 	}]
 };
 
@@ -22877,61 +22920,8 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 };
 
 },{}],180:[function(require,module,exports){
-(function (process){
-/**
- * Copyright 2013-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-'use strict';
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  }
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error(
-        'Minified exception occurred; use the non-minified dev environment ' +
-        'for the full error message and additional helpful warnings.'
-      );
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(
-        format.replace(/%s/g, function() { return args[argIndex++]; })
-      );
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-module.exports = invariant;
-
-}).call(this,require('_process'))
-},{"_process":16}],181:[function(require,module,exports){
+arguments[4][17][0].apply(exports,arguments)
+},{"_process":16,"dup":17}],181:[function(require,module,exports){
 var root = require('./_root');
 
 /** Built-in value references. */
@@ -24900,56 +24890,8 @@ var Track = exports.Track = _react2.default.createClass({
   }
 });
 },{"classnames":202,"object-assign":205,"react":238}],202:[function(require,module,exports){
-/*!
-  Copyright (c) 2016 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
-		// register as 'classnames', consistent with npm package name
-		define('classnames', [], function () {
-			return classNames;
-		});
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
-},{}],203:[function(require,module,exports){
+arguments[4][15][0].apply(exports,arguments)
+},{"dup":15}],203:[function(require,module,exports){
 var camel2hyphen = require('string-convert/camel2hyphen');
 
 var isDimension = function (feature) {
