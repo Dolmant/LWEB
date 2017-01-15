@@ -27,7 +27,7 @@ const PageContainer = (props) => {
 	const listItems = props.list.map(item =>
 		<li onClick={() => props.onImageClick(item.item_number)} key={item.item_number.toString()}>
 			<div className="img-wrap">
-				<LazySizes className="superlazy" dataSizes="auto" alt="It's not loading!" src={item.super_thumbs_src.toString()} dataSrc={item.thumbs_src.toString()}></LazySizes>
+				<LazySizes className="superlazy scale-img" dataSizes="auto" alt="It's not loading!" src={item.super_thumbs_src.toString()} dataSrc={item.thumbs_src.toString()}></LazySizes>
 			</div>
 			<span>{item.img_txt.toString()}</span>
 		</li>,

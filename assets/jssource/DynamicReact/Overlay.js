@@ -9,9 +9,9 @@ class Overlay extends React.Component {
 		event.preventDefault();
 		this.props.toggleOverlayDispatch(false, false);
 		$.ajax({
-			url: $(this).attr('action'),
+			url: '/postform',
 			type: 'POST',
-			data: $(this).serialize(),
+			data: $('#emf-form').serialize(),
 			beforeSend: () => {
 				const num = 0;
 			},
@@ -79,7 +79,7 @@ class Overlay extends React.Component {
 					<div className="overlayimagecontrol">
 						{ Arrows() }
 						<div className="img-wrap-overlay">
-							<LazySizes dataSizes="auto" alt="It's not loading!" className="blur-up overlayimage" src={this.props.overlay_thumb_src.toString()} dataSrc={this.props.overlay_image_src.toString()}></LazySizes>
+							<LazySizes dataSizes="auto" alt="It's not loading!" className="scale-img blur-up overlayimage" src={this.props.overlay_thumb_src.toString()} dataSrc={this.props.overlay_image_src.toString()}></LazySizes>
 						</div>
 						<span className="overlaytext"></span>
 					</div>
@@ -87,7 +87,7 @@ class Overlay extends React.Component {
 			}
 			return (
 				<div className="overlayform">
-					<form id="emf-form" onSubmit={event => this.formOverride(event)} target="_self" className="topLabel" method="post" action="/postform">
+					<form id="emf-form" onSubmit={event => this.formOverride(event)} target="_self" className="topLabel">
 						<div className="emf-head-widget">
 							<h3>The Leo Signal</h3>
 							<h4>Fill out the form below to get in contact with Me!</h4>

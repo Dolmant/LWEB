@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { category, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
+import { category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
 // reducer handles how the state updates
 
 const InitalState = {
@@ -14,7 +14,8 @@ const InitalState = {
 	overlay_image: 1,
 	overlay_vertical_index: 0,
 	isTouch,
-	introOn: !isTouch,
+	touchmenu_active: false,
+	introOn: true,
 	sidebarOpen: false,
 	overlay: {
 		state: false,
@@ -79,7 +80,6 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 		case 'right':
 			overlay_image_num += 1;
 			break;
-			// deal with this later
 		case 'up':
 			overlay_vertical_index += 1;
 			break;
@@ -104,11 +104,11 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	let overlay_image_src = '';
 	let overlay_thumb_src = '';
 	if (Array.isArray(temp_image_data.img_src)) {
-		overlay_image_src = temp_image_data.img_src[overlay_vertical_index];
-		overlay_thumb_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index];
+		overlay_image_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index];
+		overlay_thumb_src = temp_image_data.overlay_super_thumbs_src[overlay_vertical_index];
 	} else {
-		overlay_image_src = temp_image_data.img_src;
-		overlay_thumb_src = temp_image_data.thumbs_src;
+		overlay_image_src = temp_image_data.thumbs_src;
+		overlay_thumb_src = temp_image_data.super_thumbs_src;
 	}
 	const arrows = computedarrows(
 		overlay_image_num,
@@ -183,6 +183,13 @@ function sidebarToggle(state = InitalState.sidebarOpen, action) {
 	return state;
 }
 
+function touchmenuToggle(state = InitalState.touchmenu_active, action) {
+	if (action.type === TOGGLE_TOUCHMENU) {
+		return !state;
+	}
+	return state;
+}
+
 // concatenate all the reducers
 
 function allReducers(state = {}, action) {
@@ -190,6 +197,7 @@ function allReducers(state = {}, action) {
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action),
 		isTouch,
+		touchmenu_active: touchmenuToggle(state.touchmenu_active, action),
 		introOn: introState(state.introOn, action),
 		sidebarOpen: sidebarToggle(state.sidebarOpen, action),
 		...selectedOverlayImageNum(state.overlay_image_num,

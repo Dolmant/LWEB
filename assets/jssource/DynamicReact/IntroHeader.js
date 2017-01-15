@@ -60,7 +60,7 @@ class IntroHeader extends React.Component {
 		return (
 			<div className="container">
 				<div className="left">
-					<a className="fade" style={style()} target="_blank" href="http://leotide.tumblr.com/">Tumblr!</a>
+					<a className="fade" rel="noopener noreferrer" style={style()} target="_blank" href="http://leotide.tumblr.com/">Tumblr!</a>
 				</div>
 				<h1>
 					<img src="./assets/images/LEOTIDErev.png" alt="LeoTide"></img>

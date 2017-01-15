@@ -6,12 +6,15 @@ const Footer = (props) => {
 	if (!props.introOn) {
 		return (
 			<footer>
-				<div className="container">
+				<div className="footer-container container">
 					<div className="contact">
 						<ul>
 							<li><span>e</span><a href="mailto:leo.herson@gmail.com">leo.herson@gmail.com</a></li>
 							<li><span>p</span><a>Just kidding, email me!</a></li>
-							<li><span>a</span><address>231 Derp Street, CBD 2000 | Sydney, Australia</address></li>
+							<li>
+								<span>a</span>
+								<address>231 Derp Street, CBD 2000 | Sydney, Australia</address>
+							</li>
 						</ul>
 					</div>
 					<div className="contact_me">

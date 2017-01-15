@@ -7,7 +7,7 @@ const Sidebar = (props) => {
 		return (
 			<div className="sidebar">
 				<div className="sidebar-text">
-					<LazySizes className="superlazy" dataSizes="auto" dataSrc="./assets/images/TextImage.jpg" src="./assets/thumbs/TextImage.jpg" alt="Not Loading!"></LazySizes>
+					<LazySizes className="blur-up superlazy" dataSizes="auto" dataSrc="./assets/images/TextImage.jpg" src="./assets/thumbs/TextImage.jpg" alt="Not Loading!"></LazySizes>
 				</div>
 				<h3>COMMISSIONS</h3>
 				<h4>Please use the &quot;Contact Me&quot; button in the bottom right of your screen to make an enquiry and ensure you at least include the following detail!</h4>
