@@ -236,7 +236,7 @@
     opacity: 0; }
   to {
     opacity: 1; } }
-html, body, div, select, span, applet, object, iframe, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, label, legend, p, blockquote, table, caption, tbody, tfoot, thead, tr, th, td {
+html, body, div, select, span, applet, object, iframe, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, h1, h2, h3, h4, h5, h6, h7, h8, pre, form, fieldset, input, textarea, label, legend, p, blockquote, table, caption, tbody, tfoot, thead, tr, th, td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -273,7 +273,7 @@ address, caption, cite, code, dfn, em, strong, th, var {
 ol, ul {
   list-style: none; }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, h7, h8 {
   font-size: 100%;
   font-weight: normal; }
 
@@ -304,6 +304,40 @@ h4 {
   font-size: 18px; }
 
 h6 {
+  font-family: "helvetica";
+  line-height: 1.3em;
+  text-transform: none;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px; }
+
+h7 {
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  max-width: 800px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-family: "helvetica";
+  line-height: 1.3em;
+  text-transform: none;
+  letter-spacing: 0px;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 26px; }
+
+h8 {
+  display: block;
+  -webkit-margin-before: 1.33em;
+  -webkit-margin-after: 1.33em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  max-width: 800px;
+  margin-bottom: 10px;
+  margin-top: 20px;
   font-family: "helvetica";
   line-height: 1.3em;
   text-transform: none;
@@ -783,7 +817,7 @@ footer #newsForm input[type=text] {
   height: 100%; }
 
 .overlay_container .emf-head-widget {
-  width: 75%; }
+  width: 66%; }
 
 .overlay_container .emf-bottom-label {
   font-style: italic;

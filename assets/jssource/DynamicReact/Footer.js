@@ -9,12 +9,7 @@ const Footer = (props) => {
 				<div className="footer-container container">
 					<div className="contact">
 						<ul>
-							<li><span>e</span><a href="mailto:leo.herson@gmail.com">leo.herson@gmail.com</a></li>
-							<li><span>p</span><a>Just kidding, email me!</a></li>
-							<li>
-								<span>a</span>
-								<address>231 Derp Street, CBD 2000 | Sydney, Australia</address>
-							</li>
+							<li><a>Member of the Australian Institute of Medical and Biological Illustration</a></li>
 						</ul>
 					</div>
 					<div className="contact_me">
@@ -22,11 +17,6 @@ const Footer = (props) => {
 					</div>
 					<div className="social">
 						<ul>
-							<li>
-								<a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE">
-									<img alt="It's not loading!" src="./assets/icons/facebookicon.png"></img>
-								</a>
-							</li>
 							<li>
 								<a target="_blank" rel="noopener noreferrer" href="http://leotide.tumblr.com/">
 									<img alt="It's not loading!" src="./assets/icons/tumblricon.png"></img>

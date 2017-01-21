@@ -79,7 +79,14 @@ class Overlay extends React.Component {
 					<div className="overlayimagecontrol">
 						{ Arrows() }
 						<div className="img-wrap-overlay">
-							<LazySizes dataSizes="auto" alt="It's not loading!" className="scale-img blur-up overlayimage" src={this.props.overlay_thumb_src.toString()} dataSrc={this.props.overlay_image_src.toString()}></LazySizes>
+							<LazySizes
+								dataSizes="auto"
+								alt="It's not loading!"
+								className="scale-img blur-up overlayimage"
+								src={this.props.overlay_thumb_src.toString()}
+								dataSrc={this.props.overlay_image_src.toString()}
+							>
+							</LazySizes>
 						</div>
 						<span className="overlaytext"></span>
 					</div>
@@ -89,8 +96,8 @@ class Overlay extends React.Component {
 				<div className="overlayform">
 					<form id="emf-form" onSubmit={event => this.formOverride(event)} target="_self" className="topLabel">
 						<div className="emf-head-widget">
-							<h3>The Leo Signal</h3>
-							<h4>Fill out the form below to get in contact with Me!</h4>
+							<h7>The Leo Signal</h7>
+							<h8>Fill out the form below to get in contact with Me!</h8>
 						</div>
 						<ul>
 							<li id="emf-li-0" className="emf-li-field emf-field-new_name data_container   cell_align_left">

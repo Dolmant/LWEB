@@ -277,42 +277,9 @@ var Footer = function Footer(props) {
 							'li',
 							null,
 							_react2['default'].createElement(
-								'span',
-								null,
-								'e'
-							),
-							_react2['default'].createElement(
-								'a',
-								{ href: 'mailto:leo.herson@gmail.com' },
-								'leo.herson@gmail.com'
-							)
-						),
-						_react2['default'].createElement(
-							'li',
-							null,
-							_react2['default'].createElement(
-								'span',
-								null,
-								'p'
-							),
-							_react2['default'].createElement(
 								'a',
 								null,
-								'Just kidding, email me!'
-							)
-						),
-						_react2['default'].createElement(
-							'li',
-							null,
-							_react2['default'].createElement(
-								'span',
-								null,
-								'a'
-							),
-							_react2['default'].createElement(
-								'address',
-								null,
-								'231 Derp Street, CBD 2000 | Sydney, Australia'
+								'Member of the Australian Institute of Medical and Biological Illustration'
 							)
 						)
 					)
@@ -334,15 +301,6 @@ var Footer = function Footer(props) {
 					_react2['default'].createElement(
 						'ul',
 						null,
-						_react2['default'].createElement(
-							'li',
-							null,
-							_react2['default'].createElement(
-								'a',
-								{ target: '_blank', rel: 'noopener noreferrer', href: 'https://www.facebook.com/YESTHISISDOGIAMONTHEPHONE' },
-								_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: './assets/icons/facebookicon.png' })
-							)
-						),
 						_react2['default'].createElement(
 							'li',
 							null,
@@ -801,7 +759,13 @@ var Overlay = (function (_React$Component) {
 					_react2['default'].createElement(
 						'div',
 						{ className: 'img-wrap-overlay' },
-						_react2['default'].createElement(_reactLazysizes2['default'], { dataSizes: 'auto', alt: 'It\'s not loading!', className: 'scale-img blur-up overlayimage', src: _this.props.overlay_thumb_src.toString(), dataSrc: _this.props.overlay_image_src.toString() })
+						_react2['default'].createElement(_reactLazysizes2['default'], {
+							dataSizes: 'auto',
+							alt: 'It\'s not loading!',
+							className: 'scale-img blur-up overlayimage',
+							src: _this.props.overlay_thumb_src.toString(),
+							dataSrc: _this.props.overlay_image_src.toString()
+						})
 					),
 					_react2['default'].createElement('span', { className: 'overlaytext' })
 				);
@@ -818,12 +782,12 @@ var Overlay = (function (_React$Component) {
 						'div',
 						{ className: 'emf-head-widget' },
 						_react2['default'].createElement(
-							'h3',
+							'h7',
 							null,
 							'The Leo Signal'
 						),
 						_react2['default'].createElement(
-							'h4',
+							'h8',
 							null,
 							'Fill out the form below to get in contact with Me!'
 						)
@@ -1258,11 +1222,11 @@ function selectedOverlayImageNum(overlay_image_num_, current_category, overlay_v
 	var overlay_image_src = '';
 	var overlay_thumb_src = '';
 	if (Array.isArray(temp_image_data.img_src)) {
-		overlay_image_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index];
-		overlay_thumb_src = temp_image_data.overlay_super_thumbs_src[overlay_vertical_index];
+		overlay_image_src = temp_image_data.img_src[overlay_vertical_index];
+		overlay_thumb_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index];
 	} else {
-		overlay_image_src = temp_image_data.thumbs_src;
-		overlay_thumb_src = temp_image_data.super_thumbs_src;
+		overlay_image_src = temp_image_data.img_src;
+		overlay_thumb_src = temp_image_data.thumbs_src;
 	}
 	var arrows = computedarrows(overlay_image_num, current_category, overlay_vertical_index);
 	return {
@@ -1625,9 +1589,7 @@ var isTouch = _jqueryMin2['default'](window).width() < 1000 || 'ontouchstart' in
 exports.isTouch = isTouch;
 var NumberofVertical = 5;
 exports.NumberofVertical = NumberofVertical;
-var NumberOfImages = 39;
-exports.NumberOfImages = NumberOfImages;
-var projectList = {
+var projectListBase = {
 	SCIENCE: [{
 		item_number: 1,
 		img_src: './assets/images/SciIllustration/mouse02 copy.png',
@@ -1696,10 +1658,10 @@ var projectList = {
 		super_thumbs_src: './assets/superThumbs/SciIllustration/08_Vizbi_DataTransfer.png'
 	}, {
 		item_number: 12,
-		img_src: './assets/images/SciIllustration/09_Vizbi_WINNER_FibrilForest.png',
+		img_src: './assets/images/SciIllustration/09_Vizbi_WINNER_FibrilForest.jpg',
 		img_txt: 'Fibril Forest',
-		thumbs_src: './assets/thumbs/SciIllustration/09_Vizbi_WINNER_FibrilForest.png',
-		super_thumbs_src: './assets/superThumbs/SciIllustration/09_Vizbi_WINNER_FibrilForest.png'
+		thumbs_src: './assets/thumbs/SciIllustration/09_Vizbi_WINNER_FibrilForest.jpg',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/09_Vizbi_WINNER_FibrilForest.jpg'
 	}, {
 		item_number: 13,
 		img_src: './assets/images/SciIllustration/FriesWithThat3.png',
@@ -1712,159 +1674,165 @@ var projectList = {
 		img_txt: 'How now anatomical cow',
 		thumbs_src: './assets/thumbs/SciIllustration/CowCalf.jpg',
 		super_thumbs_src: './assets/superThumbs/SciIllustration/CowCalf.jpg'
+	}, {
+		item_number: 15,
+		img_src: './assets/images/SciIllustration/UTS_Build.jpg',
+		img_txt: 'UTS School of Life Sciences Logo',
+		thumbs_src: './assets/thumbs/SciIllustration/UTS_Build.jpg',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/UTS_Build.jpg'
 	}],
 	TYPOGRAPHY: [{
-		item_number: 15,
+		item_number: 16,
 		img_src: './assets/images/Typography/Blood_Components2.png',
 		img_txt: 'Blood',
 		thumbs_src: './assets/thumbs/Typography/Blood_Components2.png',
 		super_thumbs_src: './assets/superThumbs/Typography/Blood_Components2.png'
 	}, {
-		item_number: 16,
+		item_number: 17,
 		img_src: './assets/images/Typography/Epidemiology2.png',
 		img_txt: 'Microbiology',
 		thumbs_src: './assets/thumbs/Typography/Epidemiology2.png',
 		super_thumbs_src: './assets/superThumbs/Typography/Epidemiology2.png'
 	}, {
-		item_number: 17,
+		item_number: 18,
 		img_src: './assets/images/Typography/Neuroscience.jpg',
 		img_txt: 'Neruoscience',
 		thumbs_src: './assets/thumbs/Typography/Neuroscience.jpg',
 		super_thumbs_src: './assets/superThumbs/Typography/Neuroscience.jpg'
 	}, {
-		item_number: 18,
+		item_number: 19,
 		img_src: './assets/images/Typography/Flagellum.png',
 		img_txt: 'Flagellum',
 		thumbs_src: './assets/thumbs/Typography/Flagellum.png',
 		super_thumbs_src: './assets/superThumbs/Typography/Flagellum.png'
 	}, {
-		item_number: 19,
+		item_number: 20,
 		img_src: './assets/images/Typography/Proteomics_Typo_02 copy.jpg',
 		img_txt: 'Proteomics',
 		thumbs_src: './assets/thumbs/Typography/Proteomics_Typo_02 copy.jpg',
 		super_thumbs_src: './assets/superThumbs/Typography/Proteomics_Typo_02 copy.jpg'
 	}],
 	MODELLING: [{
-		item_number: 20,
+		item_number: 21,
 		img_src: './assets/images/SciModelling/06_Cell_Internal.png',
 		img_txt: '3D Cell internals',
 		thumbs_src: './assets/thumbs/SciModelling/06_Cell_Internal.png',
 		super_thumbs_src: './assets/superThumbs/SciModelling/06_Cell_Internal.png'
 	}, {
-		item_number: 21,
+		item_number: 22,
 		img_src: './assets/images/SciModelling/CLICblue.jpg',
 		img_txt: 'CLIC',
 		thumbs_src: './assets/thumbs/SciModelling/CLICblue.jpg',
 		super_thumbs_src: './assets/superThumbs/SciModelling/CLICblue.jpg'
 	}, {
-		item_number: 22,
+		item_number: 23,
 		img_src: './assets/images/SciModelling/EyeRend02.png',
 		img_txt: 'Eye',
 		thumbs_src: './assets/thumbs/SciModelling/EyeRend02.png',
 		super_thumbs_src: './assets/superThumbs/SciModelling/EyeRend02.png'
 	}, {
-		item_number: 23,
+		item_number: 24,
 		img_src: './assets/images/SciModelling/SC_Compare.jpg',
 		img_txt: 'SC Compare',
 		thumbs_src: './assets/thumbs/SciModelling/SC_Compare.jpg',
 		super_thumbs_src: './assets/superThumbs/SciModelling/SC_Compare.jpg'
 	}],
 	ANIMALS: [{
-		item_number: 24,
+		item_number: 25,
 		img_src: './assets/images/Animals/Binturong.jpg',
 		img_txt: 'Binturong',
 		thumbs_src: './assets/thumbs/Animals/Binturong.jpg',
 		super_thumbs_src: './assets/superThumbs/Animals/Binturong.jpg'
 	}, {
-		item_number: 25,
+		item_number: 26,
 		img_src: './assets/images/Animals/BlackBear.jpg',
 		img_txt: 'Black Bear',
 		thumbs_src: './assets/thumbs/Animals/BlackBear.jpg',
 		super_thumbs_src: './assets/superThumbs/Animals/BlackBear.jpg'
 	}, {
-		item_number: 26,
+		item_number: 27,
 		img_src: './assets/images/Animals/RedPanda.jpg',
 		img_txt: 'Red Panda',
 		thumbs_src: './assets/thumbs/Animals/RedPanda.jpg',
 		super_thumbs_src: './assets/superThumbs/Animals/RedPanda.jpg'
 	}, {
-		item_number: 27,
+		item_number: 28,
 		img_src: './assets/images/Animals/Dragonfly2Signed.jpg',
 		img_txt: 'Dragonfly with prey',
 		thumbs_src: './assets/thumbs/Animals/Dragonfly2Signed.jpg',
 		super_thumbs_src: './assets/superThumbs/Animals/Dragonfly2Signed.jpg'
 	}, {
-		item_number: 28,
+		item_number: 29,
 		img_src: './assets/images/Animals/Chameleon.jpg',
 		img_txt: 'Chameleon',
 		thumbs_src: './assets/thumbs/Animals/Chameleon.jpg',
 		super_thumbs_src: './assets/superThumbs/Animals/Chameleon.jpg'
 	}, {
-		item_number: 29,
+		item_number: 30,
 		img_src: './assets/images/Animals/HiveBeetle2.jpg',
 		img_txt: 'Hive Beetle',
 		thumbs_src: './assets/thumbs/Animals/HiveBeetle2.jpg',
 		super_thumbs_src: './assets/superThumbs/Animals/HiveBeetle2.jpg'
 	}],
 	FACTS: [{
-		item_number: 30,
+		item_number: 31,
 		img_src: './assets/images/Facts/CatFacts.jpg',
 		img_txt: 'Maine Coon Cats + polydactylism',
 		thumbs_src: './assets/thumbs/Facts/CatFacts.jpg',
 		super_thumbs_src: './assets/superThumbs/Facts/CatFacts.jpg'
 	}, {
-		item_number: 31,
+		item_number: 32,
 		img_src: './assets/images/Facts/EelFacts.jpg',
 		img_txt: 'Electric eel + electrolocation',
 		thumbs_src: './assets/thumbs/Facts/EelFacts.jpg',
 		super_thumbs_src: './assets/superThumbs/Facts/EelFacts.jpg'
 	}, {
-		item_number: 32,
+		item_number: 33,
 		img_src: './assets/images/Facts/MudCrabFacts.jpg',
 		img_txt: 'Mud crabs',
 		thumbs_src: './assets/thumbs/Facts/MudCrabFacts.jpg',
 		super_thumbs_src: './assets/superThumbs/Facts/MudCrabFacts.jpg'
 	}, {
-		item_number: 33,
+		item_number: 34,
 		img_src: './assets/images/Facts/SeadragonFactsV2.jpg',
 		img_txt: 'Seadragons',
 		thumbs_src: './assets/thumbs/Facts/SeadragonFactsV2.jpg',
 		super_thumbs_src: './assets/superThumbs/Facts/SeadragonFactsV2.jpg'
 	}],
 	SVSM: [{
-		item_number: 34,
+		item_number: 35,
 		img_src: './assets/images/SVSM/Liposome_Protocol copy2.jpg',
 		img_txt: 'Liposome Protocol',
 		thumbs_src: './assets/thumbs/SVSM/Liposome_Protocol copy2.jpg',
 		super_thumbs_src: './assets/superThumbs/SVSM/Liposome_Protocol copy2.jpg'
 	}, {
-		item_number: 35,
+		item_number: 36,
 		img_src: './assets/images/SVSM/NH2016_Poster03.jpg',
 		img_txt: 'NH 2016 Poster',
 		thumbs_src: './assets/thumbs/SVSM/NH2016_Poster03.jpg',
 		super_thumbs_src: './assets/superThumbs/SVSM/NH2016_Poster03.jpg'
 	}, {
-		item_number: 36,
+		item_number: 37,
 		img_src: './assets/images/SVSM/WBlot_Protocol01 copy2.jpg',
 		img_txt: 'Western Blot',
 		thumbs_src: './assets/thumbs/SVSM/WBlot_Protocol01 copy2.jpg',
 		super_thumbs_src: './assets/superThumbs/SVSM/WBlot_Protocol01 copy2.jpg'
 	}, {
-		item_number: 37,
+		item_number: 38,
 		img_src: './assets/images/SVSM/rsz_nh_posterportraitfinal.jpg',
 		img_txt: 'Poster Final',
 		thumbs_src: './assets/thumbs/SVSM/rsz_nh_posterportraitfinal.jpg',
 		super_thumbs_src: './assets/superThumbs/SVSM/rsz_nh_posterportraitfinal.jpg'
 	}, {
-		item_number: 38,
+		item_number: 39,
 		img_src: './assets/images/SVSM/ExosomeInfographic4.jpg',
 		img_txt: 'Microvesicle analysis',
 		thumbs_src: './assets/thumbs/SVSM/ExosomeInfographic4.jpg',
 		super_thumbs_src: './assets/superThumbs/SVSM/ExosomeInfographic4.jpg'
 	}],
 	MISC: [{
-		item_number: 39,
-		img_src: ['./assets/images/UterineInversion/UterineInversion_Colour01.jpg', './assets/images/UterineInversion/UterineInversion_Colour02.jpg', './assets/images/UterineInversion/UterineInversion_Colour03.jpg', './assets/images/UterineInversion/UterineInversion_Colour04.jpg', './assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
+		item_number: 40,
+		img_src: ['./assets/thumbs/UterineInversion/UterineInversion_Colour01.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour02.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour03.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour04.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour05.jpg'],
 		overlay_thumbs_src: ['./assets/thumbs/UterineInversion/UterineInversion_Colour01.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour02.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour03.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour04.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour05.jpg'],
 		overlay_super_thumbs_src: ['./assets/superThumbs/UterineInversion/UterineInversion_Colour01.jpg', './assets/superThumbs/UterineInversion/UterineInversion_Colour02.jpg', './assets/superThumbs/UterineInversion/UterineInversion_Colour03.jpg', './assets/superThumbs/UterineInversion/UterineInversion_Colour04.jpg', './assets/superThumbs/UterineInversion/UterineInversion_Colour05.jpg'],
 		img_txt: 'Uterine Inversion Collection',
@@ -1873,7 +1841,24 @@ var projectList = {
 	}]
 };
 
+function setImageNum(list) {
+	var x = 0;
+	for (var arrayNames in list) {
+		var arrayRaw = list[arrayNames];
+		for (var i = 0, len = arrayRaw.length; i < len; i += 1) {
+			arrayRaw[i].item_number = x + i;
+		}
+		x += arrayRaw.length;
+	}
+	return [list, x];
+}
+
+var _setImageNum = setImageNum(projectListBase);
+
+var projectList = _setImageNum[0];
+var NumberOfImages = _setImageNum[1];
 exports.projectList = projectList;
+exports.NumberOfImages = NumberOfImages;
 
 function getImageSrc(ImageNum) {
 	for (var arrayNames in projectList) {

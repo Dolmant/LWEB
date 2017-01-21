@@ -104,11 +104,11 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	let overlay_image_src = '';
 	let overlay_thumb_src = '';
 	if (Array.isArray(temp_image_data.img_src)) {
-		overlay_image_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index];
-		overlay_thumb_src = temp_image_data.overlay_super_thumbs_src[overlay_vertical_index];
+		overlay_image_src = temp_image_data.img_src[overlay_vertical_index];
+		overlay_thumb_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index];
 	} else {
-		overlay_image_src = temp_image_data.thumbs_src;
-		overlay_thumb_src = temp_image_data.super_thumbs_src;
+		overlay_image_src = temp_image_data.img_src;
+		overlay_thumb_src = temp_image_data.thumbs_src;
 	}
 	const arrows = computedarrows(
 		overlay_image_num,
