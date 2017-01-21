@@ -1,10 +1,7 @@
 Now:
-animation still jumps when scrolling from the animation
 
 Later - easy:
 load common scripts (react, etc) from CDN?
-fix address and everything (font as well)
-get background for contact page from Leonie
 assets/thumbs/SVSM needs regenerating - I have 4MB files in there
 regenerate all images into jpegs with reasonable compression and add an even smaller placeholder + blurring for the thumbs stuff
 
@@ -13,4 +10,3 @@ add videos to list of stuff so they display and play
 Add image URL fingerprints?
 when you click on something in the about me section, brings up the contact me page pre filled
 put page transitions in for flicking between menus
-mobile optimisation
