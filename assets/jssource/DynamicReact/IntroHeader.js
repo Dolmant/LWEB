@@ -20,13 +20,11 @@ class IntroHeader extends React.Component {
 
 	SidebarHelper(delay) {
 		setTimeout(() => {
-			if (parseInt($('footer').css('padding-right'), 10) > 0) {
-				$('footer, header, body, .filters.open').css('padding-right', 0);
+			if (this.props.sidebarOpen) {
 				$('.overlay, header, footer').unbind('touchmove', (event) => {
 					event.preventDefault();
 				});
 			} else {
-				$('footer, header, body, .filters.open').css('padding-right', IntroHeader.scrollbarWidth);
 				$('.overlay, header, footer').bind('touchmove', (event) => {
 					event.preventDefault();
 				});
@@ -66,7 +64,7 @@ class IntroHeader extends React.Component {
 					<img src="./assets/images/LEOTIDErev.png" alt="LeoTide"></img>
 				</h1>
 				<div className="right">
-					<a className="about-me" style={style()} onClick={() => this.aboutMeClick()}>About Leo</a>
+					<a className="about-me" style={style()} onClick={() => this.aboutMeClick()}>About Me</a>
 				</div>
 			</div>
 		);
@@ -76,10 +74,12 @@ class IntroHeader extends React.Component {
 IntroHeader.propTypes = {
 	introOn: PropTypes.bool.isRequired,
 	onSidebarOpen: PropTypes.func.isRequired,
+	sidebarOpen: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
 	introOn: state.introOn,
+	sidebarOpen: state.sidebarOpen,
 });
 
 const mapDispatchToProps = dispatch => ({

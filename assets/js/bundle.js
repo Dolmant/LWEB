@@ -18,73 +18,73 @@ var Filters = function Filters(props) {
 		if (!props.isTouch) {
 			return _react2['default'].createElement(
 				'div',
-				{ className: 'filter-container container' },
+				{ className: 'filter-container container desktop' },
 				_react2['default'].createElement(
 					'ul',
 					null,
 					_react2['default'].createElement(
 						'li',
-						null,
+						{ onClick: function () {
+								return props.oncatClick('PROJECTS');
+							}, id: 'projects' },
 						_react2['default'].createElement(
 							'a',
-							{ onClick: function () {
-									return props.oncatClick('PROJECTS');
-								}, id: 'projects' },
+							null,
 							'All Images'
 						)
 					),
 					_react2['default'].createElement(
 						'li',
-						null,
+						{ onClick: function () {
+								return props.oncatClick('ANIMALS');
+							}, id: 'animals' },
 						_react2['default'].createElement(
 							'a',
-							{ onClick: function () {
-									return props.oncatClick('ANIMALS');
-								}, id: 'animals' },
+							null,
 							'Nature'
 						)
 					),
 					_react2['default'].createElement(
 						'li',
-						null,
+						{ onClick: function () {
+								return props.oncatClick('SCIENCE');
+							}, id: 'science' },
 						_react2['default'].createElement(
 							'a',
-							{ onClick: function () {
-									return props.oncatClick('SCIENCE');
-								}, id: 'science' },
+							null,
 							'Scientific Illustration'
 						)
 					),
 					_react2['default'].createElement(
 						'li',
-						null,
+						{ onClick: function () {
+								return props.oncatClick('FACTS');
+							}, id: 'facts' },
 						_react2['default'].createElement(
 							'a',
-							{ onClick: function () {
-									return props.oncatClick('FACTS');
-								}, id: 'facts' },
+							null,
 							'Fact Studies'
 						)
 					),
 					_react2['default'].createElement(
 						'li',
-						null,
+						{ onClick: function () {
+								return props.oncatClick('SVSM');
+							}, id: 'svsm' },
 						_react2['default'].createElement(
 							'a',
-							{ onClick: function () {
-									return props.oncatClick('SVSM');
-								}, id: 'svsm' },
+							null,
 							'Strategic Visualisation'
 						)
 					),
 					_react2['default'].createElement(
 						'li',
-						null,
+						{ onClick: function () {
+								return props.oncatClick('TYPOGRAPHY');
+							}, id: 'typogrphy' },
 						_react2['default'].createElement(
 							'a',
-							{ onClick: function () {
-									return props.oncatClick('TYPOGRAPHY');
-								}, id: 'typogrphy' },
+							null,
 							'Typography'
 						)
 					)
@@ -109,7 +109,7 @@ var Filters = function Filters(props) {
 				),
 				_react2['default'].createElement(
 					'div',
-					{ className: 'drawer active' },
+					{ className: 'drawer active touch' },
 					_react2['default'].createElement(
 						'nav',
 						null,
@@ -118,67 +118,67 @@ var Filters = function Filters(props) {
 							null,
 							_react2['default'].createElement(
 								'li',
-								null,
+								{ onClick: function () {
+										return props.oncatClick('PROJECTS');
+									}, id: 'projects' },
 								_react2['default'].createElement(
 									'a',
-									{ onClick: function () {
-											return props.oncatClick('PROJECTS');
-										}, id: 'projects' },
+									null,
 									'All Images'
 								)
 							),
 							_react2['default'].createElement(
 								'li',
-								null,
+								{ onClick: function () {
+										return props.oncatClick('ANIMALS');
+									}, id: 'animals' },
 								_react2['default'].createElement(
 									'a',
-									{ onClick: function () {
-											return props.oncatClick('ANIMALS');
-										}, id: 'animals' },
+									null,
 									'Nature'
 								)
 							),
 							_react2['default'].createElement(
 								'li',
-								null,
+								{ onClick: function () {
+										return props.oncatClick('SCIENCE');
+									}, id: 'science' },
 								_react2['default'].createElement(
 									'a',
-									{ onClick: function () {
-											return props.oncatClick('SCIENCE');
-										}, id: 'science' },
+									null,
 									'Scientific Illustration'
 								)
 							),
 							_react2['default'].createElement(
 								'li',
-								null,
+								{ onClick: function () {
+										return props.oncatClick('FACTS');
+									}, id: 'facts' },
 								_react2['default'].createElement(
 									'a',
-									{ onClick: function () {
-											return props.oncatClick('FACTS');
-										}, id: 'facts' },
+									null,
 									'Fact Studies'
 								)
 							),
 							_react2['default'].createElement(
 								'li',
-								null,
+								{ onClick: function () {
+										return props.oncatClick('SVSM');
+									}, id: 'svsm' },
 								_react2['default'].createElement(
 									'a',
-									{ onClick: function () {
-											return props.oncatClick('SVSM');
-										}, id: 'svsm' },
+									null,
 									'Strategic Visualisation'
 								)
 							),
 							_react2['default'].createElement(
 								'li',
-								null,
+								{ onClick: function () {
+										return props.oncatClick('TYPOGRAPHY');
+									}, id: 'typogrphy' },
 								_react2['default'].createElement(
 									'a',
-									{ onClick: function () {
-											return props.oncatClick('TYPOGRAPHY');
-										}, id: 'typogrphy' },
+									null,
 									'Typography'
 								)
 							)
@@ -545,13 +545,11 @@ var IntroHeader = (function (_React$Component) {
 		var _this = this;
 
 		setTimeout(function () {
-			if (parseInt(_jqueryMin2['default']('footer').css('padding-right'), 10) > 0) {
-				_jqueryMin2['default']('footer, header, body, .filters.open').css('padding-right', 0);
+			if (_this.props.sidebarOpen) {
 				_jqueryMin2['default']('.overlay, header, footer').unbind('touchmove', function (event) {
 					event.preventDefault();
 				});
 			} else {
-				_jqueryMin2['default']('footer, header, body, .filters.open').css('padding-right', IntroHeader.scrollbarWidth);
 				_jqueryMin2['default']('.overlay, header, footer').bind('touchmove', function (event) {
 					event.preventDefault();
 				});
@@ -609,7 +607,7 @@ var IntroHeader = (function (_React$Component) {
 					{ className: 'about-me', style: style(), onClick: function () {
 							return _this2.aboutMeClick();
 						} },
-					'About Leo'
+					'About Me'
 				)
 			)
 		);
@@ -620,12 +618,14 @@ var IntroHeader = (function (_React$Component) {
 
 IntroHeader.propTypes = {
 	introOn: _react.PropTypes.bool.isRequired,
-	onSidebarOpen: _react.PropTypes.func.isRequired
+	onSidebarOpen: _react.PropTypes.func.isRequired,
+	sidebarOpen: _react.PropTypes.bool.isRequired
 };
 
 var mapStateToProps = function mapStateToProps(state) {
 	return {
-		introOn: state.introOn
+		introOn: state.introOn,
+		sidebarOpen: state.sidebarOpen
 	};
 };
 

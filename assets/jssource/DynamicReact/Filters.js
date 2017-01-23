@@ -6,14 +6,14 @@ const Filters = (props) => {
 	if (!props.introOn) {
 		if (!props.isTouch) {
 			return (
-				<div className="filter-container container">
+				<div className="filter-container container desktop">
 					<ul>
-						<li><a onClick={() => props.oncatClick('PROJECTS')} id="projects">All Images</a></li>
-						<li><a onClick={() => props.oncatClick('ANIMALS')} id="animals">Nature</a></li>
-						<li><a onClick={() => props.oncatClick('SCIENCE')} id="science">Scientific Illustration</a></li>
-						<li><a onClick={() => props.oncatClick('FACTS')} id="facts">Fact Studies</a></li>
-						<li><a onClick={() => props.oncatClick('SVSM')} id="svsm">Strategic Visualisation</a></li>
-						<li><a onClick={() => props.oncatClick('TYPOGRAPHY')} id="typogrphy">Typography</a></li>
+						<li onClick={() => props.oncatClick('PROJECTS')} id="projects"><a>All Images</a></li>
+						<li onClick={() => props.oncatClick('ANIMALS')} id="animals"><a>Nature</a></li>
+						<li onClick={() => props.oncatClick('SCIENCE')} id="science"><a>Scientific Illustration</a></li>
+						<li onClick={() => props.oncatClick('FACTS')} id="facts"><a>Fact Studies</a></li>
+						<li onClick={() => props.oncatClick('SVSM')} id="svsm"><a>Strategic Visualisation</a></li>
+						<li onClick={() => props.oncatClick('TYPOGRAPHY')} id="typogrphy"><a>Typography</a></li>
 					</ul>
 				</div>
 			);
@@ -22,15 +22,15 @@ const Filters = (props) => {
 			return (
 				<div className="filter-container container">
 					<a className="menu" onClick={() => props.onmenuClick()}><span>≡</span> Menu</a>
-					<div className="drawer active">
+					<div className="drawer active touch">
 						<nav>
 							<ul>
-								<li><a onClick={() => props.oncatClick('PROJECTS')} id="projects">All Images</a></li>
-								<li><a onClick={() => props.oncatClick('ANIMALS')} id="animals">Nature</a></li>
-								<li><a onClick={() => props.oncatClick('SCIENCE')} id="science">Scientific Illustration</a></li>
-								<li><a onClick={() => props.oncatClick('FACTS')} id="facts">Fact Studies</a></li>
-								<li><a onClick={() => props.oncatClick('SVSM')} id="svsm">Strategic Visualisation</a></li>
-								<li><a onClick={() => props.oncatClick('TYPOGRAPHY')} id="typogrphy">Typography</a></li>
+								<li onClick={() => props.oncatClick('PROJECTS')} id="projects"><a>All Images</a></li>
+								<li onClick={() => props.oncatClick('ANIMALS')} id="animals"><a>Nature</a></li>
+								<li onClick={() => props.oncatClick('SCIENCE')} id="science"><a>Scientific Illustration</a></li>
+								<li onClick={() => props.oncatClick('FACTS')} id="facts"><a>Fact Studies</a></li>
+								<li onClick={() => props.oncatClick('SVSM')} id="svsm"><a>Strategic Visualisation</a></li>
+								<li onClick={() => props.oncatClick('TYPOGRAPHY')} id="typogrphy"><a>Typography</a></li>
 							</ul>
 						</nav>
 					</div>

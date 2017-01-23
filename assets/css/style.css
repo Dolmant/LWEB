@@ -216,6 +216,16 @@
   to {
     margin-top: -100vh;
     margin-bottom: 45px; } }
+@keyframes slidein {
+  from {
+    right: -100%; }
+  to {
+    right: 0; } }
+@keyframes sharpen {
+  from {
+    filter: blur(3px); }
+  to {
+    filter: blur(0); } }
 @keyframes fadein {
   from {
     opacity: 0; }
@@ -248,6 +258,10 @@ html, body, div, select, span, applet, object, iframe, a, abbr, acronym, address
   vertical-align: baseline; }
 
 body {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
   line-height: 1;
   color: black;
   background: white; }
@@ -255,20 +269,8 @@ body {
 :focus {
   outline: 0; }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
-caption, th, td {
-  text-align: left;
-  font-weight: normal; }
-
 fieldset, img {
   border: 0; }
-
-address, caption, cite, code, dfn, em, strong, th, var {
-  font-style: normal;
-  font-weight: normal; }
 
 ol, ul {
   list-style: none; }
@@ -345,15 +347,6 @@ h8 {
   font-weight: 400;
   font-style: normal;
   font-size: 18px; }
-
-blockquote:before, blockquote:after, q:before, q:after {
-  content: ""; }
-
-blockquote, q {
-  quotes: "" ""; }
-
-abbr, acronym {
-  border: 0; }
 
 * {
   -webkit-box-sizing: border-box;
@@ -439,17 +432,23 @@ body {
 
 .blur-up {
   -webkit-filter: blur(3px);
-  filter: blur(3px);
-  transition: filter 400ms, -webkit-filter 400ms; }
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  filter: blur(3px); }
 
 .scale-img {
   max-width: 10%;
   max-height: 10%;
-  transform: scale(10); }
+  transform: translateZ(0) scale(10);
+  transform-origin: center; }
 
 .blur-up.lazyloaded {
-  -webkit-filter: blur(0);
-  filter: blur(0); }
+  animation: sharpen 1s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
 
 .container {
   max-width: 1500px;
@@ -461,7 +460,7 @@ body {
 @media only screen and (max-width: 770px) {
   .container {
     margin: 0 auto;
-    width: 85%;
+    width: 90%;
     display: flex;
     flex-direction: column; } }
 .page.container {
@@ -495,12 +494,12 @@ header .container {
   height: 100%; }
 
 header h1 {
-  max-width: 5rem;
-  max-height: 1.5rem;
+  max-width: 8rem;
+  max-height: 3rem;
   width: auto;
   height: auto;
   left: 50%;
-  margin-left: -2.5rem;
+  margin-left: -4rem;
   position: absolute;
   background-color: #000;
   opacity: 1;
@@ -521,25 +520,36 @@ header .right {
   text-align: right; }
 
 header .right a {
-  margin-left: 30px; }
+  margin-left: 20px; }
 
 header .left a {
-  margin-right: 30px; }
+  margin-right: 20px; }
 
-header a, .filters li a {
-  color: white;
+header a {
+  width: 7rem;
+  height: 1.5rem;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.2em;
+  vertical-align: bottom;
+  letter-spacing: .05em;
+  text-transform: uppercase; }
+
+.filters .desktop li a {
+  font-size: 1.1em; }
+
+.filters .touch li a {
+  font-size: 1.4em; }
+
+.filters li a {
+  color: #000;
   text-transform: uppercase;
-  font-weight: 700;
-  font-size: 13px;
   letter-spacing: .05em;
   cursor: pointer;
   -webkit-transition: color .2s,opacity .2s;
   -moz-transition: color .2s,opacity .2s;
   -ms-transition: color .2s,opacity .2s;
   -o-transition: color 0.2s, opacity 0.2s; }
-
-header a {
-  font-size: 11px; }
 
 .animateHeight {
   -moz-animation: heightzero 1s;
@@ -561,7 +571,7 @@ header.introHeader a:hover {
   opacity: 0.3; }
 
 header .about-me {
-  width: 5rem;
+  width: 7rem;
   height: 1.5rem;
   display: inline-block;
   cursor: pointer;
@@ -612,10 +622,6 @@ header.introHeader ~ .filters ul {
 .filters li {
   display: flex;
   float: none; }
-
-.filters li a {
-  color: #000;
-  font-weight: 500; }
 
 .filters li.active a, .filters li a:hover {
   color: #67c6b6; }
@@ -771,6 +777,7 @@ footer #newsForm input[type=text] {
 
 .overlay_container form {
   width: 75%;
+  min-width: 400px;
   position: relative;
   display: flex;
   background-color: white;
@@ -846,7 +853,9 @@ footer #newsForm input[type=text] {
   text-decoration: none;
   top: 5px;
   cursor: pointer;
-  z-index: 31; }
+  z-index: 31;
+  min-width: 50px;
+  min-height: 50px; }
 
 .closebutton:hover {
   color: #67c6b6; }
@@ -1019,14 +1028,6 @@ body.work .projects {
 @media only screen and (max-width: 450px) {
   .projects > li:nth-child(2n+2) {
     margin-right: 0%; } }
-.projects > li a {
-  width: 100%;
-  height: auto;
-  display: block; }
-
-.projects > li a {
-  color: #000; }
-
 .projects li span {
   font-size: 200%;
   font-weight: bolder;
@@ -1082,6 +1083,12 @@ body.work .projects {
   -o-transition: opacity .2s ease-out; }
 
 .sidebar {
+  animation: slidein 1s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
   right: 0;
   border-left: 1px solid #000;
   width: 30%;
@@ -1167,6 +1174,7 @@ a.menu {
   text-transform: uppercase;
   padding-top: 22px;
   padding-bottom: 22px;
+  font-size: 1.6em;
   width: 100%; }
 
 a.menu span {
