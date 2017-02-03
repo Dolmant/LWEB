@@ -315,7 +315,7 @@ body {
 	margin:0 65px
 	}
 }
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1000px) {
 	.container {
 		margin:0 auto;
 		width:90%;
@@ -447,9 +447,21 @@ header .about-me {
 	margin-left:1.5rem
 }
 
-@media only screen and (max-width: 400px) {
+h1 img {
+	margin-left: -1px;
+	margin-top: -1px;
+	max-width: 105%;
+}
+
+@media only screen and (max-width: 300px) {
 	header .about-me {
 		display:none
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	header .about-me {
+		width:5rem;
 	}
 }
 
@@ -546,7 +558,7 @@ footer a:hover {
 	color:#67c6b6
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1000px) {
 	footer .container>div {
 		border-bottom:1px solid #eee;
 		padding-bottom:25px
@@ -559,11 +571,6 @@ footer #newsForm input[type=text] {
 	border-bottom:1px solid #ccc
 }
 
-@media only screen and (max-width: 450px) {
-	footer #newsForm input[type=text] {
-		border-bottom:none
-	}
-}
 .contact_me {
 	width:210px;
 	padding-right:20px;
@@ -685,7 +692,7 @@ footer #newsForm input[type=text] {
 
 .overlay_container form {
 	width: 75%;
-	min-width: 400px;
+	min-width: 300px;
 	position:relative;
 	display:flex;
 	background-color: white;
@@ -806,18 +813,13 @@ footer #newsForm input[type=text] {
 	float:left;
 	padding:0 105px 0 210px
 }
+
 @media only screen and (max-width: 1000px) {
 	.contact {
+		width:100%;
 		text-align:left;
-		width:50%;
 		float:left;
 		padding:0
-	}
-}
-
-@media only screen and (max-width: 770px) {
-	.contact {
-		width:100%
 	}
 }
 
@@ -841,7 +843,7 @@ footer #newsForm input[type=text] {
 	}
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1000px) {
 	.contact li {
 		padding-left:0
 	}
@@ -864,14 +866,8 @@ footer .container>div.social {
 	footer .container>div.social {
 		width:25%;
 		position:static;
-		margin-top:27px
-	}
-}
-
-@media only screen and (max-width: 770px) {
-	footer .container>div.social {
+		margin-top:27px;
 		text-align:left;
-		margin-top:25px;
 		border-bottom:0px;
 		padding-bottom:0px
 	}
@@ -885,7 +881,7 @@ footer .container>div.social {
 	margin:0 0 0 13px
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1000px) {
 	.social li {
 		margin:0 15px 0 0
 	}
@@ -932,7 +928,7 @@ footer .container>div.social {
 	flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
 	.projects {
 		margin:0 auto;
 		padding-top:10%;
@@ -965,7 +961,7 @@ body.work .projects {
 	-o-transition:all 0.2s ease-in-out
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1000px) {
 	.projects>li {
 		width:49%;
 		margin-right:2%;
@@ -973,7 +969,7 @@ body.work .projects {
 	}
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
 	.projects>li {
 		width:100%;
 		margin-right:0%;
@@ -985,24 +981,24 @@ body.work .projects {
 	margin-right:0%;
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1000px) {
 	.projects>li:nth-child(3n+3) {
 		margin-right:0%;
 	}
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
 	.projects>li:nth-child(3n+3) {
 		margin-right:0%;
 	}
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1000px) {
 	.projects>li:nth-child(2n+2) {
 		margin-right:0%;
 	}
 }
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
 	.projects>li:nth-child(2n+2) {
 		margin-right:0%;
 	}
@@ -1083,7 +1079,7 @@ body.work .projects {
 	border-left:1px solid #000;
 	width:30%;
 	position:fixed;
-	min-width: 400px;
+	min-width: 300px;
 	top:65px;
 	overflow:hidden;
 	z-index:21;
@@ -1167,7 +1163,7 @@ body.work .projects {
 	max-height:100%;
 	height:100%;
 }
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 1000px) {
 	.sidebar li .img-wrap {
 		height:85px;
 	}
