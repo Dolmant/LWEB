@@ -1670,6 +1670,16 @@ var projectListBase = {
 		img_txt: 'The Anemone Scream (cross section)',
 		thumbs_src: './assets/thumbs/SciIllustration/TheScreamPlant.jpg',
 		super_thumbs_src: './assets/superThumbs/SciIllustration/TheScreamPlant.jpg'
+	}, {
+		img_src: './assets/images/SciIllustration/MFS01.jpg',
+		img_txt: 'March for Science Logo',
+		thumbs_src: './assets/thumbs/SciIllustration/MFS01.jpg',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/MFS01.jpg'
+	}, {
+		img_src: './assets/images/SciIllustration/MFS02.jpg',
+		img_txt: 'March for Science Tokyo Logo',
+		thumbs_src: './assets/thumbs/SciIllustration/MFS02.jpg',
+		super_thumbs_src: './assets/superThumbs/SciIllustration/MFS02.jpg'
 	}],
 	TYPOGRAPHY: [{
 		img_src: './assets/images/Typography/Blood_Components2.jpg',
@@ -1800,16 +1810,6 @@ var projectListBase = {
 		img_txt: 'Microvesicle analysis',
 		thumbs_src: './assets/thumbs/SVSM/ExosomeInfographic4.jpg',
 		super_thumbs_src: './assets/superThumbs/SVSM/ExosomeInfographic4.jpg'
-	}, {
-		img_src: './assets/images/SVSM/MFS01.jpg',
-		img_txt: 'March for Science Logo',
-		thumbs_src: './assets/thumbs/SVSM/MFS01.jpg',
-		super_thumbs_src: './assets/superThumbs/SVSM/MFS01.jpg'
-	}, {
-		img_src: './assets/images/SVSM/MFS02.jpg',
-		img_txt: 'March for Science Tokyo Logo',
-		thumbs_src: './assets/thumbs/SVSM/MFS02.jpg',
-		super_thumbs_src: './assets/superThumbs/SVSM/MFS02.jpg'
 	}],
 	MISC: [{
 		img_src: ['./assets/thumbs/UterineInversion/UterineInversion_Colour01.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour02.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour03.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour04.jpg', './assets/thumbs/UterineInversion/UterineInversion_Colour05.jpg'],
