@@ -41,7 +41,7 @@ function computedarrows(overlay_image_num,
 	const uplimits = ArrayLimits.down;
 	if (current_category === category.PROJECTS) {
 		leftlimits = [1];
-		rightlimits = [NumberOfImages];
+		rightlimits = [NumberOfImages - 1];
 	}
 	if (ArrayContains(leftlimits, overlay_image_num)) {
 		overlayarrows.left = false;

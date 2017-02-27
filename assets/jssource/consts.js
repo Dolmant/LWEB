@@ -336,15 +336,17 @@ const projectListBase = {
 	],
 };
 
+// I reverse each of the sub lists so keep that in mind when navigating and stuff
+
 function setImageNum(dict) {
 	let x = 0;
 	for (const arrayNames in dict) {
+		dict[arrayNames].reverse()
 		const arrayRaw = dict[arrayNames];
 		for (let i = 0, len = arrayRaw.length; i < len; i += 1) {
 			arrayRaw[i].item_number = x + i;
 		}
 		x += arrayRaw.length;
-		dict[arrayNames].reverse()
 	}
 	return [dict, x];
 }
@@ -366,8 +368,8 @@ export function getImageSrc(ImageNum) {
 function getArrayLimits() {
 	const left = [];
 	const right = [];
-	const up = [NumberOfImages];
-	const down = [NumberOfImages];
+	const up = [NumberOfImages - 1];
+	const down = [NumberOfImages - 1];
 	for (const arrayNames in projectList) {
 		const arrayRaw = projectList[arrayNames];
 		left.push(arrayRaw[0].item_number);

@@ -1161,7 +1161,7 @@ function computedarrows(overlay_image_num, current_category, overlay_vertical_in
 	var uplimits = _consts.ArrayLimits.down;
 	if (current_category === _consts.category.PROJECTS) {
 		leftlimits = [1];
-		rightlimits = [_consts.NumberOfImages];
+		rightlimits = [_consts.NumberOfImages - 1];
 	}
 	if (_consts.ArrayContains(leftlimits, overlay_image_num)) {
 		overlayarrows.left = false;
@@ -1821,15 +1821,17 @@ var projectListBase = {
 	}]
 };
 
+// I reverse each of the sub lists so keep that in mind when navigating and stuff
+
 function setImageNum(dict) {
 	var x = 0;
 	for (var arrayNames in dict) {
+		dict[arrayNames].reverse();
 		var arrayRaw = dict[arrayNames];
 		for (var i = 0, len = arrayRaw.length; i < len; i += 1) {
 			arrayRaw[i].item_number = x + i;
 		}
 		x += arrayRaw.length;
-		dict[arrayNames].reverse();
 	}
 	return [dict, x];
 }
@@ -1856,8 +1858,8 @@ function getImageSrc(ImageNum) {
 function getArrayLimits() {
 	var left = [];
 	var right = [];
-	var up = [NumberOfImages];
-	var down = [NumberOfImages];
+	var up = [NumberOfImages - 1];
+	var down = [NumberOfImages - 1];
 	for (var arrayNames in projectList) {
 		var arrayRaw = projectList[arrayNames];
 		left.push(arrayRaw[0].item_number);
