@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import $ from './../jquery.min';
 import { scrollPoint, updateIntroState } from './../consts';
 import animateScroll from './../constFunctions';

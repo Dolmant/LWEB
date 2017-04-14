@@ -39,6 +39,9 @@ export const isTouch = (($(window).width() < 1000) || 'ontouchstart' in document
 
 export const NumberofVertical = 5;
 const projectListInitial = {
+	// This order is important, if NATURE + POP SCIENCE + ANATOMY are not in this order,
+	// navigation vis the arrows image_number will be incorrect. If you muck with this
+	// MAKE SURE YOU UPDATE THE ALL FUNCTION BELOW
 	NATURE: [
 		{
 			img_src: './assets/images/NATURE/lizard.jpg',
@@ -179,6 +182,75 @@ const projectListInitial = {
 			img_txt: 'Mice',
 			thumbs_src: './assets/thumbs/POPSCIENCE/mouse02 copy.jpg',
 			super_thumbs_src: './assets/superThumbs/POPSCIENCE/mouse02 copy.jpg',
+		},
+	],
+	ANATOMY: [
+		{
+			img_src: './assets/images/ANATOMY/CatAnatomy2.jpg',
+			img_txt: 'Cat Anatomy',
+			thumbs_src: './assets/thumbs/ANATOMY/CatAnatomy2.jpg',
+			super_thumbs_src: './assets/superThumbs/ANATOMY/CatAnatomy2.jpg',
+		},
+		{
+			img_src: './assets/images/ANATOMY/Cicada.jpg',
+			img_txt: 'Cicada',
+			thumbs_src: './assets/thumbs/ANATOMY/Cicada.jpg',
+			super_thumbs_src: './assets/superThumbs/ANATOMY/Cicada.jpg',
+		},
+		{
+			img_src: './assets/images/ANATOMY/COPD2.jpg',
+			img_txt: 'COPD study',
+			thumbs_src: './assets/thumbs/ANATOMY/COPD2.jpg',
+			super_thumbs_src: './assets/superThumbs/ANATOMY/COPD2.jpg',
+		},
+		{
+			img_src: './assets/images/ANATOMY/Hand_Anatomy01.jpg',
+			img_txt: 'Hand Anatomy',
+			thumbs_src: './assets/thumbs/ANATOMY/Hand_Anatomy01.jpg',
+			super_thumbs_src: './assets/superThumbs/ANATOMY/Hand_Anatomy01.jpg',
+		},
+		{
+			img_src: './assets/images/ANATOMY/IBS_04.jpg',
+			img_txt: 'IBS',
+			thumbs_src: './assets/thumbs/ANATOMY/IBS_04.jpg',
+			super_thumbs_src: './assets/superThumbs/ANATOMY/IBS_04.jpg',
+		},
+		{
+			img_src: './assets/images/ANATOMY/StomachLayers_01.jpg',
+			img_txt: 'Stomach Layers',
+			thumbs_src: './assets/thumbs/ANATOMY/StomachLayers_01.jpg',
+			super_thumbs_src: './assets/superThumbs/ANATOMY/StomachLayers_01.jpg',
+		},
+		{
+			img_src: './assets/images/ANATOMY/CowCalf.jpg',
+			img_txt: 'How now anatomical cow',
+			thumbs_src: './assets/thumbs/ANATOMY/CowCalf.jpg',
+			super_thumbs_src: './assets/superThumbs/ANATOMY/CowCalf.jpg',
+		},
+		// hardcoded currently, only one image can have multiple associated images
+		// See ArrayLimitsCalc()
+		{
+			img_src: [
+				'./assets/images/UterineInversion/UterineInversion_Colour01.jpg',
+				'./assets/images/UterineInversion/UterineInversion_Colour02.jpg',
+				'./assets/images/UterineInversion/UterineInversion_Colour03.jpg',
+				'./assets/images/UterineInversion/UterineInversion_Colour04.jpg',
+				'./assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
+			overlay_thumbs_src: [
+				'./assets/thumbs/UterineInversion/UterineInversion_Colour01.jpg',
+				'./assets/thumbs/UterineInversion/UterineInversion_Colour02.jpg',
+				'./assets/thumbs/UterineInversion/UterineInversion_Colour03.jpg',
+				'./assets/thumbs/UterineInversion/UterineInversion_Colour04.jpg',
+				'./assets/thumbs/UterineInversion/UterineInversion_Colour05.jpg'],
+			overlay_super_thumbs_src: [
+				'./assets/superThumbs/UterineInversion/UterineInversion_Colour01.jpg',
+				'./assets/superThumbs/UterineInversion/UterineInversion_Colour02.jpg',
+				'./assets/superThumbs/UterineInversion/UterineInversion_Colour03.jpg',
+				'./assets/superThumbs/UterineInversion/UterineInversion_Colour04.jpg',
+				'./assets/superThumbs/UterineInversion/UterineInversion_Colour05.jpg'],
+			img_txt: 'Uterine Inversion Collection',
+			thumbs_src: './assets/thumbs/UterineInversion/UIFolder.jpg',
+			super_thumbs_src: './assets/superThumbs/UterineInversion/UIFolder.jpg',
 		},
 	],
 	'POSTERS/LOGOS': [
@@ -393,75 +465,6 @@ const projectListInitial = {
 			super_thumbs_src: './assets/superThumbs/FUN/TerraMon.jpg',
 		},
 	],
-	ANATOMY: [
-		{
-			img_src: './assets/images/ANATOMY/CatAnatomy2.jpg',
-			img_txt: 'Cat Anatomy',
-			thumbs_src: './assets/thumbs/ANATOMY/CatAnatomy2.jpg',
-			super_thumbs_src: './assets/superThumbs/ANATOMY/CatAnatomy2.jpg',
-		},
-		{
-			img_src: './assets/images/ANATOMY/Cicada.jpg',
-			img_txt: 'Cicada',
-			thumbs_src: './assets/thumbs/ANATOMY/Cicada.jpg',
-			super_thumbs_src: './assets/superThumbs/ANATOMY/Cicada.jpg',
-		},
-		{
-			img_src: './assets/images/ANATOMY/COPD2.jpg',
-			img_txt: 'COPD study',
-			thumbs_src: './assets/thumbs/ANATOMY/COPD2.jpg',
-			super_thumbs_src: './assets/superThumbs/ANATOMY/COPD2.jpg',
-		},
-		{
-			img_src: './assets/images/ANATOMY/Hand_Anatomy01.jpg',
-			img_txt: 'Hand Anatomy',
-			thumbs_src: './assets/thumbs/ANATOMY/Hand_Anatomy01.jpg',
-			super_thumbs_src: './assets/superThumbs/ANATOMY/Hand_Anatomy01.jpg',
-		},
-		{
-			img_src: './assets/images/ANATOMY/IBS_04.jpg',
-			img_txt: 'IBS',
-			thumbs_src: './assets/thumbs/ANATOMY/IBS_04.jpg',
-			super_thumbs_src: './assets/superThumbs/ANATOMY/IBS_04.jpg',
-		},
-		{
-			img_src: './assets/images/ANATOMY/StomachLayers_01.jpg',
-			img_txt: 'Stomach Layers',
-			thumbs_src: './assets/thumbs/ANATOMY/StomachLayers_01.jpg',
-			super_thumbs_src: './assets/superThumbs/ANATOMY/StomachLayers_01.jpg',
-		},
-		{
-			img_src: './assets/images/ANATOMY/CowCalf.jpg',
-			img_txt: 'How now anatomical cow',
-			thumbs_src: './assets/thumbs/ANATOMY/CowCalf.jpg',
-			super_thumbs_src: './assets/superThumbs/ANATOMY/CowCalf.jpg',
-		},
-		// hardcoded currently, only one image can have multiple associated images
-		// See getArrayLimits()
-		{
-			img_src: [
-				'./assets/images/UterineInversion/UterineInversion_Colour01.jpg',
-				'./assets/images/UterineInversion/UterineInversion_Colour02.jpg',
-				'./assets/images/UterineInversion/UterineInversion_Colour03.jpg',
-				'./assets/images/UterineInversion/UterineInversion_Colour04.jpg',
-				'./assets/images/UterineInversion/UterineInversion_Colour05.jpg'],
-			overlay_thumbs_src: [
-				'./assets/thumbs/UterineInversion/UterineInversion_Colour01.jpg',
-				'./assets/thumbs/UterineInversion/UterineInversion_Colour02.jpg',
-				'./assets/thumbs/UterineInversion/UterineInversion_Colour03.jpg',
-				'./assets/thumbs/UterineInversion/UterineInversion_Colour04.jpg',
-				'./assets/thumbs/UterineInversion/UterineInversion_Colour05.jpg'],
-			overlay_super_thumbs_src: [
-				'./assets/superThumbs/UterineInversion/UterineInversion_Colour01.jpg',
-				'./assets/superThumbs/UterineInversion/UterineInversion_Colour02.jpg',
-				'./assets/superThumbs/UterineInversion/UterineInversion_Colour03.jpg',
-				'./assets/superThumbs/UterineInversion/UterineInversion_Colour04.jpg',
-				'./assets/superThumbs/UterineInversion/UterineInversion_Colour05.jpg'],
-			img_txt: 'Uterine Inversion Collection',
-			thumbs_src: './assets/thumbs/UterineInversion/UIFolder.jpg',
-			super_thumbs_src: './assets/superThumbs/UterineInversion/UIFolder.jpg',
-		},
-	],
 };
 
 // hardcoded for now
@@ -476,20 +479,18 @@ const projectListLabels = {
 	FUN: 'All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people.',
 };
 
+// This concat order is also important if you change stuff
 const project_list_all = () => {
 	projectListInitial.ALL =
 	projectListInitial.NATURE.concat(
-		projectListInitial.ANATOMY.concat(
-			projectListInitial['POP SCIENCE']));
+		projectListInitial['POP SCIENCE'].concat(
+			projectListInitial.ANATOMY));
 	return projectListInitial;
 };
-
-// I reverse each of the sub lists so keep that in mind when navigating and stuff
 
 function setImageNum(dict) {
 	let x = 0;
 	Object.keys(dict).forEach((arrayNames) => {
-		dict[arrayNames].reverse();
 		const arrayRaw = dict[arrayNames];
 		for (let i = 0, len = arrayRaw.length; i < len; i += 1) {
 			arrayRaw[i].item_number = x + i;
@@ -520,22 +521,20 @@ export function getImageSrc(ImageNum) {
 	return result;
 }
 
-function getArrayLimits() {
+export function ArrayLimitsCalc(category) {
 	const left = [];
 	const right = [];
 	// hardcoded currently, only one image can have multiple associated images
 	let up = [];
 	let down = [];
-	Object.keys(projectList).forEach((arrayNames) => {
-		const arrayRaw = projectList[arrayNames];
-		left.push(arrayRaw[0].item_number);
-		right.push(arrayRaw[arrayRaw.length - 1].item_number);
-		arrayRaw.forEach((image) => {
-			if (Array.isArray(image.img_src)) {
-				up = [image.item_number];
-				down = [image.item_number];
-			}
-		});
+	const arrayRaw = projectList[category];
+	left.push(arrayRaw[0].item_number);
+	right.push(arrayRaw[arrayRaw.length - 1].item_number);
+	arrayRaw.forEach((image) => {
+		if (Array.isArray(image.img_src)) {
+			up = [image.item_number];
+			down = [image.item_number];
+		}
 	});
 	return {
 		left,
@@ -544,8 +543,6 @@ function getArrayLimits() {
 		down,
 	};
 }
-
-export const ArrayLimits = getArrayLimits();
 
 // actions you can send to the state
 const category_gen = () => {

@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import { updateCategory, toggleTouchmenu, category } from './../consts';
-
-
 
 class Filters extends React.Component {
 	constructor(props) {
@@ -45,7 +44,7 @@ class Filters extends React.Component {
 			if (['ALL'].includes(item)) {
 				// generate menu here
 				return (
-					<li onClick={this.handleOpenMenu} id="HEADER"><a>SCIENCE</a>
+					<li key={item} onClick={this.handleOpenMenu} id="HEADER"><a><strong>SCIENCE</strong></a>
 						<Popover
 							open={this.state.open}
 							anchorEl={this.state.anchorEl}
@@ -63,7 +62,10 @@ class Filters extends React.Component {
 					</li>
 				);
 			}
-			return <li onClick={() => this.props.oncatClick(item)} id={item}><a>{item}</a></li>;
+			return (
+				<li key={item} onClick={() => this.props.oncatClick(item)} id={item}>
+					<a><strong>{item}</strong></a>
+				</li>);
 		};
 		const menu_options = Object.keys(category).filter(filter).sort().map(mapper);
 

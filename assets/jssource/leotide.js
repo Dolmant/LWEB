@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Sidebar from './DynamicReact/Sidebar';
 import IntroController from './DynamicReact/IntroController';
 import IntroHeader from './DynamicReact/IntroHeader';
@@ -10,7 +11,6 @@ import OverlayController from './DynamicReact/OverlayController';
 import PageContainer from './DynamicReact/PageContainer';
 import Footer from './DynamicReact/Footer';
 import store from './DynamicReact/Redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import $ from './jquery.min';
 
 

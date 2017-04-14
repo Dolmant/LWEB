@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayLimits } from './../consts';
+import { category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, getImageSrc, ArrayLimitsCalc } from './../consts';
 // reducer handles how the state updates
 
 
@@ -35,6 +35,7 @@ function computedarrows(overlay_image_num,
 	current_category,
 	overlay_vertical_index,
 ) {
+	const ArrayLimits = ArrayLimitsCalc(current_category);
 	const overlayarrows = {};
 	Object.assign(overlayarrows, InitalState.overlay.arrows);
 	const leftlimits = ArrayLimits.left;

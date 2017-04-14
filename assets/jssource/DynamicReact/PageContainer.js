@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import LazySizes from 'react-lazysizes';
 import { updateOverlayImage, category, toggleOverlay } from './../consts';
@@ -60,7 +61,9 @@ const PageContainer = (props) => {
 
 	return (
 		<div>
-			<p>{category[props.category]}</p>
+			<div className="des_text">
+				{category[props.category]}
+			</div>
 			<ul style={style()} className="projects">
 				{ listItems }
 			</ul>
