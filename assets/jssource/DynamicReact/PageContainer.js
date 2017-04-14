@@ -59,9 +59,12 @@ const PageContainer = (props) => {
 	}
 
 	return (
-		<ul style={style()} className="projects">
-			{ listItems }
-		</ul>
+		<div>
+			<p>{category[props.category]}</p>
+			<ul style={style()} className="projects">
+				{ listItems }
+			</ul>
+		</div>
 	);
 };
 

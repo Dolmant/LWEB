@@ -1,16 +1,18 @@
 import { createStore } from 'redux';
-import { category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayContains, ArrayLimits } from './../consts';
+import { category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, NumberOfImages, getImageSrc, ArrayLimits } from './../consts';
 // reducer handles how the state updates
 
+
+const initial_category = () => {
+	if (Object.keys(category).includes('ALL')) {
+		return 'ALL';
+	}
+	return Object.keys(category)[0];
+};
+
 const InitalState = {
-	category: category.PROJECTS,
-	list: projectList.SCIENCE.concat(
-		projectList.MODELLING.concat(
-				projectList.ANIMALS.concat(
-					projectList.FACTS.concat(
-						projectList.SVSM.concat(
-							projectList.TYPOGRAPHY.concat(
-								projectList.MISC)))))),
+	category: initial_category(),
+	list: projectList[initial_category()],
 	overlay_image: 1,
 	overlay_vertical_index: 0,
 	isTouch,
@@ -35,26 +37,22 @@ function computedarrows(overlay_image_num,
 ) {
 	const overlayarrows = {};
 	Object.assign(overlayarrows, InitalState.overlay.arrows);
-	let leftlimits = ArrayLimits.left;
-	let rightlimits = ArrayLimits.right;
+	const leftlimits = ArrayLimits.left;
+	const rightlimits = ArrayLimits.right;
 	const downlimits = ArrayLimits.up;
 	const uplimits = ArrayLimits.down;
-	if (current_category === category.PROJECTS) {
-		leftlimits = [1];
-		rightlimits = [NumberOfImages - 1];
-	}
-	if (ArrayContains(leftlimits, overlay_image_num)) {
+	if (leftlimits.includes(overlay_image_num)) {
 		overlayarrows.left = false;
 	}
-	if (ArrayContains(rightlimits, overlay_image_num)) {
+	if (rightlimits.includes(overlay_image_num)) {
 		overlayarrows.right = false;
 	}
 	// reversed logic here to make things easier
-	if (ArrayContains(uplimits, overlay_image_num) &&
+	if (uplimits.includes(overlay_image_num) &&
 	(overlay_vertical_index !== NumberofVertical - 1)) {
 		overlayarrows.up = true;
 	}
-	if (ArrayContains(downlimits, overlay_image_num) &&
+	if (downlimits.includes(overlay_image_num) &&
 	(overlay_vertical_index !== 0)) {
 		overlayarrows.down = true;
 	}
@@ -136,37 +134,16 @@ function selectedCategory(state = InitalState.category, action) {
 }
 
 function selectedList(state = InitalState.list, action) {
-	let list = state.slice();
+	let list;
 	if (action.type === UPDATE_CATEGORY) {
-		switch (action.category) {
-		case 'ANIMALS':
-			list = projectList.ANIMALS;
-			break;
-		case 'SCIENCE':
-			list = projectList.SCIENCE.concat(projectList.MODELLING);
-			break;
-		case 'FACTS':
-			list = projectList.FACTS;
-			break;
-		case 'TYPOGRAPHY':
-			list = projectList.TYPOGRAPHY;
-			break;
-		case 'SVSM':
-			list = projectList.SVSM;
-			break;
-		case 'MODELLING':
-			list = projectList.MODELLING;
-			break;
-		case 'PROJECTS':
+		if (Object.keys(projectList).includes(action.category)) {
+			list = projectList[action.category];
+		} else {
 			list = InitalState.list;
-			break;
-		default:
-			list = InitalState.list;
-			break;
 		}
 		return list;
 	}
-	return list;
+	return state;
 }
 
 function introState(state = InitalState.introOn, action) {

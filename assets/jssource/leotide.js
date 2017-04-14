@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 import Sidebar from './DynamicReact/Sidebar';
 import IntroController from './DynamicReact/IntroController';
@@ -9,8 +10,13 @@ import OverlayController from './DynamicReact/OverlayController';
 import PageContainer from './DynamicReact/PageContainer';
 import Footer from './DynamicReact/Footer';
 import store from './DynamicReact/Redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import $ from './jquery.min';
 
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 const HT = {
 	ready() {
 		$(window).load(() => {
@@ -75,7 +81,9 @@ $(document).ready(() => {
 		document.getElementById('introHeader'));
 	ReactDOM.render(
 		<Provider store={store}>
-			<Filters />
+			<MuiThemeProvider>
+				<Filters />
+			</MuiThemeProvider>
 		</Provider>,
 		document.getElementById('filters'));
 	ReactDOM.render(

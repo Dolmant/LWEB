@@ -23,3 +23,8 @@ git push --no-verify heroku master
 
 then start the service with
 heroku ps:scale web=1
+
+keep original images in the best quality but use jpgs only, png and other formats are terrible
+settings on easythumbnails for 
+thumbs: 300px * 300px @ 70% quality
+superthumbs: 300px * 300px @ 20% quality
