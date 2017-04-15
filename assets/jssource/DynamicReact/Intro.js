@@ -20,9 +20,6 @@ class Intro extends React.Component {
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.ScrollDebouncer);
 		$('header').removeClass('introHeader');
-		setTimeout(() => {
-			$('.filters').toggleClass('open');
-		}, 250);
 	}
 
 	handleScroll(event) {
@@ -35,6 +32,7 @@ class Intro extends React.Component {
 		this.bounce = false;
 	}
 
+	// The animate scroll delay should match the animateheight duration
 	render() {
 		const style = {
 			minHeight: $(window).height(),
@@ -42,7 +40,7 @@ class Intro extends React.Component {
 		return (
 			<div>
 				<div className="intro-logo" >
-					<img onClick={() => { animateScroll(1000); }} alt="It's not loading!" src="./assets/images/LEOTIDE.png"></img>
+					<img onClick={() => { animateScroll(750); }} alt="It's not loading!" src="./assets/images/LEOTIDE.png"></img>
 				</div>
 				<video className="introVideo" style={style} autoPlay="1" loop="1">
 					<source src="./assets/vids/Nucleus03.mp4" type="video/mp4"></source>

@@ -214,8 +214,7 @@
     margin-top: 0;
     margin-bottom: 0; }
   to {
-    margin-top: -100vh;
-    margin-bottom: 45px; } }
+    margin-top: -100vh; } }
 @keyframes slidein {
   from {
     right: -100%; }
@@ -552,11 +551,11 @@ header a {
   -o-transition: color 0.2s, opacity 0.2s; }
 
 .animateHeight {
-  -moz-animation: heightzero 1s;
-  -webkit-animation: heightzero 1s;
-  -o-animation: heightzero 1s;
-  -ms-animation: heightzero 1s;
-  animation: heightzero 1s;
+  -moz-animation: heightzero .75s;
+  -webkit-animation: heightzero .75s;
+  -o-animation: heightzero .75s;
+  -ms-animation: heightzero .75s;
+  animation: heightzero .75s;
   -webkit-animation-fill-mode: forwards;
   -moz-animation-fill-mode: forwards;
   -ms-animation-fill-mode: forwards;
@@ -600,7 +599,18 @@ h1 img {
   -webkit-transition: max-height 0.35s,border 0.35s ease-out,background 0.35s ease-out;
   -moz-transition: max-height 0.35s,border 0.35s ease-out,background 0.35s ease-out;
   -ms-transition: max-height 0.35s,border 0.35s ease-out,background 0.35s ease-out;
-  -o-transition: max-height 0.35s, border 0.35s ease-out, background 0.35s ease-out; }
+  -o-transition: max-height 0.35s,border 0.35s ease-out,background 0.35s ease-out; }
+  .filters li {
+    display: flex;
+    float: none; }
+  .filters .background-ele {
+    width: 100%;
+    background-color: white;
+    height: 65px;
+    position: absolute;
+    z-index: -1; }
+  .filters li.active a, .filters .filters li a:hover {
+    color: #67c6b6; }
 
 .filter-container {
   background-color: white; }
@@ -622,17 +632,6 @@ header.introHeader ~ .filters {
 
 header.introHeader ~ .filters ul {
   background-color: transparent; }
-
-.filters.open {
-  background-color: white;
-  max-height: 66px; }
-
-.filters li {
-  display: flex;
-  float: none; }
-
-.filters li.active a, .filters li a:hover {
-  color: #67c6b6; }
 
 footer {
   background-color: #fff;
@@ -967,11 +966,16 @@ footer .container > div.social {
   height: 100%;
   background: white; }
 
-.des_text {
+.desc_holder {
   padding-top: 95px;
   width: 100%;
   text-align: center;
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  background-color: white; }
+  .desc_holder .desc_text {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: lightgrey; }
 
 .projects {
   padding-bottom: 110px;
@@ -1237,6 +1241,7 @@ header.introStatic {
   background-color: white; }
 
 .introVideo {
+  display: block;
   min-width: 100%;
   min-height: 100%;
   height: auto;

@@ -72,31 +72,40 @@ class Filters extends React.Component {
 		if (!this.props.introOn) {
 			if (!this.props.isTouch) {
 				return (
-					<div className="filter-container container desktop">
-						<ul>
-							{ menu_options }
-						</ul>
+					<div>
+						<div className="background-ele"></div>
+						<div className="filter-container container desktop">
+							<ul>
+								{ menu_options }
+							</ul>
+						</div>
 					</div>
 				);
 			}
 			if (this.props.touchmenu_active) {
 				return (
-					<div className="filter-container container">
-						<a className="menu" onClick={() => this.props.onmenuClick()}><span>≡</span> Menu</a>
-						<div className="drawer active touch">
-							<nav>
-								<ul>
-									{ menu_options }
-								</ul>
-							</nav>
+					<div>
+						<div className="background-ele"></div>
+						<div className="filter-container container">
+							<a className="menu" onClick={() => this.props.onmenuClick()}><span>≡</span> Menu</a>
+							<div className="drawer active touch">
+								<nav>
+									<ul>
+										{ menu_options }
+									</ul>
+								</nav>
+							</div>
 						</div>
 					</div>
 				);
 			}
 			return (
-				<div className="filter-container container">
-					<a className="menu" onClick={() => this.props.onmenuClick()}><span>≡</span> Menu</a>
-					<div className="drawer">
+				<div>
+					<div className="background-ele"></div>
+					<div className="filter-container container">
+						<a className="menu" onClick={() => this.props.onmenuClick()}><span>≡</span> Menu</a>
+						<div className="drawer">
+						</div>
 					</div>
 				</div>
 			);

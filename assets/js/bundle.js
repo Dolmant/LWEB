@@ -147,16 +147,60 @@ var Filters = (function (_React$Component) {
 			if (!this.props.isTouch) {
 				return _react2['default'].createElement(
 					'div',
-					{ className: 'filter-container container desktop' },
+					null,
+					_react2['default'].createElement('div', { className: 'background-ele' }),
 					_react2['default'].createElement(
-						'ul',
-						null,
-						menu_options
+						'div',
+						{ className: 'filter-container container desktop' },
+						_react2['default'].createElement(
+							'ul',
+							null,
+							menu_options
+						)
 					)
 				);
 			}
 			if (this.props.touchmenu_active) {
 				return _react2['default'].createElement(
+					'div',
+					null,
+					_react2['default'].createElement('div', { className: 'background-ele' }),
+					_react2['default'].createElement(
+						'div',
+						{ className: 'filter-container container' },
+						_react2['default'].createElement(
+							'a',
+							{ className: 'menu', onClick: function () {
+									return _this2.props.onmenuClick();
+								} },
+							_react2['default'].createElement(
+								'span',
+								null,
+								'≡'
+							),
+							' Menu'
+						),
+						_react2['default'].createElement(
+							'div',
+							{ className: 'drawer active touch' },
+							_react2['default'].createElement(
+								'nav',
+								null,
+								_react2['default'].createElement(
+									'ul',
+									null,
+									menu_options
+								)
+							)
+						)
+					)
+				);
+			}
+			return _react2['default'].createElement(
+				'div',
+				null,
+				_react2['default'].createElement('div', { className: 'background-ele' }),
+				_react2['default'].createElement(
 					'div',
 					{ className: 'filter-container container' },
 					_react2['default'].createElement(
@@ -171,37 +215,8 @@ var Filters = (function (_React$Component) {
 						),
 						' Menu'
 					),
-					_react2['default'].createElement(
-						'div',
-						{ className: 'drawer active touch' },
-						_react2['default'].createElement(
-							'nav',
-							null,
-							_react2['default'].createElement(
-								'ul',
-								null,
-								menu_options
-							)
-						)
-					)
-				);
-			}
-			return _react2['default'].createElement(
-				'div',
-				{ className: 'filter-container container' },
-				_react2['default'].createElement(
-					'a',
-					{ className: 'menu', onClick: function () {
-							return _this2.props.onmenuClick();
-						} },
-					_react2['default'].createElement(
-						'span',
-						null,
-						'≡'
-					),
-					' Menu'
-				),
-				_react2['default'].createElement('div', { className: 'drawer' })
+					_react2['default'].createElement('div', { className: 'drawer' })
+				)
 			);
 		}
 		return null;
@@ -402,9 +417,6 @@ var Intro = (function (_React$Component) {
 	Intro.prototype.componentWillUnmount = function componentWillUnmount() {
 		window.removeEventListener('scroll', this.ScrollDebouncer);
 		_jqueryMin2['default']('header').removeClass('introHeader');
-		setTimeout(function () {
-			_jqueryMin2['default']('.filters').toggleClass('open');
-		}, 250);
 	};
 
 	Intro.prototype.handleScroll = function handleScroll(event) {
@@ -417,6 +429,8 @@ var Intro = (function (_React$Component) {
 		this.bounce = false;
 	};
 
+	// The animate scroll delay should match the animateheight duration
+
 	Intro.prototype.render = function render() {
 		var style = {
 			minHeight: _jqueryMin2['default'](window).height()
@@ -428,7 +442,7 @@ var Intro = (function (_React$Component) {
 				'div',
 				{ className: 'intro-logo' },
 				_react2['default'].createElement('img', { onClick: function () {
-						_constFunctions2['default'](1000);
+						_constFunctions2['default'](750);
 					}, alt: 'It\'s not loading!', src: './assets/images/LEOTIDE.png' })
 			),
 			_react2['default'].createElement(
@@ -542,19 +556,6 @@ var IntroHeader = (function (_React$Component) {
 
 		_React$Component.apply(this, arguments);
 	}
-
-	IntroHeader.scrollbarWidth = function scrollbarWidth() {
-		var parent = undefined;
-		var child = undefined;
-		var width = undefined;
-		if (width === undefined) {
-			parent = _jqueryMin2['default']('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body');
-			child = parent.children();
-			width = child.innerWidth() - child.height(99).innerWidth();
-			parent.remove();
-		}
-		return width;
-	};
 
 	IntroHeader.prototype.SidebarHelper = function SidebarHelper(delay) {
 		var _this = this;
@@ -1085,18 +1086,18 @@ var PageContainer = function PageContainer(props) {
 	});
 
 	var style = function style() {
-		if (props.introOn) {
-			return {
-				paddingTop: 0
-			};
-		}
+		// if (props.introOn) {
+		// 	return {
+		// 		paddingTop: 0,
+		// 	};
+		// }
 		return null;
 	};
 
 	if (props.category === _consts.category.CAROUSEL) {
 		return _react2['default'].createElement(
 			'div',
-			{ style: style(), className: 'sidescroller' },
+			{ className: 'sidescroller' },
 			_react2['default'].createElement(
 				_reactSlick2['default'],
 				settings,
@@ -1110,12 +1111,16 @@ var PageContainer = function PageContainer(props) {
 		null,
 		_react2['default'].createElement(
 			'div',
-			{ className: 'des_text' },
-			_consts.category[props.category]
+			{ style: style(), className: 'desc_holder' },
+			_react2['default'].createElement(
+				'div',
+				{ className: 'desc_text' },
+				_consts.category[props.category]
+			)
 		),
 		_react2['default'].createElement(
 			'ul',
-			{ style: style(), className: 'projects' },
+			{ className: 'projects' },
 			listItems
 		)
 	);
@@ -1530,9 +1535,9 @@ function animateScroll(delay) {
 	_jqueryMin2['default']('.introVideo').get(0).pause();
 	_jqueryMin2['default']('.intro').addClass('animateHeight');
 	setTimeout(function () {
-		_jqueryMin2['default'](window).scrollTop(_jqueryMin2['default'](window).scrollTop() - _consts.scrollPoint);
-		_DynamicReactRedux2['default'].dispatch(_consts.updateIntroState(false));
 		_jqueryMin2['default']('.intro').removeClass('animateHeight');
+		_DynamicReactRedux2['default'].dispatch(_consts.updateIntroState(false));
+		_jqueryMin2['default'](window).scrollTop(_jqueryMin2['default'](window).scrollTop() - _consts.scrollPoint);
 	}, delay);
 }
 

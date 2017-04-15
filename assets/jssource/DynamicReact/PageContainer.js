@@ -40,18 +40,9 @@ const PageContainer = (props) => {
 		</div>,
 	);
 
-	const style = () => {
-		if (props.introOn) {
-			return {
-				paddingTop: 0,
-			};
-		}
-		return null;
-	};
-
 	if (props.category === category.CAROUSEL) {
 		return (
-			<div style={style()} className="sidescroller">
+			<div className="sidescroller">
 				<Slider {...settings}>
 					{ listCaruosel }
 				</Slider>
@@ -61,10 +52,10 @@ const PageContainer = (props) => {
 
 	return (
 		<div>
-			<div className="des_text">
-				{category[props.category]}
+			<div className="desc_holder">
+				<div className="desc_text">{category[props.category]}</div>
 			</div>
-			<ul style={style()} className="projects">
+			<ul className="projects">
 				{ listItems }
 			</ul>
 		</div>

@@ -2,8 +2,6 @@ Now:
 
 Later - easy:
 load common scripts (react, etc) from CDN?
-assets/thumbs/SVSM needs regenerating - I have 4MB files in there
-regenerate all images into jpegs with reasonable compression and add an even smaller placeholder + blurring for the thumbs stuff
 
 Later - hard:
 add videos to list of stuff so they display and play
@@ -11,4 +9,3 @@ Add image URL fingerprints?
 when you click on something in the about me section, brings up the contact me page pre filled
 put page transitions in for flicking between menus
 stop the scrollbar from disappearing when you hit about-me, just disable it dont remove it
-make animations smoother

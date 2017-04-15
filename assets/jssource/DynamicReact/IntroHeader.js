@@ -6,19 +6,6 @@ import { toggleSidebar } from './../consts';
 import animateScroll from './../constFunctions';
 
 class IntroHeader extends React.Component {
-	static scrollbarWidth() {
-		let parent;
-		let child;
-		let width;
-		if (width === undefined) {
-			parent = $('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body');
-			child = parent.children();
-			width = child.innerWidth() - child.height(99).innerWidth();
-			parent.remove();
-		}
-		return width;
-	}
-
 	SidebarHelper(delay) {
 		setTimeout(() => {
 			if (this.props.sidebarOpen) {
