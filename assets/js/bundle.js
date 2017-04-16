@@ -1085,15 +1085,6 @@ var PageContainer = function PageContainer(props) {
 		);
 	});
 
-	var style = function style() {
-		// if (props.introOn) {
-		// 	return {
-		// 		paddingTop: 0,
-		// 	};
-		// }
-		return null;
-	};
-
 	if (props.category === _consts.category.CAROUSEL) {
 		return _react2['default'].createElement(
 			'div',
@@ -1111,7 +1102,7 @@ var PageContainer = function PageContainer(props) {
 		null,
 		_react2['default'].createElement(
 			'div',
-			{ style: style(), className: 'desc_holder' },
+			{ className: 'desc_holder' },
 			_react2['default'].createElement(
 				'div',
 				{ className: 'desc_text' },
