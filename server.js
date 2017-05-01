@@ -27,11 +27,15 @@ app.use(compression());
 app.use(bodyParser.json());
 
 app.post('/postform', (req, res) => {
+	var emailbody = 'First Name:' + req.body.Firstname + '\n' +
+		'Last Name:' + req.body.Lastname + '\n' +
+		'Contact Details:' + req.body['Contact Details'] + '\n' +
+		'Message:' + req.body.Message + '\n';
 	var mailOptions = {
 		from: '"Leo H Website" <leotide@mg.leotide.com>', // sender address
 		to: 'goldenoblivion@gmail.com, leo.herson@gmail.com', // list of receivers
-		subject: 'Hello ✔', // Subject line
-		text: req.body.Message, // plaintext body
+		subject: 'Website Contact', // Subject line
+		text: emailbody, // plaintext body
 		html: '', // html body
 	};
 	res.send(transporter.sendMail(mailOptions, (error, info) => {

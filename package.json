@@ -5,6 +5,12 @@
     "start": "node server.js"
   },
   "devDependencies": {
+	"babel-eslint": "^7.1.1",
+	"eslint": "^3.12.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
     "babelify": "^6.1.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.8.0",

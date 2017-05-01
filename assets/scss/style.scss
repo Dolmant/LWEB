@@ -307,19 +307,19 @@ body {
 
 .container {
 	max-width:1500px;
-	margin:0 auto
+	margin:0 auto;
+	display: flex;
+	flex-direction: column;
 }
 @media only screen and (max-width: 1630px) {
 	.container {
-	margin:0 65px
+		margin:0 65px;
 	}
 }
 @media only screen and (max-width: 1000px) {
 	.container {
 		margin:0 auto;
 		width:90%;
-		display: flex;
-		flex-direction: column;
 	}
 }
 .page.container {
@@ -564,12 +564,6 @@ footer a:hover {
 	}
 }
 
-footer #newsForm input[type=text] {
-	width:108px;
-	padding:0 10px 3px 0;
-	border-bottom:1px solid #ccc
-}
-
 .contact_me {
 	width:210px;
 	padding-right:20px;
@@ -712,19 +706,26 @@ footer #newsForm input[type=text] {
 	height: 15%;
 }
 
-.overlay_container form ul .emf-li-post-button {
-	height:auto;
-}
-
-.overlay_container form ul .emf-field-textarea {
+.overlay_container form ul .textarea {
 	height:50%;
 }
 
-.overlay_container form input {
+.overlay_container form .form-field input {
 	border:1px solid #ccc;
 	display:block;
 	width:90%;
 	height: 50%;
+}
+
+.submit > input {
+	border:1px solid #ccc;
+	display:block;
+	width:90%;
+	height: 40px;
+}
+
+.form-field .error_message {
+	color: red;
 }
 
 .overlay_container form textarea {
@@ -734,11 +735,11 @@ footer #newsForm input[type=text] {
 	height: 100%;
 }
 
-.emf-div-field {
+.form-field {
 	height:75%;
 }
 
-.overlay_container form .emf-div-field span {
+.overlay_container form .form-field span {
 	padding:0;
 	width:49.5%;
 	vertical-align:top;
@@ -746,11 +747,11 @@ footer #newsForm input[type=text] {
 	height: 100%;
 }
 
-.overlay_container .emf-head-widget {
+.overlay_container .form-head {
 	width:66%;
 }
 
-.overlay_container .emf-bottom-label {
+.overlay_container .form-bottom-label {
 	font-style:italic;
 	font-weight:300;
 	font-size:16px;
@@ -792,19 +793,7 @@ footer #newsForm input[type=text] {
 	margin-right:12px;
 	float:left
 }
-.contact_me input[type=submit] {
-	height:7px;
-	width:4px;
-	text-indent:-9999px;
-	overflow:hidden;
-	background-color:#000;
-	position:absolute;
-	right:0px;
-	top:4px;
-	background-image:url(../images/right-arrow-sm-2x.png);
-	background-size:100%;
-	cursor:pointer
-}
+
 .contact {
 	text-align:center;
 	width:100%;

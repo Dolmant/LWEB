@@ -8,18 +8,22 @@ import { navOverlayImage, toggleOverlay } from './../consts';
 class Overlay extends React.Component {
 	formOverride(event) {
 		event.preventDefault();
-		this.props.toggleOverlayDispatch(false, false);
-		$.ajax({
-			url: '/postform',
-			type: 'POST',
-			data: $('#emf-form').serialize(),
-			beforeSend: () => {
-				const num = 0;
-			},
-			success: (data) => {
-				const num = 0;
-			},
-		});
+		if (!$('#element_7')[0].value) {
+			$('.error_message')[0].innerText = 'Please add your contact details!';
+		} else {
+			this.props.toggleOverlayDispatch(false, false);
+			$.ajax({
+				url: '/postform',
+				type: 'POST',
+				data: $('#contact-form').serialize(),
+				beforeSend: () => {
+					const num = 0;
+				},
+				success: (data) => {
+					const num = 0;
+				},
+			});
+		}
 	}
 
 	backgroundOverlayClick(event) {
@@ -95,36 +99,37 @@ class Overlay extends React.Component {
 			}
 			return (
 				<div className="overlayform">
-					<form id="emf-form" onSubmit={event => this.formOverride(event)} target="_self" className="topLabel">
-						<div className="emf-head-widget">
+					<form id="contact-form" onSubmit={event => this.formOverride(event)} target="_self" className="topLabel">
+						<div className="form-head">
 							<h7>The Leo Signal</h7>
 							<h8>Fill out the form below to get in contact with Me!</h8>
 						</div>
 						<ul>
-							<li id="emf-li-0" className="emf-li-field emf-field-new_name data_container   cell_align_left">
-								<label className="emf-label-desc" htmlFor="element_0">Name <span>*</span></label>
-								<div className="emf-div-field">
+							<li id="li-0" className="data_container">
+								<label htmlFor="element_0">Name</label>
+								<div className="form-field">
 									<span>
-										<input className="validate[required]" id="element_2" name="Firstname" type="text"></input>
-										<label htmlFor="element_2" className="emf-bottom-label emf-text-center">First</label>
+										<input id="element_2" name="Firstname" type="text"></input>
+										<label htmlFor="element_2" className="form-bottom-label">First</label>
 									</span>
 									<span>
-										<input className="validate[required]" id="element_3" name="Lastname" type="text"></input>
-										<label htmlFor="element_3" className="emf-bottom-label emf-text-center">Last</label>
+										<input id="element_3" name="Lastname" type="text"></input>
+										<label htmlFor="element_3" className="form-bottom-label">Last</label>
 									</span>
 								</div>
 							</li>
-							<li className="emf-field-email">
-								<label className="emf-label-desc" htmlFor="element_7">Email <span>*</span></label>
-								<div className="emf-div-field">
-									<input id="element_7" name="Email" className="validate[required,custom[email]]" type="text"></input>
+							<li>
+								<label htmlFor="element_7">Email <span>*</span></label>
+								<div className="form-field">
+									<input id="element_7" name="Contact Details" type="text"></input>
+									<label className="error_message" htmlFor="element_7"></label>
 								</div>
 							</li>
-							<li className="emf-field-textarea">
-								<label className="emf-label-desc" htmlFor="element_8">Message</label>
-								<div className="emf-div-field"><textarea id="element_8" name="Message" cols="45" rows="10" className="validate[optional]"></textarea></div>
+							<li className="textarea">
+								<label htmlFor="element_8">Message</label>
+								<div className="form-field"><textarea id="element_8" name="Message" cols="45" rows="10"></textarea></div>
 							</li>
-							<li className="emf-li-post-button">
+							<li className="submit">
 								<input value="Submit" type="submit"></input>
 							</li>
 						</ul>

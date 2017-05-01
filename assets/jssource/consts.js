@@ -35,7 +35,7 @@ export function navOverlayImage(direction) {
 	return { type: NAV_OVERLAY_IMAGE, direction };
 }
 
-export const isTouch = (($(window).width() < 1000) || 'ontouchstart' in document.documentElement);
+export const isTouch = (($(window).width() < 1000)); //|| 'ontouchstart' in document.documentElement);
 
 export const NumberofVertical = 5;
 const projectListInitial = {
