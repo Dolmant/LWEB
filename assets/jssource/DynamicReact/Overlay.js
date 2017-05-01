@@ -119,7 +119,7 @@ class Overlay extends React.Component {
 								</div>
 							</li>
 							<li>
-								<label htmlFor="element_7">Email <span>*</span></label>
+								<label htmlFor="element_7">Contact Details<span>*</span></label>
 								<div className="form-field">
 									<input id="element_7" name="Contact Details" type="text"></input>
 									<label className="error_message" htmlFor="element_7"></label>

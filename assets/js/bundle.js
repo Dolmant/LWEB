@@ -858,7 +858,7 @@ var Overlay = (function (_React$Component) {
 							_react2['default'].createElement(
 								'label',
 								{ htmlFor: 'element_7' },
-								'Email ',
+								'Contact Details',
 								_react2['default'].createElement(
 									'span',
 									null,
