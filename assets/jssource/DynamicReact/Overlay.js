@@ -93,7 +93,7 @@ class Overlay extends React.Component {
 							>
 							</LazySizes>
 						</div>
-						<span className="overlaytext"></span>
+						<span className="overlaytext">This image is large and will remain obfuscated until downloaded</span>
 					</div>
 				);
 			}

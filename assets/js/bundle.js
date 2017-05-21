@@ -791,7 +791,11 @@ var Overlay = (function (_React$Component) {
 							dataSrc: _this.props.overlay_image_src.toString()
 						})
 					),
-					_react2['default'].createElement('span', { className: 'overlaytext' })
+					_react2['default'].createElement(
+						'span',
+						{ className: 'overlaytext' },
+						'This image is large and will remain obfuscated until downloaded'
+					)
 				);
 			}
 			return _react2['default'].createElement(
