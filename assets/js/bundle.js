@@ -1656,6 +1656,26 @@ var projectListInitial = {
 		img_txt: 'Octopus',
 		thumbs_src: './assets/thumbs/NATURE/OctopusIsLate.jpg',
 		super_thumbs_src: './assets/superThumbs/NATURE/OctopusIsLate.jpg'
+	}, {
+		img_src: './assets/images/NATURE/Archaeopteryx.jpg',
+		img_txt: 'Archaeopteryx',
+		thumbs_src: './assets/thumbs/NATURE/Archaeopteryx.jpg',
+		super_thumbs_src: './assets/superThumbs/NATURE/Archaeopteryx.jpg'
+	}, {
+		img_src: './assets/images/NATURE/SeaSlugs.jpg',
+		img_txt: 'SeaSlugs',
+		thumbs_src: './assets/thumbs/NATURE/SeaSlugs.jpg',
+		super_thumbs_src: './assets/superThumbs/NATURE/SeaSlugs.jpg'
+	}, {
+		img_src: './assets/images/NATURE/GemSlugs.jpg',
+		img_txt: 'GemSlugs',
+		thumbs_src: './assets/thumbs/NATURE/GemSlugs.jpg',
+		super_thumbs_src: './assets/superThumbs/NATURE/GemSlugs.jpg'
+	}, {
+		img_src: './assets/images/NATURE/GemSlugsDrawVer.jpg',
+		img_txt: 'GemSlugs 3D',
+		thumbs_src: './assets/thumbs/NATURE/GemSlugsDrawVer.jpg',
+		super_thumbs_src: './assets/superThumbs/NATURE/GemSlugsDrawVer.jpg'
 	}],
 	'POP SCIENCE': [{
 		img_src: './assets/images/POPSCIENCE/CellCross.jpg',
@@ -1732,6 +1752,36 @@ var projectListInitial = {
 		img_txt: 'Mice',
 		thumbs_src: './assets/thumbs/POPSCIENCE/mouse02 copy.jpg',
 		super_thumbs_src: './assets/superThumbs/POPSCIENCE/mouse02 copy.jpg'
+	}, {
+		img_src: './assets/images/POPSCIENCE/2017TheCancerGame.jpg',
+		img_txt: 'The Cancer Game',
+		thumbs_src: './assets/thumbs/POPSCIENCE/2017TheCancerGame.jpg',
+		super_thumbs_src: './assets/superThumbs/POPSCIENCE/2017TheCancerGame.jpg'
+	}, {
+		img_src: './assets/images/POPSCIENCE/2017TheRustNetworkFINAL.jpg',
+		img_txt: 'The Rust Network',
+		thumbs_src: './assets/thumbs/POPSCIENCE/2017TheRustNetworkFINAL.jpg',
+		super_thumbs_src: './assets/superThumbs/POPSCIENCE/2017TheRustNetworkFINAL.jpg'
+	}, {
+		img_src: './assets/images/POPSCIENCE/KnotParticles.jpg',
+		img_txt: 'Knot Particles',
+		thumbs_src: './assets/thumbs/POPSCIENCE/KnotParticles.jpg',
+		super_thumbs_src: './assets/superThumbs/POPSCIENCE/KnotParticles.jpg'
+	}, {
+		img_src: './assets/images/POPSCIENCE/ShellLayers.jpg',
+		img_txt: 'Shell Layers',
+		thumbs_src: './assets/thumbs/POPSCIENCE/ShellLayers.jpg',
+		super_thumbs_src: './assets/superThumbs/POPSCIENCE/ShellLayers.jpg'
+	}, {
+		img_src: './assets/images/POPSCIENCE/StrawberryChem.jpg',
+		img_txt: 'Strawberry',
+		thumbs_src: './assets/thumbs/POPSCIENCE/StrawberryChem.jpg',
+		super_thumbs_src: './assets/superThumbs/POPSCIENCE/StrawberryChem.jpg'
+	}, {
+		img_src: './assets/images/POPSCIENCE/Vertigo_Prokaryote.jpg',
+		img_txt: 'Vertigo Prokaryote',
+		thumbs_src: './assets/thumbs/POPSCIENCE/Vertigo_Prokaryote.jpg',
+		super_thumbs_src: './assets/superThumbs/POPSCIENCE/Vertigo_Prokaryote.jpg'
 	}],
 	ANATOMY: [{
 		img_src: './assets/images/ANATOMY/CatAnatomy2.jpg',
@@ -1834,6 +1884,21 @@ var projectListInitial = {
 		img_txt: 'Microvesicle analysis',
 		thumbs_src: './assets/thumbs/POSTERS/ExosomeInfographic4.jpg',
 		super_thumbs_src: './assets/superThumbs/POSTERS/ExosomeInfographic4.jpg'
+	}, {
+		img_src: './assets/images/POSTERS/ING 01 WINTER_Quantum_26-27-1.jpg',
+		img_txt: 'Refraction Media Magazine',
+		thumbs_src: './assets/thumbs/POSTERS/ING 01 WINTER_Quantum_26-27-1.jpg',
+		super_thumbs_src: './assets/superThumbs/POSTERS/ING 01 WINTER_Quantum_26-27-1.jpg'
+	}, {
+		img_src: './assets/images/POSTERS/RM_ESWA_Poster.jpg',
+		img_txt: 'Earth Week Poster',
+		thumbs_src: './assets/thumbs/POSTERS/RM_ESWA_Poster.jpg',
+		super_thumbs_src: './assets/superThumbs/POSTERS/RM_ESWA_Poster.jpg'
+	}, {
+		img_src: './assets/images/POSTERS/SDx_Bilayer.jpg',
+		img_txt: 'SDx Bilayer',
+		thumbs_src: './assets/thumbs/POSTERS/SDx_Bilayer.jpg',
+		super_thumbs_src: './assets/superThumbs/POSTERS/SDx_Bilayer.jpg'
 	}],
 	TYPOGRAPHY: [{
 		img_src: './assets/images/TYPOGRAPHY/Blood_Components2.jpg',
