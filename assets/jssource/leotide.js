@@ -32,40 +32,6 @@ const HT = {
 			$('.intro-logo').css({ top: (($(window).height() / 2) - 21) });
 		}
 	},
-
-	loadPosts() {
-		const postContainer = $('.posts');
-		const page = parseInt(postContainer.data('p'), 10) + 1;
-		let	dataString = 'p=' + page + '&';
-		const cat = postContainer.data('cat');
-		if (postContainer.data('cat')) {
-			dataString += 'cat=' + cat;
-		}
-		const form = $(this);
-		$.ajax({
-			url: '/assets/includes/posts.php',
-			data: form.serialize(),
-			dataType: 'html',
-			beforeSend() {
-				$('.posts-loader').addClass('loading');
-			},
-			success(response) {
-				if (response.indexOf('post') >= 0) {
-					postContainer.append(response);
-					postContainer.data('p', page);
-					$('.posts-loader').removeClass('loading').removeClass('active').addClass('inactive');
-				} else {
-					$('.posts-loader').remove();
-				}
-				var resp = $.parseJSON(response);
-				form.find('input[type=text]').val(resp.msg);
-				if (resp.msg !== 'Thanks!') {
-					form.find('input[type=text]').addClass('err');
-				}
-			},
-		});
-	},
-
 };
 
 $(document).ready(() => {
