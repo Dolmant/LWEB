@@ -13,7 +13,7 @@ class Overlay extends React.Component {
 		} else {
 			this.props.toggleOverlayDispatch(false, false);
 			$.ajax({
-				url: '/postform',
+				url: 'https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail',
 				type: 'POST',
 				data: $('#contact-form').serialize(),
 				beforeSend: () => {
