@@ -1247,13 +1247,12 @@ header.introStatic {
   text-align: center;
   position: absolute;
   z-index: 1;
-  top: 48%; }
+  top: 35vh; }
 
 .intro-logo img {
   height: auto;
   width: auto;
-  max-width: 250px;
-  max-height: 300px;
+  max-height: 30vh;
   cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

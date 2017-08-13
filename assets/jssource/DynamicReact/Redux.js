@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, NumberofVertical, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, getImageSrc, ArrayLimitsCalc } from './../consts';
+import { category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, getImageSrc, ArrayLimitsCalc } from './../consts';
 // reducer handles how the state updates
 
 
@@ -14,7 +14,7 @@ const InitalState = {
 	category: initial_category(),
 	list: projectList[initial_category()],
 	overlay_image: 1,
-	overlay_vertical_index: 0,
+	overlay_vertical_index: {},
 	isTouch,
 	touchmenu_active: false,
 	introOn: true,
@@ -33,7 +33,8 @@ const InitalState = {
 
 function computedarrows(overlay_image_num,
 	current_category,
-	overlay_vertical_index,
+    overlay_vertical_index,
+    NumberofVertical
 ) {
 	const ArrayLimits = ArrayLimitsCalc(current_category);
 	const overlayarrows = {};
@@ -49,12 +50,10 @@ function computedarrows(overlay_image_num,
 		overlayarrows.right = false;
 	}
 	// reversed logic here to make things easier
-	if (uplimits.includes(overlay_image_num) &&
-	(overlay_vertical_index !== NumberofVertical - 1)) {
+	if (overlay_vertical_index[overlay_image_num] < NumberofVertical - 1) {
 		overlayarrows.up = true;
 	}
-	if (downlimits.includes(overlay_image_num) &&
-	(overlay_vertical_index !== 0)) {
+	if (overlay_vertical_index[overlay_image_num] > 0) {
 		overlayarrows.down = true;
 	}
 	return overlayarrows;
@@ -67,7 +66,10 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	action,
 ) {
 	let overlay_image_num = overlay_image_num_;
-	let overlay_vertical_index = overlay_vertical_index_;
+    let overlay_vertical_index = overlay_vertical_index_;
+    if (!overlay_vertical_index[overlay_image_num]) {
+        overlay_vertical_index[overlay_image_num] = 0;
+    }
 	let state = _overlay.state;
 	let image = _overlay.image;
 	switch (action.type) {
@@ -80,10 +82,10 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 			overlay_image_num += 1;
 			break;
 		case 'up':
-			overlay_vertical_index += 1;
+			overlay_vertical_index[overlay_image_num] += 1;
 			break;
 		case 'down':
-			overlay_vertical_index -= 1;
+			overlay_vertical_index[overlay_image_num] -= 1;
 			break;
 		default:
 			break;
@@ -98,13 +100,19 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 		break;
 	default:
 		break;
-	}
+    }
+    // need to check again because it can be changed above
+    if (!overlay_vertical_index[overlay_image_num]) {
+        overlay_vertical_index[overlay_image_num] = 0;
+    }
 	const temp_image_data = getImageSrc(overlay_image_num);
 	let overlay_image_src = '';
-	let overlay_thumb_src = '';
+    let overlay_thumb_src = '';
+    let vertical_limit = 0;
 	if (Array.isArray(temp_image_data.img_src)) {
-		overlay_image_src = temp_image_data.img_src[overlay_vertical_index];
-		overlay_thumb_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index];
+		overlay_image_src = temp_image_data.img_src[overlay_vertical_index[overlay_image_num]];
+        overlay_thumb_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index[overlay_image_num]];
+        vertical_limit = temp_image_data.img_src.length;
 	} else {
 		overlay_image_src = temp_image_data.img_src;
 		overlay_thumb_src = temp_image_data.thumbs_src;
@@ -112,7 +120,8 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	const arrows = computedarrows(
 		overlay_image_num,
 		current_category,
-		overlay_vertical_index);
+        overlay_vertical_index,
+        vertical_limit);
 	return {
 		overlay_vertical_index,
 		overlay_image_num,
