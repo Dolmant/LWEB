@@ -1953,22 +1953,22 @@ var projectListInitial = {
         overlay_thumbs_src: ['./assets/thumbs/POSTERS/BionicBody/RM_BionicBody.jpg', './assets/thumbs/POSTERS/BionicBody/RM_BionicBodyMag-1.jpg'],
         overlay_super_thumbs_src: ['./assets/superThumbs/POSTERS/BionicBody/RM_BionicBody.jpg', './assets/superThumbs/POSTERS/BionicBody/RM_BionicBodyMag-1.jpg'],
         img_txt: 'BionicBody',
-        thumbs_src: './assets/thumbs/UterineInversion/UIFolder.jpg',
-        super_thumbs_src: './assets/superThumbs/UterineInversion/UIFolder.jpg'
+        thumbs_src: './assets/thumbs/POSTERS/BionicBody/RM_BionicBodyMag-1.jpg',
+        super_thumbs_src: './assets/superThumbs/POSTERS/BionicBody/RM_BionicBodyMag-1.jpg'
     }, {
         img_src: ['./assets/images/POSTERS/CBA/CBA_DesignThinking1.jpg', './assets/images/POSTERS/CBA/CBA_DesignThinking2.jpg', './assets/images/POSTERS/CBA/CBA_DesignThinking3.jpg', './assets/images/POSTERS/CBA/CBA_DesignThinking4.jpg', './assets/images/POSTERS/CBA/CBA_DesignThinking5.jpg'],
         overlay_thumbs_src: ['./assets/thumbs/POSTERS/CBA/CBA_DesignThinking1.jpg', './assets/thumbs/POSTERS/CBA/CBA_DesignThinking2.jpg', './assets/thumbs/POSTERS/CBA/CBA_DesignThinking3.jpg', './assets/thumbs/POSTERS/CBA/CBA_DesignThinking4.jpg', './assets/thumbs/POSTERS/CBA/CBA_DesignThinking5.jpg'],
         overlay_super_thumbs_src: ['./assets/superThumbs/POSTERS/CBA/CBA_DesignThinking1.jpg', './assets/superThumbs/POSTERS/CBA/CBA_DesignThinking2.jpg', './assets/superThumbs/POSTERS/CBA/CBA_DesignThinking3.jpg', './assets/superThumbs/POSTERS/CBA/CBA_DesignThinking4.jpg', './assets/superThumbs/POSTERS/CBA/CBA_DesignThinking5.jpg'],
         img_txt: 'CBA Design Thinking',
-        thumbs_src: './assets/thumbs/UterineInversion/UIFolder.jpg',
-        super_thumbs_src: './assets/superThumbs/UterineInversion/UIFolder.jpg'
+        thumbs_src: './assets/thumbs/POSTERS/CBA/CBA_Folder.jpg',
+        super_thumbs_src: './assets/thumbs/POSTERS/CBA/CBA_Folder.jpg'
     }, {
         img_src: ['./assets/images/POSTERS/EngiPlus/EngiPlus_01V2.jpg', './assets/images/POSTERS/EngiPlus/EngiPlus_02V2.jpg', './assets/images/POSTERS/EngiPlus/EngiPlus_03V2.jpg', './assets/images/POSTERS/EngiPlus/EngiPlus_04V2.jpg', './assets/images/POSTERS/EngiPlus/EngiPlus_05V2.jpg'],
         overlay_thumbs_src: ['./assets/thumbs/POSTERS/EngiPlus/EngiPlus_01V2.jpg', './assets/thumbs/POSTERS/EngiPlus/EngiPlus_02V2.jpg', './assets/thumbs/POSTERS/EngiPlus/EngiPlus_03V2.jpg', './assets/thumbs/POSTERS/EngiPlus/EngiPlus_04V2.jpg', './assets/thumbs/POSTERS/EngiPlus/EngiPlus_05V2.jpg'],
         overlay_super_thumbs_src: ['./assets/superThumbs/POSTERS/EngiPlus/EngiPlus_01V2.jpg', './assets/superThumbs/POSTERS/EngiPlus/EngiPlus_02V2.jpg', './assets/superThumbs/POSTERS/EngiPlus/EngiPlus_03V2.jpg', './assets/superThumbs/POSTERS/EngiPlus/EngiPlus_04V2.jpg', './assets/superThumbs/POSTERS/EngiPlus/EngiPlus_05V2.jpg'],
         img_txt: 'EngiPlus',
-        thumbs_src: './assets/thumbs/UterineInversion/UIFolder.jpg',
-        super_thumbs_src: './assets/superThumbs/UterineInversion/UIFolder.jpg'
+        thumbs_src: './assets/thumbs/POSTERS/EngiPlus/EngiMag_Folder.jpg',
+        super_thumbs_src: './assets/thumbs/POSTERS/EngiPlus/EngiMag_Folder.jpg'
     }],
     TYPOGRAPHY: [{
         img_src: './assets/images/TYPOGRAPHY/Blood_Components2.jpg',
