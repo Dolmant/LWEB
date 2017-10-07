@@ -23,6 +23,11 @@ const Footer = (props) => {
 									<img alt="It's not loading!" src="./assets/icons/tumblricon.png"></img>
 								</a>
 							</li>
+							<li>
+								<a target="_blank" rel="noopener noreferrer" href="https://twitter.com/leotidelh?lang=en">
+									<img alt="It's not loading!" src="./assets/icons/twittericon.png"></img>
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>

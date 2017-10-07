@@ -83,17 +83,28 @@ class Overlay extends React.Component {
 				return (
 					<div className="overlayimagecontrol">
 						{ Arrows() }
-						<div className="img-wrap-overlay">
-							<LazySizes
-								dataSizes="auto"
-								alt="It's not loading!"
-								className="scale-img blur-up overlayimage"
-								src={this.props.overlay_thumb_src.toString()}
-								dataSrc={this.props.overlay_image_src.toString()}
-							>
-							</LazySizes>
-						</div>
-						<span className="overlaytext">This image is large and will remain obfuscated until downloaded</span>
+						{this.props.overlay.is_video ?
+							<video className="overlay-video" autoPlay="1" loop="1" controls="1">
+								<source src={this.props.overlay_image_src.toString()} type="video/mp4"></source>
+								Your browser does not support the video tag.
+							</video>
+						:
+							<div className="img-wrap-overlay">
+								<LazySizes
+									dataSizes="auto"
+									alt="It's not loading!"
+									className="scale-img blur-up overlayimage"
+									src={this.props.overlay_thumb_src.toString()}
+									dataSrc={this.props.overlay_image_src.toString()}
+								>
+								</LazySizes>
+							</div>
+						}
+						{this.props.overlay.is_video ?
+							null
+							:
+							<span className="overlaytext">This image is large and will remain obfuscated until downloaded</span>
+						}
 					</div>
 				);
 			}
@@ -164,6 +175,7 @@ Overlay.propTypes = {
 		}).isRequired,
 		state: PropTypes.bool.isRequired,
 		image: PropTypes.bool.isRequired,
+		is_video: PropTypes.bool,
 	}).isRequired,
 	overlay_image_src: PropTypes.string.isRequired,
 	overlay_thumb_src: PropTypes.string.isRequired,

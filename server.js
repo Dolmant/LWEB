@@ -12,8 +12,8 @@ const smtpConfig = {
 	port: 465,
 	secure: true, // use SSL
 	auth: {
-		user: 'postmaster@mg.leotide.com',
-		pass: '210be66e6ee5b647489d0f95972a695d',
+		user: 'postmaster@md.leotide.com',
+		pass: '21Obe66e6ee5b647489d0f95972a695d',
 	},
 };
 
@@ -32,8 +32,8 @@ app.post('/postform', (req, res) => {
 		'Contact Details:' + req.body['Contact Details'] + '\n' +
 		'Message:' + req.body.Message + '\n';
 	var mailOptions = {
-		from: '"Leo H Website" <leotide@mg.leotide.com>', // sender address
-		to: 'goldenoblivion@gmail.com, leo.herson@gmail.com', // list of receivers
+		from: '', // sender address
+		to: '', // list of receivers
 		subject: 'Website Contact', // Subject line
 		text: emailbody, // plaintext body
 		html: '', // html body

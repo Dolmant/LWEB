@@ -1,61 +1,55 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Motion, spring, presets} from 'react-motion';
 import $ from './../jquery.min';
-import { scrollPoint, updateIntroState } from './../consts';
-import animateScroll from './../constFunctions';
+import { scrollPoint, updateIntroState, convert_type } from './../consts';
 
+let bounce = true;
 class Intro extends React.Component {
 	componentDidMount() {
-		this.ScrollDebouncer = (event) => {
-			if (!this.bounce) {
-				this.event = event;
-				window.requestAnimationFrame(() => (this.handleScroll(this.event)));
-				this.bounce = true;
-			}
-		};
-		this.bounce = false;
-		window.addEventListener('scroll', this.ScrollDebouncer);
+		// window.addEventListener('scroll', this.handleScroll);
+		window.addEventListener('wheel', (event) => this.handleScroll(event));
 	}
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.ScrollDebouncer);
-		$('header').removeClass('introHeader');
+		window.removeEventListener('wheel', (event) => this.handleScroll(event));
 	}
 
 	handleScroll(event) {
-		if ($(window).scrollTop() >= scrollPoint - 0) {
-			event.stopPropagation();
-			$('.introVideo').get(0).pause();
-			$(window).scrollTop($(window).scrollTop() - scrollPoint);
+		if (bounce) {
 			this.props.onScrollOver();
 		}
-		this.bounce = false;
+		bounce = false;	
 	}
 
-	// The animate scroll delay should match the animateheight duration
 	render() {
-		const style = {
-			minHeight: $(window).height(),
-		};
 		return (
-			<div>
-				<div className="intro-logo" >
-					<img onClick={() => { animateScroll(750); }} alt="It's not loading!" src="./assets/images/LEOTIDE.png"></img>
-				</div>
-				<video className="introVideo" style={style} autoPlay="1" loop="1">
-					<source src="./assets/vids/Nucleus03.mp4" type="video/mp4"></source>
-					Your browser does not support the video tag.
-				</video>
-			</div>
+			<Motion style={{height: spring(100 * this.props.introOn, {stiffness: 300, damping: 30})}}>
+				{interpolatingStyle => 
+					<div key={1} style={convert_type(interpolatingStyle, ['height'], 'vh')} className="intro-container">
+						<Motion defaultStyle={{maxHeight: 0}} style={{maxHeight: spring(40, {stiffness: 30, damping: 6})}}>
+							{interpolatingStyle2 => 
+								<div key={2} className="intro-logo" >
+									<img style={convert_type(interpolatingStyle2, ['maxHeight'], 'vh')} onClick={() => { this.props.onScrollOver(); }} alt="It's not loading!" src="./assets/images/LEOTIDE.png"></img>
+								</div>
+							}
+						</Motion>
+						<div className="introImage" id="introImage" />
+					</div>
+				}
+			</Motion>
 		);
 	}
 }
 
 Intro.propTypes = {
 	onScrollOver: PropTypes.func.isRequired,
+	introOn: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => ({
+	introOn: state.introOn,
+});
 
 const mapDispatchToProps = dispatch => ({
 	onScrollOver: () => {

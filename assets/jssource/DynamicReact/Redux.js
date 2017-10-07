@@ -1,5 +1,7 @@
-import { createStore } from 'redux';
-import { category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, TOGGLE_OVERLAY, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, getImageSrc, ArrayLimitsCalc } from './../consts';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import {createLogger} from 'redux-logger';
+import { HomeInitial, category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, SELECT_HOME, TOGGLE_OVERLAY, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, getImageSrc, ArrayLimitsCalc } from './../consts';
 // reducer handles how the state updates
 
 
@@ -12,7 +14,8 @@ const initial_category = () => {
 
 const InitalState = {
 	category: initial_category(),
-	list: projectList[initial_category()],
+	home: true,
+	list: HomeInitial,
 	overlay_image: 1,
 	overlay_vertical_index: {},
 	isTouch,
@@ -65,6 +68,13 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	_overlay = InitalState.overlay,
 	action,
 ) {
+	if (!current_category) {
+		return {
+			overlay: _overlay,
+			overlay_vertical_index: overlay_vertical_index_,
+			overlay_image: overlay_image_num_,
+		}
+	}
 	let overlay_image_num = overlay_image_num_;
     let overlay_vertical_index = overlay_vertical_index_;
     if (!overlay_vertical_index[overlay_image_num]) {
@@ -108,7 +118,8 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	const temp_image_data = getImageSrc(overlay_image_num);
 	let overlay_image_src = '';
     let overlay_thumb_src = '';
-    let vertical_limit = 0;
+	let vertical_limit = 0;
+	const is_video = temp_image_data.is_video;
 	if (Array.isArray(temp_image_data.img_src)) {
 		overlay_image_src = temp_image_data.img_src[overlay_vertical_index[overlay_image_num]];
         overlay_thumb_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index[overlay_image_num]];
@@ -131,6 +142,7 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 			arrows,
 			state,
 			image,
+			is_video,
 		},
 	};
 }
@@ -149,6 +161,7 @@ function selectedList(state = InitalState.list, action) {
 		if (Object.keys(projectList).includes(action.category)) {
 			list = projectList[action.category];
 		} else {
+			// Home list
 			list = InitalState.list;
 		}
 		return list;
@@ -177,6 +190,16 @@ function touchmenuToggle(state = InitalState.touchmenu_active, action) {
 	return state;
 }
 
+function selectHome(state = InitalState.home, action) {
+	if (action.type === SELECT_HOME) {
+		return true;
+	}
+	if (action.type === UPDATE_CATEGORY) {
+		return false;
+	}
+	return state;
+}
+
 // concatenate all the reducers
 
 function allReducers(state = {}, action) {
@@ -184,6 +207,7 @@ function allReducers(state = {}, action) {
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action),
 		isTouch,
+		home: selectHome(state.home, action),
 		touchmenu_active: touchmenuToggle(state.touchmenu_active, action),
 		introOn: introState(state.introOn, action),
 		sidebarOpen: sidebarToggle(state.sidebarOpen, action),
@@ -195,5 +219,13 @@ function allReducers(state = {}, action) {
 	};
 }
 
+const loggerMiddleware = createLogger();
+
 // create store
-export default createStore(allReducers);
+export default createStore(
+	allReducers,
+    applyMiddleware(
+		thunkMiddleware, // lets us dispatch() functions
+		loggerMiddleware,
+	),
+);

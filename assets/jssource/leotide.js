@@ -2,16 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Sidebar from './DynamicReact/Sidebar';
-import IntroController from './DynamicReact/IntroController';
-import IntroHeader from './DynamicReact/IntroHeader';
-import Filters from './DynamicReact/Filters';
-import OverlayController from './DynamicReact/OverlayController';
-import PageContainer from './DynamicReact/PageContainer';
-import Footer from './DynamicReact/Footer';
 import store from './DynamicReact/Redux';
 import $ from './jquery.min';
+import App from './App';
 
 
 // Needed for onTouchTap
@@ -23,6 +16,9 @@ const HT = {
 			setTimeout(() => {
 				$('body').show();
 				$('html').removeClass('loading');
+				particlesJS.load('introImage', './assets/particles.json', function() {
+					console.log('callback - particles.js config loaded');
+				  });
 			}, 100);
 		});
 	},
@@ -37,41 +33,9 @@ const HT = {
 $(document).ready(() => {
 	ReactDOM.render(
 		<Provider store={store}>
-			<IntroController />
+			<App />
 		</Provider>,
-		document.getElementById('intro'));
-	ReactDOM.render(
-		<Provider store={store}>
-			<IntroHeader />
-		</Provider>,
-		document.getElementById('introHeader'));
-	ReactDOM.render(
-		<Provider store={store}>
-			<MuiThemeProvider>
-				<Filters />
-			</MuiThemeProvider>
-		</Provider>,
-		document.getElementById('filters'));
-	ReactDOM.render(
-		<Provider store={store}>
-			<OverlayController />
-		</Provider>,
-		document.getElementById('overlay'));
-	ReactDOM.render(
-		<Provider store={store}>
-			<Sidebar />
-		</Provider>,
-		document.getElementById('sidebar-top'));
-	ReactDOM.render(
-		<Provider store={store}>
-			<PageContainer />
-		</Provider>,
-	document.getElementById('page-container'));
-	ReactDOM.render(
-		<Provider store={store}>
-			<Footer />
-		</Provider>,
-		document.getElementById('footer'));
+		document.getElementById('app'));
 	HT.ready();
 });
 

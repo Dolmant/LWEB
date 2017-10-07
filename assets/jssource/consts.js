@@ -35,6 +35,14 @@ export function navOverlayImage(direction) {
     return { type: NAV_OVERLAY_IMAGE, direction };
 }
 
+export const SELECT_HOME = 'SELECT_HOME';
+export function selectHome() {
+    return dispatch => {
+        dispatch(updateCategory(''));
+        return dispatch({type: SELECT_HOME});
+    };
+}
+
 export const isTouch = (($(window).width() < 1000)); //|| 'ontouchstart' in document.documentElement);
 
 const projectListInitial = {
@@ -113,12 +121,6 @@ const projectListInitial = {
             img_txt: 'GemSlugs 3D',
             thumbs_src: './assets/thumbs/NATURE/GemSlugsDrawVer.jpg',
             super_thumbs_src: './assets/superThumbs/NATURE/GemSlugsDrawVer.jpg',
-        },
-        {
-            img_src: './assets/images/NATURE/Carp_Swim.gif',
-            img_txt: 'Carp Swimming',
-            thumbs_src: './assets/thumbs/NATURE/Carp_Swim.jpg',
-            super_thumbs_src: './assets/superThumbs/NATURE/Carp_Swim.jpg',
         },
         {
             img_src: './assets/images/NATURE/ShellLayers.jpg',
@@ -654,6 +656,138 @@ const projectListInitial = {
             super_thumbs_src: './assets/superThumbs/FUN/TerraMon.jpg',
         },
     ],
+    ANIMATION: [
+        {
+            img_src: './assets/ANIMATIONS/DNA_RenderGifu.gif',
+            img_txt: 'DNA Render',
+            thumbs_src: './assets/thumbs/ANIMATIONS/DNA_RenderGifu.png',
+            super_thumbs_src: './assets/superThumbs/ANIMATIONS/DNA_RenderGifu.png',
+        },
+        {
+            img_src: './assets/ANIMATIONS/CardosinMovieGif.gif',
+            img_txt: 'Cardosin',
+            thumbs_src: './assets/thumbs/ANIMATIONS/CardosinMovieGif.png',
+            super_thumbs_src: './assets/superThumbs/ANIMATIONS/CardosinMovieGif.png',
+        },
+        {
+            is_video: true,
+            img_src: './assets/ANIMATIONS/05_ProteinPeephole.mp4',
+            img_txt: 'Protein Peephole',
+            thumbs_src: './assets/thumbs/ANIMATIONS/05_ProteinPeephole.png',
+            super_thumbs_src: './assets/superThumbs/ANIMATIONS/05_ProteinPeephole.png',
+        },
+        {
+            img_src: './assets/ANIMATIONS/Carp_Swim.gif',
+            img_txt: 'Carp Swimming',
+            thumbs_src: './assets/thumbs/ANIMATIONS/Carp_Swim.jpg',
+            super_thumbs_src: './assets/superThumbs/ANIMATIONS/Carp_Swim.jpg',
+        },
+        {
+            is_video: true,
+            img_src: './assets/ANIMATIONS/01_MicroFinalRender01.mp4',
+            img_txt: 'Micro Messengers',
+            thumbs_src: './assets/thumbs/ANIMATIONS/01_MicroFinalRender01.jpg',
+            super_thumbs_src: './assets/superThumbs/ANIMATIONS/01_MicroFinalRender01.jpg',
+        },
+    ],
+    PRINTS: [
+        {
+            img_src: './assets/images/PRINTS/burger print.jpg',
+            img_txt: 'Burger print',
+            thumbs_src: './assets/thumbs/PRINTS/burger print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/burger print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/cicada print.jpg',
+            img_txt: 'Cicada print',
+            thumbs_src: './assets/thumbs/PRINTS/cicada print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/cicada print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/CLIC1 print.jpg',
+            img_txt: 'CLIC1 print',
+            thumbs_src: './assets/thumbs/PRINTS/CLIC1 print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/CLIC1 print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/crispr print.jpg',
+            img_txt: 'CRISPR print',
+            thumbs_src: './assets/thumbs/PRINTS/crispr print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/crispr print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/cross print.jpg',
+            img_txt: 'Cross section print',
+            thumbs_src: './assets/thumbs/PRINTS/cross print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/cross print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/eye print.jpg',
+            img_txt: 'Eye print',
+            thumbs_src: './assets/thumbs/PRINTS/eye print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/eye print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/mouldystrawberry print.jpg',
+            img_txt: 'Mouldy Strawberry print',
+            thumbs_src: './assets/thumbs/PRINTS/mouldystrawberry print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/mouldystrawberry print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/mv print.jpg',
+            img_txt: 'Glorious MV print',
+            thumbs_src: './assets/thumbs/PRINTS/mv print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/mv print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/octopus print.jpg',
+            img_txt: 'Octopus print',
+            thumbs_src: './assets/thumbs/PRINTS/octopus print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/octopus print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/panda print.jpg',
+            img_txt: 'Panda print',
+            thumbs_src: './assets/thumbs/PRINTS/panda print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/panda print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/poster print.jpg',
+            img_txt: 'Poster print',
+            thumbs_src: './assets/thumbs/PRINTS/poster print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/poster print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/seahorse print.jpg',
+            img_txt: 'Seahorse print',
+            thumbs_src: './assets/thumbs/PRINTS/seahorse print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/seahorse print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/shell print.jpg',
+            img_txt: 'Shell print',
+            thumbs_src: './assets/thumbs/PRINTS/shell print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/shell print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/slug print.jpg',
+            img_txt: 'Slug print',
+            thumbs_src: './assets/thumbs/PRINTS/slug print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/slug print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/strawberry print.jpg',
+            img_txt: 'Strawberry print',
+            thumbs_src: './assets/thumbs/PRINTS/strawberry print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/strawberry print.jpg',
+        },
+        {
+            img_src: './assets/images/PRINTS/time crystal print.jpg',
+            img_txt: 'Time crystal print',
+            thumbs_src: './assets/thumbs/PRINTS/time crystal print.jpg',
+            super_thumbs_src: './assets/superThumbs/PRINTS/time crystal print.jpg',
+        },
+    ],
 };
 
 // hardcoded for now
@@ -666,6 +800,8 @@ const projectListLabels = {
     TYPOGRAPHY: 'Taking everyday letters and making them look better…with science!',
     FACTS: 'Learning every day! Fun facts for those who want to impress others with their knowledge of anything and everything. Or just cats, crabs and eels specifically.',
     FUN: 'All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people.',
+    PRINTS: 'You can request any of my artworks printed, just send me an email using the contact me link at the bottom left of the page! Just include the name of the artwork you would like, your address (so we can calculate postage) and whether you would like it framed!',
+    ANIMATION: 'Moving pictures!',
 };
 
 // This concat order is also important if you change stuff
@@ -673,7 +809,9 @@ const project_list_all = () => {
     projectListInitial.ALL =
     projectListInitial.NATURE.concat(
         projectListInitial['POP SCIENCE'].concat(
-            projectListInitial.ANATOMY));
+            projectListInitial.ANATOMY.concat(
+                projectListInitial.FACTS.concat(
+                    projectListInitial.TYPOGRAPHY))));
     return projectListInitial;
 };
 
@@ -743,4 +881,128 @@ const category_gen = () => {
 
 export const category = category_gen();
 
-export const scrollPoint = $(window).height();
+export const convert_type = (style, properties, suffix) => {
+	const return_style = Object.assign({}, style);
+	properties.forEach((property => {
+		return_style[property] = return_style[property] + suffix;
+	}))
+	return return_style;
+}
+
+const HomeList = [
+    {
+        img_src: './assets/images/HOMELIST/1 (1).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (1).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (1).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (2).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (2).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (2).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (3).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (3).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (3).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (4).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (4).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (4).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (5).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (5).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (5).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (6).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (6).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (6).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (7).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (7).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (7).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (8).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (8).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (8).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (1).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (1).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (1).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (9).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (9).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (9).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (10).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (10).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (10).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (11).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (11).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (11).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (12).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (12).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (12).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (13).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (13).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (13).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (14).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (14).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (14).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (15).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (15).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (15).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (16).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (16).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (16).jpg',
+    },
+    {
+        img_src: './assets/images/HOMELIST/1 (17).jpg',
+        img_txt: '',
+        thumbs_src: './assets/thumbs/HOMELIST/1 (17).jpg',
+        super_thumbs_src: './assets/superThumbs/HOMELIST/1 (17).jpg',
+    },
+];
+
+export const HomeInitial = (() => {
+    for (let i = 0, len = HomeList.length; i < len; i += 1) {
+        HomeList[i].item_number = i;
+    }
+    return HomeList;
+})();

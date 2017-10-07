@@ -17,8 +17,6 @@ node server.js
 this uses your mailgun server to send emails
 
 to upload to heroku copy to the other git folder (do a grunt build then remove the .gitignores and the node folders as well as this readme) and use
-heroku login
-722tvb22
 git push --no-verify heroku master
 
 then start the service with
