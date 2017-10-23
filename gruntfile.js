@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
+		clean: ['./assets/dist'],
 		htmlbuild: {
 			dist: {
 				src: './assets/template/index.html',
@@ -82,6 +83,7 @@ module.exports = function (grunt) {
 		},
 	});
 
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-hash');
 	grunt.loadNpmTasks('grunt-html-build');
 	grunt.loadNpmTasks('grunt-browserify');
@@ -89,7 +91,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['browserify', 'sass', 'hash', 'htmlbuild']);
-	grunt.registerTask('build_sass', ['sass', 'hash', 'htmlbuild']);
+	grunt.registerTask('build', ['clean', 'browserify', 'sass', 'hash', 'htmlbuild']);
+	grunt.registerTask('build_sass', ['clean', 'sass', 'hash', 'htmlbuild']);
 	grunt.registerTask('test', ['watchcss', 'watchjs']);
 };
