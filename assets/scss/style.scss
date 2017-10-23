@@ -978,6 +978,8 @@ footer .container>div.social {
 	.boxes {
 		display: flex;
 		justify-content: space-between;
+		flex-wrap: wrap;
+
 		div {
 			display: flex;
 			align-items: center;
@@ -1205,6 +1207,10 @@ body.work .projects {
 	}
 }
 
+.slick-dots {
+	bottom: auto !important;
+}
+
 .sidebar li .img-wrap {
 	-webkit-transition:opacity .2s;
 	-moz-transition:opacity .2s;
@@ -1274,32 +1280,37 @@ body.work .projects {
 }
 
 a.menu {
-  color: black;
-  text-transform: uppercase;
-  padding-top: 22px;
-  padding-bottom: 22px;
-  font-size: 1.6em;
-  width:100%;
+	color: black;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	min-height: 7vh;
+	z-index: 1;
+	font-size: 1.6em;
+	width:100%;
 }
 
 a.menu span {
-  font-size:1.6em;
-  vertical-align: -0.15em;
+	padding-right: 5px;
+	font-size:1.6em;
+	vertical-align: -0.15em;
 }
 
-nav ul {
-	list-style:none;
-	flex-direction: column;
-}
-
-nav ul li a {
-	display: block;
-	text-decoration: none;
-	background: rgba(0,0,0,0.3);
-	color: white;
-	padding: 1em;
-	margin-bottom: 1px;
-	width:100%;
+nav {
+	background-color: white;
+	ul {
+		list-style:none;
+		flex-direction: column;
+		li a {
+			display: block;
+			text-decoration: none;
+			background: rgba(0,0,0,0.3);
+			color: white;
+			padding: 1em;
+			margin-bottom: 1px;
+			width:100%;
+		}
+	}
 }
 
 .drawer {

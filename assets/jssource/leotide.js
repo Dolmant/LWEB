@@ -16,7 +16,7 @@ const HT = {
 			setTimeout(() => {
 				$('body').show();
 				$('html').removeClass('loading');
-				particlesJS.load('introImage', './assets/particles.json', function() {
+				particlesJS.load('introImage', './assets/particlesBusted.json', function() {
 					console.log('callback - particles.js config loaded');
 				  });
 			}, 100);
