@@ -952,6 +952,19 @@ footer .container>div.social {
 	background: white;
 }
 
+.demoreel {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    video {
+        object-fit: cover;
+        max-height:90%;
+        max-width: 90%;
+    }
+}
+
 .desc {
 	width:100%;
 	text-align:center;

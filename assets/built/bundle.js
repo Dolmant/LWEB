@@ -1459,6 +1459,21 @@ var PageContainer = function PageContainer(props) {
 							'FRIENDLY'
 						)
 					)
+				),
+				_react2['default'].createElement(
+					'div',
+					{ className: 'demoreel' },
+					_react2['default'].createElement(
+						'h2',
+						null,
+						'Check out the demo reel below!'
+					),
+					_react2['default'].createElement(
+						'video',
+						{ autoPlay: '', loop: '', controls: '1' },
+						_react2['default'].createElement('source', { src: './assets/ANIMATIONS/LHDemoReel18.mp4', type: 'video/mp4' }),
+						'Your browser does not support the video tag.'
+					)
 				)
 			)
 		);

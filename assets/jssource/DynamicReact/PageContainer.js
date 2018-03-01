@@ -122,6 +122,13 @@ const PageContainer = (props) => {
 						<div><img src="./assets/icons/tick.jpg" /><h2>ECONOMICAL</h2></div>
 						<div><img src="./assets/icons/tick.jpg" /><h2>FRIENDLY</h2></div>
 					</div>
+                    <div className="demoreel">
+                        <h2>Check out the demo reel below!</h2>
+                        <video autoPlay="" loop="" controls="1">
+                            <source src="./assets/ANIMATIONS/LHDemoReel18.mp4" type="video/mp4"></source>
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
 				</div>
 			</div>
 		);
