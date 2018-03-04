@@ -83,6 +83,7 @@ class Overlay extends React.Component {
 				return (
 					<div className="overlayimagecontrol">
 						{ Arrows() }
+						<h2>{this.props.overlay_txt}</h2>
 						{this.props.overlay.is_video ?
 							<video className="overlay-video" autoPlay="1" loop="1" controls="1">
 								<source src={this.props.overlay_image_src.toString()} type="video/mp4"></source>
@@ -99,11 +100,11 @@ class Overlay extends React.Component {
 								>
 								</LazySizes>
 							</div>
-						}
+                        }
 						{this.props.overlay.is_video ?
 							null
 							:
-							<span className="overlaytext">This image is large and will remain obfuscated until downloaded</span>
+							<div className="overlaytext">This image is large and will remain obfuscated until downloaded</div>
 						}
 					</div>
 				);
@@ -179,11 +180,13 @@ Overlay.propTypes = {
 	}).isRequired,
 	overlay_image_src: PropTypes.string.isRequired,
 	overlay_thumb_src: PropTypes.string.isRequired,
+	overlay_txt: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
 	overlay_image_src: state.overlay_image_src,
 	overlay_thumb_src: state.overlay_thumb_src,
+	overlay_txt: state.overlay_txt,
 	overlay: state.overlay,
 });
 

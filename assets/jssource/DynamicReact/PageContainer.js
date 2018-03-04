@@ -63,7 +63,6 @@ const PageContainer = (props) => {
 							<div className="img-wrap">
 								<img alt="It's not loading!" src={item.data.thumbs_src.toString()} />
 							</div>
-							<span>{item.data.img_txt.toString()}</span>
 						</li>,
 					)}
 				</ul>
@@ -78,7 +77,7 @@ const PageContainer = (props) => {
 				backgroundPosition: 'center',
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
-				height: '30vh',
+				height: '50vh',
 				width: '20vw',
 			}} />
 		</div>,
@@ -94,6 +93,9 @@ const PageContainer = (props) => {
 				</div>
 				<div className="desc_holder">
 					<div className="desc_text">
+                        <div>
+                            <img src="./assets/images/LeotideIcon.png" />
+                        </div>
 						<h2>Hello!</h2>
 						I am a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in both<br />
 						<br />
@@ -103,6 +105,13 @@ const PageContainer = (props) => {
 						<span className="red"><b>Biomedical animation/Scientific illustration/data visulisation/communication</b></span><br />
 						Whilst following my passion as a freelance scientific illustrator!
 					</div>
+                    <div className="demoreel">
+                        <h2>Check out the demo reel below!</h2>
+                        <video autoPlay="" loop="" controls="1">
+                            <source src="./assets/ANIMATIONS/LHDemoReel18.mp4" type="video/mp4"></source>
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
 					<div className="desc_text last-element">
 						<h2> Interested in a commission or purchasing a print?</h2>
 						Please use the "CONTACT ME!" button on the bottom left of the screen to make an enquiry:<br />
@@ -112,7 +121,7 @@ const PageContainer = (props) => {
 							- Subject matter, size, black/white or colour, etc<br />
 							<br />
 							<span className="underline">For purchasing an item:</span><br />
-							- Double check the PRINTS section to see if the item you would like is already framed<br />
+							- Double check the STORE section to see if the item you would like is already framed<br />
 							- Provide the name of the artwork you want (with/without frame) and your address<br />
 							- I will contact you with the sizes available and prices including shipping straight to your door!
 						</div>
@@ -122,13 +131,6 @@ const PageContainer = (props) => {
 						<div><img src="./assets/icons/tick.jpg" /><h2>ECONOMICAL</h2></div>
 						<div><img src="./assets/icons/tick.jpg" /><h2>FRIENDLY</h2></div>
 					</div>
-                    <div className="demoreel">
-                        <h2>Check out the demo reel below!</h2>
-                        <video autoPlay="" loop="" controls="1">
-                            <source src="./assets/ANIMATIONS/LHDemoReel18.mp4" type="video/mp4"></source>
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
 				</div>
 			</div>
 		);

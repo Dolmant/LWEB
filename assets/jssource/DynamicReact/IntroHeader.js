@@ -50,7 +50,7 @@ class IntroHeader extends React.Component {
 						{/* <a className="fade" rel="noopener noreferrer" style={style()} target="_blank" href="http://leotide.tumblr.com/">Tumblr!</a> */}
 					</div>
 					<h1>
-						<img onClick={() => this.props.onHomeClick()} src="./assets/images/LEOTIDErev.png" alt="LeoTide"></img>
+						<img onClick={() => this.props.onHomeClick()} src="./assets/images/LEOTIDE.png" alt="LeoTide"></img>
 					</h1>
 					<div className="right">
 						{/* <a className="about-me" style={style()} onClick={() => this.aboutMeClick()}>About Me</a> */}
@@ -59,16 +59,16 @@ class IntroHeader extends React.Component {
 		);
 		if (this.props.introOn) {
 			return (
-				<header className={this.props.introOn ? 'introHeaderTemp' : ''}>
+				<header className={this.props.introOn ? 'introHeaderTemp' : 'main-header'}>
 					{result}
 				</header>
 			);
 		}
 		return (
-			<header className={this.props.introOn ? 'introHeaderTemp' : ''}>
+			<header className={this.props.introOn ? 'introHeaderTemp' : 'main-header'}>
 				<Motion defaultStyle={{opacity: 0}} style={{opacity: spring(1, {stiffness: 20, damping: 17})}}>
 					{interpolatingStyle => 
-						<header key={1} style={interpolatingStyle} className={this.props.introOn ? 'introHeaderTemp' : ''}>
+						<header key={1} style={interpolatingStyle} className={this.props.introOn ? 'introHeaderTemp' : 'main-header'}>
 							{result}
 						</header>
 					}

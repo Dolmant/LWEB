@@ -37,8 +37,8 @@ class Filters extends React.Component {
 	}
 
 	render() {
-		// These five are handled manually. I'll have to build proper submenus someday
-		const bundled = ['NATURE', 'POP SCIENCE', 'ANATOMY', 'TYPOGRAPHY', 'FACTS'];
+		// These six are handled manually. I'll have to build proper submenus someday
+		const bundled = ['NATURE', 'SCIENCE', 'ANATOMY', 'TYPOGRAPHY', 'FACTS', 'MISC'];
 
 		const filter = item => !bundled.includes(item);
 		const mapper = (item) => {
@@ -57,10 +57,11 @@ class Filters extends React.Component {
 							<Menu className="hi" onMouseLeave={() => setTimeout(this.handleRequestClose, 500)}>
 								<MenuItem primaryText="ALL" id="ALL" onClick={() => this.handleSelectMenu('ALL')} />
 								<MenuItem primaryText="NATURE" id="NATURE" onClick={() => this.handleSelectMenu('NATURE')} />
-								<MenuItem primaryText="POP SCIENCE" id="POP SCIENCE" onClick={() => this.handleSelectMenu('POP SCIENCE')} />
+								<MenuItem primaryText="SCIENCE" id="SCIENCE" onClick={() => this.handleSelectMenu('SCIENCE')} />
 								<MenuItem primaryText="ANATOMY" id="ANATOMY" onClick={() => this.handleSelectMenu('ANATOMY')} />
 								<MenuItem primaryText="FACTS" id="FACTS" onClick={() => this.handleSelectMenu('FACTS')} />
 								<MenuItem primaryText="TYPOGRAPHY" id="TYPOGRAPHY" onClick={() => this.handleSelectMenu('TYPOGRAPHY')} />
+								<MenuItem primaryText="MISC" id="MISC" onClick={() => this.handleSelectMenu('MISC')} />
 							</Menu>
 						</Popover>
 					</li>
@@ -70,8 +71,29 @@ class Filters extends React.Component {
 				<li key={item} onClick={() => this.props.oncatClick(item)} id={item}>
 					<a><strong>{item}</strong></a>
 				</li>);
-		};
-		const menu_options = Object.keys(category).filter(filter).sort().map(mapper);
+        };
+        const sorter = (category1, category2) => {
+            if (category1 === 'STORE') {
+                return 1;
+            }
+            if (category2 === 'STORE') {
+                return -1;
+            }
+            if (category1 === '3D MODELS/PRINTING') {
+                return 1;
+            }
+            if (category2 === '3D MODELS/PRINTING') {
+                return -1;
+            }
+            if (category1 > category2) {
+                return 1;
+            }
+            if (category1 < category2) {
+                return -1;
+            }
+            return 0;
+        }
+		const menu_options = Object.keys(category).filter(filter).sort(sorter).map(mapper);
 
 		if (!this.props.introOn) {
 			if (!this.props.isTouch) {

@@ -34,6 +34,13 @@ class Intro extends React.Component {
 								</div>
 							}
 						</Motion>
+                        <div onClick={() => { this.props.onScrollOver(); }} className="into-scroll-prompt">
+                            <div className="blink-container">
+                                <i className="fas fa-arrow-alt-circle-down"></i>
+                                <div className="blink" />
+                            </div>
+                            <div>{'Scroll down'}</div>
+                        </div>
 						<div className="introImage" id="introImage" />
 					</div>
 				}

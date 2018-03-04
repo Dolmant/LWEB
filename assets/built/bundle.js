@@ -206,8 +206,8 @@ var Filters = (function (_React$Component) {
 	Filters.prototype.render = function render() {
 		var _this2 = this;
 
-		// These five are handled manually. I'll have to build proper submenus someday
-		var bundled = ['NATURE', 'POP SCIENCE', 'ANATOMY', 'TYPOGRAPHY', 'FACTS'];
+		// These six are handled manually. I'll have to build proper submenus someday
+		var bundled = ['NATURE', 'SCIENCE', 'ANATOMY', 'TYPOGRAPHY', 'FACTS', 'MISC'];
 
 		var filter = function filter(item) {
 			return !bundled.includes(item);
@@ -248,8 +248,8 @@ var Filters = (function (_React$Component) {
 							_react2['default'].createElement(_materialUiMenuItem2['default'], { primaryText: 'NATURE', id: 'NATURE', onClick: function () {
 									return _this2.handleSelectMenu('NATURE');
 								} }),
-							_react2['default'].createElement(_materialUiMenuItem2['default'], { primaryText: 'POP SCIENCE', id: 'POP SCIENCE', onClick: function () {
-									return _this2.handleSelectMenu('POP SCIENCE');
+							_react2['default'].createElement(_materialUiMenuItem2['default'], { primaryText: 'SCIENCE', id: 'SCIENCE', onClick: function () {
+									return _this2.handleSelectMenu('SCIENCE');
 								} }),
 							_react2['default'].createElement(_materialUiMenuItem2['default'], { primaryText: 'ANATOMY', id: 'ANATOMY', onClick: function () {
 									return _this2.handleSelectMenu('ANATOMY');
@@ -259,6 +259,9 @@ var Filters = (function (_React$Component) {
 								} }),
 							_react2['default'].createElement(_materialUiMenuItem2['default'], { primaryText: 'TYPOGRAPHY', id: 'TYPOGRAPHY', onClick: function () {
 									return _this2.handleSelectMenu('TYPOGRAPHY');
+								} }),
+							_react2['default'].createElement(_materialUiMenuItem2['default'], { primaryText: 'MISC', id: 'MISC', onClick: function () {
+									return _this2.handleSelectMenu('MISC');
 								} })
 						)
 					)
@@ -280,7 +283,28 @@ var Filters = (function (_React$Component) {
 				)
 			);
 		};
-		var menu_options = Object.keys(_consts.category).filter(filter).sort().map(mapper);
+		var sorter = function sorter(category1, category2) {
+			if (category1 === 'STORE') {
+				return 1;
+			}
+			if (category2 === 'STORE') {
+				return -1;
+			}
+			if (category1 === '3D MODELS/PRINTING') {
+				return 1;
+			}
+			if (category2 === '3D MODELS/PRINTING') {
+				return -1;
+			}
+			if (category1 > category2) {
+				return 1;
+			}
+			if (category1 < category2) {
+				return -1;
+			}
+			return 0;
+		};
+		var menu_options = Object.keys(_consts.category).filter(filter).sort(sorter).map(mapper);
 
 		if (!this.props.introOn) {
 			if (!this.props.isTouch) {
@@ -493,6 +517,15 @@ var Footer = function Footer(props) {
 								{ target: '_blank', rel: 'noopener noreferrer', href: 'https://twitter.com/leotidelh?lang=en' },
 								_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: './assets/icons/twittericon.png' })
 							)
+						),
+						_react2['default'].createElement(
+							'li',
+							null,
+							_react2['default'].createElement(
+								'a',
+								{ target: '_blank', rel: 'noopener noreferrer', href: 'https://www.instagram.com/leo_tide/' },
+								_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: './assets/icons/instagramicon.png' })
+							)
 						)
 					)
 				)
@@ -610,6 +643,23 @@ var Intro = (function (_React$Component) {
 									}, alt: 'It\'s not loading!', src: './assets/images/LEOTIDE.png' })
 							);
 						}
+					),
+					_react2['default'].createElement(
+						'div',
+						{ onClick: function () {
+								_this3.props.onScrollOver();
+							}, className: 'into-scroll-prompt' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'blink-container' },
+							_react2['default'].createElement('i', { className: 'fas fa-arrow-alt-circle-down' }),
+							_react2['default'].createElement('div', { className: 'blink' })
+						),
+						_react2['default'].createElement(
+							'div',
+							null,
+							'Scroll down'
+						)
 					),
 					_react2['default'].createElement('div', { className: 'introImage', id: 'introImage' })
 				);
@@ -730,27 +780,27 @@ var IntroHeader = (function (_React$Component) {
 				null,
 				_react2['default'].createElement('img', { onClick: function () {
 						return _this2.props.onHomeClick();
-					}, src: './assets/images/LEOTIDErev.png', alt: 'LeoTide' })
+					}, src: './assets/images/LEOTIDE.png', alt: 'LeoTide' })
 			),
 			_react2['default'].createElement('div', { className: 'right' })
 		);
 		if (this.props.introOn) {
 			return _react2['default'].createElement(
 				'header',
-				{ className: this.props.introOn ? 'introHeaderTemp' : '' },
+				{ className: this.props.introOn ? 'introHeaderTemp' : 'main-header' },
 				result
 			);
 		}
 		return _react2['default'].createElement(
 			'header',
-			{ className: this.props.introOn ? 'introHeaderTemp' : '' },
+			{ className: this.props.introOn ? 'introHeaderTemp' : 'main-header' },
 			_react2['default'].createElement(
 				_reactMotion.Motion,
 				{ defaultStyle: { opacity: 0 }, style: { opacity: _reactMotion.spring(1, { stiffness: 20, damping: 17 }) } },
 				function (interpolatingStyle) {
 					return _react2['default'].createElement(
 						'header',
-						{ key: 1, style: interpolatingStyle, className: _this2.props.introOn ? 'introHeaderTemp' : '' },
+						{ key: 1, style: interpolatingStyle, className: _this2.props.introOn ? 'introHeaderTemp' : 'main-header' },
 						result
 					);
 				}
@@ -916,6 +966,11 @@ var Overlay = (function (_React$Component) {
 					'div',
 					{ className: 'overlayimagecontrol' },
 					Arrows(),
+					_react2['default'].createElement(
+						'h2',
+						null,
+						_this.props.overlay_txt
+					),
 					_this.props.overlay.is_video ? _react2['default'].createElement(
 						'video',
 						{ className: 'overlay-video', autoPlay: '1', loop: '1', controls: '1' },
@@ -933,7 +988,7 @@ var Overlay = (function (_React$Component) {
 						})
 					),
 					_this.props.overlay.is_video ? null : _react2['default'].createElement(
-						'span',
+						'div',
 						{ className: 'overlaytext' },
 						'This image is large and will remain obfuscated until downloaded'
 					)
@@ -1082,13 +1137,15 @@ Overlay.propTypes = {
 		is_video: _propTypes2['default'].bool
 	}).isRequired,
 	overlay_image_src: _propTypes2['default'].string.isRequired,
-	overlay_thumb_src: _propTypes2['default'].string.isRequired
+	overlay_thumb_src: _propTypes2['default'].string.isRequired,
+	overlay_txt: _propTypes2['default'].string.isRequired
 };
 
 var mapStateToProps = function mapStateToProps(state) {
 	return {
 		overlay_image_src: state.overlay_image_src,
 		overlay_thumb_src: state.overlay_thumb_src,
+		overlay_txt: state.overlay_txt,
 		overlay: state.overlay
 	};
 };
@@ -1290,11 +1347,6 @@ var PageContainer = function PageContainer(props) {
 							'div',
 							{ className: 'img-wrap' },
 							_react2['default'].createElement('img', { alt: 'It\'s not loading!', src: item.data.thumbs_src.toString() })
-						),
-						_react2['default'].createElement(
-							'span',
-							null,
-							item.data.img_txt.toString()
 						)
 					);
 				})
@@ -1311,7 +1363,7 @@ var PageContainer = function PageContainer(props) {
 					backgroundPosition: 'center',
 					backgroundRepeat: 'no-repeat',
 					backgroundSize: 'cover',
-					height: '30vh',
+					height: '50vh',
 					width: '20vw'
 				} })
 		);
@@ -1336,6 +1388,11 @@ var PageContainer = function PageContainer(props) {
 				_react2['default'].createElement(
 					'div',
 					{ className: 'desc_text' },
+					_react2['default'].createElement(
+						'div',
+						null,
+						_react2['default'].createElement('img', { src: './assets/images/LeotideIcon.png' })
+					),
 					_react2['default'].createElement(
 						'h2',
 						null,
@@ -1391,6 +1448,21 @@ var PageContainer = function PageContainer(props) {
 				),
 				_react2['default'].createElement(
 					'div',
+					{ className: 'demoreel' },
+					_react2['default'].createElement(
+						'h2',
+						null,
+						'Check out the demo reel below!'
+					),
+					_react2['default'].createElement(
+						'video',
+						{ autoPlay: '', loop: '', controls: '1' },
+						_react2['default'].createElement('source', { src: './assets/ANIMATIONS/LHDemoReel18.mp4', type: 'video/mp4' }),
+						'Your browser does not support the video tag.'
+					)
+				),
+				_react2['default'].createElement(
+					'div',
 					{ className: 'desc_text last-element' },
 					_react2['default'].createElement(
 						'h2',
@@ -1419,7 +1491,7 @@ var PageContainer = function PageContainer(props) {
 							'For purchasing an item:'
 						),
 						_react2['default'].createElement('br', null),
-						'- Double check the PRINTS section to see if the item you would like is already framed',
+						'- Double check the STORE section to see if the item you would like is already framed',
 						_react2['default'].createElement('br', null),
 						'- Provide the name of the artwork you want (with/without frame) and your address',
 						_react2['default'].createElement('br', null),
@@ -1458,21 +1530,6 @@ var PageContainer = function PageContainer(props) {
 							null,
 							'FRIENDLY'
 						)
-					)
-				),
-				_react2['default'].createElement(
-					'div',
-					{ className: 'demoreel' },
-					_react2['default'].createElement(
-						'h2',
-						null,
-						'Check out the demo reel below!'
-					),
-					_react2['default'].createElement(
-						'video',
-						{ autoPlay: '', loop: '', controls: '1' },
-						_react2['default'].createElement('source', { src: './assets/ANIMATIONS/LHDemoReel18.mp4', type: 'video/mp4' }),
-						'Your browser does not support the video tag.'
 					)
 				)
 			)
@@ -1675,6 +1732,7 @@ function selectedOverlayImageNum(overlay_image_num_, current_category, overlay_v
 		overlay_image_num: overlay_image_num,
 		overlay_image_src: overlay_image_src,
 		overlay_thumb_src: overlay_thumb_src,
+		overlay_txt: temp_image_data.img_txt,
 		overlay: {
 			arrows: arrows,
 			state: state,
@@ -2011,7 +2069,7 @@ var isTouch = _jqueryMin2['default'](window).width() < 1000;exports.isTouch = is
 //|| 'ontouchstart' in document.documentElement);
 
 var projectListInitial = {
-    // This order is important, if NATURE + POP SCIENCE + ANATOMY are not in this order,
+    // This order is important, if NATURE + SCIENCE + ANATOMY are not in this order,
     // navigation vis the arrows image_number will be incorrect. If you muck with this
     // MAKE SURE YOU UPDATE THE 'ALL' FUNCTION BELOW
     NATURE: [{
@@ -2079,114 +2137,149 @@ var projectListInitial = {
         img_txt: 'Shell Layers',
         thumbs_src: './assets/thumbs/NATURE/ShellLayers.jpg',
         super_thumbs_src: './assets/superThumbs/NATURE/ShellLayers.jpg'
-    }],
-    'POP SCIENCE': [{
-        img_src: './assets/images/POPSCIENCE/CellCross.jpg',
-        img_txt: 'Cell Cross',
-        thumbs_src: './assets/thumbs/POPSCIENCE/CellCross.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/CellCross.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/HailHydrate.jpg',
+        img_src: './assets/images/NATURE/HailHydrate.jpg',
         img_txt: 'Hail Hydrate',
-        thumbs_src: './assets/thumbs/POPSCIENCE/HailHydrate.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/HailHydrate.jpg'
+        thumbs_src: './assets/thumbs/NATURE/HailHydrate.jpg',
+        super_thumbs_src: './assets/superThumbs/NATURE/HailHydrate.jpg'
+    }],
+    SCIENCE: [{
+        img_src: './assets/images/SCIENCE/CellCross.jpg',
+        img_txt: 'Cell Cross',
+        thumbs_src: './assets/thumbs/SCIENCE/CellCross.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/CellCross.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/TimeCrystal.jpg',
+        img_src: './assets/images/SCIENCE/TimeCrystal.jpg',
         img_txt: 'Time Crystal',
-        thumbs_src: './assets/thumbs/POPSCIENCE/TimeCrystal.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/TimeCrystal.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/TimeCrystal.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/TimeCrystal.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/TheScreamPlant.jpg',
+        img_src: './assets/images/SCIENCE/TheScreamPlant.jpg',
         img_txt: 'The Anemone Scream (cross section)',
-        thumbs_src: './assets/thumbs/POPSCIENCE/TheScreamPlant.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/TheScreamPlant.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/TheScreamPlant.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/TheScreamPlant.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/09_Vizbi_WINNER_FibrilForest.jpg',
+        img_src: './assets/images/SCIENCE/09_Vizbi_WINNER_FibrilForest.jpg',
         img_txt: 'Fibril Forest',
-        thumbs_src: './assets/thumbs/POPSCIENCE/09_Vizbi_WINNER_FibrilForest.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/09_Vizbi_WINNER_FibrilForest.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/09_Vizbi_WINNER_FibrilForest.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/09_Vizbi_WINNER_FibrilForest.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/FriesWithThat3.jpg',
+        img_src: './assets/images/SCIENCE/FriesWithThat3.jpg',
         img_txt: 'Fries with that?',
-        thumbs_src: './assets/thumbs/POPSCIENCE/FriesWithThat3.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/FriesWithThat3.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/FriesWithThat3.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/FriesWithThat3.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/08_Vizbi_DataTransfer.jpg',
+        img_src: './assets/images/SCIENCE/08_Vizbi_DataTransfer.jpg',
         img_txt: 'Data Transfer',
-        thumbs_src: './assets/thumbs/POPSCIENCE/08_Vizbi_DataTransfer.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/08_Vizbi_DataTransfer.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/08_Vizbi_DataTransfer.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/08_Vizbi_DataTransfer.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/RamenCellNew5.jpg',
+        img_src: './assets/images/SCIENCE/RamenCellNew5.jpg',
         img_txt: 'Ramen Cell',
-        thumbs_src: './assets/thumbs/POPSCIENCE/RamenCellNew5.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/RamenCellNew5.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/RamenCellNew5.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/RamenCellNew5.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/DNAtetris.jpg',
+        img_src: './assets/images/SCIENCE/DNAtetris.jpg',
         img_txt: 'DNAtetris',
-        thumbs_src: './assets/thumbs/POPSCIENCE/DNAtetris.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/DNAtetris.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/DNAtetris.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/DNAtetris.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/Cell_comp03.jpg',
+        img_src: './assets/images/SCIENCE/Cell_comp03.jpg',
         img_txt: 'Cell comp',
-        thumbs_src: './assets/thumbs/POPSCIENCE/Cell_comp03.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/Cell_comp03.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/Cell_comp03.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/Cell_comp03.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/06_Cell_Internal.jpg',
+        img_src: './assets/images/SCIENCE/06_Cell_Internal.jpg',
         img_txt: '3D Cell internals',
-        thumbs_src: './assets/thumbs/POPSCIENCE/06_Cell_Internal.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/06_Cell_Internal.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/06_Cell_Internal.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/06_Cell_Internal.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/CLICblue.jpg',
+        img_src: './assets/images/SCIENCE/CLICblue.jpg',
         img_txt: 'CLIC',
-        thumbs_src: './assets/thumbs/POPSCIENCE/CLICblue.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/CLICblue.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/CLICblue.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/CLICblue.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/EyeRend02.jpg',
-        img_txt: 'Eye',
-        thumbs_src: './assets/thumbs/POPSCIENCE/EyeRend02.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/EyeRend02.jpg'
-    }, {
-        img_src: './assets/images/POPSCIENCE/SC_Compare.jpg',
+        img_src: './assets/images/SCIENCE/SC_Compare.jpg',
         img_txt: 'SC Compare',
-        thumbs_src: './assets/thumbs/POPSCIENCE/SC_Compare.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/SC_Compare.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/SC_Compare.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/SC_Compare.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/mouse02 copy.jpg',
+        img_src: './assets/images/SCIENCE/mouse02 copy.jpg',
         img_txt: 'Mice',
-        thumbs_src: './assets/thumbs/POPSCIENCE/mouse02 copy.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/mouse02 copy.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/mouse02 copy.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/mouse02 copy.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/2017TheCancerGame.jpg',
+        img_src: './assets/images/SCIENCE/2017TheCancerGame.jpg',
         img_txt: 'The Cancer Game',
-        thumbs_src: './assets/thumbs/POPSCIENCE/2017TheCancerGame.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/2017TheCancerGame.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/2017TheCancerGame.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/2017TheCancerGame.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/2017TheRustNetworkFINAL.jpg',
+        img_src: './assets/images/SCIENCE/2017TheRustNetworkFINAL.jpg',
         img_txt: 'The Rust Network',
-        thumbs_src: './assets/thumbs/POPSCIENCE/2017TheRustNetworkFINAL.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/2017TheRustNetworkFINAL.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/2017TheRustNetworkFINAL.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/2017TheRustNetworkFINAL.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/KnotParticles.jpg',
+        img_src: './assets/images/SCIENCE/KnotParticles.jpg',
         img_txt: 'Knot Particles',
-        thumbs_src: './assets/thumbs/POPSCIENCE/KnotParticles.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/KnotParticles.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/KnotParticles.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/KnotParticles.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/ShellLayers.jpg',
-        img_txt: 'Shell Layers',
-        thumbs_src: './assets/thumbs/POPSCIENCE/ShellLayers.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/ShellLayers.jpg'
-    }, {
-        img_src: './assets/images/POPSCIENCE/StrawberryChem.jpg',
+        img_src: './assets/images/SCIENCE/StrawberryChem.jpg',
         img_txt: 'Strawberry',
-        thumbs_src: './assets/thumbs/POPSCIENCE/StrawberryChem.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/StrawberryChem.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/StrawberryChem.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/StrawberryChem.jpg'
     }, {
-        img_src: './assets/images/POPSCIENCE/Vertigo_Prokaryote.jpg',
+        img_src: './assets/images/SCIENCE/Vertigo_Prokaryote.jpg',
         img_txt: 'Vertigo Prokaryote',
-        thumbs_src: './assets/thumbs/POPSCIENCE/Vertigo_Prokaryote.jpg',
-        super_thumbs_src: './assets/superThumbs/POPSCIENCE/Vertigo_Prokaryote.jpg'
+        thumbs_src: './assets/thumbs/SCIENCE/Vertigo_Prokaryote.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/Vertigo_Prokaryote.jpg'
+    }, {
+        img_src: './assets/images/SCIENCE/AntibodyMagazine.jpg',
+        img_txt: 'Antibody',
+        thumbs_src: './assets/thumbs/SCIENCE/AntibodyMagazine.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/AntibodyMagazine.jpg'
+    }, {
+        img_src: './assets/images/SCIENCE/Bacillus.jpg',
+        img_txt: 'Bacillus - Published in Cell Trends in Microbiology',
+        thumbs_src: './assets/thumbs/SCIENCE/Bacillus.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/Bacillus.jpg'
+    }, {
+        img_src: './assets/images/SCIENCE/CLICgarment.tif',
+        img_txt: 'CLIC',
+        thumbs_src: './assets/thumbs/SCIENCE/CLICgarment.tif',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/CLICgarment.tif'
+    }, {
+        img_src: './assets/images/SCIENCE/CRISPR.jpg',
+        img_txt: 'CRISPR',
+        thumbs_src: './assets/thumbs/SCIENCE/CRISPR.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/CRISPR.jpg'
+    }, {
+        img_src: './assets/images/SCIENCE/CRISPRcloseup.jpg',
+        img_txt: 'CRISPR Closeup',
+        thumbs_src: './assets/thumbs/SCIENCE/CRISPRcloseup.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/CRISPRcloseup.jpg'
+    }, {
+        img_src: './assets/images/SCIENCE/Microwaves.jpg',
+        img_txt: 'Microwave',
+        thumbs_src: './assets/thumbs/SCIENCE/Microwaves.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/Microwaves.jpg'
+    }, {
+        img_src: './assets/images/SCIENCE/ProteinCityTitle.jpg',
+        img_txt: 'Protein City',
+        thumbs_src: './assets/thumbs/SCIENCE/ProteinCityTitle.jpg',
+        super_thumbs_src: './assets/superThumbs/SCIENCE/ProteinCityTitle.jpg'
     }],
     ANATOMY: [{
+        img_src: './assets/images/ANATOMY/MedArtRotation.jpg',
+        img_txt: 'Published in The Journal of Shoulder and Elbow Surgery',
+        thumbs_src: './assets/thumbs/ANATOMY/MedArtRotation.jpg',
+        super_thumbs_src: './assets/superThumbs/ANATOMY/MedArtRotation.jpg'
+    }, {
+        img_src: './assets/images/ANATOMY/EyeRend02.jpg',
+        img_txt: 'Eye',
+        thumbs_src: './assets/thumbs/ANATOMY/EyeRend02.jpg',
+        super_thumbs_src: './assets/superThumbs/ANATOMY/EyeRend02.jpg'
+    }, {
         img_src: './assets/images/ANATOMY/CatAnatomy2.jpg',
         img_txt: 'Cat Anatomy',
         thumbs_src: './assets/thumbs/ANATOMY/CatAnatomy2.jpg',
@@ -2240,6 +2333,36 @@ var projectListInitial = {
         super_thumbs_src: './assets/superThumbs/UterineInversion/UIFolder.jpg'
     }],
     'POSTERS/LOGOS': [{
+        img_src: './assets/images/POSTERS/AntiVenom.jpg',
+        img_txt: 'AntiVenom',
+        thumbs_src: './assets/thumbs/POSTERS/AntiVenom.jpg',
+        super_thumbs_src: './assets/superThumbs/POSTERS/AntiVenom.jpg'
+    }, {
+        img_src: './assets/images/POSTERS/CellMockup_CutVirus.jpg',
+        img_txt: 'Cell cover',
+        thumbs_src: './assets/thumbs/POSTERS/CellMockup_CutVirus.jpg',
+        super_thumbs_src: './assets/superThumbs/POSTERS/CellMockup_CutVirus.jpg'
+    }, {
+        img_src: './assets/images/POSTERS/LeotideIconTest.jpg',
+        img_txt: 'Logo',
+        thumbs_src: './assets/thumbs/POSTERS/LeotideIconTest.jpg',
+        super_thumbs_src: './assets/superThumbs/POSTERS/LeotideIconTest.jpg'
+    }, {
+        img_src: './assets/images/POSTERS/ProteinExpression.png',
+        img_txt: 'Protein Expression',
+        thumbs_src: './assets/thumbs/POSTERS/ProteinExpression.png',
+        super_thumbs_src: './assets/superThumbs/POSTERS/ProteinExpression.png'
+    }, {
+        img_src: './assets/images/POSTERS/SeptemberFlier.jpg',
+        img_txt: 'September Flier',
+        thumbs_src: './assets/thumbs/POSTERS/SeptemberFlier.jpg',
+        super_thumbs_src: './assets/superThumbs/POSTERS/SeptemberFlier.jpg'
+    }, {
+        img_src: './assets/images/POSTERS/ShapeFormFunctionSigned.png',
+        img_txt: 'Shaped',
+        thumbs_src: './assets/thumbs/POSTERS/ShapeFormFunctionSigned.png',
+        super_thumbs_src: './assets/superThumbs/POSTERS/ShapeFormFunctionSigned.png'
+    }, {
         img_src: './assets/images/POSTERS/SwiftAvionics.jpg',
         img_txt: 'Swift Avionics',
         thumbs_src: './assets/thumbs/POSTERS/SwiftAvionics.jpg',
@@ -2403,76 +2526,96 @@ var projectListInitial = {
         thumbs_src: './assets/thumbs/FACTS/SeadragonFactsV2.jpg',
         super_thumbs_src: './assets/superThumbs/FACTS/SeadragonFactsV2.jpg'
     }],
-    FUN: [{
-        img_src: './assets/images/FUN/BurritoBots.jpg',
+    MISC: [{
+        img_src: './assets/images/MISC/CatGlass.jpg',
+        img_txt: 'CatGlass',
+        thumbs_src: './assets/thumbs/MISC/CatGlass.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/CatGlass.jpg'
+    }, {
+        img_src: './assets/images/MISC/InktoberFinal02.jpg',
+        img_txt: 'Inktober',
+        thumbs_src: './assets/thumbs/MISC/InktoberFinal02.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/InktoberFinal02.jpg'
+    }, {
+        img_src: './assets/images/MISC/Mantiski1.jpg',
+        img_txt: 'Mantiski',
+        thumbs_src: './assets/thumbs/MISC/Mantiski1.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/Mantiski1.jpg'
+    }, {
+        img_src: './assets/images/MISC/Mantiski2.jpg',
+        img_txt: 'More Mantiski',
+        thumbs_src: './assets/thumbs/MISC/Mantiski2.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/Mantiski2.jpg'
+    }, {
+        img_src: './assets/images/MISC/BurritoBots.jpg',
         img_txt: 'BurritoBots',
-        thumbs_src: './assets/thumbs/FUN/BurritoBots.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/BurritoBots.jpg'
+        thumbs_src: './assets/thumbs/MISC/BurritoBots.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/BurritoBots.jpg'
     }, {
-        img_src: './assets/images/FUN/CatJedi.jpg',
+        img_src: './assets/images/MISC/CatJedi.jpg',
         img_txt: 'Cat Jedi',
-        thumbs_src: './assets/thumbs/FUN/CatJedi.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/CatJedi.jpg'
+        thumbs_src: './assets/thumbs/MISC/CatJedi.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/CatJedi.jpg'
     }, {
-        img_src: './assets/images/FUN/DigiShort.jpg',
+        img_src: './assets/images/MISC/DigiShort.jpg',
         img_txt: 'DigiShort',
-        thumbs_src: './assets/thumbs/FUN/DigiShort.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/DigiShort.jpg'
+        thumbs_src: './assets/thumbs/MISC/DigiShort.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/DigiShort.jpg'
     }, {
-        img_src: './assets/images/FUN/DragonCooks.jpg',
+        img_src: './assets/images/MISC/DragonCooks.jpg',
         img_txt: 'DragonCooks',
-        thumbs_src: './assets/thumbs/FUN/DragonCooks.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/DragonCooks.jpg'
+        thumbs_src: './assets/thumbs/MISC/DragonCooks.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/DragonCooks.jpg'
     }, {
-        img_src: './assets/images/FUN/FruitStats.jpg',
+        img_src: './assets/images/MISC/FruitStats.jpg',
         img_txt: 'FruitStats',
-        thumbs_src: './assets/thumbs/FUN/FruitStats.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/FruitStats.jpg'
+        thumbs_src: './assets/thumbs/MISC/FruitStats.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/FruitStats.jpg'
     }, {
-        img_src: './assets/images/FUN/HappyBorkday.jpg',
+        img_src: './assets/images/MISC/HappyBorkday.jpg',
         img_txt: 'HappyBorkday',
-        thumbs_src: './assets/thumbs/FUN/HappyBorkday.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/HappyBorkday.jpg'
+        thumbs_src: './assets/thumbs/MISC/HappyBorkday.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/HappyBorkday.jpg'
     }, {
-        img_src: './assets/images/FUN/JarPunch.jpg',
+        img_src: './assets/images/MISC/JarPunch.jpg',
         img_txt: 'JarPunch',
-        thumbs_src: './assets/thumbs/FUN/JarPunch.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/JarPunch.jpg'
+        thumbs_src: './assets/thumbs/MISC/JarPunch.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/JarPunch.jpg'
     }, {
-        img_src: './assets/images/FUN/MerryZilla.jpg',
+        img_src: './assets/images/MISC/MerryZilla.jpg',
         img_txt: 'MerryZilla',
-        thumbs_src: './assets/thumbs/FUN/MerryZilla.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/MerryZilla.jpg'
+        thumbs_src: './assets/thumbs/MISC/MerryZilla.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/MerryZilla.jpg'
     }, {
-        img_src: './assets/images/FUN/PhoPuns.jpg',
+        img_src: './assets/images/MISC/PhoPuns.jpg',
         img_txt: 'PhoPuns',
-        thumbs_src: './assets/thumbs/FUN/PhoPuns.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/PhoPuns.jpg'
+        thumbs_src: './assets/thumbs/MISC/PhoPuns.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/PhoPuns.jpg'
     }, {
-        img_src: './assets/images/FUN/Rahn.jpg',
+        img_src: './assets/images/MISC/Rahn.jpg',
         img_txt: 'Rahn',
-        thumbs_src: './assets/thumbs/FUN/Rahn.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/Rahn.jpg'
+        thumbs_src: './assets/thumbs/MISC/Rahn.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/Rahn.jpg'
     }, {
-        img_src: './assets/images/FUN/SamuraiJackal.jpg',
+        img_src: './assets/images/MISC/SamuraiJackal.jpg',
         img_txt: 'SamuraiJackal',
-        thumbs_src: './assets/thumbs/FUN/SamuraiJackal.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/SamuraiJackal.jpg'
+        thumbs_src: './assets/thumbs/MISC/SamuraiJackal.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/SamuraiJackal.jpg'
     }, {
-        img_src: './assets/images/FUN/eggbox.jpg',
+        img_src: './assets/images/MISC/eggbox.jpg',
         img_txt: 'eggbox',
-        thumbs_src: './assets/thumbs/FUN/eggbox.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/eggbox.jpg'
+        thumbs_src: './assets/thumbs/MISC/eggbox.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/eggbox.jpg'
     }, {
-        img_src: './assets/images/FUN/SushiDeconstruct.jpg',
+        img_src: './assets/images/MISC/SushiDeconstruct.jpg',
         img_txt: 'SushiDeconstruct',
-        thumbs_src: './assets/thumbs/FUN/SushiDeconstruct.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/SushiDeconstruct.jpg'
+        thumbs_src: './assets/thumbs/MISC/SushiDeconstruct.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/SushiDeconstruct.jpg'
     }, {
-        img_src: './assets/images/FUN/TerraMon.jpg',
+        img_src: './assets/images/MISC/TerraMon.jpg',
         img_txt: 'TerraMon',
-        thumbs_src: './assets/thumbs/FUN/TerraMon.jpg',
-        super_thumbs_src: './assets/superThumbs/FUN/TerraMon.jpg'
+        thumbs_src: './assets/thumbs/MISC/TerraMon.jpg',
+        super_thumbs_src: './assets/superThumbs/MISC/TerraMon.jpg'
     }],
     ANIMATION: [{
         img_src: './assets/ANIMATIONS/DNA_RenderGifu.gif',
@@ -2502,86 +2645,122 @@ var projectListInitial = {
         thumbs_src: './assets/thumbs/ANIMATIONS/01_MicroFinalRender01.jpg',
         super_thumbs_src: './assets/superThumbs/ANIMATIONS/01_MicroFinalRender01.jpg'
     }],
-    PRINTS: [{
-        img_src: './assets/images/PRINTS/burger print.jpg',
+    '3D MODELS/PRINTING': [{
+        img_src: './assets/3DMODELS/GolgonMiniPaint.gif',
+        img_txt: 'Mini Golgon',
+        thumbs_src: './assets/thumbs/3DMODELS/GolgonMiniPaint.jpg',
+        super_thumbs_src: './assets/superThumbs/3DMODELS/GolgonMiniPaint.jpg'
+    }, {
+        img_src: './assets/3DMODELS/DragonSwimmer.gif',
+        img_txt: 'Dragon Swimmer',
+        thumbs_src: './assets/thumbs/3DMODELS/DragonSwimmer.jpg',
+        super_thumbs_src: './assets/superThumbs/3DMODELS/DragonSwimmer.jpg'
+    }, {
+        img_src: './assets/3DMODELS/SnakeConeCropped.gif',
+        img_txt: 'Snake Cone',
+        thumbs_src: './assets/thumbs/3DMODELS/SnakeConeCropped.jpg',
+        super_thumbs_src: './assets/superThumbs/3DMODELS/SnakeConeCropped.jpg'
+    }, {
+        img_src: './assets/3DMODELS/SnakeRice.gif',
+        img_txt: 'Snake Rice',
+        thumbs_src: './assets/thumbs/3DMODELS/SnakeRice.jpg',
+        super_thumbs_src: './assets/superThumbs/3DMODELS/SnakeRice.jpg'
+    }],
+    STORE: [{
+        img_src: './assets/images/STORE/patches.jpg',
+        img_txt: 'Patches',
+        thumbs_src: './assets/thumbs/STORE/patches.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/patches.jpg'
+    }, {
+        img_src: './assets/images/STORE/InvisibleChameleonSticker.jpg',
+        img_txt: 'Invisible Chameleon Sticker',
+        thumbs_src: './assets/thumbs/STORE/InvisibleChameleonSticker.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/InvisibleChameleonSticker.jpg'
+    }, {
+        img_src: './assets/images/STORE/LabRat.png',
+        img_txt: 'Lab Rat',
+        thumbs_src: './assets/thumbs/STORE/LabRat.png',
+        super_thumbs_src: './assets/superThumbs/STORE/LabRat.png'
+    }, {
+        img_src: './assets/images/STORE/burger print.jpg',
         img_txt: 'Burger print',
-        thumbs_src: './assets/thumbs/PRINTS/burger print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/burger print.jpg'
+        thumbs_src: './assets/thumbs/STORE/burger print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/burger print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/cicada print.jpg',
+        img_src: './assets/images/STORE/cicada print.jpg',
         img_txt: 'Cicada print',
-        thumbs_src: './assets/thumbs/PRINTS/cicada print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/cicada print.jpg'
+        thumbs_src: './assets/thumbs/STORE/cicada print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/cicada print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/CLIC1 print.jpg',
+        img_src: './assets/images/STORE/CLIC1 print.jpg',
         img_txt: 'CLIC1 print',
-        thumbs_src: './assets/thumbs/PRINTS/CLIC1 print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/CLIC1 print.jpg'
+        thumbs_src: './assets/thumbs/STORE/CLIC1 print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/CLIC1 print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/crispr print.jpg',
+        img_src: './assets/images/STORE/crispr print.jpg',
         img_txt: 'CRISPR print',
-        thumbs_src: './assets/thumbs/PRINTS/crispr print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/crispr print.jpg'
+        thumbs_src: './assets/thumbs/STORE/crispr print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/crispr print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/cross print.jpg',
+        img_src: './assets/images/STORE/cross print.jpg',
         img_txt: 'Cross section print',
-        thumbs_src: './assets/thumbs/PRINTS/cross print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/cross print.jpg'
+        thumbs_src: './assets/thumbs/STORE/cross print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/cross print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/eye print.jpg',
+        img_src: './assets/images/STORE/eye print.jpg',
         img_txt: 'Eye print',
-        thumbs_src: './assets/thumbs/PRINTS/eye print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/eye print.jpg'
+        thumbs_src: './assets/thumbs/STORE/eye print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/eye print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/mouldystrawberry print.jpg',
+        img_src: './assets/images/STORE/mouldystrawberry print.jpg',
         img_txt: 'Mouldy Strawberry print',
-        thumbs_src: './assets/thumbs/PRINTS/mouldystrawberry print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/mouldystrawberry print.jpg'
+        thumbs_src: './assets/thumbs/STORE/mouldystrawberry print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/mouldystrawberry print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/mv print.jpg',
+        img_src: './assets/images/STORE/mv print.jpg',
         img_txt: 'Glorious MV print',
-        thumbs_src: './assets/thumbs/PRINTS/mv print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/mv print.jpg'
+        thumbs_src: './assets/thumbs/STORE/mv print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/mv print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/octopus print.jpg',
+        img_src: './assets/images/STORE/octopus print.jpg',
         img_txt: 'Octopus print',
-        thumbs_src: './assets/thumbs/PRINTS/octopus print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/octopus print.jpg'
+        thumbs_src: './assets/thumbs/STORE/octopus print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/octopus print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/panda print.jpg',
+        img_src: './assets/images/STORE/panda print.jpg',
         img_txt: 'Panda print',
-        thumbs_src: './assets/thumbs/PRINTS/panda print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/panda print.jpg'
+        thumbs_src: './assets/thumbs/STORE/panda print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/panda print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/poster print.jpg',
+        img_src: './assets/images/STORE/poster print.jpg',
         img_txt: 'Poster print',
-        thumbs_src: './assets/thumbs/PRINTS/poster print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/poster print.jpg'
+        thumbs_src: './assets/thumbs/STORE/poster print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/poster print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/seahorse print.jpg',
+        img_src: './assets/images/STORE/seahorse print.jpg',
         img_txt: 'Seahorse print',
-        thumbs_src: './assets/thumbs/PRINTS/seahorse print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/seahorse print.jpg'
+        thumbs_src: './assets/thumbs/STORE/seahorse print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/seahorse print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/shell print.jpg',
+        img_src: './assets/images/STORE/shell print.jpg',
         img_txt: 'Shell print',
-        thumbs_src: './assets/thumbs/PRINTS/shell print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/shell print.jpg'
+        thumbs_src: './assets/thumbs/STORE/shell print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/shell print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/slug print.jpg',
+        img_src: './assets/images/STORE/slug print.jpg',
         img_txt: 'Slug print',
-        thumbs_src: './assets/thumbs/PRINTS/slug print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/slug print.jpg'
+        thumbs_src: './assets/thumbs/STORE/slug print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/slug print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/strawberry print.jpg',
+        img_src: './assets/images/STORE/strawberry print.jpg',
         img_txt: 'Strawberry print',
-        thumbs_src: './assets/thumbs/PRINTS/strawberry print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/strawberry print.jpg'
+        thumbs_src: './assets/thumbs/STORE/strawberry print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/strawberry print.jpg'
     }, {
-        img_src: './assets/images/PRINTS/time crystal print.jpg',
+        img_src: './assets/images/STORE/time crystal print.jpg',
         img_txt: 'Time crystal print',
-        thumbs_src: './assets/thumbs/PRINTS/time crystal print.jpg',
-        super_thumbs_src: './assets/superThumbs/PRINTS/time crystal print.jpg'
+        thumbs_src: './assets/thumbs/STORE/time crystal print.jpg',
+        super_thumbs_src: './assets/superThumbs/STORE/time crystal print.jpg'
     }]
 };
 
@@ -2590,18 +2769,19 @@ var projectListLabels = {
     ALL: 'All your favourite science-based artworks, all in one place! Presented in a variety of styles, each artwork has careful thought behind them to best illustrate the topic they represent.',
     NATURE: 'I’ve heard it’s pretty scary.',
     ANATOMY: 'Delving into the inner structure of the body, one chorus of “ewwww”s at a time.',
-    'POP SCIENCE': 'A combination of scientific illustration and pop culture. The aim: To create thought-provoking artworks that stand out from the crowd from regular scientific illustrations.',
+    SCIENCE: 'A combination of scientific illustration and culture. The aim: To create thought-provoking artworks that stand out from the crowd from regular scientific illustrations.',
     'POSTERS/LOGOS': 'Smart, infographic-styled posters to educate the public in the latest scientific research. Commissioned logos by companies and individuals looking to make their ads stand out.',
     TYPOGRAPHY: 'Taking everyday letters and making them look better…with science!',
     FACTS: 'Learning every day! Fun facts for those who want to impress others with their knowledge of anything and everything. Or just cats, crabs and eels specifically.',
-    FUN: 'All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people.',
-    PRINTS: 'You can request any of my artworks printed, just send me an email using the contact me link at the bottom left of the page! Just include the name of the artwork you would like, your address (so we can calculate postage) and whether you would like it framed!',
+    MISC: 'All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people.',
+    '3D MODELS/PRINTING': '',
+    STORE: 'You can request any of my artworks printed, just send me an email using the contact me link at the bottom left of the page! Just include the name of the artwork you would like, your address (so we can calculate postage) and whether you would like it framed!',
     ANIMATION: 'Moving pictures!'
 };
 
 // This concat order is also important if you change stuff
 var project_list_all = function project_list_all() {
-    projectListInitial.ALL = projectListInitial.NATURE.concat(projectListInitial['POP SCIENCE'].concat(projectListInitial.ANATOMY.concat(projectListInitial.FACTS.concat(projectListInitial.TYPOGRAPHY))));
+    projectListInitial.ALL = projectListInitial.NATURE.concat(projectListInitial.SCIENCE.concat(projectListInitial.ANATOMY.concat(projectListInitial.FACTS.concat(projectListInitial.TYPOGRAPHY.concat(projectListInitial.MISC)))));
     return projectListInitial;
 };
 
@@ -2687,95 +2867,25 @@ var convert_type = function convert_type(style, properties, suffix) {
 
 exports.convert_type = convert_type;
 var HomeList = [{
-    img_src: './assets/images/HOMELIST/1 (1).jpg',
+    img_src: './assets/images/ANATOMY/RedPandaAnat.jpg',
     img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (1).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (1).jpg'
+    thumbs_src: './assets/thumbs/ANATOMY/RedPandaAnat.jpg',
+    super_thumbs_src: './assets/superThumbs/ANATOMY/RedPandaAnat.jpg'
 }, {
-    img_src: './assets/images/HOMELIST/1 (2).jpg',
+    img_src: './assets/images/3DMODELS/SnakeRice.jpg',
     img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (2).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (2).jpg'
+    thumbs_src: './assets/thumbs/3DMODELS/SnakeRice.jpg',
+    super_thumbs_src: './assets/superThumbs/3DMODELS/SnakeRice.jpg'
 }, {
-    img_src: './assets/images/HOMELIST/1 (3).jpg',
+    img_src: './assets/images/POSTERS/SeptemberFlier.jpg',
     img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (3).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (3).jpg'
+    thumbs_src: './assets/thumbs/POSTERS/SeptemberFlier.jpg',
+    super_thumbs_src: './assets/superThumbs/POSTERS/SeptemberFlier.jpg'
 }, {
-    img_src: './assets/images/HOMELIST/1 (4).jpg',
+    img_src: './assets/images/POSTERS/CellMockup_CutVirus.jpg',
     img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (4).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (4).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (5).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (5).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (5).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (6).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (6).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (6).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (7).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (7).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (7).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (8).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (8).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (8).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (1).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (1).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (1).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (9).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (9).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (9).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (10).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (10).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (10).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (11).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (11).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (11).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (12).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (12).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (12).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (13).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (13).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (13).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (14).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (14).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (14).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (15).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (15).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (15).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (16).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (16).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (16).jpg'
-}, {
-    img_src: './assets/images/HOMELIST/1 (17).jpg',
-    img_txt: '',
-    thumbs_src: './assets/thumbs/HOMELIST/1 (17).jpg',
-    super_thumbs_src: './assets/superThumbs/HOMELIST/1 (17).jpg'
+    thumbs_src: './assets/thumbs/POSTERS/CellMockup_CutVirus.jpg',
+    super_thumbs_src: './assets/superThumbs/POSTERS/CellMockup_CutVirus.jpg'
 }];
 
 var HomeInitial = (function () {
