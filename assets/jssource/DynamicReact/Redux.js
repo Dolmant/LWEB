@@ -1,7 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
-import { HomeInitial, category, TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, isTouch, SELECT_HOME, TOGGLE_OVERLAY, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE, projectList, getImageSrc, ArrayLimitsCalc } from './../consts';
+import { HomeInitial, category, isTouch, projectList, getImageSrc, ArrayLimitsCalc } from './../consts';
+import { TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, SELECT_PAGE, TOGGLE_OVERLAY, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE } from './Actions';
+import ShoppingCartReducer from './../Shop/ShoppingCart/ShoppingCartReducers';
+import CombinedCheckoutReducer from './../Shop/Checkout/CheckoutReducers';
+import CombinedPostageCalculatorReducer from './../Shop/PostageCalculator/PostageCalculatorReducers';
 // reducer handles how the state updates
 
 
@@ -14,7 +18,16 @@ const initial_category = () => {
 
 const InitalState = {
 	category: initial_category(),
-	home: true,
+    page: 'home',
+    shoppingCart: [],
+    checkout: {
+        loading: false,
+        checkoutResult: {},
+    },
+    postageCalculator: {
+        loading: false,
+        postageResult: {},
+    },
 	list: HomeInitial,
 	overlay_image: 1,
 	overlay_vertical_index: {},
@@ -84,7 +97,7 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 	let image = _overlay.image;
 	switch (action.type) {
 	case NAV_OVERLAY_IMAGE:
-		switch (action.direction) {
+		switch (action.payload) {
 		case 'left':
 			overlay_image_num -= 1;
 			break;
@@ -102,11 +115,11 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 		}
 		break;
 	case UPDATE_OVERLAY_IMAGE:
-		overlay_image_num = action.index;
+		overlay_image_num = action.payload;
 		break;
 	case TOGGLE_OVERLAY:
-		state = action.state;
-		image = action.image;
+		state = action.payload.state;
+		image = action.payload.image;
 		break;
 	default:
 		break;
@@ -151,7 +164,7 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 function selectedCategory(state = InitalState.category, action) {
 	let selectedcat = state;
 	if (action.type === UPDATE_CATEGORY) {
-		selectedcat = action.category;
+		selectedcat = action.payload;
 	}
 	return selectedcat;
 }
@@ -159,8 +172,8 @@ function selectedCategory(state = InitalState.category, action) {
 function selectedList(state = InitalState.list, action) {
 	let list;
 	if (action.type === UPDATE_CATEGORY) {
-		if (Object.keys(projectList).includes(action.category)) {
-			list = projectList[action.category];
+		if (Object.keys(projectList).includes(action.payload)) {
+			list = projectList[action.payload];
 		} else {
 			// Home list
 			list = InitalState.list;
@@ -172,7 +185,7 @@ function selectedList(state = InitalState.list, action) {
 
 function introState(state = InitalState.introOn, action) {
 	if (action.type === UPDATE_INTROSTATE) {
-		return action.statebool;
+		return action.payload;
 	}
 	return state;
 }
@@ -191,12 +204,12 @@ function touchmenuToggle(state = InitalState.touchmenu_active, action) {
 	return state;
 }
 
-function selectHome(state = InitalState.home, action) {
-	if (action.type === SELECT_HOME) {
-		return true;
+function selectPage(state = InitalState.page, action) {
+	if (action.type === SELECT_PAGE) {
+		return action.payload;
 	}
 	if (action.type === UPDATE_CATEGORY) {
-		return false;
+		return 'portfolio';
 	}
 	return state;
 }
@@ -208,10 +221,13 @@ function allReducers(state = {}, action) {
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action),
 		isTouch,
-		home: selectHome(state.home, action),
+		page: selectPage(state.page, action),
 		touchmenu_active: touchmenuToggle(state.touchmenu_active, action),
 		introOn: introState(state.introOn, action),
-		sidebarOpen: sidebarToggle(state.sidebarOpen, action),
+        sidebarOpen: sidebarToggle(state.sidebarOpen, action),
+        shoppingCart: ShoppingCartReducer(state.shoppingCart, action),
+        checkout: CombinedCheckoutReducer(state.checkout, action),
+        postageCalculator: CombinedPostageCalculatorReducer(state.postageCalculator, action),
 		...selectedOverlayImageNum(state.overlay_image_num,
 			state.category,
 			state.overlay_vertical_index,

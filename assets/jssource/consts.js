@@ -1,48 +1,5 @@
 import $ from './jquery.min';
 
-export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
-export function updateCategory(category) {
-    return { type: UPDATE_CATEGORY, category };
-}
-
-export const UPDATE_INTROSTATE = 'UPDATE_INTROSTATE';
-export function updateIntroState(statebool) {
-    return { type: UPDATE_INTROSTATE, statebool };
-}
-
-export const TOGGLE_TOUCHMENU = 'TOGGLE_TOUCHMENU';
-export function toggleTouchmenu() {
-    return { type: TOGGLE_TOUCHMENU };
-}
-
-export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
-export function toggleSidebar() {
-    return { type: TOGGLE_SIDEBAR };
-}
-
-export const UPDATE_OVERLAY_IMAGE = 'UPDATE_OVERLAY_IMAGE';
-export function updateOverlayImage(index) {
-    return { type: UPDATE_OVERLAY_IMAGE, index };
-}
-
-export const TOGGLE_OVERLAY = 'TOGGLE_OVERLAY';
-export function toggleOverlay(state, image) {
-    return { type: TOGGLE_OVERLAY, state, image };
-}
-
-export const NAV_OVERLAY_IMAGE = 'NAV_OVERLAY_IMAGE';
-export function navOverlayImage(direction) {
-    return { type: NAV_OVERLAY_IMAGE, direction };
-}
-
-export const SELECT_HOME = 'SELECT_HOME';
-export function selectHome() {
-    return dispatch => {
-        dispatch(updateCategory(''));
-        return dispatch({type: SELECT_HOME});
-    };
-}
-
 export const isTouch = (($(window).width() < 1000)); //|| 'ontouchstart' in document.documentElement);
 
 const projectListInitial = {
@@ -257,10 +214,10 @@ const projectListInitial = {
             super_thumbs_src: './assets/superThumbs/SCIENCE/Bacillus.jpg',
         },
         {
-            img_src: './assets/images/SCIENCE/CLICgarment.tif',
+            img_src: './assets/images/SCIENCE/CLICgarment.jpg',
             img_txt: 'CLIC',
-            thumbs_src: './assets/thumbs/SCIENCE/CLICgarment.tif',
-            super_thumbs_src: './assets/superThumbs/SCIENCE/CLICgarment.tif',
+            thumbs_src: './assets/thumbs/SCIENCE/CLICgarment.jpg',
+            super_thumbs_src: './assets/superThumbs/SCIENCE/CLICgarment.jpg',
         },
         {
             img_src: './assets/images/SCIENCE/CRISPR.jpg',
@@ -794,25 +751,25 @@ const projectListInitial = {
     ],
     '3D MODELS/PRINTING': [
         {
-            img_src: './assets/3DMODELS/GolgonMiniPaint.gif',
+            img_src: './assets/images/3DMODELS/GolgonMiniPaint.jpg',
             img_txt: 'Mini Golgon',
             thumbs_src: './assets/thumbs/3DMODELS/GolgonMiniPaint.jpg',
             super_thumbs_src: './assets/superThumbs/3DMODELS/GolgonMiniPaint.jpg',
         },
         {
-            img_src: './assets/3DMODELS/DragonSwimmer.gif',
+            img_src: './assets/images/3DMODELS/DragonSwimmer.jpg',
             img_txt: 'Dragon Swimmer',
             thumbs_src: './assets/thumbs/3DMODELS/DragonSwimmer.jpg',
             super_thumbs_src: './assets/superThumbs/3DMODELS/DragonSwimmer.jpg',
         },
         {
-            img_src: './assets/3DMODELS/SnakeConeCropped.gif',
+            img_src: './assets/images/3DMODELS/SnakeConeCropped.jpg',
             img_txt: 'Snake Cone',
             thumbs_src: './assets/thumbs/3DMODELS/SnakeConeCropped.jpg',
             super_thumbs_src: './assets/superThumbs/3DMODELS/SnakeConeCropped.jpg',
         },
         {
-            img_src: './assets/3DMODELS/SnakeRice.gif',
+            img_src: './assets/images/3DMODELS/SnakeRice.jpg',
             img_txt: 'Snake Rice',
             thumbs_src: './assets/thumbs/3DMODELS/SnakeRice.jpg',
             super_thumbs_src: './assets/superThumbs/3DMODELS/SnakeRice.jpg',

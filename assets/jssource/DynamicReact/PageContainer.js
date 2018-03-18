@@ -1,10 +1,13 @@
+// @flow
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import LazySizes from 'react-lazysizes';
 import {TransitionMotion, spring, presets} from 'react-motion';
-import { updateOverlayImage, category, toggleOverlay, convert_type } from './../consts';
+import Checkout from './../Shop/Checkout/Checkout';
+import { category, convert_type } from './../consts';
+import { updateOverlayImage, toggleOverlay } from './Actions';
 
 class LeftNavButton extends React.Component {
 	render() {
@@ -83,7 +86,7 @@ const PageContainer = (props) => {
 		</div>,
 	);
 
-	if (props.home) {
+	if (props.page === 'home') {
 		return (
 			<div>
 				<div className="sidescroller">
@@ -134,6 +137,11 @@ const PageContainer = (props) => {
 				</div>
 			</div>
 		);
+    }
+    if (props.page === 'checkout') {
+		return (
+            <Checkout />
+		);
 	}
 	return (
 		<div>
@@ -166,12 +174,12 @@ PageContainer.propTypes = {
 	onImageClick: PropTypes.func.isRequired,
 	category: PropTypes.string.isRequired,
 	introOn: PropTypes.bool.isRequired,
-	home: PropTypes.bool.isRequired,
+	page: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
 	list: state.list,
-	home: state.home,
+	page: state.page,
 	category: state.category,
 	introOn: state.introOn,
 });

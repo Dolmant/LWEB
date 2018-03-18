@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import $ from './../jquery.min';
-import { toggleSidebar } from './../consts';
-import { selectHome, updateIntroState } from './../consts';
+import { selectPage, updateIntroState, toggleSidebar } from './Actions';
 import {Motion, spring, presets} from 'react-motion';
+import ShoppingCart from './../Shop/ShoppingCart/ShoppingCart';
 
 class IntroHeader extends React.Component {
 	SidebarHelper(delay) {
@@ -54,21 +54,22 @@ class IntroHeader extends React.Component {
 					</h1>
 					<div className="right">
 						{/* <a className="about-me" style={style()} onClick={() => this.aboutMeClick()}>About Me</a> */}
+						{!this.props.introOn && (this.props.category === 'STORE' || this.props.page === 'checkout')? <ShoppingCart /> : null}
 					</div>
 				</div>
 		);
 		if (this.props.introOn) {
 			return (
-				<header className={this.props.introOn ? 'introHeaderTemp' : 'main-header'}>
+				<header className="introHeaderTemp">
 					{result}
 				</header>
 			);
 		}
 		return (
-			<header className={this.props.introOn ? 'introHeaderTemp' : 'main-header'}>
+			<header className="main-header">
 				<Motion defaultStyle={{opacity: 0}} style={{opacity: spring(1, {stiffness: 20, damping: 17})}}>
 					{interpolatingStyle => 
-						<header key={1} style={interpolatingStyle} className={this.props.introOn ? 'introHeaderTemp' : 'main-header'}>
+						<header key={1} style={interpolatingStyle} className="main-header">
 							{result}
 						</header>
 					}
@@ -82,10 +83,12 @@ IntroHeader.propTypes = {
 	introOn: PropTypes.bool.isRequired,
 	onSidebarOpen: PropTypes.func.isRequired,
 	sidebarOpen: PropTypes.bool.isRequired,
+	category: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
 	introOn: state.introOn,
+	category: state.category,
 	sidebarOpen: state.sidebarOpen,
 });
 
@@ -94,7 +97,7 @@ const mapDispatchToProps = dispatch => ({
 		dispatch(toggleSidebar());
 	},
 	onHomeClick: () => {
-		dispatch(selectHome());
+		dispatch(selectPage('home'));
 	},
 	onScrollOver: () => {
 		dispatch(updateIntroState(false));

@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Motion, spring, presets} from 'react-motion';
-import $ from './../jquery.min';
-import { scrollPoint, updateIntroState, convert_type } from './../consts';
+import { scrollPoint, convert_type } from './../consts';
+import { updateIntroState } from './Actions';
 
 let bounce = true;
 class Intro extends React.Component {

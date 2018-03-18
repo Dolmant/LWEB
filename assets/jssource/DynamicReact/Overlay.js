@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LazySizes from 'react-lazysizes';
 import $ from './../jquery.min';
-import { navOverlayImage, toggleOverlay } from './../consts';
+import { navOverlayImage, toggleOverlay } from './Actions';
 
 class Overlay extends React.Component {
 	formOverride(event) {

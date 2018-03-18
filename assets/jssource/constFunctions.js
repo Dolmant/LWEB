@@ -1,6 +1,7 @@
 import store from './DynamicReact/Redux';
 import $ from './jquery.min';
-import { scrollPoint, updateIntroState } from './consts';
+import { scrollPoint } from './consts';
+import { updateIntroState } from './DynamicReact/Actions';
 
 export default function animateScroll(delay) {
 	//$('.introVideo').get(0).pause();

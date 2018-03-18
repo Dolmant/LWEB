@@ -5,7 +5,8 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import {Motion, spring, presets} from 'react-motion';
-import { updateCategory, toggleTouchmenu, category } from './../consts';
+import { category } from './../consts';
+import { updateCategory, toggleTouchmenu } from './Actions';
 
 class Filters extends React.Component {
 	constructor(props) {

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toggleOverlay } from './../consts';
+import { toggleOverlay } from './Actions';
 
 const Footer = (props) => {
 	if (!props.introOn) {

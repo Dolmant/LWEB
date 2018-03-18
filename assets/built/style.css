@@ -559,10 +559,10 @@ footer a:hover {
 
 .overlay_container {
   position: relative;
-  top: 5%;
+  top: 10%;
   left: 5%;
   width: 90%;
-  height: 90%;
+  height: 80%;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -627,15 +627,17 @@ footer a:hover {
   left: 48%;
   width: 4%;
   overflow: hidden;
-  cursor: pointer; }
+  cursor: pointer;
+  filter: brightness(4); }
 
 .img-wrap-down-overlay {
   position: absolute;
-  top: 99%;
+  top: 104%;
   left: 48%;
   width: 4%;
   overflow: hidden;
-  cursor: pointer; }
+  cursor: pointer;
+  filter: brightness(4); }
 
 .overlayimage {
   background: white; }
