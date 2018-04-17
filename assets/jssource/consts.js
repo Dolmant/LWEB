@@ -926,7 +926,7 @@ function setImageNum(dict) {
         for (let i = 0, len = arrayRaw.length; i < len; i += 1) {
             arrayRaw[i].item_number = x + i;
             if (!arrayRaw[i].types) {
-                arrayRaw[i].types = [{id: 'framed', desc: 'Add Frame ($40)', cost: 40}, {id: 'poster', desc: 'Add Poster ($20)', cost: 20}, {id: 'sticker', desc: 'Add Sticker ($5)', cost: 5}];
+                arrayRaw[i].types = [{id: 'framed', desc: 'Add 30cm by 40cm Frame ($40)', cost: 40}, {id: 'poster', desc: 'Add Poster ($20)', cost: 20}, {id: 'sticker', desc: 'Add Sticker ($5)', cost: 5}];
             }
         }
         x += arrayRaw.length;
