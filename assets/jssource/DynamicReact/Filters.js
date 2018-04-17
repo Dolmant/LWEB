@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Popover from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
+import Menu, {MenuItem} from 'material-ui/Menu';
+import Fade from 'material-ui/transitions/Fade';
 import {Motion, spring, presets} from 'react-motion';
 import { category } from './../consts';
 import { updateCategory, toggleTouchmenu } from './Actions';
@@ -46,25 +45,28 @@ class Filters extends React.Component {
 			if (['ALL'].includes(item)) {
 				// generate menu here
 				return (
-					<li key={item} onMouseOver={this.handleOpenMenu} onClick={this.handleOpenMenu} id="HEADER"><a><strong>ILLUSTRATIONS</strong></a>
-						<Popover
-							open={this.state.open}
-							anchorEl={this.state.anchorEl}
+					<li key={item} onClick={this.handleOpenMenu} id="HEADER"><a><strong>ILLUSTRATIONS <i className="fa fa-chevron-down" /></strong></a>
+						{/* <Popover
+
 							anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
 							targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-							onRequestClose={this.handleRequestClose}
 							useLayerForClickAway={false}
-						>
-							<Menu className="hi" onMouseLeave={() => setTimeout(this.handleRequestClose, 500)}>
-								<MenuItem primaryText="ALL" id="ALL" onClick={() => this.handleSelectMenu('ALL')} />
-								<MenuItem primaryText="NATURE" id="NATURE" onClick={() => this.handleSelectMenu('NATURE')} />
-								<MenuItem primaryText="SCIENCE" id="SCIENCE" onClick={() => this.handleSelectMenu('SCIENCE')} />
-								<MenuItem primaryText="ANATOMY" id="ANATOMY" onClick={() => this.handleSelectMenu('ANATOMY')} />
-								<MenuItem primaryText="FACTS" id="FACTS" onClick={() => this.handleSelectMenu('FACTS')} />
-								<MenuItem primaryText="TYPOGRAPHY" id="TYPOGRAPHY" onClick={() => this.handleSelectMenu('TYPOGRAPHY')} />
-								<MenuItem primaryText="MISC" id="MISC" onClick={() => this.handleSelectMenu('MISC')} />
-							</Menu>
-						</Popover>
+						> */}
+                        <Menu
+                            onClose={this.handleRequestClose}
+                            className="hi"
+                            transition={Fade}
+                            open={this.state.open}
+                            anchorEl={this.state.anchorEl}
+                        >
+                            <MenuItem id="ALL" onClick={() => this.handleSelectMenu('ALL')} >ALL</MenuItem>
+                            <MenuItem id="NATURE" onClick={() => this.handleSelectMenu('NATURE')} >NATURE</MenuItem>
+                            <MenuItem id="SCIENCE" onClick={() => this.handleSelectMenu('SCIENCE')} >SCIENCE</MenuItem>
+                            <MenuItem id="ANATOMY" onClick={() => this.handleSelectMenu('ANATOMY')} >ANATOMY</MenuItem>
+                            <MenuItem id="FACTS" onClick={() => this.handleSelectMenu('FACTS')} >FACTS</MenuItem>
+                            <MenuItem id="TYPOGRAPHY" onClick={() => this.handleSelectMenu('TYPOGRAPHY')} >TYPOGRAPHY</MenuItem>
+                            <MenuItem id="MISC" onClick={() => this.handleSelectMenu('MISC')} >MISC</MenuItem>
+                        </Menu>
 					</li>
 				);
 			}
@@ -74,10 +76,10 @@ class Filters extends React.Component {
 				</li>);
         };
         const sorter = (category1, category2) => {
-            if (category1 === 'STORE') {
+            if (category1 === 'CHECKOUT') {
                 return 1;
             }
-            if (category2 === 'STORE') {
+            if (category2 === 'CHECKOUT') {
                 return -1;
             }
             if (category1 === '3D MODELS/PRINTING') {

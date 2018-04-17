@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
-import { HomeInitial, category, isTouch, projectList, getImageSrc, ArrayLimitsCalc } from './../consts';
+import { HomeInitial, category, isTouch, projectList, getImageById, ArrayLimitsCalc } from './../consts';
 import { TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, SELECT_PAGE, TOGGLE_OVERLAY, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE } from './Actions';
-import ShoppingCartReducer from './../Shop/ShoppingCart/ShoppingCartReducers';
+import CartManagementReducer from './../Shop/CartManagement/CartManagementReducers';
 import CombinedCheckoutReducer from './../Shop/Checkout/CheckoutReducers';
 import CombinedPostageCalculatorReducer from './../Shop/PostageCalculator/PostageCalculatorReducers';
 // reducer handles how the state updates
@@ -128,7 +128,7 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
     if (!overlay_vertical_index[overlay_image_num]) {
         overlay_vertical_index[overlay_image_num] = 0;
     }
-	const temp_image_data = getImageSrc(overlay_image_num);
+	const temp_image_data = getImageById(overlay_image_num);
 	let overlay_image_src = '';
     let overlay_thumb_src = '';
 	let vertical_limit = 0;
@@ -151,6 +151,7 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
 		overlay_image_num,
 		overlay_image_src,
         overlay_thumb_src,
+        overlay_types: temp_image_data.types,
         overlay_txt: temp_image_data.img_txt,
 		overlay: {
 			arrows,
@@ -225,7 +226,7 @@ function allReducers(state = {}, action) {
 		touchmenu_active: touchmenuToggle(state.touchmenu_active, action),
 		introOn: introState(state.introOn, action),
         sidebarOpen: sidebarToggle(state.sidebarOpen, action),
-        shoppingCart: ShoppingCartReducer(state.shoppingCart, action),
+        shoppingCart: CartManagementReducer(state.shoppingCart, action),
         checkout: CombinedCheckoutReducer(state.checkout, action),
         postageCalculator: CombinedPostageCalculatorReducer(state.postageCalculator, action),
 		...selectedOverlayImageNum(state.overlay_image_num,

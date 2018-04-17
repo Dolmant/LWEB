@@ -18,6 +18,10 @@ export const actionCreators = {
     }),
     postage: () => (dispatch, getState) => {
         const state = getState();
+        dispatch({
+            type: ype.POSTAGE_REPLY,
+            payload: 40,
+        });
         /*
 
         api key f5cd8bd5-6a76-46ea-9978-a5248607c6b4
@@ -396,6 +400,6 @@ AUTH-KEY: your_api_key
   }
 }
         */
-        return true;
+        return 40;
     },
 };

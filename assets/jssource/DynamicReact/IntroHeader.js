@@ -2,9 +2,8 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import $ from './../jquery.min';
-import { selectPage, updateIntroState, toggleSidebar } from './Actions';
+import { selectPage, updateIntroState, toggleSidebar, updateCategory } from './Actions';
 import {Motion, spring, presets} from 'react-motion';
-import ShoppingCart from './../Shop/ShoppingCart/ShoppingCart';
 
 class IntroHeader extends React.Component {
 	SidebarHelper(delay) {
@@ -54,7 +53,12 @@ class IntroHeader extends React.Component {
 					</h1>
 					<div className="right">
 						{/* <a className="about-me" style={style()} onClick={() => this.aboutMeClick()}>About Me</a> */}
-						{!this.props.introOn && (this.props.category === 'STORE' || this.props.page === 'checkout')? <ShoppingCart /> : null}
+						{!this.props.introOn && this.props.category !== 'CHECKOUT'? 
+                            <div className="cursor" onClick={() => this.props.updateCategory('CHECKOUT')}>
+                                <i className="fa fa-shopping-cart" />
+                            </div>
+                        :
+                            null}
 					</div>
 				</div>
 		);
@@ -82,6 +86,7 @@ class IntroHeader extends React.Component {
 IntroHeader.propTypes = {
 	introOn: PropTypes.bool.isRequired,
 	onSidebarOpen: PropTypes.func.isRequired,
+	updateCategory: PropTypes.func.isRequired,
 	sidebarOpen: PropTypes.bool.isRequired,
 	category: PropTypes.string.isRequired,
 };
@@ -101,6 +106,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 	onScrollOver: () => {
 		dispatch(updateIntroState(false));
+    },
+    updateCategory: (page) => {
+		dispatch(updateCategory(page));
 	},
 });
 

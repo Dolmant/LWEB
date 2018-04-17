@@ -51,7 +51,7 @@ const PageContainer = (props) => {
 			}))}
 			styles={props.list.map(item => ({
 				key: item.item_number.toString(),
-				style: {left: spring(0, {stiffness: 300, damping: 30, precision: 1})},
+				style: {left: spring(0, {stiffness: 100, damping: 5, precision: 1})},
 				data: {
 					item_number: item.item_number,
 					thumbs_src: item.thumbs_src,
@@ -122,11 +122,6 @@ const PageContainer = (props) => {
 							<span className="underline">For a commission:</span><br />
 							- What type of comission? 2D/3D animation, illustration, 3D model or sketch?<br />
 							- Subject matter, size, black/white or colour, etc<br />
-							<br />
-							<span className="underline">For purchasing an item:</span><br />
-							- Double check the STORE section to see if the item you would like is already framed<br />
-							- Provide the name of the artwork you want (with/without frame) and your address<br />
-							- I will contact you with the sizes available and prices including shipping straight to your door!
 						</div>
 					</div>
 					<div className="boxes">
@@ -138,7 +133,7 @@ const PageContainer = (props) => {
 			</div>
 		);
     }
-    if (props.page === 'checkout') {
+    if (props.category === 'CHECKOUT') {
 		return (
             <Checkout />
 		);

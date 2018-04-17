@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LazySizes from 'react-lazysizes';
 import $ from './../jquery.min';
+import CartManagement from './../Shop/CartManagement/CartManagement';
 import { navOverlayImage, toggleOverlay } from './Actions';
 
 class Overlay extends React.Component {
@@ -97,8 +98,7 @@ class Overlay extends React.Component {
 									className="scale-img blur-up overlayimage"
 									src={this.props.overlay_thumb_src.toString()}
 									dataSrc={this.props.overlay_image_src.toString()}
-								>
-								</LazySizes>
+								/>
 							</div>
                         }
 						{this.props.overlay.is_video ?
@@ -106,6 +106,7 @@ class Overlay extends React.Component {
 							:
 							<div className="overlaytext">This image is large and will remain obfuscated until downloaded</div>
 						}
+                        <CartManagement id={this.props.overlay_image_num} types={this.props.overlay_types} />
 					</div>
 				);
 			}
@@ -176,16 +177,20 @@ Overlay.propTypes = {
 		}).isRequired,
 		state: PropTypes.bool.isRequired,
 		image: PropTypes.bool.isRequired,
-		is_video: PropTypes.bool,
+        is_video: PropTypes.bool,
 	}).isRequired,
+    overlay_image_num: PropTypes.number.isRequired,
 	overlay_image_src: PropTypes.string.isRequired,
 	overlay_thumb_src: PropTypes.string.isRequired,
+	overlay_types: PropTypes.array.isRequired,
 	overlay_txt: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
 	overlay_image_src: state.overlay_image_src,
 	overlay_thumb_src: state.overlay_thumb_src,
+	overlay_image_num: state.overlay_image_num,
+	overlay_types: state.overlay_types,
 	overlay_txt: state.overlay_txt,
 	overlay: state.overlay,
 });

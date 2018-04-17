@@ -1,24 +1,17 @@
-// @flow
 export const types = {
     ADD_TO_CART: 'ADD_TO_CART',
     REMOVE_FROM_CART: 'REMOVE_FROM_CART',
     EMPTY_CART: 'EMPTY_CART',
 };
 
-/*
-item: {
-    id: number,
-    count: number,
-}
-*/
 export const actionCreators = {
-    addToCart: (item) => ({
+    addToCart: (id, type) => ({
         type: types.ADD_TO_CART,
-        payload: item,
+        payload: {id, type},
     }),
-    removeFromCart: (item) => ({
+    removeFromCart: (id, type) => ({
         type: types.REMOVE_FROM_CART,
-        payload: item,
+        payload: {id, type},
     }),
     emptyCart: () => ({
         type: types.EMPTY_CART,

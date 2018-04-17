@@ -47,9 +47,10 @@ module.exports = function (grunt) {
 				options: {
 					transform: [
 						['babelify', {
-							loose: 'all',
+                            presets: ["es2015", "react", "stage-0"],
+                            plugins: ["transform-object-rest-spread"]
 						}],
-					],
+                    ],
 				},
 				files: {
 					// if the source file has an extension of es6 then
@@ -70,17 +71,13 @@ module.exports = function (grunt) {
 		watch: {
 			watchcss: {
 				files: ['./assets/scss/*.scss'],
-				tasks: ['sass'],
+				tasks: ['clean', 'browserify', 'sass', 'hash', 'htmlbuild'],
 			},
 			watchjs: {
-				files: ['./assets/jssource/*.js'],
-				tasks: ['browserify'],
-			},
-			watchreactjs: {
-				files: ['./assets/jssource/DynamicReact/*.js'],
-				tasks: ['browserify'],
-			},
-		},
+				files: ['./assets/jssource/**/*.js'],
+				tasks: ['clean', 'browserify', 'sass', 'hash', 'htmlbuild'],
+			},                      
+		},        
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-clean');

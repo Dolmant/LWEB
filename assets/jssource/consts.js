@@ -775,7 +775,7 @@ const projectListInitial = {
             super_thumbs_src: './assets/superThumbs/3DMODELS/SnakeRice.jpg',
         },
     ],
-    STORE: [
+    CHECKOUT: [
         {
             img_src: './assets/images/STORE/patches.jpg',
             img_txt: 'Patches',
@@ -903,8 +903,7 @@ const projectListLabels = {
     TYPOGRAPHY: 'Taking everyday letters and making them look better…with science!',
     FACTS: 'Learning every day! Fun facts for those who want to impress others with their knowledge of anything and everything. Or just cats, crabs and eels specifically.',
     MISC: 'All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people.',
-    '3D MODELS/PRINTING': '',
-    STORE: 'You can request any of my artworks printed, just send me an email using the contact me link at the bottom left of the page! Just include the name of the artwork you would like, your address (so we can calculate postage) and whether you would like it framed!',
+    '3D MODELS/PRINTING': 'Cute reptiles brought to life!',
     ANIMATION: 'Moving pictures!',
 };
 
@@ -926,6 +925,9 @@ function setImageNum(dict) {
         const arrayRaw = dict[arrayNames];
         for (let i = 0, len = arrayRaw.length; i < len; i += 1) {
             arrayRaw[i].item_number = x + i;
+            if (!arrayRaw[i].types) {
+                arrayRaw[i].types = [{id: 'framed', desc: 'Add Frame ($40)', cost: 40}, {id: 'poster', desc: 'Add Poster ($20)', cost: 20}, {id: 'sticker', desc: 'Add Sticker ($5)', cost: 5}];
+            }
         }
         x += arrayRaw.length;
     });
@@ -940,7 +942,7 @@ const [projectListBase, countNumberOfImages] = setImageNum(projectListInitial);
 export const projectList = project_list_all();
 export const NumberOfImages = countNumberOfImages;
 
-export function getImageSrc(ImageNum) {
+export function getImageById(ImageNum) {
     let result = false;
     Object.keys(projectList).forEach((arrayNames) => {
         const arrayRaw = projectList[arrayNames];

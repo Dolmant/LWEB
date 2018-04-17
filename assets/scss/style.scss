@@ -10,6 +10,15 @@
 	}
 }
 
+.cursor {
+    cursor: pointer;
+}
+
+.total {
+    text-align: right;
+    padding-bottom: 10px;
+}
+
 @-webkit-keyframes sdb {
     0% {
       opacity: 0; }
@@ -682,8 +691,7 @@ footer a:hover {
 
 .overlayimagecontrol {
 	display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     text-align: center;
     vertical-align: middle;
@@ -698,7 +706,8 @@ footer a:hover {
 }
 
 .overlaytext {
-	color: white;
+    color: white;
+    margin: 10px;
 }
 
 .overlayform {
