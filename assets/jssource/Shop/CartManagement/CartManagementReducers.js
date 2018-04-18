@@ -7,7 +7,7 @@ export default function CartManagementReducer(state = cartIS, action) {
     if (action.type === types.ADD_TO_CART) {
         const item = getImageById(action.payload.id);
 
-        const present = state.findIndex((item) => item.id === action.payload.id && item.type.id === action.payload.type.id);
+        const present = state.findIndex((item) => item.item_number === action.payload.id && item.type.id === action.payload.type.id);
         const newState = state.slice()
         if (present != -1) {
             newState[present].count += 1;
@@ -20,14 +20,14 @@ export default function CartManagementReducer(state = cartIS, action) {
         }
     }
     if (action.type === types.REMOVE_FROM_CART) {
-        const present = state.findIndex((item) => item.id === action.payload.id && item.type.id === action.payload.type.id);
+        const present = state.findIndex((item) => item.item_number === action.payload.id && item.type.id === action.payload.type.id);
         const newState = state.slice()
         if (present != -1) {
             if (newState[present].count > 1) {
                 newState[present].count -= 1;
                 return newState;
             } else {
-                newState.splice(1, present);
+                newState.splice(present, 1);
                 return newState;
             }
         } else {

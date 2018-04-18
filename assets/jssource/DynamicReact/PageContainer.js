@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import LazySizes from 'react-lazysizes';
-import {TransitionMotion, spring, presets} from 'react-motion';
 import Checkout from './../Shop/Checkout/Checkout';
 import { category, convert_type } from './../consts';
 import { updateOverlayImage, toggleOverlay } from './Actions';
@@ -42,35 +41,15 @@ const PageContainer = (props) => {
 	};
 
 	const listItems = (
-		<TransitionMotion
-			willLeave={willLeave}
-			willEnter={willEnter}
-			defaultStyles={props.list.map(item => ({
-				key: item.item_number.toString(),
-				style: {left: -100},
-			}))}
-			styles={props.list.map(item => ({
-				key: item.item_number.toString(),
-				style: {left: spring(0, {stiffness: 100, damping: 5, precision: 1})},
-				data: {
-					item_number: item.item_number,
-					thumbs_src: item.thumbs_src,
-					super_thumbs_src: item.super_thumbs_src,
-					img_txt: item.img_txt,
-				}
-			}))}>
-			{interpolatedStyles =>
-				<ul className="projects">
-					{interpolatedStyles.map((item, index) =>
-						<li key={item.key} style={{...convert_type(item.style, ['left'], 'vw')}} onClick={() => props.onImageClick(item.data.item_number)}>
-							<div className="img-wrap">
-								<img alt="It's not loading!" src={item.data.thumbs_src.toString()} />
-							</div>
-						</li>,
-					)}
-				</ul>
-			}
-		</TransitionMotion>
+        <ul className="projects">
+            {props.list.map((item, index) =>
+                <li key={item.key} onClick={() => props.onImageClick(item.item_number)}>
+                    <div className="img-wrap">
+                        <img alt="It's not loading!" src={item.thumbs_src.toString()} />
+                    </div>
+                </li>,
+            )}
+        </ul>
 	);
 
 	const listCaruosel = props.list.map(item =>

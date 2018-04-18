@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LazySizes from 'react-lazysizes';
 import $ from './../jquery.min';
-import CartManagement from './../Shop/CartManagement/CartManagement';
+import AddToCart from './../Shop/CartManagement/AddToCart';
 import { navOverlayImage, toggleOverlay } from './Actions';
 
 class Overlay extends React.Component {
@@ -106,7 +106,7 @@ class Overlay extends React.Component {
 							:
 							<div className="overlaytext">This image is large and will remain obfuscated until downloaded</div>
 						}
-                        <CartManagement id={this.props.overlay_image_num} types={this.props.overlay_types} />
+                        <AddToCart id={this.props.overlay_image_num} types={this.props.overlay_types} />
 					</div>
 				);
 			}

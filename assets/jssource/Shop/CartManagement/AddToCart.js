@@ -2,16 +2,21 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
+import AddIcon from '@material-ui/icons/Add';
 import Menu, {MenuItem} from 'material-ui/Menu';
 import {actionCreators} from './CartManagementActions';
 
-class CartManagement extends React.Component {
+class AddToCart extends React.Component {
     state = {
         anchorEl: null,
     };
 
     handleClick = (event) => {
-        this.setState({ anchorEl: event.currentTarget });
+        if (this.props.types.length === 1) {
+            this.props.addToCart(this.props.id, this.props.types[0]);
+        } else {
+            this.setState({ anchorEl: event.currentTarget });
+        }
     };
 
     handleClose = () => {
@@ -26,14 +31,16 @@ class CartManagement extends React.Component {
             );
         });
 		return (
-            <div>
+            <div style={{display: 'inline-block'}} >
                 <Button
-                    variant="raised"
+                    variant={this.props.mini ? 'fab' : 'raised'}
                     color="primary"
+                    aria-label="add"
                     aria-haspopup="true"
+                    mini={this.props.mini}
                     onClick={this.handleClick}
                 >
-                    {'Add to cart'}
+                    {this.props.mini ? <AddIcon /> :'Add to cart'}
                 </Button>
                 <Menu
                     id="simple-menu"
@@ -43,15 +50,12 @@ class CartManagement extends React.Component {
                 >
                     {items}
                 </Menu>
-                <Button variant="raised" color="secondary" onClick={() => this.props.removeFromCart(this.props.id)}>
-                    {'Remove from cart'}
-                </Button>
             </div>
 		);
 	}
 }
 
-CartManagement.propTypes = {
+AddToCart.propTypes = {
 	id: PropTypes.number.isRequired,
 	types: PropTypes.array.isRequired,
 };
@@ -66,4 +70,4 @@ const mapDispatchToProps = {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps,
-)(CartManagement);
+)(AddToCart);
