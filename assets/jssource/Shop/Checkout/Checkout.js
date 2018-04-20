@@ -10,10 +10,7 @@ import RemoveFromCart from './../CartManagement/RemoveFromCart'
 
 class Checkout extends React.Component {
 	render() {
-        let total = 0;
-        total += 20; //(postage)
         const items = this.props.shoppingCart.map((item, index) => {
-            total += item.type.cost;
             return (
                 <Grid container key={index} className="shopping-list-item">
                     <Grid item xs={2}><img src={item.img_src} /></Grid>
@@ -31,6 +28,20 @@ class Checkout extends React.Component {
                     {'You have nothing in your cart!'}
                 </div>
             );
+        }
+        if (this.props.loading) {
+            return (
+                <div className="empty-cart">
+                    {/* <Spinner /> */}
+                </div>
+            )
+        }
+        if (this.props.paid) {
+            return (
+                <div className="empty-cart">
+                    {'Thanks for your purchase!'}
+                </div>
+            )
         }
         return (
             <Grid container direction="column">
@@ -61,7 +72,7 @@ class Checkout extends React.Component {
                             {items}
                         </Grid>
                         <Grid className="total" item xs={12}>
-                            {'Total (incl. GST): $'}{total}
+                            {'Total (incl. GST): $'}{this.props.total}
                         </Grid>
                     </Grid>
                 </Grid>
@@ -69,10 +80,10 @@ class Checkout extends React.Component {
                     <StripeCheckout
                         token={this.props.payNow}
                         stripeKey="pk_test_9PGhHf1uBmM6KT5aN8rgPNpM"
-                        amount={total*100}
+                        amount={this.props.total*100}
                         currency={'AUD'}
                         shippingAddress
-                        billingAddress={false}
+                        billingAddress
                     />
                 </Grid>
             </Grid>);
@@ -85,6 +96,9 @@ Checkout.propTypes = {
 
 const mapStateToProps = state => ({
 	shoppingCart: state.shoppingCart,
+    total: state.total,
+    loading: state.checkout.loading,
+    paid: state.checkout.paid,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -97,8 +111,8 @@ const mapDispatchToProps = dispatch => ({
 	setAddress: (address) => {
 		dispatch(actionCreators.setAddress(address));
 	},
-	payNow: () => {
-		dispatch(actionCreators.payNow());
+	payNow: (token) => {
+		dispatch(actionCreators.payNow(token));
     },
     addToCart: (item) => {
 		dispatch(cartManagementActionCreators.addToCart(item));

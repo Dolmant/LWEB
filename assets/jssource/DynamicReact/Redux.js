@@ -215,18 +215,32 @@ function selectPage(state = InitalState.page, action) {
 	return state;
 }
 
+const totalIS = 0;
+
+export function TotalReducer(state = totalIS, action, shoppingCart) {
+    let total = 0;
+    total = total += 20; //postage
+    shoppingCart.forEach((item) => {
+        total += item.type.cost;
+    });
+    return total;
+}
+
+
 // concatenate all the reducers
 
 function allReducers(state = {}, action) {
+    const shoppingCart = CartManagementReducer(state.shoppingCart, action);
 	return {
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action),
-		isTouch,
+        isTouch,
+        total: TotalReducer(state.total, action, shoppingCart),
 		page: selectPage(state.page, action),
 		touchmenu_active: touchmenuToggle(state.touchmenu_active, action),
 		introOn: introState(state.introOn, action),
         sidebarOpen: sidebarToggle(state.sidebarOpen, action),
-        shoppingCart: CartManagementReducer(state.shoppingCart, action),
+        shoppingCart,
         checkout: CombinedCheckoutReducer(state.checkout, action),
         postageCalculator: CombinedPostageCalculatorReducer(state.postageCalculator, action),
 		...selectedOverlayImageNum(state.overlay_image_num,

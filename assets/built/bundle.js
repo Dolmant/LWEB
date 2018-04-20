@@ -1718,6 +1718,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+exports.TotalReducer = TotalReducer;
+
 var _redux = require('redux');
 
 var _reduxThunk = require('redux-thunk');
@@ -1966,21 +1968,38 @@ function selectPage() {
 	return state;
 }
 
+var totalIS = 0;
+
+function TotalReducer() {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : totalIS;
+	var action = arguments[1];
+	var shoppingCart = arguments[2];
+
+	var total = 0;
+	total = total += 20; //postage
+	shoppingCart.forEach(function (item) {
+		total += item.type.cost;
+	});
+	return total;
+}
+
 // concatenate all the reducers
 
 function allReducers() {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	var action = arguments[1];
 
+	var shoppingCart = (0, _CartManagementReducers2.default)(state.shoppingCart, action);
 	return _extends({
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action),
 		isTouch: _consts.isTouch,
+		total: TotalReducer(state.total, action, shoppingCart),
 		page: selectPage(state.page, action),
 		touchmenu_active: touchmenuToggle(state.touchmenu_active, action),
 		introOn: introState(state.introOn, action),
 		sidebarOpen: sidebarToggle(state.sidebarOpen, action),
-		shoppingCart: (0, _CartManagementReducers2.default)(state.shoppingCart, action),
+		shoppingCart: shoppingCart,
 		checkout: (0, _CheckoutReducers2.default)(state.checkout, action),
 		postageCalculator: (0, _PostageCalculatorReducers2.default)(state.postageCalculator, action)
 	}, selectedOverlayImageNum(state.overlay_image_num, state.category, state.overlay_vertical_index, state.overlay, action));
@@ -2517,10 +2536,7 @@ var Checkout = function (_React$Component) {
     _createClass(Checkout, [{
         key: 'render',
         value: function render() {
-            var total = 0;
-            total += 20; //(postage)
             var items = this.props.shoppingCart.map(function (item, index) {
-                total += item.type.cost;
                 return _react2.default.createElement(
                     _Grid2.default,
                     { container: true, key: index, className: 'shopping-list-item' },
@@ -2563,6 +2579,16 @@ var Checkout = function (_React$Component) {
                     'div',
                     { className: 'empty-cart' },
                     'You have nothing in your cart!'
+                );
+            }
+            if (this.props.loading) {
+                return _react2.default.createElement('div', { className: 'empty-cart' });
+            }
+            if (this.props.paid) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'empty-cart' },
+                    'Thanks for your purchase!'
                 );
             }
             return _react2.default.createElement(
@@ -2661,7 +2687,7 @@ var Checkout = function (_React$Component) {
                             _Grid2.default,
                             { className: 'total', item: true, xs: 12 },
                             'Total (incl. GST): $',
-                            total
+                            this.props.total
                         )
                     )
                 ),
@@ -2671,10 +2697,10 @@ var Checkout = function (_React$Component) {
                     _react2.default.createElement(_reactStripeCheckout2.default, {
                         token: this.props.payNow,
                         stripeKey: 'pk_test_9PGhHf1uBmM6KT5aN8rgPNpM',
-                        amount: total * 100,
+                        amount: this.props.total * 100,
                         currency: 'AUD',
                         shippingAddress: true,
-                        billingAddress: false
+                        billingAddress: true
                     })
                 )
             );
@@ -2690,7 +2716,10 @@ Checkout.propTypes = {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        shoppingCart: state.shoppingCart
+        shoppingCart: state.shoppingCart,
+        total: state.total,
+        loading: state.checkout.loading,
+        paid: state.checkout.paid
     };
 };
 
@@ -2705,8 +2734,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         setAddress: function setAddress(address) {
             dispatch(_CheckoutActions.actionCreators.setAddress(address));
         },
-        payNow: function payNow() {
-            dispatch(_CheckoutActions.actionCreators.payNow());
+        payNow: function payNow(token) {
+            dispatch(_CheckoutActions.actionCreators.payNow(token));
         },
         addToCart: function addToCart(item) {
             dispatch(_CartManagementActions.actionCreators.addToCart(item));
@@ -2734,6 +2763,8 @@ var _isomorphicFetch = require('isomorphic-fetch');
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
+var _CartManagementActions = require('./../CartManagement/CartManagementActions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var types = exports.types = {
@@ -2744,6 +2775,7 @@ var types = exports.types = {
     PAY_NOW_REPLY: 'PAY_NOW_REPLY',
     PAY_NOW_ERROR: 'PAY_NOW_ERROR'
 };
+
 var actionCreators = exports.actionCreators = {
     setName: function setName(name) {
         return {
@@ -2763,23 +2795,36 @@ var actionCreators = exports.actionCreators = {
             payload: address
         };
     },
-    payNow: function payNow() {
+    payNow: function payNow(token) {
         return function (dispatch, getState) {
             var store = getState();
+
+            var data = Object.assign(token, { amount: store.total * 100, currency: "AUD", description: "Leotide Art" });
+            dispatch({
+                type: types.PAY_NOW_REQUEST
+            });
+
             (0, _isomorphicFetch2.default)('https://us-central1-lweb-176107.cloudfunctions.net/try_payment', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
-                }
+                },
+                body: JSON.stringify(data)
             }).then(function (res) {
                 return res.json();
-            }).then(function () {
+            }).then(function (output) {
+                dispatch({
+                    type: _CartManagementActions.types.EMPTY_CART
+                });
+                dispatch({
+                    type: types.PAY_NOW_REPLY
+                });
                 $.ajax({
                     url: 'https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail',
                     type: 'POST',
                     data: JSON.stringify({
                         'Contact Details': '123',
-                        Message: 'Postage details etc etc \n etc'
+                        Message: 'Postage details ' + store.total + ' etc ' + store.shoppingCart + ' etc \n etc'
                     }),
                     beforeSend: function beforeSend() {
                         var num = 0;
@@ -2791,25 +2836,47 @@ var actionCreators = exports.actionCreators = {
                 // Success
             }).catch(function (err) {
                 //toastr
+                dispatch({
+                    type: types.PAY_NOW_REPLY
+                });
             });
             return true;
         };
     }
 };
 
-},{"isomorphic-fetch":196}],18:[function(require,module,exports){
+},{"./../CartManagement/CartManagementActions":13,"isomorphic-fetch":196}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.PaidReducer = PaidReducer;
 exports.LoadingReducer = LoadingReducer;
 exports.CheckoutReducer = CheckoutReducer;
 exports.default = CombinedCheckoutReducer;
 
 var _CheckoutActions = require('./CheckoutActions');
 
+var _CartManagementActions = require('./../CartManagement/CartManagementActions');
+
+var paidIS = false;
+
+function PaidReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : paidIS;
+    var action = arguments[1];
+
+    if (action.type === _CheckoutActions.types.PAY_NOW_REPLY) {
+        return true;
+    }
+    if (action.type === _CartManagementActions.types.ADD_TO_CART) {
+        return false;
+    }
+    return state;
+}
+
 var loadingIS = false;
+
 function LoadingReducer() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : loadingIS;
     var action = arguments[1];
@@ -2848,12 +2915,13 @@ function CombinedCheckoutReducer() {
     var action = arguments[1];
 
     return {
+        paid: PaidReducer(state.paid, action),
         checkoutResult: CheckoutReducer(state.checkoutResult, action),
         loading: LoadingReducer(state.loading, action)
     };
 }
 
-},{"./CheckoutActions":17}],19:[function(require,module,exports){
+},{"./../CartManagement/CartManagementActions":13,"./CheckoutActions":17}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
