@@ -10,9 +10,5 @@ when you click on something in the about me section, brings up the contact me pa
 checkout page
 move other pictures to other pages or delete
 save current state to localstorage and load it
-build api backend
-toast when added to cart
-number of items on cart in top right
-close overlay when bough
-remove button on cart
-only add button on item
+proper stripe keys
+create test endpoints

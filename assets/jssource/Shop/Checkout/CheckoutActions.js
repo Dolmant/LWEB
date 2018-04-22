@@ -1,5 +1,6 @@
 // @flow
 import fetch from 'isomorphic-fetch';
+import {toastr} from 'react-redux-toastr';
 import {types as cartManagementTypes} from './../CartManagement/CartManagementActions';
 
 export const types = {
@@ -27,7 +28,7 @@ export const actionCreators = {
     payNow: (token) => (dispatch, getState) => {
         const store = getState();
 
-        const data = Object.assign(token, {amount: store.total*100, currency: "AUD", description: "Leotide Art"})
+        const data = Object.assign(token, {amount: store.total*100, currency: "AUD", description: "Leotide Art", shoppingCart: store.shoppingCart})
         dispatch({
             type: types.PAY_NOW_REQUEST,
         });
@@ -47,27 +48,15 @@ export const actionCreators = {
             dispatch({
                 type: types.PAY_NOW_REPLY,
             });
-            $.ajax({
-				url: 'https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail',
-				type: 'POST',
-				data: JSON.stringify({
-                    'Contact Details': '123',
-                    Message: `Postage details ${store.total} etc ${store.shoppingCart} etc \n etc`,
-                }),
-				beforeSend: () => {
-					const num = 0;
-				},
-				success: (data) => {
-					const num = 0;
-				},
-            });
-            // Success
+            toastr.success('Success!', 'Thanks for your order!');
         })
         .catch((err) => {
             //toastr
             dispatch({
                 type: types.PAY_NOW_REPLY,
             });
+            console.log(err);
+            toastr.error('Payment failed!', 'The gateway declined your payment, please try again!');
         })
         return true;
     },

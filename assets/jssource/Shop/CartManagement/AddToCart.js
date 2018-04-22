@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Menu, {MenuItem} from 'material-ui/Menu';
+import {toastr} from 'react-redux-toastr';
 import {actionCreators} from './CartManagementActions';
 
 class AddToCart extends React.Component {
@@ -13,6 +14,7 @@ class AddToCart extends React.Component {
 
     handleClick = (event) => {
         if (this.props.types.length === 1) {
+            toastr.success('Success', 'Item added to cart');
             this.props.addToCart(this.props.id, this.props.types[0]);
         } else {
             this.setState({ anchorEl: event.currentTarget });
@@ -27,7 +29,14 @@ class AddToCart extends React.Component {
         const { anchorEl } = this.state;
         const items = this.props.types.map((type) => {
             return (
-                <MenuItem onClick={() => {this.props.addToCart(this.props.id, type); this.handleClose();}}>{type.desc}</MenuItem>
+                <MenuItem onClick={() => {
+                    toastr.success('Success', 'Item added to cart');
+                    this.props.addToCart(this.props.id, type);
+                    this.handleClose();
+                    }}
+                >
+                    {type.desc}
+                </MenuItem>
             );
         });
 		return (

@@ -5,7 +5,7 @@ const cartIS = [];
 
 export default function CartManagementReducer(state = cartIS, action) {
     if (action.type === types.ADD_TO_CART) {
-        const item = getImageById(action.payload.id);
+        const image = Object.assign({}, getImageById(action.payload.id));
 
         const present = state.findIndex((item) => item.item_number === action.payload.id && item.type.id === action.payload.type.id);
         const newState = state.slice()
@@ -13,9 +13,9 @@ export default function CartManagementReducer(state = cartIS, action) {
             newState[present].count += 1;
             return newState;
         } else {
-            item.count = 1;
-            item.type = action.payload.type;
-            newState.push(item);
+            image.count = 1;
+            image.type = action.payload.type;
+            newState.push(image);
             return newState;
         }
     }

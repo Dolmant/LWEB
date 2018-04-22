@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
+import ReduxToastr from 'react-redux-toastr'
 import store from './DynamicReact/Redux';
 import $ from './jquery.min';
 import App from './App';
@@ -33,7 +34,18 @@ const HT = {
 $(document).ready(() => {
 	ReactDOM.render(
 		<Provider store={store}>
-			<App />
+            <div>
+                <App />
+                <ReduxToastr
+                    timeOut={4000}
+                    newestOnTop={false}
+                    preventDuplicates
+                    position="top-left"
+                    transitionIn="fadeIn"
+                    transitionOut="fadeOut"
+                    progressBar
+                />
+            </div>
 		</Provider>,
 		document.getElementById('app'));
 	HT.ready();

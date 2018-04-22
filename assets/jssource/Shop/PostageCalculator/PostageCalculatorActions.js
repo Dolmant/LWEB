@@ -16,11 +16,13 @@ export const actionCreators = {
         type: types.SET_POSTCODE,
         payload: postcode,
     }),
-    postage: () => (dispatch, getState) => {
-        const state = getState();
+    postage: (type) => (dispatch, getState) => {
+        // const state = getState();
         dispatch({
-            type: ype.POSTAGE_REPLY,
-            payload: 40,
+            type: types.POSTAGE_REPLY,
+            payload: {
+                type,
+            },
         });
         /*
 
@@ -400,6 +402,6 @@ AUTH-KEY: your_api_key
   }
 }
         */
-        return 40;
+        // return 40;
     },
 };

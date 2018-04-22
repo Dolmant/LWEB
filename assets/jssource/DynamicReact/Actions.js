@@ -1,10 +1,9 @@
 export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 export function updateCategory(category) {
     return dispatch => {
-        dispatch({type: SELECT_PAGE, payload: 'portfolio'})
-        return dispatch({ type: UPDATE_CATEGORY, payload: category });
+        dispatch({ type: UPDATE_CATEGORY, payload: category });
+        dispatch({type: SELECT_PAGE, payload: 'portfolio'});
     };
-    return ;
 }
 
 export const UPDATE_INTROSTATE = 'UPDATE_INTROSTATE';

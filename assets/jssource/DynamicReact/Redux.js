@@ -5,6 +5,7 @@ import { HomeInitial, category, isTouch, projectList, getImageById, ArrayLimitsC
 import { TOGGLE_TOUCHMENU, TOGGLE_SIDEBAR, SELECT_PAGE, TOGGLE_OVERLAY, UPDATE_CATEGORY, UPDATE_INTROSTATE, UPDATE_OVERLAY_IMAGE, NAV_OVERLAY_IMAGE } from './Actions';
 import CartManagementReducer from './../Shop/CartManagement/CartManagementReducers';
 import CombinedCheckoutReducer from './../Shop/Checkout/CheckoutReducers';
+import {reducer as toastrReducer} from 'react-redux-toastr'
 import CombinedPostageCalculatorReducer from './../Shop/PostageCalculator/PostageCalculatorReducers';
 // reducer handles how the state updates
 
@@ -26,7 +27,10 @@ const InitalState = {
     },
     postageCalculator: {
         loading: false,
-        postageResult: {},
+        postageResult: {
+            type: 0,
+            cost: 0,
+        },
     },
 	list: HomeInitial,
 	overlay_image: 1,
@@ -217,12 +221,12 @@ function selectPage(state = InitalState.page, action) {
 
 const totalIS = 0;
 
-export function TotalReducer(state = totalIS, action, shoppingCart) {
+export function TotalReducer(state = totalIS, action, shoppingCart, postageCalculator) {
     let total = 0;
-    total = total += 20; //postage
     shoppingCart.forEach((item) => {
-        total += item.type.cost;
+        total += item.type.cost*item.count;
     });
+    total += postageCalculator.postageResult.cost;
     return total;
 }
 
@@ -231,18 +235,20 @@ export function TotalReducer(state = totalIS, action, shoppingCart) {
 
 function allReducers(state = {}, action) {
     const shoppingCart = CartManagementReducer(state.shoppingCart, action);
+    const postageCalculator = CombinedPostageCalculatorReducer(state.postageCalculator, action, shoppingCart);
 	return {
 		category: selectedCategory(state.category, action),
 		list: selectedList(state.list, action),
         isTouch,
-        total: TotalReducer(state.total, action, shoppingCart),
+        total: TotalReducer(state.total, action, shoppingCart, postageCalculator),
 		page: selectPage(state.page, action),
 		touchmenu_active: touchmenuToggle(state.touchmenu_active, action),
 		introOn: introState(state.introOn, action),
         sidebarOpen: sidebarToggle(state.sidebarOpen, action),
         shoppingCart,
+        toastr: toastrReducer(state.toastr, action),
         checkout: CombinedCheckoutReducer(state.checkout, action),
-        postageCalculator: CombinedPostageCalculatorReducer(state.postageCalculator, action),
+        postageCalculator,
 		...selectedOverlayImageNum(state.overlay_image_num,
 			state.category,
 			state.overlay_vertical_index,

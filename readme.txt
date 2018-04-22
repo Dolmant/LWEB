@@ -24,5 +24,5 @@ heroku ps:scale web=1
 
 keep original images in the best quality but use jpgs only, png and other formats are terrible
 settings on easythumbnails for 
-thumbs: 300px * 300px @ 70% quality
-superthumbs: 300px * 300px @ 20% quality
+thumbs: 500px * 500px @ 70% quality
+superthumbs: 500px * 500px @ 20% quality

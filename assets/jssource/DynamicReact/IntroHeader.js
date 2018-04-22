@@ -42,7 +42,10 @@ class IntroHeader extends React.Component {
 				color: 'black',
 			};
 		};
-
+        let totalCount = 0;
+        this.props.shoppingCart.forEach((item) => {
+            totalCount += item.count;
+        })
 		const result = (
 				<div className="container">
 					<div className="left">
@@ -55,6 +58,9 @@ class IntroHeader extends React.Component {
 						{/* <a className="about-me" style={style()} onClick={() => this.aboutMeClick()}>About Me</a> */}
 						{!this.props.introOn && this.props.category !== 'CHECKOUT'? 
                             <div className="cursor" onClick={() => this.props.updateCategory('CHECKOUT')}>
+                                <div className="total-count">
+                                    {totalCount}
+                                </div>
                                 <i className="fa fa-shopping-cart" />
                             </div>
                         :
@@ -92,6 +98,7 @@ IntroHeader.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    shoppingCart: state.shoppingCart,
 	introOn: state.introOn,
 	category: state.category,
 	sidebarOpen: state.sidebarOpen,

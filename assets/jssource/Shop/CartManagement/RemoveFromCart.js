@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import RemoveIcon from '@material-ui/icons/Remove';
+import {toastr} from 'react-redux-toastr';
 import {actionCreators} from './CartManagementActions';
 
 class RemoveFromCart extends React.Component {
@@ -13,7 +14,10 @@ class RemoveFromCart extends React.Component {
                     mini={this.props.mini}
                     variant={this.props.mini ? 'fab' : 'raised'}
                     color="secondary"
-                    onClick={() => this.props.removeFromCart(this.props.id, this.props.type)}
+                    onClick={() => {
+                        toastr.success('Success', 'Item removed from cart');
+                        this.props.removeFromCart(this.props.id, this.props.type);
+                    }}
                 >
                     {this.props.mini ? <RemoveIcon /> :'Remove from cart'}
                 </Button>

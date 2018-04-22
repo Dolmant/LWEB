@@ -1,3 +1,5 @@
+@import './../../node_modules/react-redux-toastr/src/styles/index';
+
 .slick-prev {
 	height: 100% !important;
 	.slick-prev-div {
@@ -12,6 +14,7 @@
 
 .cursor {
     cursor: pointer;
+    position: relative;
 }
 
 .total {
@@ -165,7 +168,8 @@ body {
 	line-height:1;
 	color:black;
 	background:white;
-	overflow-x: hidden;
+    overflow-x: hidden;
+    padding-right:0px !important;
 }
 
 :focus {
@@ -416,7 +420,7 @@ header.main-header {
     background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	background-image: url("./../images/CRISPR.jpg");
+	background-image: url("./../images/CRISPRcloseup.jpg");
 }
 header.introHeaderTemp {
 	border-bottom:1px solid transparent;
@@ -676,7 +680,38 @@ footer a:hover {
 	-o-transition:background-color .2s
 }
 
+.checkout {
+    background-color: white;
+}
+
+.total-count {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background-color: white;
+    border: white 3px;
+    border-radius: 20px;
+    font-size: 10px;
+    line-height: 15px;
+    width: 15px;
+    text-align: center;
+}
+
+.shopping-list-title {
+    border-bottom: solid 1px black;
+}
+
+.shopping-list-item {
+    font-weight: normal;
+}
+
+.shopping-list-column {
+    text-align: center;
+}
+
 .empty-cart {
+    display: flex;
+    justify-content: center;
     text-align: center;
 }
 
