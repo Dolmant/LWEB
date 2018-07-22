@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import {render as RenderSnapShot} from "react-snapshot"
+// import injectTapEvenntPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr'
 import store from './DynamicReact/Redux';
@@ -10,16 +11,19 @@ import App from './App';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
+// injectTapEventPlugin();
 const HT = {
-	ready() {
+	ready(hydrated) {
 		$(window).load(() => {
 			setTimeout(() => {
 				$('body').show();
-				$('html').removeClass('loading');
-				particlesJS.load('introImage', './assets/particlesBusted.json', function() {
-					console.log('callback - particles.js config loaded');
-				  });
+                $('html').removeClass('loading');
+                // snapshot doesnt work with particles js
+                if (hydrated) {
+                    particlesJS.load('introImage', './assets/particlesBusted.json', function() {
+                        console.log('callback - particles.js config loaded');
+                    });
+                }
 			}, 100);
 		});
 	},
@@ -32,8 +36,9 @@ const HT = {
 };
 
 $(document).ready(() => {
-	ReactDOM.render(
-		<Provider store={store}>
+    const appTarget = document.getElementById('app1');
+    const appElement = (
+        <Provider store={store}>
             <div>
                 <App />
                 <ReduxToastr
@@ -46,9 +51,25 @@ $(document).ready(() => {
                     progressBar
                 />
             </div>
-		</Provider>,
-		document.getElementById('app'));
-	HT.ready();
+        </Provider>
+    );
+
+    let hydrated = false;
+    if (appTarget) {
+        if (appTarget.hasChildNodes()) {
+            // hydrated = true;
+            console.log("hydrated")
+            ReactDOM.hydrate(
+                appElement,
+                appTarget);
+        } else {
+            console.log("not hydrated")
+            RenderSnapShot(
+                appElement,
+                appTarget);
+        }
+        HT.ready(hydrated);
+    }
 });
 
 $(window).resize(() => {

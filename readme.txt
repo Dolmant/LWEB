@@ -1,5 +1,7 @@
 run gruntfile (run 'grunt watch') to autocompile your js based on changes. grunt build does this as a once off
 
+npm run buildGrunt to build
+
 scss compiler needs ruby and sass
 gem install sass on the ruby command line
 

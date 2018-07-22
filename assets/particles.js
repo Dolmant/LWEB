@@ -1548,20 +1548,122 @@ window.particlesJS = function(tag_id, params){
 window.particlesJS.load = function(tag_id, path_config_json, callback){
 
   /* load json config */
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', path_config_json);
-  xhr.onreadystatechange = function (data) {
-    if(xhr.readyState == 4){
-      if(xhr.status == 200){
-        var params = JSON.parse(data.currentTarget.response);
-        window.particlesJS(tag_id, params);
-        if(callback) callback();
-      }else{
-        console.log('Error pJS - XMLHttpRequest status: '+xhr.status);
-        console.log('Error pJS - File config not found');
-      }
-    }
-  };
-  xhr.send();
 
+    const particlesConfig = {
+        "particles": {
+        "number": {
+            "value": 20,
+            "density": {
+            "enable": true,
+            "value_area": 2000
+            }
+        },
+        "color": {
+            "value": "#ffffff"
+        },
+        "shape": {
+            "type": "circle",
+            "stroke": {
+            "width": 0,
+            "color": "#000000"
+            },
+            "polygon": {
+            "nb_sides": 5
+            },
+            "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+            }
+        },
+        "opacity": {
+            "value": 0.5,
+            "random": false,
+            "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+            }
+        },
+        "size": {
+            "value": 25,
+            "random": true,
+            "min": 15,
+            "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 12,
+            "sync": false
+            }
+        },
+        "line_linked": {
+            "enable": true,
+            "distance": 100,
+            "color": "#ffffff",
+            "offset": 8,
+            "offset_dist": 60,
+            "opacity": 0.6,
+            "width": 6.5
+        },
+        "move": {
+            "enable": true,
+            "speed": 6,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+            }
+        }
+        },
+        "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+            "onhover": {
+            "enable": true,
+            "mode": "repulse"
+            },
+            "onclick": {
+            "enable": true,
+            "mode": "push"
+            },
+            "resize": true
+        },
+        "modes": {
+            "grab": {
+            "distance": 400,
+            "line_linked": {
+                "opacity": 1
+            }
+            },
+            "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+            },
+            "repulse": {
+            "distance": 200,
+            "duration": 0.4
+            },
+            "push": {
+            "particles_nb": 4
+            },
+            "remove": {
+            "particles_nb": 2
+            }
+        }
+        },
+        "retina_detect": true
+    };
+  
+    var params = particlesConfig;
+    window.particlesJS(tag_id, params);
+    if(callback) callback();
 };

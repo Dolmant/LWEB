@@ -1,6 +1,14 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
-		clean: ['./assets/dist'],
+        clean: ['./assets/dist', './200.html'],
+        run: {
+            your_target: {
+                cmd: 'react-snapshot',
+                args: [
+                    '--build-dir .'
+                ]
+            }
+        },
 		htmlbuild: {
 			dist: {
 				src: './assets/template/index.html',
@@ -66,7 +74,7 @@ module.exports = function (grunt) {
 					'./assets/built/style.css': ['./assets/scss/style.scss'],
 				},
 			},
-		},
+        },
 
 		watch: {
 			watchcss: {
@@ -78,8 +86,9 @@ module.exports = function (grunt) {
 				tasks: ['clean', 'browserify', 'sass', 'hash', 'htmlbuild'],
 			},                      
 		},        
-	});
+    });
 
+    grunt.loadNpmTasks('grunt-run');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-hash');
 	grunt.loadNpmTasks('grunt-html-build');

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import LazySizes from 'react-lazysizes';
+import LazySizes from './../react-lazysizes/src/index';
 import Checkout from './../Shop/Checkout/Checkout';
 import { category, convert_type } from './../consts';
 import { updateOverlayImage, toggleOverlay } from './Actions';

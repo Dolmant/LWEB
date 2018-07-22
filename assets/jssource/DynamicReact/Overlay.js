@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
-import LazySizes from 'react-lazysizes';
+import LazySizes from './../react-lazysizes/src/index';
 import $ from './../jquery.min';
 import AddToCart from './../Shop/CartManagement/AddToCart';
 import { navOverlayImage, toggleOverlay } from './Actions';
