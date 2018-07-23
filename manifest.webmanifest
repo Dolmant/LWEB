@@ -1,0 +1,9 @@
+{
+    "name": "LeoTide",
+    "short_name": "LeoTide",
+    "start_url": "/",
+    "theme_color": "#000000",
+    "display": "fullscreen",
+    "background_color": "#000",
+    "description": "Portfolio of animation and digial art by LeoTide."
+}
