@@ -8,15 +8,15 @@ export const types = {
 };
 
 export const actionCreators = {
-    setCountry: (country) => ({
+    setCountry: (country: string) => ({
         type: types.SET_COUNTRY,
         payload: country,
     }),
-    setPostcode: (postcode) => ({
+    setPostcode: (postcode: string) => ({
         type: types.SET_POSTCODE,
         payload: postcode,
     }),
-    postage: (type) => (dispatch, getState) => {
+    postage: (type: string) => (dispatch: any, getState: any) => {
         // const state = getState();
         dispatch({
             type: types.POSTAGE_REPLY,

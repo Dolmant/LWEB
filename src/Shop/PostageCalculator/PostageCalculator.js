@@ -1,31 +1,40 @@
-import { connect } from 'react-redux';
-import React from 'react';
-import PropTypes from 'prop-types';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import Select from 'material-ui/Select';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import {actionCreators} from './PostageCalculatorActions';
+// @flow
+import {connect} from "react-redux"
+import React from "react"
+import InputLabel from "@material-ui/core/InputLabel"
+import MenuItem from "@material-ui/core/MenuItem"
+import Select from "@material-ui/core/Select"
+import FormHelperText from "@material-ui/core/FormHelperText"
+import FormControl from "@material-ui/core/FormControl"
+import {actionCreators} from "./PostageCalculatorActions"
 
-class PostageCalculator extends React.Component {
+type Props = {
+    postageCalculator: any,
+    postageType: any,
+    postage: (string) => void,
+    setPostcode: (string) => void,
+    setCountry: (string) => void,
+};
+
+class PostageCalculator extends React.Component<Props> {
     handleChange(event) {
-        this.props.postage(event.target.value);
-    };
-	render() {
-		return (
+        this.props.postage(event.target.value)
+    }
+    render() {
+        return (
             <div>
                 <FormControl error={this.props.postageType === 0}>
                     <InputLabel htmlFor="postage-simple">Postage</InputLabel>
                     <Select
                         value={this.props.postageType}
-                        onChange={(event) => this.handleChange(event)}
+                        onChange={event => this.handleChange(event)}
                         inputProps={{
-                            name: 'postage',
-                            id: 'postage-simple',
+                            name: "postage",
+                            id: "postage-simple",
                         }}
                     >
                         <MenuItem value={0}>
-                        <em>None</em>
+                            <em>None</em>
                         </MenuItem>
                         <MenuItem value={1}>Within Australia</MenuItem>
                         <MenuItem value={2}>Outside Australia</MenuItem>
@@ -33,31 +42,27 @@ class PostageCalculator extends React.Component {
                     <FormHelperText>Please select a postage option</FormHelperText>
                 </FormControl>
             </div>
-		);
-	}
+        )
+    }
 }
 
-PostageCalculator.propTypes = {
-	postageCalculator: PropTypes.any.isRequired,
-};
-
 const mapStateToProps = state => ({
-	postageType: state.postageCalculator.postageResult.type,
-});
+    postageType: state.postageCalculator.postageResult.type,
+})
 
 const mapDispatchToProps = dispatch => ({
-	setCountry: (country) => {
-		dispatch(actionCreators.setCountry(country));
-	},
-	setPostcode: (postcode) => {
-		dispatch(actionCreators.setPostcode(postcode));
-	},
-	postage: (type) => {
-		dispatch(actionCreators.postage(type));
-	},
-});
+    setCountry: (country) => {
+        dispatch(actionCreators.setCountry(country))
+    },
+    setPostcode: (postcode) => {
+        dispatch(actionCreators.setPostcode(postcode))
+    },
+    postage: (type) => {
+        dispatch(actionCreators.postage(type))
+    },
+})
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(PostageCalculator);
+    mapStateToProps,
+    mapDispatchToProps,
+)(PostageCalculator)

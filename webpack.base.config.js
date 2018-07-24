@@ -11,7 +11,7 @@ const extractLess = new ExtractTextPlugin({
 })
 
 module.exports = {
-    entry: path.resolve(__dirname, "./src/leotide.js"),
+    entry: path.resolve(__dirname, "./src/main.js"),
     output: {
         filename: "bundled.[contenthash].js",
         path: path.resolve(__dirname, "dist"),

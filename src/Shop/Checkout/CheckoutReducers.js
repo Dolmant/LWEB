@@ -1,52 +1,52 @@
 // @flow
-import {types} from './CheckoutActions';
-import {types as cartManagementTypes} from './../CartManagement/CartManagementActions';
+import {types} from "./CheckoutActions"
+import {types as cartManagementTypes} from "./../CartManagement/CartManagementActions"
 
-const paidIS = false;
+const paidIS = false
 
-export function PaidReducer(state = paidIS, action) {
+export function PaidReducer(state: bool = paidIS, action: any) {
     if (action.type === types.PAY_NOW_REPLY) {
-        return true;
+        return true
     }
     if (action.type === cartManagementTypes.ADD_TO_CART) {
-        return false;
+        return false
     }
-    return state;
+    return state
 }
 
-const loadingIS = false;
+const loadingIS = false
 
-export function LoadingReducer(state = loadingIS, action) {
+export function LoadingReducer(state: bool = loadingIS, action: any) {
     if (action.type === types.PAY_NOW_REQUEST) {
-        return true;
+        return true
     }
     if (action.type === types.PAY_NOW_REPLY) {
-        return false;
+        return false
     }
     if (action.type === types.PAY_NOW_ERROR) {
-        return false;
+        return false
     }
-    return state;
+    return state
 }
 
-const checkoutIS = {};
+const checkoutIS = {}
 
-export function CheckoutReducer(state = checkoutIS, action) {
+export function CheckoutReducer(state: any = checkoutIS, action: any) {
     if (action.type === types.PAY_NOW_REPLY) {
-        return action.payload;
+        return action.payload
     }
     if (action.type === types.PAY_NOW_ERROR) {
-        return action.payload;
+        return action.payload
     }
-    return state;
+    return state
 }
 
-const combinedInitialState = {};
+const combinedInitialState = {}
 
-export default function CombinedCheckoutReducer(state: typeof combinedInitialState = combinedInitialState, action: actionType) {
+export default function CombinedCheckoutReducer(state: typeof combinedInitialState = combinedInitialState, action: any) {
     return {
         paid: PaidReducer(state.paid, action),
         checkoutResult: CheckoutReducer(state.checkoutResult, action),
         loading: LoadingReducer(state.loading, action),
-    };
+    }
 }

@@ -1,5 +1,5 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Sidebar from './DynamicReact/Sidebar';
 import Intro from './DynamicReact/Intro';
@@ -9,7 +9,11 @@ import OverlayController from './DynamicReact/OverlayController';
 import PageContainer from './DynamicReact/PageContainer';
 import Footer from './DynamicReact/Footer';
 
-class App extends React.Component {
+type Props = {
+    introOn: bool,
+};
+
+class App extends React.Component<Props> {
 	render() {
 		return (
 			<div>
@@ -26,10 +30,6 @@ class App extends React.Component {
 		);
 	}
 }
-
-App.propTypes = {
-	introOn: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = state => ({
 	introOn: state.introOn,

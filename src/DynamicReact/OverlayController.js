@@ -1,26 +1,17 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Overlay from './Overlay';
+
+type Props = {
+	overlay: any,
+};
 
 const OverlayController = (props) => {
 	if (props.overlay.state) {
 		return <Overlay />;
 	}
 	return null;
-};
-
-OverlayController.propTypes = {
-	overlay: PropTypes.shape({
-		arrows: PropTypes.shape({
-			left: PropTypes.bool.isRequired,
-			right: PropTypes.bool.isRequired,
-			up: PropTypes.bool.isRequired,
-			down: PropTypes.bool.isRequired,
-		}).isRequired,
-		state: PropTypes.bool.isRequired,
-		image: PropTypes.bool.isRequired,
-	}).isRequired,
 };
 
 const mapStateToProps = state => ({
