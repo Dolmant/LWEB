@@ -57,12 +57,10 @@ $(document).ready(() => {
     if (appTarget) {
         if (appTarget.hasChildNodes()) {
             hydrated = true
-            console.log("hydrated")
             ReactDOM.hydrate(
                 appElement,
                 appTarget)
         } else {
-            console.log("not hydrated")
             RenderSnapShot(
                 appElement,
                 appTarget)

@@ -14,6 +14,7 @@ module.exports = {
     entry: path.resolve(__dirname, "./src/main.js"),
     output: {
         filename: "bundled.[contenthash].js",
+        // publicPath: "dist",
         path: path.resolve(__dirname, "dist"),
     },
     module: {
@@ -84,10 +85,10 @@ module.exports = {
         extractLess,
         new WebpackBundleSizeAnalyzerPlugin("./plain-report.txt"),
         new CopyWebpackPlugin([{from: "manifest.webmanifest", to: path.resolve(__dirname, "./dist")}]),
-        new CleanWebpackPlugin(["dist"]),
+        new CleanWebpackPlugin(["dist", "index.html", "200.html"]),
         new HtmlWebpackPlugin({
             template: 'src/template/index-template.html',
-            filename: 'index.html',
+            filename: './../index.html',
         }),
     ],
     resolve: {

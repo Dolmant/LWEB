@@ -3,11 +3,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "buildGrunt": "grunt build && react-snapshot --build-dir .",
-    "build": "webpack --config=webpack.dev.config && react-snapshot --build-dir dist",
+    "build": "webpack --config=webpack.dev.config && react-snapshot --build-dir .",
     "watch": "webpack --watch --config=webpack.dev.config",
-    "buildProd": "webpack --config=webpack.prod.config && react-snapshot --build-dir dist",
-    "buildStaging": "webpack --config=webpack.staging.config && react-snapshot --build-dir dist",
+    "buildProd": "webpack --config=webpack.prod.config && react-snapshot --build-dir .",
+    "buildStaging": "webpack --config=webpack.staging.config && react-snapshot --build-dir .",
     "flow": "flow"
   },
   "devDependencies": {

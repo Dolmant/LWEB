@@ -51,5 +51,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/assets', express.static(path.join(__dirname, '/assets'), { maxAge: cacheTime }));
+app.use('/dist', express.static(path.join(__dirname, '/dist'), { maxAge: cacheTime }));
 
 app.listen(process.env.PORT || 8001);

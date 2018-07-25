@@ -1,5 +1,6 @@
 Now:
-gzip etc
+gzip etc?
+fix menu having 0 height on linux (held up only by padding?)
 fix website searching
 better shop
 
