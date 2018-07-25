@@ -1,6 +1,6 @@
 Now:
 gzip etc?
-fix menu having 0 height on linux (held up only by padding?)
+oh god why is my dom so terrible, reimplement with grids
 fix website searching
 better shop
 
