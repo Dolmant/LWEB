@@ -94,9 +94,9 @@ const PageContainer = (props: Props) => {
                     <div className="desc_text">
                         <h2>News!</h2>
                         <div className="news">
-                            Beautiful and dangerous: animating deadly viruses at Vivid Sydney <a rel="noopener noreferrer" target="_blank" href="https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/">here!</a>
+                            Beautiful and dangerous: animating deadly viruses at Vivid Sydney <strong><a rel="noopener noreferrer" target="_blank" href="https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/">here!</a></strong>
                             <br />
-                            Mastering biomedical science by design <a rel="noopener noreferrer" target="_blank" href="http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design">here!</a>
+                            Mastering biomedical science by design <strong><a rel="noopener noreferrer" target="_blank" href="http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design">here!</a></strong>
                         </div>
                     </div>
                     <div className="demoreel">
