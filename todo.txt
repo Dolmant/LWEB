@@ -1,10 +1,6 @@
 Now:
-compress images more
-menu should be a drawer on the left with a burger button in top left
-
-imagemagick
-mogrify -resize 16x12 -quality 60 -path ../thumbs *.jpg
-mogrify -resize 16x12 -quality 30 -path ../thumbs *.jpg
+wait for images to load before removing loading spinner
+redo hosting somewhere with https
 
 laterish:
 gzip etc?

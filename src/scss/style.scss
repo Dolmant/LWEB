@@ -302,17 +302,17 @@ h2 {
 
 a {
 	text-decoration:none;
-	color:#cae5f2;
+	color: black;
 	-webkit-transition:color .2s ease-in-out;
 	-moz-transition:color .2s ease-in-out;
 	-ms-transition:color .2s ease-in-out;
 	-o-transition:color .2s ease-in-out
 }
 a:hover {
-	color:#000
+	color:#cae5f2;
 }
 em,strong {
-	font-weight:700
+	font-weight:700;
 }
 hr {
 	border-width:1px 0 0 0;
@@ -399,11 +399,15 @@ body {
 	}
 }
 .page.container {
-	padding-top:16vh;
+    padding-top:16vh;
+    @media screen and (max-height: 645px) {
+        padding-top: 111px;
+    }
 	min-height: 80vh;
 }
 header {
-	height:8vh;
+    height:8vh;
+    min-height: 50px;
     border-bottom:1px solid #000;
 	width:100%;
 	position:fixed;
@@ -432,7 +436,8 @@ header .container {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	height: 100%
+    height: 100%;
+    min-height: 50px;
 }
 header h1 {
 	max-width:8rem;
@@ -454,7 +459,10 @@ header.introHeaderTemp h1 {
 	opacity:0
 }
 header .right {
-	text-align:right
+    text-align:right;
+    path {
+        fill: white;
+    }
 }
 header .right a {
 	margin-left:20px;
@@ -475,7 +483,13 @@ header a {
 	text-transform:uppercase;
 }
 
-.filters .desktop li a {
+.mobileMenu {
+    li {
+        padding: 1rem;
+    }
+}
+
+.filters .filter-container li a {
 	font-size:1.1em;
 }
 
@@ -507,9 +521,6 @@ header a {
 	animation-fill-mode: forwards;
 }
 
-header a:hover,header .about-me:hover {
-	color:#cae5f2
-}
 header.introHeaderTemp a:hover {
 	color:#000;
 	opacity:.3
@@ -531,6 +542,15 @@ h1 img {
 	cursor: pointer;
 }
 
+.news {
+    padding-left: 2rem;
+    text-align: left;
+
+    a:hover {
+        color: blue;
+    }
+}
+
 @media only screen and (max-width: 300px) {
 	header .about-me {
 		display:none
@@ -545,7 +565,10 @@ h1 img {
 
 .filters {
 	position:fixed;
-	top:calc(8vh - 1px);
+    top:calc(8vh - 1px);
+    @media screen and (max-height: 645px) {
+        top: 50px;
+    }
 	width:100%;
 	background-color:#fafafa;
 	z-index:15;
@@ -561,12 +584,10 @@ h1 img {
         // todo this is a terrible way of doing it
 		width:100%;
 		background-color: white;
-		height:10vh;
+        height:7vh;
+        min-height: 60px;
 		position: absolute;
 		z-index: -1;
-	}
-	li.active a,.filters li a:hover {
-		color:#cae5f2;
 	}
 }
 
@@ -601,7 +622,8 @@ footer {
 	height:7vh;
 	border-top:1px solid #000;
 	position:fixed;
-	bottom:-1px;
+    bottom:-1px;
+    min-height: 60px;
 	left:0px;
 	text-transform:uppercase;
 	font-size:11px;
@@ -629,10 +651,6 @@ footer li,footer address {
 footer a,footer address,footer label {
 	color:#000;
 	font-weight:700
-}
-
-footer a:hover {
-	color:#cae5f2
 }
 
 @media only screen and (max-width: 1000px) {
@@ -820,7 +838,7 @@ footer a:hover {
 	flex-direction:column;
 	align-items:center;
 	background-size: 100% 100%;
-	background-image: url("/assets/thumbs/EmailPage.jpg");
+	background-image: url("/assets/webImages/thumbs/EmailPage.jpg");
 }
 
 .overlay_container form ul {
@@ -911,10 +929,6 @@ footer a:hover {
 	z-index:31;
 	min-width: 50px;
 	min-height: 50px;
-}
-
-.closebutton:hover {
-	color:#cae5f2;
 }
 
 .contact_me label {
@@ -1349,7 +1363,7 @@ body.work .projects {
 }
 
 a.menu {
-	color: black;
+	color: white;
 	text-transform: uppercase;
 	display: flex;
 	align-items: center;

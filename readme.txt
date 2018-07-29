@@ -18,13 +18,8 @@ to run your server simply use
 node server.js
 this uses your mailgun server to send emails
 
-to upload to heroku copy to the other git folder (do a grunt build then remove the .gitignores and the node folders as well as this readme) and use
-git push --no-verify heroku master
-
-then start the service with
-heroku ps:scale web=1
-
 keep original images in the best quality but use jpgs only, png and other formats are terrible
-settings on easythumbnails for 
-thumbs: 500px * 500px @ 70% quality
-superthumbs: 500px * 500px @ 20% quality
+
+imagemagick commands for images:
+magick mogrify -resize 1920x1080 -quality 100 -path ../webImages *.jpg
+magick mogrify -resize 500x500 -quality 50 -path ../webImages/thumbs *.jpg

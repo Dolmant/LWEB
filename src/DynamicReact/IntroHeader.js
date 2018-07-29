@@ -3,7 +3,9 @@ import {connect} from "react-redux"
 import React from "react"
 import $ from "./../jquery.min"
 import {actionCreators} from "./Actions"
+import Drawer from "@material-ui/core/Drawer"
 import {Motion, spring} from "react-motion"
+import NavMenu from "./NavMenu"
 
 type Props = {
     introOn: bool,
@@ -14,9 +16,18 @@ type Props = {
     onHomeClick: () => void,
     onSidebarOpen: () => void,
     updateCategory: (string) => void,
+    touchmenu_active: bool,
 };
 
-class IntroHeader extends React.Component<Props> {
+type State = {
+    menuOpen: boolean,
+}
+
+class IntroHeader extends React.Component<Props, State> {
+    state = {
+        menuOpen: false,
+    }
+
     SidebarHelper(delay) {
         setTimeout(() => {
             if (this.props.sidebarOpen) {
@@ -43,16 +54,6 @@ class IntroHeader extends React.Component<Props> {
     }
 
     render() {
-        // const style = () => {
-        //     if (this.props.introOn) {
-        //         return {
-        //             color: "white",
-        //         }
-        //     }
-        //     return {
-        //         color: "black",
-        //     }
-        // }
         let totalCount = 0
         this.props.shoppingCart.forEach((item) => {
             totalCount += item.count
@@ -61,6 +62,27 @@ class IntroHeader extends React.Component<Props> {
             <div className="container">
                 <div className="left">
                     {/* <a className="fade" rel="noopener noreferrer" style={style()} target="_blank" href="http://leotide.tumblr.com/">Tumblr!</a> */}
+                    {!this.props.introOn ?
+                        <Motion defaultStyle={{opacity: 0}} style={{opacity: spring(1, {stiffness: 20, damping: 17})}}>
+                            {interpolatingStyle =>
+                                <div key={3} style={interpolatingStyle}>
+                                    <a className="menu" onClick={() => this.setState({menuOpen: true})}><span>≡</span></a>
+                                    <Drawer open={this.state.menuOpen} onClose={() => this.setState({menuOpen: false})}>
+                                        <div
+                                            tabIndex={0}
+                                            role="button"
+                                            onClick={() => this.setState({menuOpen: false})}
+                                            onKeyDown={() => this.setState({menuOpen: false})}
+                                        >
+                                            <ul className="mobileMenu">
+                                                <NavMenu />
+                                            </ul>
+                                        </div>
+                                    </Drawer>
+                                </div>
+                            }
+                        </Motion>
+                        : null}
                 </div>
                 <h1>
                     <img onClick={() => this.props.onHomeClick()} src="./assets/images/LEOTIDE.png" alt="LeoTide"></img>
@@ -105,6 +127,7 @@ const mapStateToProps = state => ({
     introOn: state.introOn,
     category: state.category,
     sidebarOpen: state.sidebarOpen,
+    touchmenu_active: state.touchmenu_active,
 })
 
 const mapDispatchToProps = dispatch => ({

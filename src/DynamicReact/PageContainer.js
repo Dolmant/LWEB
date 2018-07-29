@@ -22,17 +22,19 @@ class RightNavButton extends React.Component<ButtonProps> {
 
 type Props = {
     list: any,
-    onImageClick: (number) => void,
+    onImageClick: number => void,
     category: string,
     page: string,
 };
 
 const PageContainer = (props: Props) => {
+    const smallScreen = window.innerWidth > 900
+
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: smallScreen ? 4 : 2,
         slidesToScroll: 1,
         arrows: true,
         lazyLoad: false,
@@ -61,7 +63,7 @@ const PageContainer = (props: Props) => {
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     height: "50vh",
-                    width: "20vw",
+                    width: smallScreen ? "40vw" : "20vw",
                 }}
             />
         </div>,
@@ -81,13 +83,21 @@ const PageContainer = (props: Props) => {
                             <img alt="Not found" src="./assets/images/LeotideIcon.png" />
                         </div>
                         <h2>Hello!</h2>
-                        I am a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in both<br />
+                        I am Leonie (Leo) Herson, a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in both<br />
                         <br />
-                        <span className="pink"><b>Science</b></span>   and     <span className="blue"><b>Design</b></span><br />
+                        <span className="pink"><b>Science</b></span>{"   and     "}<span className="blue"><b>Design</b></span><br />
                         <span className="pink">(Research) </span><span className="blue">(Animation/illustration)</span><br />
                         <img alt="Not found" src="./assets/icons/bubbles.png" /><br />
                         <span className="red"><b>Biomedical animation/Scientific illustration/data visulisation/communication</b></span><br />
                         Whilst following my passion as a freelance scientific illustrator!
+                    </div>
+                    <div className="desc_text">
+                        <h2>News!</h2>
+                        <div className="news">
+                            Beautiful and dangerous: animating deadly viruses at Vivid Sydney <a rel="noopener noreferrer" target="_blank" href="https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/">here!</a>
+                            <br />
+                            Mastering biomedical science by design <a rel="noopener noreferrer" target="_blank" href="http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design">here!</a>
+                        </div>
                     </div>
                     <div className="demoreel">
                         <h2>Check out the demo reel below!</h2>
@@ -97,18 +107,13 @@ const PageContainer = (props: Props) => {
                         </video>
                     </div>
                     <div className="desc_text last-element">
-                        <h2> Interested in a commission or purchasing a print?</h2>
-                        Please use the "CONTACT ME!" button on the bottom left of the screen to make an enquiry:<br />
+                        <h2>{"Interested in a commission or purchasing a print?"}</h2>
+                        {"Please use the \"CONTACT ME!\" button on the bottom left of the screen to make an enquiry:"}<br />
                         <div className="left">
                             <span className="underline">For a commission:</span><br />
                             - What type of comission? 2D/3D animation, illustration, 3D model or sketch?<br />
                             - Subject matter, size, black/white or colour, etc<br />
                         </div>
-                    </div>
-                    <div className="boxes">
-                        <div><img alt="Not found" src="./assets/icons/tick.jpg" /><h2>ORGANISED</h2></div>
-                        <div><img alt="Not found" src="./assets/icons/tick.jpg" /><h2>ECONOMICAL</h2></div>
-                        <div><img alt="Not found" src="./assets/icons/tick.jpg" /><h2>FRIENDLY</h2></div>
                     </div>
                 </div>
             </div>
