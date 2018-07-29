@@ -115,6 +115,7 @@ class Filters extends React.Component<Props, State> {
         }
         const menuOptions = Object.keys(category).filter(filter).sort(sorter).map(mapper)
 
+        // todo istouch should be xs on the grid element
         if (!this.props.introOn) {
             if (!this.props.isTouch) {
                 return (

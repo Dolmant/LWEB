@@ -805,7 +805,7 @@ h1 img {
 
 .filters {
   position: fixed;
-  top: calc(7vh - 1px);
+  top: calc(8vh - 1px);
   width: 100%;
   background-color: #fafafa;
   z-index: 15;
@@ -819,7 +819,7 @@ h1 img {
   .filters .background-ele {
     width: 100%;
     background-color: white;
-    height: 7vh;
+    height: 10vh;
     position: absolute;
     z-index: -1; }
   .filters li.active a, .filters .filters li a:hover {
@@ -1589,4 +1589,4 @@ header.introStatic {
   cursor: pointer;
   pointer-events: all; }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZXMuMjM4ZTgwYjViNTJiMDNhYzAwZTEuY3NzIiwic291cmNlUm9vdCI6IiJ9*/
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZXMuNzRlMzVhMDA1NTQxMWU0ZDA2NDEuY3NzIiwic291cmNlUm9vdCI6IiJ9*/

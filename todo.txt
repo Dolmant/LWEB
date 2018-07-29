@@ -1,8 +1,18 @@
 Now:
+compress images more
+menu should be a drawer on the left with a burger button in top left
+
+imagemagick
+mogrify -resize 16x12 -quality 60 -path ../thumbs *.jpg
+mogrify -resize 16x12 -quality 30 -path ../thumbs *.jpg
+
+laterish:
 gzip etc?
 oh god why is my dom so terrible, reimplement with grids
 fix website searching
 better shop
+check back button doesnt kill image and stuff
+track user location with hash, load hash at start to do movement in the app
 
 Later - easy:
 load common scripts (react, etc) from CDN?
@@ -10,6 +20,5 @@ Add image URL fingerprints?
 
 checkout page
 move other pictures to other pages or delete
-save current state to localstorage and load it
 proper stripe keys
 create test endpoints
