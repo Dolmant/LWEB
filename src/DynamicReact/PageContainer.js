@@ -63,7 +63,7 @@ const PageContainer = (props: Props) => {
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     height: "50vh",
-                    width: smallScreen ? "40vw" : "20vw",
+                    width: smallScreen ? "20vw" : "40vw",
                 }}
             />
         </div>,
