@@ -820,25 +820,25 @@ const HomeList = [
         item_number: 0, // overwritten
         img_src: "./assets/webImages/DragonVirus1.jpg",
         img_txt: "",
-        thumbs_src: "./assets/webImages/thumbs/DragonVirus1.jpg",
+        thumbs_src: "./assets/webImages/DragonVirus1.jpg",
     },
     {
         item_number: 0, // overwritten
         img_src: "./assets/webImages/DragonVirus2.jpg",
         img_txt: "",
-        thumbs_src: "./assets/webImages/thumbs/DragonVirus2.jpg",
+        thumbs_src: "./assets/webImages/DragonVirus2.jpg",
     },
     {
         item_number: 0, // overwritten
         img_src: "./assets/webImages/DragonVirus3.jpg",
         img_txt: "",
-        thumbs_src: "./assets/webImages/thumbs/DragonVirus3.jpg",
+        thumbs_src: "./assets/webImages/DragonVirus3.jpg",
     },
     {
         item_number: 0, // overwritten
         img_src: "./assets/webImages/DragonVirus4.jpg",
         img_txt: "",
-        thumbs_src: "./assets/webImages/thumbs/DragonVirus4.jpg",
+        thumbs_src: "./assets/webImages/DragonVirus4.jpg",
     },
     {
         item_number: 0, // overwritten
