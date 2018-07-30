@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin") // eslint-disab
 const WebpackBundleSizeAnalyzerPlugin = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin; // eslint-disable-line
 const CopyWebpackPlugin = require("copy-webpack-plugin") // eslint-disable-line import/no-extraneous-dependencies
 const CleanWebpackPlugin = require("clean-webpack-plugin")
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 const extractLess = new ExtractTextPlugin({
     filename: "styles.[hash].css",
@@ -62,10 +62,10 @@ module.exports = {
             {
                 test: /\.(html)$/,
                 use: {
-                    loader: 'html-loader',
+                    loader: "html-loader",
                     options: {
-                        attrs: [':data-src']
-                    }
+                        attrs: [":data-src"],
+                    },
                 },
             },
             {
@@ -87,8 +87,8 @@ module.exports = {
         new CopyWebpackPlugin([{from: "manifest.webmanifest", to: path.resolve(__dirname, "./dist")}]),
         new CleanWebpackPlugin(["dist", "index.html", "200.html"]),
         new HtmlWebpackPlugin({
-            template: 'src/template/index-template.html',
-            filename: './../index.html',
+            template: "src/template/index-template.html",
+            filename: "./../index.html",
         }),
     ],
     resolve: {

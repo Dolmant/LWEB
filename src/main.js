@@ -11,10 +11,17 @@ import App from "./App"
 
 declare var particlesJS
 
+const blockerImages = [
+    "/assets/images/CRISPR.jpg",
+]
+
 const HT = {
     ready(hydrated) {
-        $(window).load(() => {
-            setTimeout(() => {
+        // Ensure any blocking images are loaded, in particular the large background image on the splash screen
+        let loadedCount = 0
+
+        const onLoad = () => {
+            if (loadedCount >= (blockerImages.length + 1)) {
                 $("body").show()
                 $("html").removeClass("loading")
                 // snapshot doesnt work with particles js
@@ -23,7 +30,18 @@ const HT = {
                         console.log("callback - particles.js config loaded")
                     })
                 }
-            }, 100)
+            } else {
+                loadedCount += 1
+            }
+        }
+        blockerImages.forEach((imageURL) => {
+            const img = new Image()
+            img.onload = onLoad
+            img.src = imageURL
+            if (img.complete) onLoad()
+        })
+        $(window).load(() => {
+            setImmediate(onLoad)
         })
     },
 
