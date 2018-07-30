@@ -12,7 +12,7 @@ import App from "./App"
 declare var particlesJS
 
 const blockerImages = [
-    "/assets/images/CRISPR.jpg",
+    "/assets/webImages/CRISPR.jpg",
 ]
 
 const HT = {
@@ -21,6 +21,7 @@ const HT = {
         let loadedCount = 0
 
         const onLoad = () => {
+            loadedCount += 1
             if (loadedCount >= (blockerImages.length + 1)) {
                 $("body").show()
                 $("html").removeClass("loading")
@@ -30,8 +31,6 @@ const HT = {
                         console.log("callback - particles.js config loaded")
                     })
                 }
-            } else {
-                loadedCount += 1
             }
         }
         blockerImages.forEach((imageURL) => {

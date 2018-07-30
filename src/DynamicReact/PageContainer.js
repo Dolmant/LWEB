@@ -80,7 +80,7 @@ const PageContainer = (props: Props) => {
                 <div className="desc_holder">
                     <div className="desc_text">
                         <div>
-                            <img alt="Not found" src="./assets/images/LeotideIcon.png" />
+                            <img alt="Not found" src="./assets/images/LeotideIcon-min.png" />
                         </div>
                         <h2>Hello!</h2>
                         I am Leonie (Leo) Herson, a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in both<br />
@@ -101,7 +101,7 @@ const PageContainer = (props: Props) => {
                     </div>
                     <div className="demoreel">
                         <h2>Check out the demo reel below!</h2>
-                        <video autoPlay="" loop="" controls="1">
+                        <video preload="none" autoPlay="" loop="" controls="1">
                             <source src="./assets/images/LHDemoReel18.mp4" type="video/mp4"></source>
                             Your browser does not support the video tag.
                         </video>
