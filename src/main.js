@@ -52,7 +52,7 @@ const HT = {
 }
 
 $(document).ready(() => {
-    const appTarget = document.getElementById("app1")
+    const appTarget = document.getElementById("app")
     const appElement = (
         <Provider store={store}>
             <div>
