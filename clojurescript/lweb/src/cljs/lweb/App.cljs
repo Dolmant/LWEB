@@ -1,17 +1,23 @@
-// @flow
-import React from "react"
-import {connect} from "react-redux"
-import Sidebar from "./DynamicReact/Sidebar"
-import Intro from "./DynamicReact/Intro"
-import IntroHeader from "./DynamicReact/IntroHeader"
-import Filters from "./DynamicReact/Filters"
-import OverlayController from "./DynamicReact/OverlayController"
-import PageContainer from "./DynamicReact/PageContainer"
-import Footer from "./DynamicReact/Footer"
+(ns lweb.DynamicReact.App
+    (:require [rum.core :as rum]))
+
+(rum/defc App []
+)
 
 type Props = {
-    introOn: bool,
+	overlay: any,
 };
+
+const App = (props) => {
+	if (props.overlay.state) {
+		return <Overlay />;
+	}
+	return null;
+};
+
+const mapStateToProps = state => ({
+	overlay: state.overlay,
+});
 
 class App extends React.Component<Props> {
     render() {

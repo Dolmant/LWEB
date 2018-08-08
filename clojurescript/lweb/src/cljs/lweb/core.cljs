@@ -16,7 +16,7 @@
         (defn onLoad []
             (swap! loadCount inc)
             (if (>= @loadCount (count blockerImages))
-                (do
+                (do     
                 (set! (.-className (.getElementById js/document "html")) "")
                 (if hydrated?
                     (js/particlesJS "introImage" "./assets/particlesBusted.json" onClick)))))

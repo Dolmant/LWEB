@@ -1,7 +1,8 @@
-// @flow
-import React from 'react';
-import { connect } from 'react-redux';
-import Overlay from './Overlay';
+(ns lweb.DynamicReact.Intro
+    (:require [rum.core :as rum]
+                [cljs-react-material-ui.icons :as ic]))
+
+(rum/defc OverlayController []
 
 type Props = {
 	overlay: any,

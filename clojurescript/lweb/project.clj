@@ -55,7 +55,7 @@
               :output-dir       "target/cljsbuild/public/js"
               :source-map       "target/cljsbuild/public/js/app.js.map"
               :optimizations :advanced
-              :extern ["lib/particles.js"]
+              :externs ["lib/particles.js"]
               :pretty-print  false}}
             :app
             {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
@@ -66,7 +66,7 @@
               :output-to "target/cljsbuild/public/js/app.js"
               :output-dir "target/cljsbuild/public/js/out"
               :source-map true
-              :extern ["lib/particles.js"]
+              :externs ["lib/particles.js"]
               :optimizations :none
               :pretty-print  true}}
 
