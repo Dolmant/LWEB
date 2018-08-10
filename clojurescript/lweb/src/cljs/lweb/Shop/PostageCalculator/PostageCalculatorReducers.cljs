@@ -1,9 +1,10 @@
-// @flow
-import {types} from "./PostageCalculatorActions"
+(ns lweb.Shop.Checkout.CheckoutReducers
+  (:require [rum.core :as rum]
+            [lweb.Shop.CartManagement.CartManagementActions :as CartActions]
+            [lweb.Shop.Checkout.CheckoutActions :as CheckoutActions]
+            [cljs-react-material-ui.core :as ui]))
 
-const loadingIS = false
-
-export function LoadingReducer(state: bool = loadingIS, action: any) {
+(defn LoadingReducer [state, action]
     if (action.type === types.POSTAGE_REQUEST) {
         return true
     }
@@ -14,14 +15,9 @@ export function LoadingReducer(state: bool = loadingIS, action: any) {
         return false
     }
     return state
-}
+)
 
-const postageIS = {
-    type: 0,
-    cost: 0,
-}
-
-export function PostageReducer(state: any = postageIS, action: any, shoppingCart: any) {
+(defn PostageReducer [state, action, shoppingCart]
     const postagePrice = {
         "0": 0,
         "1": 20,
@@ -57,13 +53,11 @@ export function PostageReducer(state: any = postageIS, action: any, shoppingCart
         type: state.type,
         cost,
     }
-}
+)
 
-const combinedInitialState = {}
-
-export default function CombinedPostageCalculatorReducer(state: typeof combinedInitialState = combinedInitialState, action: any, shoppingCart: any) {
-    return {
+(defn CombinedPostageCalculatorReducer [state, action, shoppingCart]
+    {
         postageResult: PostageReducer(state.postageResult, action, shoppingCart),
         loading: LoadingReducer(state.loading, action),
     }
-}
+)

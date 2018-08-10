@@ -1,133 +1,56 @@
-// @flow
-import {connect} from "react-redux"
-import React from "react"
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-import Fade from "@material-ui/core/Fade"
-import {category} from "./../consts"
-import {actionCreators} from "./Actions"
+(ns lweb.DynamicReact.NavMenu
+    (:require [rum.core :as rum]
+    [lweb.DynamicReact.Actions as :Actions]
+    [lweb.consts as :consts]
+    [cljs-react-material-ui.core :as ui]))
 
-type Props = {
-    oncatClick: (string) => void,
-    onmenuClick: () => void,
-    category: string,
-};
-
-type State = {
-    open: bool,
-    anchorEl: any,
-};
-
-class NavMenu extends React.Component<Props, State> {
-    state = {
-        open: false,
-        anchorEl: null,
-    }
-
-    handleRequestClose() {
-        this.setState({
-            open: false,
-        })
-    }
-
-    handleOpenMenu(event) {
-        // This prevents ghost click.
-        if (!this.state.open) {
-            event.preventDefault()
-            event.stopPropagation()
-            this.setState({
-                open: true,
-                anchorEl: event.currentTarget,
-            })
-        }
-    }
-
-    handleSelectMenu(e, id) {
-        this.handleRequestClose()
-        this.props.oncatClick(id)
-    }
-
-    render() {
-        // These six are handled manually. I'll have to build proper submenus someday
-        const bundled = ["NATURE", "SCIENCE", "ANATOMY", "TYPOGRAPHY", "FACTS", "MISC"]
-
-        const filter = item => !bundled.includes(item)
-        const mapper = (item) => {
-            if (["ALL"].includes(item)) {
-                // generate menu here
-                return (
-                    <li key={item} onClick={event => this.handleOpenMenu(event)} id="HEADER"><a className="cursor"><strong>ILLUSTRATIONS <i className="fa fa-chevron-down" /></strong></a>
-                        {/* <Popover
-
-                                            anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-                                            targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-                                            useLayerForClickAway={false}
-                                        > */}
-                        <Menu
-                            onClose={() => this.handleRequestClose()}
-                            className="hi"
-                            transition={Fade}
-                            open={this.state.open}
-                            anchorEl={this.state.anchorEl}
-                        >
-                            <MenuItem id="ALL" onClick={e => this.handleSelectMenu(e, "ALL")} >ALL</MenuItem>
-                            <MenuItem id="NATURE" onClick={e => this.handleSelectMenu(e, "NATURE")} >NATURE</MenuItem>
-                            <MenuItem id="SCIENCE" onClick={e => this.handleSelectMenu(e, "SCIENCE")} >SCIENCE</MenuItem>
-                            <MenuItem id="ANATOMY" onClick={e => this.handleSelectMenu(e, "ANATOMY")} >ANATOMY</MenuItem>
-                            <MenuItem id="FACTS" onClick={e => this.handleSelectMenu(e, "FACTS")} >FACTS</MenuItem>
-                            <MenuItem id="TYPOGRAPHY" onClick={e => this.handleSelectMenu(e, "TYPOGRAPHY")} >TYPOGRAPHY</MenuItem>
-                            <MenuItem id="MISC" onClick={e => this.handleSelectMenu(e, "MISC")} >MISC</MenuItem>
-                        </Menu>
-                    </li>
-                )
-            }
-            return (
-                <li className="cursor" key={item} onClick={() => this.props.oncatClick(item)} id={item}>
-                    <a className="cursor">
-                        <strong>{item}</strong>
-                    </a>
-                </li>
-            )
-        }
-        const sorter = (category1, category2) => {
-            if (category1 === "CHECKOUT") {
-                return 1
-            }
-            if (category2 === "CHECKOUT") {
-                return -1
-            }
-            if (category1 === "3D MODELS/PRINTING") {
-                return 1
-            }
-            if (category2 === "3D MODELS/PRINTING") {
-                return -1
-            }
-            if (category1 > category2) {
-                return 1
-            }
-            if (category1 < category2) {
-                return -1
-            }
-            return 0
-        }
-        const menuOptions = Object.keys(category).filter(filter).sort(sorter).map(mapper)
-
-        return menuOptions
-    }
-}
-
-const mapStateToProps = state => ({
-    category: state.category,
-})
-
-const mapDispatchToProps = dispatch => ({
-    oncatClick: (id) => {
-        dispatch(actionCreators.updateCategory(id))
-        dispatch(actionCreators.toggleTouchmenu())
-    },
-})
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(NavMenu)
+; todo
+;    oncatClick: (id) => {
+    ;     dispatch(actionCreators.updateCategory(id))
+    ;     dispatch(actionCreators.toggleTouchmenu())
+    ; },
+(rum/defc NavMenu [oncatClick, onmenuClick, category, open, anchorEl]
+    (defn handleRequestClose [] (this.setstate(open = false)))
+    (defn handleOpenMenu [e] (if (not open) (do
+        (e/preventDefault)
+        (e/stopPropagation)
+        (setstate open = true anchorel = e.currenttarget)
+    )))
+    (defn handleSelectMenu [e, id] 
+        (handleRequestClose)
+        (oncatClick id)
+    )
+    (def bundled ["NATURE", "SCIENCE", "ANATOMY", "TYPOGRAPHY", "FACTS", "MISC"])
+    (defn filter [item] (not (includes bundled item)))
+    (defn mapper [item]
+        (if (= item "ALL")
+            [:li {:key item :on-click (fn [e] (handleOpenMenu e)) :id "HEADER"}
+                [:a.cursor
+                    [:strong "ILLUSTRATIONS"
+                    [:i {:class "fa fa-chevron-down"}]]
+                ]
+                [ui/Menu {:on-close handleRequestClose :class "hi" :open open :anchorEl anchorEl}
+                    [ui/MenuItem {:id "ALL" :on-click (fn [e] (handleSelectMenu e "ALL"))} "ALL"]
+                    [ui/MenuItem {:id "NATURE" :on-click (fn [e] (handleSelectMenu e "NATURE"))} "NATURE"]
+                    [ui/MenuItem {:id "SCIENCE" :on-click (fn [e] (handleSelectMenu e "SCIENCE"))} "SCIENCE"]
+                    [ui/MenuItem {:id "ANATOMY" :on-click (fn [e] (handleSelectMenu e "ANATOMY"))} "ANATOMY"]
+                    [ui/MenuItem {:id "FACTS" :on-click (fn [e] (handleSelectMenu e "FACTS"))} "FACTS"]
+                    [ui/MenuItem {:id "TYPOGRAPHY" :on-click (fn [e] (handleSelectMenu e "TYPOGRAPHY"))} "TYPOGRAPHY"]
+                    [ui/MenuItem {:id "MISC" :on-click (fn [e] (handleSelectMenu e "MISC"))} "MISC"]
+                ]
+            ]
+            [:li.cursor {:key item :on-click (fn [] (oncatClick item)) :id item}
+                [:a.cursor [:strong item]]]
+    ))
+    (defn sorter (fn [cat1 cat2]
+        (if (= cat1 "CHECKOUT") 1
+        (if (= cat2 "CHECKOUT") -1
+        (if (= cat1 "MODELS") 1
+        (if (= cat2 "MODELS") -1
+        (if (> cat1 cat2) 1
+        (if (> cat1 cat2) -1
+        0
+        ))))))
+    ))
+    (Object.keys(category).filter(filter).sort(sorter).map(mapper))
+)

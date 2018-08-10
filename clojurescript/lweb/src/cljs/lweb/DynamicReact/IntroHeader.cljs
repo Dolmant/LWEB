@@ -1,117 +1,49 @@
-// @flow
-import {connect} from "react-redux"
-import React from "react"
-import $ from "./../jquery.min"
-import {actionCreators} from "./Actions"
-import Drawer from "@material-ui/core/Drawer"
-import {Motion, spring} from "react-motion"
-import NavMenu from "./NavMenu"
+(ns lweb.DynamicReact.IntroHeader
+    (:require [rum.core :as rum]
+    [lweb.DynamicReact.Actions as :Actions]
+    [lweb.DynamicReact.NavMenu as :NavMenu]
+    [cljs-react-material-ui.core :as ui]))
 
-type Props = {
-    introOn: bool,
-    sidebarOpen: bool,
-    category: string,
-    shoppingCart: any,
-    onScrollOver: () => void,
-    onHomeClick: () => void,
-    onSidebarOpen: () => void,
-    updateCategory: (string) => void,
-    touchmenu_active: bool,
-};
 
-type State = {
-    menuOpen: boolean,
-}
 
-class IntroHeader extends React.Component<Props, State> {
-    state = {
-        menuOpen: false,
-    }
-
-    render() {
-        let totalCount = 0
-        this.props.shoppingCart.forEach((item) => {
-            totalCount += item.count
-        })
-        const result = (
-            <div className="container">
-                <div className="left">
-                    {/* <a className="fade" rel="noopener noreferrer" style={style()} target="_blank" href="http://leotide.tumblr.com/">Tumblr!</a> */}
-                    {!this.props.introOn ?
-                        <div>
-                            <a className="menu" onClick={() => this.setState({menuOpen: true})}><span>≡</span></a>
-                            <Drawer open={this.state.menuOpen} onClose={() => this.setState({menuOpen: false})}>
-                                <div
-                                    tabIndex={0}
-                                    role="button"
-                                    onClick={() => this.setState({menuOpen: false})}
-                                    onKeyDown={() => this.setState({menuOpen: false})}
-                                >
-                                    <ul className="mobileMenu">
-                                        <NavMenu />
-                                    </ul>
-                                </div>
-                            </Drawer>
-                        </div>
-                        : null}
-                </div>
-                <h1>
-                    <img onClick={() => this.props.onHomeClick()} src="./assets/images/LEOTIDE.png" alt="LeoTide"></img>
-                </h1>
-                <div className="right">
-                    {!this.props.introOn && this.props.category !== "CHECKOUT" ?
-                        <div className="cursor" onClick={() => this.props.updateCategory("CHECKOUT")}>
-                            <div className="total-count">
-                                {totalCount}
-                            </div>
-                            <i className="fa fa-shopping-cart" />
-                        </div>
-                    :
-                        null}
-                </div>
-            </div>
-        )
-        if (this.props.introOn) {
-            return (
-                <header className="introHeaderTemp">
-                    {result}
-                </header>
+(rum/defc IntroHeader [introOn, category, shoppingCart, onScrollOver, onHomeClick, updateCategory, touchmenu_active, menuOpen]
+    [:header.introHeaderTemp
+        [:div.container
+            [:div.left
+            (if (not introOn)
+            [:div
+                [:a.menu {
+                    :on-click (fn [] setstate(menuOpen = true))
+                }
+                    [:span
+                        ≡
+                    ]
+                ]
+                [ui/Drawer {
+                    :open menuOpen
+                    :on-close (fn [] setstate(menuOpen = false))
+                }
+                    [:div {:tab-index 0 :role "button" :on-click (fn [] setstate(menuopen = false)) :on-key-down (fn [] setstate(menuopen = false))}
+                        [:ul.mobileMenu
+                            [NavMenu/NavMenu]
+                        ]
+                    ]
+                ]
+            ]
+            [:div]
             )
-        }
-        return (
-            <header className="main-header">
-                <header key={1} className="main-header">
-                    {result}
-                </header>
-            </header>
-        )
-    }
-}
-
-const mapStateToProps = state => ({
-    shoppingCart: state.shoppingCart,
-    introOn: state.introOn,
-    category: state.category,
-    sidebarOpen: state.sidebarOpen,
-    touchmenu_active: state.touchmenu_active,
-})
-
-const mapDispatchToProps = dispatch => ({
-    onSidebarOpen: () => {
-        dispatch(actionCreators.toggleSidebar())
-    },
-    onHomeClick: () => {
-        dispatch(actionCreators.selectPage("home"))
-    },
-    onScrollOver: () => {
-        dispatch(actionCreators.updateIntroState(false))
-    },
-    updateCategory: (page) => {
-        dispatch(actionCreators.updateCategory(page))
-    },
-})
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(IntroHeader)
+            ]
+            [:h1
+            [:img {:on-click (fn [] (Actions/onHomeClick)) :src "./assets/images/LEOTIDE.png" :alt "LeoTide"}]]
+            [:div.right
+            (if (and (not introOn) (= category "CHECKOUT"))
+            [:div.cursor {:on-click (fn [] (actions/updateCategory "CHECKOUT"))}
+                [:div.total-count (count shoppingCart)]
+                [:i {:class "fa fa-shopping-cart"}]
+            ]
+            [:div]
+            )
+            ]
+        ]
+    ]
+)

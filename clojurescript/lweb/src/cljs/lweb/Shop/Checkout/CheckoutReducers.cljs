@@ -1,10 +1,11 @@
-// @flow
-import {types} from "./CheckoutActions"
-import {types as cartManagementTypes} from "./../CartManagement/CartManagementActions"
+(ns lweb.Shop.Checkout.CheckoutReducers
+  (:require [rum.core :as rum]
+            [lweb.Shop.CartManagement.CartManagementActions :as CartActions]
+            [lweb.Shop.Checkout.CheckoutActions :as CheckoutActions]
+            [cljs-react-material-ui.core :as ui]))
 
-const paidIS = false
 
-export function PaidReducer(state: bool = paidIS, action: any) {
+(defn PaidReducer [state, action] {
     if (action.type === types.PAY_NOW_REPLY) {
         return true
     }
@@ -12,11 +13,10 @@ export function PaidReducer(state: bool = paidIS, action: any) {
         return false
     }
     return state
-}
+})
 
-const loadingIS = false
 
-export function LoadingReducer(state: bool = loadingIS, action: any) {
+(defn LoadingReducer [state, action] {
     if (action.type === types.PAY_NOW_REQUEST) {
         return true
     }
@@ -27,11 +27,10 @@ export function LoadingReducer(state: bool = loadingIS, action: any) {
         return false
     }
     return state
-}
+})
 
-const checkoutIS = {}
 
-export function CheckoutReducer(state: any = checkoutIS, action: any) {
+(defn CheckoutReducer [state action] {
     if (action.type === types.PAY_NOW_REPLY) {
         return action.payload
     }
@@ -39,14 +38,12 @@ export function CheckoutReducer(state: any = checkoutIS, action: any) {
         return action.payload
     }
     return state
-}
+})
 
-const combinedInitialState = {}
-
-export default function CombinedCheckoutReducer(state: typeof combinedInitialState = combinedInitialState, action: any) {
-    return {
-        paid: PaidReducer(state.paid, action),
-        checkoutResult: CheckoutReducer(state.checkoutResult, action),
-        loading: LoadingReducer(state.loading, action),
+(defn CombinedCheckoutReducer [state, action] {
+    {
+        :paid (PaidReducer state.paid, action),
+        :checkoutResult (CheckoutReducer state.checkoutResult, action),
+        :loading (LoadingReducer state.loading, action),
     }
-}
+})

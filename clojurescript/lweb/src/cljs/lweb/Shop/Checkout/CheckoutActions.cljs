@@ -1,31 +1,35 @@
-// @flow
-import fetch from "isomorphic-fetch"
-import {toastr} from "react-redux-toastr"
-import {types as cartManagementTypes} from "./../CartManagement/CartManagementActions"
+(ns lweb.Shop.Checkout.CheckoutActions
+  (:require [rum.core :as rum]
+            [lweb.Shop.CartManagement.CartManagementActions :as CartActions]
+            [lweb.Shop.CartManagement.AddToCart :as AddToCart]
+            [lweb.Shop.CartManagement.RemoveFromCart :as RemoveFromCart]
+            [lweb.Shop.PostageCalculator.PostageCalculator :as PostageCalculator]
+            [cljs-react-material-ui.core :as ui]))
 
-export const types = {
-    SET_NAME: "SET_NAME",
-    SET_EMAIL: "SET_EMAIL",
-    SET_ADDRESS: "SET_ADDRESS",
-    PAY_NOW_REQUEST: "PAY_NOW_REQUEST",
-    PAY_NOW_REPLY: "PAY_NOW_REPLY",
-    PAY_NOW_ERROR: "PAY_NOW_ERROR",
-}
 
-export const actionCreators = {
-    setName: (name: string) => ({
+(def types {
+    :SET_NAME "SET_NAME",
+    :SET_EMAIL "SET_EMAIL",
+    :SET_ADDRESS "SET_ADDRESS",
+    :PAY_NOW_REQUEST "PAY_NOW_REQUEST",
+    :PAY_NOW_REPLY "PAY_NOW_REPLY",
+    :PAY_NOW_ERROR "PAY_NOW_ERROR",
+})
+
+(def actionCreators {
+    :setName: (name: string) => ({
         type: types.SET_NAME,
         payload: name,
     }),
-    setEmail: (email: string) => ({
+    :setEmail: (email: string) => ({
         type: types.SET_EMAIL,
         payload: email,
     }),
-    setAddress: (address: string) => ({
+    :setAddress: (address: string) => ({
         type: types.SET_ADDRESS,
         payload: address,
     }),
-    payNow: (token: any) => (dispatch: any, getState: any) => {
+    :payNow: (token: any) => (dispatch: any, getState: any) => {
         const store = getState()
 
         const data = Object.assign(token, {amount: store.total * 100, currency: "AUD", description: "Leotide Art", shoppingCart: store.shoppingCart})
@@ -60,4 +64,4 @@ export const actionCreators = {
         })
         return true
     },
-}
+})
