@@ -2,9 +2,14 @@
 import {types} from "./CartManagementActions"
 import {getImageById} from "./../../consts"
 
-const cartIS = []
+(ns lweb.Shop.CartManagement.CartManagementReducers
+    (:require [rum.core :as rum]
+    [lweb.Shop.CartManagement.CartManagementActions :as Actions]
+    [lweb.consts :as consts]
+    [cljs-react-material-ui.core :as ui]))
 
-export default function CartManagementReducer(state: any = cartIS, action: any) {
+
+(defn CartManagementReducer [state, action] 
     if (action.type === types.ADD_TO_CART) {
         const image = Object.assign({}, getImageById(action.payload.id))
 
@@ -36,4 +41,4 @@ export default function CartManagementReducer(state: any = cartIS, action: any) 
         return []
     }
     return state
-}
+)

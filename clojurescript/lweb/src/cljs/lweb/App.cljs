@@ -1,50 +1,21 @@
 (ns lweb.DynamicReact.App
-    (:require [rum.core :as rum]))
+    (:require [rum.core :as rum]
+    [lweb.DynamicReact.Intro :as Intro]
+    [lweb.DynamicReact.IntroHeader :as IntroHeader]
+    [lweb.DynamicReact.Filters :as Filters]
+    [lweb.DynamicReact.PageContainer :as PageContainer]
+    [lweb.DynamicReact.Footer :as Footer]))
 
-(rum/defc App []
-)
-
-type Props = {
-	overlay: any,
-};
-
-const App = (props) => {
-	if (props.overlay.state) {
-		return <Overlay />;
-	}
-	return null;
-};
-
-const mapStateToProps = state => ({
-	overlay: state.overlay,
-});
-
-class App extends React.Component<Props> {
-    render() {
-        return (
-            <div>
-                <div id="intro" className="intro" ><Intro /></div>
-                <div id="introHeader" className="introHeader"><IntroHeader /></div>
-                <div id="filters" className={this.props.introOn ? "filtersTemp" : "filters"}>
-                    <Filters />
-                </div>
-                <div id="overlay" className="overlay"><OverlayController /></div>
-                <div id="sidebar-top" className="sidebar-top"><Sidebar /></div>
-                <div id="page-container" className="page container"><PageContainer /></div>
-                <div id="footer" className="footer"><Footer /></div>
-            </div>
+(rum/defc App [overlay]
+    [:div
+        [:div.intro#intro Intro]
+        [:div.introHeader#introHeader IntroHeader]
+        [:div.filters#filters Filters]
+        (if overlay.state
+            Overlay
+            [:div]
         )
-    }
-}
-
-const mapStateToProps = state => ({
-    introOn: state.introOn,
-})
-
-const mapDispatchToProps = () => ({
-})
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(App)
+        [:div.page-container {:id "page container"} PageContainer]
+        [:div.footer#footer Footer]
+    ]
+)

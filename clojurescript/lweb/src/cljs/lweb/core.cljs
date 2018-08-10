@@ -46,7 +46,16 @@
 
 (secretary/defroute "/*" []
     (reset! page #'home-page))
-
+; todo put in a toaster
+; {/* <ReduxToastr
+;     timeOut={4000}
+;     newestOnTop={false}
+;     preventDuplicates
+;     position="top-left"
+;     transitionIn="fadeIn"
+;     transitionOut="fadeOut"
+;     progressBar
+; /> */}
 ;; -------------------------
 ;; Initialize app
 
