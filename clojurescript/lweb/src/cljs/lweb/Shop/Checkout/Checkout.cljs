@@ -10,6 +10,30 @@ import AddToCart from "./../CartManagement/AddToCart"
 import RemoveFromCart from "./../CartManagement/RemoveFromCart"
 import PostageCalculator from "../PostageCalculator/PostageCalculator"
 
+(ns lweb.Shop.Checkout.Checkout
+  (:require [rum.core :as rum]
+            [lweb.Shop.CartManagement.CartManagementActions :as CartActions]
+            [lweb.Shop.CartManagement.AddToCart :as AddToCart]
+            [lweb.Shop.CartManagement.RemoveFromCart :as RemoveFromCart]
+            [lweb.Shop.PostageCalculator.PostageCalculator :as PostageCalculator]
+            [cljs-react-material-ui.core :as ui]))
+
+
+(rum/defc RemoveFromCart [id type mini removeFromCart]
+    [:div {:style "display: inline-block;"}
+        [ui/Button {
+                    mini: mini
+                    :variant (if mini "fab" "raised")
+                    color "secondary"
+                    :on-click (fn []
+                        toastr.success ("Success", "Item removed from cart")
+                        Actions.actionCreators.removeFromCart (this.props.id, this.props.type)
+                    )
+        } (if mini [ic/remove-icon "Remove from cart"])]
+    ]
+)
+
+
 type Props = {
     setName: (string) => void,
     setEmail: (string) => void,

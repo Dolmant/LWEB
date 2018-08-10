@@ -1,7 +1,3 @@
-// @flow
-import {types} from "./CartManagementActions"
-import {getImageById} from "./../../consts"
-
 (ns lweb.Shop.CartManagement.CartManagementReducers
     (:require [rum.core :as rum]
     [lweb.Shop.CartManagement.CartManagementActions :as Actions]
@@ -10,8 +6,8 @@ import {getImageById} from "./../../consts"
 
 
 (defn CartManagementReducer [state, action] 
-    if (action.type === types.ADD_TO_CART) {
-        const image = Object.assign({}, getImageById(action.payload.id))
+    if (action.type === Actions/types.ADD_TO_CART) {
+        const image = Object.assign({}, consts/getImageById(action.payload.id))
 
         const present = state.findIndex(item => item.item_number === action.payload.id && item.type.id === action.payload.type.id)
         const newState = state.slice()
@@ -24,7 +20,7 @@ import {getImageById} from "./../../consts"
         newState.push(image)
         return newState
     }
-    if (action.type === types.REMOVE_FROM_CART) {
+    if (action.type === Actions/types.REMOVE_FROM_CART) {
         const present = state.findIndex(item => item.item_number === action.payload.id && item.type.id === action.payload.type.id)
         const newState = state.slice()
         if (present !== -1) {
@@ -37,7 +33,7 @@ import {getImageById} from "./../../consts"
         }
         return state
     }
-    if (action.type === types.EMPTY_CART) {
+    if (action.type === Actions/types.EMPTY_CART) {
         return []
     }
     return state
