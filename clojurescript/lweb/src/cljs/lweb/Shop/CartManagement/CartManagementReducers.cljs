@@ -1,40 +1,39 @@
-(ns lweb.Shop.CartManagement.CartManagementReducers
+(ns lweb.Shop.CartManagement
     (:require [rum.core :as rum]
     [lweb.Shop.CartManagement.CartManagementActions :as Actions]
     [lweb.consts :as consts]
     [cljs-react-material-ui.core :as ui]))
 
+(defn vec-remove
+  "remove elem in coll"
+  [coll pos]
+  (vec (concat (subvec coll 0 pos) (subvec coll (inc pos)))))
 
-(defn CartManagementReducer [state, action] 
-    if (action.type === Actions/types.ADD_TO_CART) {
-        const image = Object.assign({}, consts/getImageById(action.payload.id))
+(defonce state
+    (atom {:shoppingCart []}))
 
-        const present = state.findIndex(item => item.item_number === action.payload.id && item.type.id === action.payload.type.id)
-        const newState = state.slice()
-        if (present !== -1) {
-            newState[present].count += 1
-            return newState
-        }
-        image.count = 1
-        image.type = action.payload.type
-        newState.push(image)
-        return newState
-    }
-    if (action.type === Actions/types.REMOVE_FROM_CART) {
-        const present = state.findIndex(item => item.item_number === action.payload.id && item.type.id === action.payload.type.id)
-        const newState = state.slice()
-        if (present !== -1) {
-            if (newState[present].count > 1) {
-                newState[present].count -= 1
-                return newState
-            }
-            newState.splice(present, 1)
-            return newState
-        }
-        return state
-    }
-    if (action.type === Actions/types.EMPTY_CART) {
-        return []
-    }
-    return state
+
+(defn addToCart [id type]
+    (def index (first
+        (keep-indexed #(when (and (= (:item_number %2) id) (= (get-in % [:type :id]) (:id type))) %1) (:shoppingCart @state))
+    ))
+    (reset! state
+        (if (!= index -1)
+            (update-in @state [:shoppingCart index :count] inc)
+            (update-in @state [:shoppingCart ] (conj (:shoppingCart @state) [(merge (consts/getImageById id) {:count 1 :type type})]))
+    ))
+(defn removeFromCart [id type] 
+    (def index (first
+        (keep-indexed #(when (and (= (:item_number %2) id) (= (get-in % [:type :id]) (:id type))) %1) (:shoppingCart @state))
+    ))
+    (reset! state
+        (if (!= index -1)
+            (if (> 1 (get-in @state [:shoppingCart index :count]))
+                (update-in @state [:shoppingCart index :count] dec)
+                (vec-remove @state, index)
+            )
+            @state
+        ))
+(defn emptyCart [action] 
+    (reset! state {:shoppingCart []})
 )
