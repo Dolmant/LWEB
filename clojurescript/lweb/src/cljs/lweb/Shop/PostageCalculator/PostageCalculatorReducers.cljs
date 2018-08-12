@@ -1,4 +1,4 @@
-(ns lweb.Shop.Checkout.CheckoutReducers
+(ns lweb.Shop.PostageCalculator
   (:require [rum.core :as rum]
   [lweb.Shop.CartManagement :as CartManagement]
   [cljs-react-material-ui.core :as ui]))
@@ -13,7 +13,11 @@
     (atom {:type 0 :cost "0" :loading false}))
 
 (defn SetLoading [state]
-    (swap! state @state [:loading] (not (@state :loading)))
+    (swap! state @state [:loading] (fn [_] (not (@state :loading))))
+)
+
+(defn SetType [type]
+    (swap! state @state [:type] (fn [_] type))
 )
 
 (defn PostageReducer []

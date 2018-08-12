@@ -1,61 +1,65 @@
-(ns lweb.DynamicReact.NavMenu
+(ns lweb.DynamicReact
     (:require [rum.core :as rum]
-    [lweb.DynamicReact.Actions as :Actions]
-    [lweb.Shop.AddToCart as :AddToCart]
-    [lweb.LazySizes as :LazySizes]
-    [lweb.consts as :consts]
-    [cljs-react-material-ui.core :as ui]))
+    [lweb.DynamicReact as DynamicReact]
+    [lweb.Shop as Shop]
+    [lweb.consts as consts]
+    [goog.dom.forms :as gforms]
+    [cljs-http.client :as http]
+    [cljs.core.async :refer [<!]])
+    (:require-macros [cljs.core.async.macros :refer [go]]))
 
-; todo
-;    oncatClick: (id) => {
-    ;     dispatch(actionCreators.updateCategory(id))
-    ;     dispatch(actionCreators.toggleTouchmenu())
-    ; },
-(rum/defc Overlay [overlay, navOverlayImage, toggleOverlay, overlay_image_num, overlay_image_src overlay_thumb_src overlay_types overlay_txt]
+(defn oncatClick [id]
+    (DynamicReact/UpdateCategory id)
+    (DynamicReact/SetAttr :touchmenu_active false)
+)
+(rum/defc Overlay < rum/reactive []
+    (def overlay ((rum/react DynamicReact/state) :overlay))
+    (def overlay_image_num ((rum/react DynamicReact/state) :overlay_image_num))
+    (def overlay_image_src ((rum/react DynamicReact/state) :overlay_image_src))
+    (def overlay_thumb_src ((rum/react DynamicReact/state) :overlay_thumb_src))
+    (def overlay_types ((rum/react DynamicReact/state) :overlay_types))
+    (def overlay_txt ((rum/react DynamicReact/state) :overlay_txt))
     (defn formOverride [e]
         (e/preventDefault)
-        (if (not $("#element_7")[0].value)
-            $(".error_message")[0].innerText = "Please add your contact details!"
+        (if (not ((.getElementById js/document "contact-form") :value))
+            (set! (.-innerHTML (.getElementByClass js/document "error_message")) "Please add your contact details!")
             (do
-                (toggleOverlay false false)
-                $.ajax({
-                    url: "https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail",
-                    type: "POST",
-                    data: $("#contact-form").serialize(),
-                    beforeSend: () => {
-                        const num = 0
-                    },
-                    success: (data) => {
-                        const num = 0
-                    },
-                })
+                (DynamicReact/ToggleOverlay false false)
+                (go (let [response (<! (http/post "https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail"
+                                                {
+                                                    :with-credentials? false
+                                                    :getFormDataMap (gforms/getFormDataMap (.getElementById js/document "contact-form"))
+                                                }
+                                            ))]
+                ))
             )
         )
     )
     (defn backgroundOverlayClick [e]
-        if (!($(event.target).is(".overlay_container") ||
-        $(event.target).is(".downnav_overlay") ||
-        $(event.target).is(".upnav_overlay") ||
-        $(event.target).is(".rightnav_overlay") ||
-        $(event.target).is(".leftnav_overlay"))) {
-            this.props.toggleOverlay(false, false)
-        }
+        (cond 
+            (s/includes? (.-class (e :target)) "overlay_container") (DynamicReact/ToggleOverlay false, false)
+            (s/includes? (.-class (e :target)) "downnav_overlay") (DynamicReact/ToggleOverlay false, false)
+            (s/includes? (.-class (e :target)) "upnav_overlay") (DynamicReact/ToggleOverlay false, false)
+            (s/includes? (.-class (e :target)) "rightnav_overlay") (DynamicReact/ToggleOverlay false, false)
+            (s/includes? (.-class (e :target)) "leftnav_overlay") (DynamicReact/ToggleOverlay false, false)
+            :else "Overlay not closing, not outside target"
+        )
     )
     (defn CloseButtonClick [e]
-        event.preventDefault()
-        this.props.toggleOverlay(false, false)
+        (e/preventDefault)
+        (DynamicReact/ToggleOverlay false, false)
     )
     [:div.overlay_top
-        [:div#backgroundOverlay.backgroundOverlay {:on-click (fn [e] backgroundOverlayClick(e))}]
+        [:div#backgroundOverlay.backgroundOverlay {:on-click (fn [e] (backgroundOverlayClick e))}]
         [:div.overlay_container
             [:a {:class "closebutton strokeme" :on-click (fn [e] (CloseButtonClick e))}]
             (if overlay.image
                 [:div.overlayimagecontrol
                     [:div
-                        (if overlay.arrows.left [:div.img-wrap-left-overlay [:img.leftnav_overlay {:alt "It's not loading!" :src "./assets/icons/LeftIcon.png" :on-click (fn [] navOverlayImage("left"))}]])
-                        (if overlay.arrows.right [:div.img-wrap-right-overlay [:img.rightnav_overlay {:alt "It's not loading!" :src "./assets/icons/RightIcon.png" :on-click (fn [] navOverlayImage("right"))}]])
-                        (if overlay.arrows.up [:div.img-wrap-up-overlay [:img.upnav_overlay {:alt "It's not loading!" :src "./assets/icons/UpIcon.png" :on-click (fn [] navOverlayImage("up"))}]])
-                        (if overlay.arrows.down [:div.img-wrap-down-overlay [:img.downnav_overlay {:alt "It's not loading!" :src "./assets/icons/DownIcon.png" :on-click (fn [] navOverlayImage("down"))}]])
+                        (if overlay.arrows.left [:div.img-wrap-left-overlay [:img.leftnav_overlay {:alt "It's not loading!" :src "./assets/icons/LeftIcon.png" :on-click #(DynamicReact/NavOverlayImage "left")}]])
+                        (if overlay.arrows.right [:div.img-wrap-right-overlay [:img.rightnav_overlay {:alt "It's not loading!" :src "./assets/icons/RightIcon.png" :on-click #(DynamicReact/NavOverlayImage "right")}]])
+                        (if overlay.arrows.up [:div.img-wrap-up-overlay [:img.upnav_overlay {:alt "It's not loading!" :src "./assets/icons/UpIcon.png" :on-click #(DynamicReact/NavOverlayImage "up")}]])
+                        (if overlay.arrows.down [:div.img-wrap-down-overlay [:img.downnav_overlay {:alt "It's not loading!" :src "./assets/icons/DownIcon.png" :on-click #(DynamicReact/NavOverlayImage "down")}]])
                     ]
                     [:h2 overlay_txt]
                     (if overlay.is_video

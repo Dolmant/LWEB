@@ -1,8 +1,10 @@
-(ns lweb.DynamicReact.Intro
+(ns lweb.DynamicReact
     (:require [rum.core :as rum]
+    [lweb.DynamicReact :as DynamicReact]
                 [cljs-react-material-ui.core :as ui]))
 
-(rum/defc Filters [introOn?]
+(rum/defc Filters []
+    (def introOn? true)
     (if (introOn?)
         [ui/Hidden {:xsDown "xsDown"}
          [:div
@@ -11,7 +13,7 @@
                  :class "filter-container container"
           }
            [:ul
-            [lweb.DynamicReact.NavMenu]]]]
+            [DynamicReact/NavMenu]]]]
          ]
         [:div])
 )

@@ -1,4 +1,4 @@
-(ns lweb.Shop.Checkout.CheckoutReducers
+(ns lweb.Shop.Checkout
   (:require [rum.core :as rum]
             [lweb.Shop.CartManagement :as CartManagement]
             [cljs-react-material-ui.core :as ui]
@@ -26,7 +26,7 @@
     (SetLoading true)
     (go (let [response (<! (http/post "https://us-central1-lweb-176107.cloudfunctions.net/try_payment"
                                     {:with-credentials? false
-                                    {:json-params (merge token {:amount (* 100 store.total) :currency "AUD" :description "Leotide Art" :shoppingCart store.shoppingCart})}}))]
+                                    :json-params (merge token {:amount (* 100 store.total) :currency "AUD" :description "Leotide Art" :shoppingCart store.shoppingCart})}))]
         (CartManagement/EmptyCart)
         (SetPaid true)
         ;(toastr)

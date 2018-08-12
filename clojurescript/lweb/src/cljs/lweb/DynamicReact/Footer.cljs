@@ -1,7 +1,9 @@
-(ns lweb.DynamicReact.Footer
-    (:require [rum.core :as rum]))
+(ns lweb.DynamicReact
+    (:require [rum.core :as rum]
+    [lweb.DynamicReact :as DynamicReact]))
 
-(rum/defc Footer [introOn? onContactClick]
+(rum/defc Footer []
+        (def introOn? true)
         (if introOn?
             [:footer
                 [:div.footer-container.container
@@ -11,7 +13,7 @@
                         ]
                     ]
                     [:div.contact_me
-                        [:a#contact_overlay {:on-click (fn [e] (onContactClick))} "Contact Me!"]
+                        [:a#contact_overlay {:on-click (fn [e] (DynamicReact/ToggleOverlay true false))} "Contact Me!"]
                     ]
                     [:div.social
                         [:ul
@@ -36,10 +38,3 @@
             ]
         [:div])
 )
-;; todo - this should toggle the overlay
-;;const mapDispatchToProps = dispatch => ({
-;;    onContactClick: () => {
-;;        dispatch(actionCreators.toggleOverlay(true, false))
-;;    },
-;;})
-

@@ -1,5 +1,4 @@
-
-(ns lweb.DynamicReact.Intro
+(ns lweb.DynamicReact
     (:require [rum.core :as rum]
                 [cljs-react-material-ui.icons :as ic]))
 

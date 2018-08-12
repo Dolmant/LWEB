@@ -1,10 +1,8 @@
-import {HomeInitial, category, isTouch, projectList, getImageById, ArrayLimitsCalc} from "./../consts"
-
-
-(ns lweb.Shop.Checkout.CheckoutReducers
+(ns lweb.DynamicReact
   (:require [rum.core :as rum]
             [lweb.Shop.CartManagement :as CartManagement]
             [lweb.consts :as consts]
+            [clojure.string :as s]
             ))
 
 (defonce state
@@ -30,7 +28,7 @@ import {HomeInitial, category, isTouch, projectList, getImageById, ArrayLimitsCa
 
 (defn SetAttrs [attrs]
     (reset! state
-        (update-in @state [attr] value)
+        (update-vals @state [attrs])
     )
 )
 
@@ -39,14 +37,8 @@ import {HomeInitial, category, isTouch, projectList, getImageById, ArrayLimitsCa
   [coll elm]  
   (some #(= elm %) coll))
 
-:updateCategory (fn [category] {
-    dispatch({type: (types :UPDATE_CATEGORY), payload: category})
-    dispatch({type: (types :SELECT_PAGE), payload: "portfolio"})
-}),
-:selectPage (page: string) => (dispatch: any) => {
-    dispatch({type: types.UPDATE_CATEGORY, payload: ""})
-    return dispatch({type: (types :SELECT_PAGE), payload: page})
-},
+(defn update-vals [map mf]
+  (reduce #(update-in % [%2] (fn [_] (mf %2))) map (keys mf)))
 
 (defn computeArrows [overlay_image_num current_category overlay_vertical_index NumberofVertical]
     (def limits (consts/ArrayLimitsCalc current_category))
@@ -56,15 +48,6 @@ import {HomeInitial, category, isTouch, projectList, getImageById, ArrayLimitsCa
         :up (< (overlay_vertical_index :overlay_image_num) (- NumberofVertical 1))
         :down (> (overlay_vertical_index :overlay_image_num) 0)
     }
-)
-
-(defn selectedOverlayImageNum [overlay_image_num current_category overlay_vertical_index overlay]
-    (if (not current_category)
-        (SetAttrs {:overlay overlay :overlay_vertical_index: overlay_vertical_index :overlay_image overlay_image_num})
-        (do
-            
-        )
-    )
 )
 
 (defn NavOverlayImage [direction]
@@ -77,115 +60,57 @@ import {HomeInitial, category, isTouch, projectList, getImageById, ArrayLimitsCa
     )
 )
 
-function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
-    current_category = InitalState.category,
-    overlay_vertical_index_ = InitalState.overlay_vertical_index,
-    _overlay = InitalState.overlay,
-    action,
-) {
-    let state = _overlay.state
-    let image = _overlay.image
-    case types.UPDATE_OVERLAY_IMAGE:
-        overlay_image_num = action.payload
-        break
-    case types.TOGGLE_OVERLAY:
-        state = action.payload.state
-        image = action.payload.image
-        break
-    default:
-        break
-    }
-    // need to check again because it can be changed above
-    if (!overlay_vertical_index[overlay_image_num]) {
-        overlay_vertical_index[overlay_image_num] = 0
-    }
-    const temp_image_data = getImageById(overlay_image_num)
-    let overlay_image_src = ""
-    let overlay_thumb_src = ""
-    let vertical_limit = 0
-    const is_video = temp_image_data.is_video
-    if (Array.isArray(temp_image_data.img_src)) {
-        overlay_image_src = temp_image_data.img_src[overlay_vertical_index[overlay_image_num]]
-        overlay_thumb_src = temp_image_data.overlay_thumbs_src[overlay_vertical_index[overlay_image_num]]
-        vertical_limit = temp_image_data.img_src.length
-    } else {
-        overlay_image_src = temp_image_data.img_src
-        overlay_thumb_src = temp_image_data.thumbs_src
-    }
-    const arrows = computedarrows(
-        overlay_image_num,
-        current_category,
-        overlay_vertical_index,
-        vertical_limit)
-    return {
-        overlay_vertical_index,
-        overlay_image_num,
-        overlay_image_src,
-        overlay_thumb_src,
-        overlay_types: temp_image_data.types,
-        overlay_txt: temp_image_data.img_txt,
-        overlay: {
-            arrows,
-            state,
-            image,
-            is_video,
-        },
-    }
-}
+(defn UpdateOverlayImage [overlay_image_num]
+    (selectedOverlayImageNum overlay_image_num (@state :category) (@state :overlay_vertical_index) (@state :overlay))
+)
 
-function selectedCategory(state = InitalState.category, action) {
-    let selectedcat = state
-    if (action.type === types.UPDATE_CATEGORY) {
-        selectedcat = action.payload
-    }
-    return selectedcat
-}
+(defn ToggleOverlay [state, image]
+    (selectedOverlayImageNum (@state :overlay_image_num) (@state :category) (@state :overlay_vertical_index) (update-vals (@state :overlay) {:state state :image image}))
+)
 
-function selectedList(state = InitalState.list, action) {
-    let list
-    if (action.type === types.UPDATE_CATEGORY) {
-        if (Object.keys(projectList).includes(action.payload)) {
-            list = projectList[action.payload]
-        } else {
-            // Home list
-            list = InitalState.list
-        }
-        return list
-    }
-    return state
-}
+(defn selectedOverlayImageNum [overlay_image_num current_category overlay_vertical_index overlay]
+    (if (not current_category)
+        (SetAttrs {:overlay overlay :overlay_vertical_index: overlay_vertical_index :overlay_image overlay_image_num})
+        (do
+            (def tempImage (consts/getImageById overlay_image_num))
+            (if isArray(tempImage.img_src)
+                (SetAttrs {
+                    :overlay_vertical_index overlay_vertical_index
+                    :overlay_image_num overlay_image_num
+                    :overlay_image_src (get-in tempImage [:img_src (overlay_vertical_index overlay_image_num)])
+                    :overlay_thumb_src (get-in tempImage [:overlay_thumbs_src (overlay_vertical_index overlay_image_num)])
+                    :overlay_types (tempImage :types)
+                    :overlay_txt (tempImage :img_txt)
+                    :overlay {:state (overlay :state) :image (overlay :image) :is_video (tempImage :is_video) :arrows (computeArrows overlay_image_num current_category overlay_vertical_index (count (tempImage :img_src)))}
+                })
+                (SetAttrs {
+                    :overlay_vertical_index overlay_vertical_index
+                    :overlay_image_num overlay_image_num
+                    :overlay_image_src (tempImage :img_src)
+                    :overlay_thumb_src (tempImage :thumbs_src)
+                    :overlay_types (tempImage :types)
+                    :overlay_txt (tempImage :img_txt)
+                    :overlay {:state (overlay :state) :image (overlay :image) :is_video (tempImage :is_video) :arrows (computeArrows overlay_image_num current_category overlay_vertical_index 0)}
+                })
+            )
+        )
+    )
+)
 
-function introState(state = InitalState.introOn, action) {
-    if (action.type === types.UPDATE_INTROSTATE) {
-        return action.payload
-    }
-    return state
-}
+(defn SetCategory [category]
+    (SetAttrs {
+        :category category
+        :page "portfolio"
+        :list (if (in (keys projectList) category)
+            (projectList category)
+            consts/HomeInitial
+        )})
+)
 
-function touchmenuToggle(state = InitalState.touchmenu_active, action) {
-    if (action.type === types.TOGGLE_TOUCHMENU) {
-        return !state
-    }
-    return state
-}
-
-function selectPage(state = InitalState.page, action) {
-    if (action.type === types.SELECT_PAGE) {
-        return action.payload
-    }
-    if (action.type === types.UPDATE_CATEGORY) {
-        return "portfolio"
-    }
-    return state
-}
-
-const totalIS = 0
-
-export function TotalReducer(state: number = totalIS, action: any, shoppingCart: any, postageCalculator: any) {
-    let total = 0
-    shoppingCart.forEach((item) => {
-        total += item.type.cost * item.count
+(defn SetPage [page]
+    (SetAttrs {
+        :category ""
+        :page page
     })
-    total += postageCalculator.postageResult.cost
-    return total
-}
+)
+

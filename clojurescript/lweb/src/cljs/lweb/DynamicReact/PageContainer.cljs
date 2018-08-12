@@ -1,9 +1,8 @@
-(ns lweb.DynamicReact.NavMenu
+(ns lweb.DynamicReact
     (:require [rum.core :as rum]
-    [lweb.DynamicReact.Actions as :Actions]
-    [lweb.consts as :consts]
-    [lweb.Shop.Checkout.Checkout as :Checkout]
-    [lweb.consts as :consts]
+    [lweb.DynamicReact as DynamicReact
+    [lweb.consts as consts]
+    [lweb.Shop as Shop]
     [cljs-react-material-ui.core :as ui]))
 
 
@@ -15,24 +14,32 @@
     [:button [:div.slick-prev-div]]
 )
 
-(rum/defc PageContainer [list onImageClick category page]
+(defn onImageClick [index]
+    (DynamicReact/UpdateOverlayImage index)
+    (DynamicReact/ToggleOverlay true true)
+)
+
+(rum/defc PageContainer < rum/reactive []
+    (def list ((rum/react DynamicReact/state) :list))
+    (def category ((rum/react DynamicReact/state) :category))
+    (def page ((rum/react DynamicReact/state) :page))
     (def smallScreen (> window.innerWidth 900))
     (def settings {})
     (def listItems [:ul.projects
         (doseq [item list]
-            [:li {:key (get item key) :on-click (fn [] onImageClick((get item :item_number)))}
+            [:li {:key (get item key) :on-click (fn [] (onImageClick (get item :item_number)))}
                 [:div.img-wrap
-                    [:img {:alt "It's not loading!" :src item.thumbs_src}]]]
+                    [:img {:alt "It's not loading!" :src (item :thumbs_src)}]]]
         )
     ])
     (def listCaruosel (doseq [item list]
          [:div.carousel-img-wrap {:key (get item :item_number)}
             [:div
-                {:style {:backgroundImage url(item.thumbs_src.toString()) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if smallScreen "20vw" "40vw")}}]
+                {:style {:backgroundImage url(item :thumbs_src) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if smallScreen "20vw" "40vw")}}]
          ]
     ))
     (if (= props.category "CHECKOUT")
-        [Checkout/Checkout]
+        [Shop/Checkout]
         (if (= props.page "home")
             [:div
                 [:div.sidescroller
@@ -99,7 +106,3 @@
     ;     autoplaySpeed: 10000,
     ; }
 ;import Slider from "react-slick"
-    ; onImageClick: (index) => {
-    ;     dispatch(actionCreators.updateOverlayImage(index))
-    ;     dispatch(actionCreators.toggleOverlay(true, true))
-    ; },

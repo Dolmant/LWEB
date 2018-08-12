@@ -1,13 +1,16 @@
-(ns lweb.Shop.Checkout.Checkout
+(ns lweb.Shop.Checkout
   (:require [rum.core :as rum]
-            [lweb.Shop.CartManagement.CartManagementActions :as CartActions]
-            [lweb.Shop.CartManagement.AddToCart :as AddToCart]
-            [lweb.Shop.CartManagement.RemoveFromCart :as RemoveFromCart]
-            [lweb.Shop.PostageCalculator.PostageCalculator :as PostageCalculator]
+            [lweb.Shop.CartManagement :as CartManagement]
+            [lweb.Shop.PostageCalculator :as PostageCalculator]
             [cljs-react-material-ui.core :as ui]))
 
 
-(rum/defc Checkout [setName setEmail setAddress payNow emptyCart shoppingCart total loading paid postage]
+(rum/defc Checkout []
+    (def shoppingCart ((rum/react state) :shoppingCart))
+    (def total ((rum/react state) :total))
+    (def loading ((rum/react state) :loading))
+    (def paid ((rum/react state) :paid))
+    (def postage ((rum/react PostageCalculator/state) :cost))
     (def items (doseq [item shoppingCart] 
         [ui/Grid {:container true :key index :alignItems "center" :class "shopping-list-item"
             [ui/Grid {:class "shopping-list-column" :xs 2}
@@ -26,15 +29,15 @@
                 (+ "$" (get (get item :type) :cost))
             ]
             [ui/Grid {:class "shopping-list-column" :xs 2}
-                [AddToCart/AddToCart {
+                [CartManagement/AddToCart {
                     :id (get item :item_number)
                     :types (get item :types)
-                    :mini mini
+                    :mini true
                 }]
-                [RemoveFromCart/RemoveFromCart {
+                [CartManagement/RemoveFromCart {
                     :id (get item :item_number)
                     :types (get item :types)
-                    :mini mini
+                    :mini true
                 }]
             ]
         ]))
@@ -83,7 +86,7 @@
                         ]
                         [ui/Grid {:item true :class "total" :xs 12 :md 6 :lg 6}
                             (if postage
-                                (StripeCheckout/StripeCheckout {:token payNow :stripeKey "pk_live_PrBOTAQyZjAJScTTYykAuOz0" :amount (* total 100) :currency "AUD" :shippingAddress shippingAddress :billingAddress billingAddress})
+                                (StripeCheckout/StripeCheckout {:token PayNow :stripeKey "pk_live_PrBOTAQyZjAJScTTYykAuOz0" :amount (* total 100) :currency "AUD" :shippingAddress shippingAddress :billingAddress billingAddress})
                                 [:div]
                             )
                             [:h2 "Checkout"]

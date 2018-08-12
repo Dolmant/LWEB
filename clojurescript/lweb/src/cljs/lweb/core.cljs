@@ -32,7 +32,7 @@
 )
     
 
-(rum/defc home-page []
+(rum/defc home-page < rum/reactive []
     (onClick)
     [:div [:h2 "Welcome to lweb"]
         [:div [(footerComp/Footer true onClick)]]])
