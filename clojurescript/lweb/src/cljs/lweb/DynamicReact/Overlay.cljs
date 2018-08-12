@@ -1,24 +1,26 @@
-(ns lweb.DynamicReact
+(ns lweb.DynamicReact.Overlay
     (:require [rum.core :as rum]
-    [lweb.DynamicReactState as DynamicReactState]
+    [lweb.DynamicReact.State :as DynamicReactState]
+    [lweb.Shop.CartManagement.AddToCart :as AddToCart]
     [goog.dom.forms :as gforms]
     [cljs-http.client :as http]
+    [clojure.string :as str]
     [cljs.core.async :refer [<!]])
     (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (defn oncatClick [id]
-    (DynamicReactState/UpdateCategory id)
+    (DynamicReactState/SetCategory id)
     (DynamicReactState/SetAttr :touchmenu_active false)
 )
 (rum/defc Overlay < rum/reactive []
-    (def overlay ((rum/react DynamicReactState/state) :overlay))
-    (def overlay_image_num ((rum/react DynamicReactState/state) :overlay_image_num))
-    (def overlay_image_src ((rum/react DynamicReactState/state) :overlay_image_src))
-    (def overlay_thumb_src ((rum/react DynamicReactState/state) :overlay_thumb_src))
-    (def overlay_types ((rum/react DynamicReactState/state) :overlay_types))
-    (def overlay_txt ((rum/react DynamicReactState/state) :overlay_txt))
+    (def overlay ((rum/react DynamicReactState/State) :overlay))
+    (def overlay_image_num ((rum/react DynamicReactState/State) :overlay_image_num))
+    (def overlay_image_src ((rum/react DynamicReactState/State) :overlay_image_src))
+    (def overlay_thumb_src ((rum/react DynamicReactState/State) :overlay_thumb_src))
+    (def overlay_types ((rum/react DynamicReactState/State) :overlay_types))
+    (def overlay_txt ((rum/react DynamicReactState/State) :overlay_txt))
     (defn formOverride [e]
-        (e/preventDefault)
+        (e :preventDefault)
         (if (not ((.getElementById js/document "contact-form") :value))
             (set! (.-innerHTML (.getElementByClass js/document "error_message")) "Please add your contact details!")
             (do
@@ -35,16 +37,16 @@
     )
     (defn backgroundOverlayClick [e]
         (cond 
-            (s/includes? (.-class (e :target)) "overlay_container") (DynamicReactState/ToggleOverlay false, false)
-            (s/includes? (.-class (e :target)) "downnav_overlay") (DynamicReactState/ToggleOverlay false, false)
-            (s/includes? (.-class (e :target)) "upnav_overlay") (DynamicReactState/ToggleOverlay false, false)
-            (s/includes? (.-class (e :target)) "rightnav_overlay") (DynamicReactState/ToggleOverlay false, false)
-            (s/includes? (.-class (e :target)) "leftnav_overlay") (DynamicReactState/ToggleOverlay false, false)
+            (str/includes? (.-class (e :target)) "overlay_container") (DynamicReactState/ToggleOverlay false, false)
+            (str/includes? (.-class (e :target)) "downnav_overlay") (DynamicReactState/ToggleOverlay false, false)
+            (str/includes? (.-class (e :target)) "upnav_overlay") (DynamicReactState/ToggleOverlay false, false)
+            (str/includes? (.-class (e :target)) "rightnav_overlay") (DynamicReactState/ToggleOverlay false, false)
+            (str/includes? (.-class (e :target)) "leftnav_overlay") (DynamicReactState/ToggleOverlay false, false)
             :else "Overlay not closing, not outside target"
         )
     )
     (defn CloseButtonClick [e]
-        (e/preventDefault)
+        (e :preventDefault)
         (DynamicReactState/ToggleOverlay false, false)
     )
     [:div.overlay_top
@@ -66,14 +68,14 @@
                             "Your browser does not support the video tag."
                         ]
                         [:div.img-wrap-overlay
-                            [LazySizes {:dataSizes "auto" :alt "It's not loading!" :class "scale-img blur-up overlayimage" :src overlay_thumb_src :dataSrc overlay_image_src}]
+                            ;[LazySizes {:dataSizes "auto" :alt "It's not loading!" :class "scale-img blur-up overlayimage" :src overlay_thumb_src :dataSrc overlay_image_src}]
                         ]
                     )
                     (if overlay.is_video
                         [:div]
                         [:div.overlaytext "This image is large and will remain obfuscated until downloaded"]
                     )
-                    [AddToCart/AddToCart {:id overlay_image_num types overlay_types}]
+                    [AddToCart/AddToCart {:id overlay_image_num :types overlay_types}]
                 ]
                 [:div.overlayform
                     [:form#contact-form {:on-submit (fn [e] (formOverride e)) :target "self" :class "topLabel"}

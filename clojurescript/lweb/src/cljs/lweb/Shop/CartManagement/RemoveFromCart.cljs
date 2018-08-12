@@ -1,19 +1,19 @@
-(ns lweb.Shop.CartManagement
+(ns lweb.Shop.CartManagement.RemoveFromCart
   (:require [rum.core :as rum]
-            [lweb.DynamicReact :as DynamicReact]
-            [lweb.Shop.CartManagementState :as CartManagementState]
+            [lweb.DynamicReact.State :as DynamicReactState]
+            [lweb.Shop.CartManagement.State :as CartManagementState]
             [cljs-react-material-ui.icons :as ic]
-            [cljs-react-material-ui.core :as ui]))
+            [cljs-react-material-ui.rum :as ui]))
 
 
-(rum/defc RemoveFromCart [mini]
-    (def id ((rum/react DynamicReact/state) :overlay_image_num))
-    (def type ((rum/react DynamicReact/state) :overlay_types))
+(rum/defc RemoveFromCart < rum/reactive [mini]
+    (def id ((rum/react DynamicReactStateState) :overlay_image_num))
+    (def type ((rum/react DynamicReactStateState) :overlay_types))
     [:div {:style "display: inline-block;"}
-        [ui/Button {
-                    mini: mini
+        [ui/button {
+                    :mini mini
                     :variant (if mini "fab" "raised")
-                    color "secondary"
+                    :color "secondary"
                     :on-click (fn [_]
                         ;toastr.success ("Success", "Item removed from cart")
                         (CartManagementState/RemoveFromCart id type)

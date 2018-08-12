@@ -1,6 +1,6 @@
-(ns lweb.DynamicReact
+(ns lweb.DynamicReact.Footer
     (:require [rum.core :as rum]
-    [lweb.DynamicReactState :as DynamicReactState]))
+    [lweb.DynamicReact.State :as DynamicReactState]))
 
 (rum/defc Footer []
         (def introOn? true)

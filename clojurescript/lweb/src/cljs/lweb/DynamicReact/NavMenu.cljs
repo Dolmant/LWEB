@@ -1,8 +1,8 @@
-(ns lweb.DynamicReact
+(ns lweb.DynamicReact.NavMenu
     (:require [rum.core :as rum]
-    [lweb.DynamicReactState as DynamicReactState]
-    [lweb.consts as :consts]
-    [cljs-react-material-ui.core :as ui]))
+    [lweb.DynamicReact.State :as DynamicReactState]
+    [lweb.consts :as consts]
+    [cljs-react-material-ui.rum :as ui]))
 
 
 (defonce open (atom false))
@@ -10,14 +10,14 @@
 (defonce anchorEl (atom false))
 
 (defn oncatClick [id]
-    (DynamicReactState/UpdateCategory id)
+    (DynamicReactState/SetCategory id)
     (DynamicReactState/SetAttr :touchmenu_active false)
 )
 (rum/defc NavMenu < rum/reactive []
     (defn handleRequestClose [] (reset! open false))
     (defn handleOpenMenu [e] (if (not open) (do
-        (e/preventDefault)
-        (e/stopPropagation)
+        (e :preventDefault)
+        (e :stopPropagation)
         (reset! open false)
         (reset! anchorEl (e :currentTarget))
     )))
@@ -34,20 +34,20 @@
                     [:strong "ILLUSTRATIONS"
                     [:i {:class "fa fa-chevron-down"}]]
                 ]
-                [ui/Menu {:on-close handleRequestClose :class "hi" :open (rum/react open) :anchorEl (rum/react anchorEl)}
-                    [ui/MenuItem {:id "ALL" :on-click (fn [e] (handleSelectMenu e "ALL"))} "ALL"]
-                    [ui/MenuItem {:id "NATURE" :on-click (fn [e] (handleSelectMenu e "NATURE"))} "NATURE"]
-                    [ui/MenuItem {:id "SCIENCE" :on-click (fn [e] (handleSelectMenu e "SCIENCE"))} "SCIENCE"]
-                    [ui/MenuItem {:id "ANATOMY" :on-click (fn [e] (handleSelectMenu e "ANATOMY"))} "ANATOMY"]
-                    [ui/MenuItem {:id "FACTS" :on-click (fn [e] (handleSelectMenu e "FACTS"))} "FACTS"]
-                    [ui/MenuItem {:id "TYPOGRAPHY" :on-click (fn [e] (handleSelectMenu e "TYPOGRAPHY"))} "TYPOGRAPHY"]
-                    [ui/MenuItem {:id "MISC" :on-click (fn [e] (handleSelectMenu e "MISC"))} "MISC"]
+                [ui/menu {:on-close handleRequestClose :class "hi" :open (rum/react open) :anchorEl (rum/react anchorEl)}
+                    [ui/menu-item {:id "ALL" :on-click (fn [e] (handleSelectMenu e "ALL"))} "ALL"]
+                    [ui/menu-item {:id "NATURE" :on-click (fn [e] (handleSelectMenu e "NATURE"))} "NATURE"]
+                    [ui/menu-item {:id "SCIENCE" :on-click (fn [e] (handleSelectMenu e "SCIENCE"))} "SCIENCE"]
+                    [ui/menu-item {:id "ANATOMY" :on-click (fn [e] (handleSelectMenu e "ANATOMY"))} "ANATOMY"]
+                    [ui/menu-item {:id "FACTS" :on-click (fn [e] (handleSelectMenu e "FACTS"))} "FACTS"]
+                    [ui/menu-item {:id "TYPOGRAPHY" :on-click (fn [e] (handleSelectMenu e "TYPOGRAPHY"))} "TYPOGRAPHY"]
+                    [ui/menu-item {:id "MISC" :on-click (fn [e] (handleSelectMenu e "MISC"))} "MISC"]
                 ]
             ]
             [:li.cursor {:key item :on-click (fn [] (oncatClick item)) :id item}
                 [:a.cursor [:strong item]]]
     ))
-    (defn sorter (fn [cat1 cat2]
+    (defn sorter [cat1 cat2]
         (if (= cat1 "CHECKOUT") 1
         (if (= cat2 "CHECKOUT") -1
         (if (= cat1 "MODELS") 1
@@ -56,6 +56,6 @@
         (if (> cat1 cat2) -1
         0
         ))))))
-    ))
-    (map mapper (sort-by (filter filterfn (keys consts/category)) sorter))
+    )
+    (map mapper (sort-by sorter (filter filterfn (keys consts/category))))
 )

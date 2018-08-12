@@ -1,43 +1,46 @@
-(ns lweb.Shop.CartManagement
+(ns lweb.Shop.CartManagement.AddToCart
     (:require [rum.core :as rum]
-    [lweb.Shop.CartManagementState :as CartManagementState]
+    [lweb.Shop.CartManagement.State :as CartManagementState]
+    [lweb.DynamicReact.State :as DynamicReactState]
     [cljs-react-material-ui.icons :as ic]
-    [cljs-react-material-ui.core :as ui]))
+    [cljs-react-material-ui.rum :as ui])
+)
 
 (defonce anchorEl (atom false))
 
-(rum/defc AddToCart [mini]
-    (def id ((rum/react DynamicReact/state) :overlay_image_num))
-    (def type ((rum/react DynamicReact/state) :overlay_types))
-    (defn handleClick []
-        (if (types.length === 1) {
-        (do toastr.success("Success", "Item added to cart")
+(rum/defc AddToCart < rum/reactive [mini]
+    (def id ((rum/react DynamicReactState/State) :overlay_image_num))
+    (def types ((rum/react DynamicReactState/State) :overlay_types))
+    (defn handleClick [e]
+        (if (= 1 (count types))
+        (do
+        ;toastr.success("Success", "Item added to cart")
         (CartManagementState/AddToCart id, (types 0))
-        (reset! anchorEl (e :currentTarget))}))
+        (reset! anchorEl (e :currentTarget))))
     )
 
     (defn handleClose []
         (reset! anchorEl nil)
     )
     [:div {:style "display: inline block;"}
-        [ui/Button {
+        [ui/button {
             :variant (if mini "fab" "raised")
             :color "primary"
             :aria-label "add"
             :mini mini
             :aria-haspopup "true"
-            onClick handleClick
+            :on-click handleClick
         }
-            (if mini [ic/add-icon] [:div "Add to cart"])
+            (if mini [ic/content-add] [:div "Add to cart"])
         ]
-        [:ui/Menu {:id "simple-menu" :anchorEl (rum/react anchorEl) :open (rum/react anchorEl) onClose handleClose}
+        [:ui/menu {:id "simple-menu" :anchorEl (rum/react anchorEl) :open (rum/react anchorEl) :on-close handleClose}
             (doseq [type types]
                 [ui/menu-item {
                     :on-click (fn [] 
                     (do
                     ;toastr.success("Success", "Item added to cart")
                     (CartManagementState/AddToCart id, type)
-                    (handleClose))
+                    (handleClose)))
                 }
                 (type :desc)]
             )

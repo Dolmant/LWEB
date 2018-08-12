@@ -15,8 +15,9 @@
                  [compojure "1.6.1"]
                  [hiccup "1.0.5"]
                  [cljsjs/material-ui "1.0.0-beta.40-0"]
-                [cljsjs/react "16.3.0-1"]
-                [cljsjs/react-dom "16.3.0-1"]
+                    [cljsjs/react "16.3.0-1"]
+                    [cljsjs/react-dom "16.3.0-1"]
+                    [cljs-http/cljs-http "0.1.45"]
                  [yogthos/config "1.1.1"]
                  [org.clojure/clojurescript "1.10.339"
                   :scope "provided"]

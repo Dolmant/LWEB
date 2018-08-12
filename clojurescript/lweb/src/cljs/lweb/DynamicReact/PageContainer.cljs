@@ -1,9 +1,10 @@
-(ns lweb.DynamicReact
+(ns lweb.DynamicReact.PageContainer
     (:require [rum.core :as rum]
-    [lweb.DynamicReactState as DynamicReactState
-    [lweb.consts as consts]
-    [lweb.Shop as Shop]
-    [cljs-react-material-ui.core :as ui]))
+    [lweb.DynamicReact.State :as DynamicReactState]
+    [lweb.Shop.CartManagement.Checkout :as Checkout]
+    [lweb.consts :as consts]
+    [clojure.string :as str]
+    [cljs-react-material-ui.rum :as ui]))
 
 
 (rum/defc LeftNavButton []
@@ -20,30 +21,31 @@
 )
 
 (rum/defc PageContainer < rum/reactive []
-    (def list ((rum/react DynamicReactState/state) :list))
-    (def category ((rum/react DynamicReactState/state) :category))
-    (def page ((rum/react DynamicReactState/state) :page))
-    (def smallScreen (> window.innerWidth 900))
+    (def itemList ((rum/react DynamicReactState/State) :list))
+    (def category ((rum/react DynamicReactState/State) :category))
+    (def page ((rum/react DynamicReactState/State) :page))
+    (def smallScreen (> (.-innerWidth js/window) 900))
     (def settings {})
     (def listItems [:ul.projects
-        (doseq [item list]
+        (doseq [item itemList]
             [:li {:key (get item key) :on-click (fn [] (onImageClick (get item :item_number)))}
                 [:div.img-wrap
                     [:img {:alt "It's not loading!" :src (item :thumbs_src)}]]]
         )
     ])
-    (def listCaruosel (doseq [item list]
+    (def listCaruosel (doseq [item itemList]
          [:div.carousel-img-wrap {:key (get item :item_number)}
             [:div
-                {:style {:backgroundImage url(item :thumbs_src) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if smallScreen "20vw" "40vw")}}]
+                {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src)]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if smallScreen "20vw" "40vw")}}]
          ]
     ))
-    (if (= props.category "CHECKOUT")
-        [Shop/Checkout]
-        (if (= props.page "home")
+    (if (= category "CHECKOUT")
+        [Checkout/Checkout]
+        (if (= page "home")
             [:div
                 [:div.sidescroller
-                    [Slider {:settings settings :nextArrow [LeftNavButton] :prevArrow [RightNavButton] listCarousel]]
+                    ;[Slider {:settings settings :nextArrow [LeftNavButton] :prevArrow [RightNavButton]} listCarousel]
+                ]
                 [:div.desc_holder
                     [:div.desc_text
                         [:div [:img {:alt "Not found" :src "./assets/images/LeotideIcon-min.png"}]]
@@ -62,9 +64,9 @@
                         [:h2 "News!"]
                         [:div.news
                             [:div
-                                Beautiful and dangerous: animating deadly viruses at Vivid Sydney <strong><a rel="noopener noreferrer" target="_blank" href="https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/">here!</a></strong>
-                                <br />
-                                Mastering biomedical science by design <strong><a rel="noopener noreferrer" target="_blank" href="http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design">here!</a></strong>
+                                "Beautiful and dangerous: animating deadly viruses at Vivid Sydney " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
+                                [:br]
+                                "Mastering biomedical science by design "[:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]
                             ]
                         ]
                     ]

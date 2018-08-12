@@ -1,13 +1,13 @@
-(ns lweb.DynamicReactState
+(ns lweb.DynamicReact.State
   (:require [rum.core :as rum]
             [lweb.consts :as consts]
             [clojure.string :as s]
             ))
 
-(defonce state
+(defonce State
     (atom {:category "ALL"
         :list consts/HomeInitial
-        :isTouch (< js/window/innerWidth 1000)
+        :isTouch (< (.-innerWidth js/window) 1000)
         :total 0
         :page "home"
         :touchmenu_active false
@@ -17,7 +17,13 @@
         :overlay_image_src ""
         :overlay_types []
         :overlay_txt ""
-        :overlay {:arrows {:left true :right true :up false :down false} :state false :image false :video false}))
+        :overlay {
+            :arrows {:left true :right true :up false :down false}
+            :state false
+            :image false
+            :video false
+        }
+    }))
 
 (defn SetAttr [attr, value]
     (reset! state
@@ -69,10 +75,10 @@
 
 (defn selectedOverlayImageNum [overlay_image_num current_category overlay_vertical_index overlay]
     (if (not current_category)
-        (SetAttrs {:overlay overlay :overlay_vertical_index: overlay_vertical_index :overlay_image overlay_image_num})
+        (SetAttrs {:overlay overlay :overlay_vertical_index overlay_vertical_index :overlay_image overlay_image_num})
         (do
             (def tempImage (consts/getImageById overlay_image_num))
-            (if isArray(tempImage.img_src)
+            (if (vector? (tempImage :img_src))
                 (SetAttrs {
                     :overlay_vertical_index overlay_vertical_index
                     :overlay_image_num overlay_image_num

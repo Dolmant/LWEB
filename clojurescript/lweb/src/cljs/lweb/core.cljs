@@ -3,8 +3,8 @@
                 [secretary.core :as secretary :include-macros true]
                 [accountant.core :as accountant]
                 [cljsjs.material-ui]
-                [cljs-react-material-ui.core :as ui]
-                [lweb.DynamicReact :as DynamicReact]))
+                [lweb.App :as App]
+                [cljs-react-material-ui.core :as ui]))
 
 ;; dummy function for actions
 (defn onClick []
@@ -35,7 +35,7 @@
 (rum/defc home-page < rum/reactive []
     (onClick)
     [:div [:h2 "Welcome to lweb"]
-        [:div [(App)]]])
+        [:div [(App/App)]]])
 
 (defonce page (atom #'home-page))
 

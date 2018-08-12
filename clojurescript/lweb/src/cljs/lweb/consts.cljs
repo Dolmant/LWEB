@@ -2,14 +2,14 @@
     (:require [rum.core :as rum]))
 
 ;fix this
-(def isTouch (< js/window/innerWidth 1000))
+(def isTouch (< (.-innerWidth js/window) 1000))
 
 (def prices {
-    frame: {:id "framed" desc: "Add A3 Framed ($45)" cost: 45}
-    poster: {:id "poster" desc: "Add A3 Poster ($30)" cost: 30}
-    patch: {:id "patch" desc: "Add Patch (50mm) ($7)" cost: 7}
-    pin: {:id "pin" desc: "Add Pin (32x32mm) ($8)" cost: 8}
-    sticker: {:id "sticker" desc: "Add Sticker (56mm) ($4)" cost: 4}
+    :frame {:id "framed" :desc "Add A3 Framed ($45)" :cost 45}
+    :poster {:id "poster" :desc "Add A3 Poster ($30)" :cost 30}
+    :patch {:id "patch" :desc "Add Patch (50mm) ($7)" :cost 7}
+    :pin {:id "pin" :desc "Add Pin (32x32mm) ($8)" :cost 8}
+    :sticker {:id "sticker" :desc "Add Sticker (56mm) ($4)" :cost 4}
 })
 
 (def projectListInitial {
@@ -523,7 +523,7 @@
     ]
     :MISC [
         {
-            is_video: true
+            :is_video true
             :img_src "./assets/webImages/DNutFINAL.mp4"
             :img_txt "DOUGHNUTS!"
             :thumbs_src "./assets/webImages/thumbs/DNutFINAL.jpg"
@@ -656,7 +656,7 @@
             :thumbs_src "./assets/webImages/thumbs/CardosinMovieGif.jpg"
         }
         {
-            is_video: true
+            :is_video true
             :img_src "./assets/webImages/05_ProteinPeephole.mp4"
             :img_txt "Protein Peephole"
             :thumbs_src "./assets/webImages/thumbs/05_ProteinPeephole.jpg"
@@ -667,7 +667,7 @@
             :thumbs_src "./assets/webImages/thumbs/Carp_Swim.jpg"
         }
         {
-            is_video: true
+            :is_video true
             :img_src "./assets/webImages/01_MicroFinalRender01.mp4"
             :img_txt "Micro Messengers"
             :thumbs_src "./assets/webImages/thumbs/01_MicroFinalRender01.jpg"
@@ -699,12 +699,12 @@
 })
 
 ;// hardcoded for now
-(def projectListLabels = {
+(def projectListLabels {
     :ALL "All your favourite science-based artworks, all in one place! Presented in a variety of styles, each artwork has careful thought behind them to best illustrate the topic they represent.",
     :NATURE "I’ve heard it’s pretty scary.",
     :ANATOMY "Delving into the inner structure of the body, one chorus of “ewwww”s at a time.",
     :SCIENCE "A combination of scientific illustration and culture. The aim: To create thought-provoking artworks that stand out from the crowd from regular scientific illustrations.",
-    "POSTERS/LOGOS": "Smart, infographic-styled posters to educate the public in the latest scientific research. Commissioned logos by companies and individuals looking to make their ads stand out.",
+    :ADVERTISING "Smart, infographic-styled posters to educate the public in the latest scientific research. Commissioned logos by companies and individuals looking to make their ads stand out.",
     :TYPOGRAPHY "Taking everyday letters and making them look better…with science!",
     :FACTS "Learning every day! Fun facts for those who want to impress others with their knowledge of anything and everything. Or just cats, crabs and eels specifically.",
     :MISC "All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people.",
@@ -729,7 +729,7 @@
 ; // Ordered so we generate numbers for each category then create
 ; // the all category which is predefined as all the science categories
 
-(def numberedList setImageNum(projectListInitial))
+(def numberedList (setImageNum projectListInitial))
 (def projectListBase (numberedList 0))
 
 (def projectList projectListInitial)
@@ -746,8 +746,8 @@
     {
         :left (if (> 0 (count (projectList cat))) [(get-in projectList [cat 0 :item_number])] [])
         :right (if (> 0 (count (projectList cat))) [(get-in projectList [cat (- 1 (count (projectList cat))) :item_number])] [])
-        :up (map (filter (projectList cat) (fn [item] (is_array (item :img_src)))) (fn [item] (item :item_number)))
-        :down (map (filter (projectList cat) (fn [item] (is_array (item :img_src)))) (fn [item] (item :item_number)))
+        :up (map (filter (projectList cat) (fn [item] ((vector? (item :img_src))))) (fn [item] (item :item_number)))
+        :down (map (filter (projectList cat) (fn [item] ((vector? (item :img_src))))) (fn [item] (item :item_number)))
     }
 )
 
