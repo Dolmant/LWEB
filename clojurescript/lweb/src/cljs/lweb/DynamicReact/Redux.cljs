@@ -1,84 +1,81 @@
-// @flow
-import {createStore, applyMiddleware} from "redux"
-import thunkMiddleware from "redux-thunk"
-import {createLogger} from "redux-logger"
 import {HomeInitial, category, isTouch, projectList, getImageById, ArrayLimitsCalc} from "./../consts"
-import {types} from "./Actions"
-import CartManagementReducer from "./../Shop/CartManagement/CartManagementReducers"
-import CombinedCheckoutReducer from "./../Shop/Checkout/CheckoutReducers"
-import {reducer as toastrReducer} from "react-redux-toastr"
-import CombinedPostageCalculatorReducer from "./../Shop/PostageCalculator/PostageCalculatorReducers"
-// reducer handles how the state updates
 
 
-const initialCategory = () => {
-    if (Object.keys(category).includes("ALL")) {
-        return "ALL"
-    }
-    return Object.keys(category)[0]
-}
+(ns lweb.Shop.Checkout.CheckoutReducers
+  (:require [rum.core :as rum]
+            [lweb.Shop.CartManagement :as CartManagement]
+            [lweb.consts :as consts]
+            ))
 
-const InitalState = {
-    category: initialCategory(),
-    page: "home",
-    shoppingCart: [],
-    checkout: {
-        loading: false,
-        checkoutResult: {},
-    },
-    postageCalculator: {
-        loading: false,
-        postageResult: {
-            type: 0,
-            cost: 0,
-        },
-    },
-    list: HomeInitial,
-    overlay_image: 1,
-    overlay_vertical_index: {},
-    isTouch,
-    touchmenu_active: false,
-    introOn: true,
-    sidebarOpen: false,
-    overlay: {
-        state: false,
-        image: false,
-        arrows: {
-            left: true,
-            right: true,
-            up: false,
-            down: false,
-        },
-    },
-}
+(defonce state
+    (atom {:category "ALL"
+        :list consts/HomeInitial
+        :isTouch (< js/window/innerWidth 1000)
+        :total 0
+        :page "home"
+        :touchmenu_active false
+        :introOn true
+        :overlay_vertical_index {}
+        :overlay_image_num 0
+        :overlay_image_src ""
+        :overlay_types []
+        :overlay_txt ""
+        :overlay {:arrows {:left true :right true :up false :down false} :state false :image false :video false}))
 
-function computedarrows(overlay_image_num,
-    current_category,
-    overlay_vertical_index,
-    NumberofVertical,
-) {
-    const ArrayLimits = ArrayLimitsCalc(current_category)
-    const overlayarrows = {}
-    Object.assign(overlayarrows, InitalState.overlay.arrows)
-    const leftlimits = ArrayLimits.left
-    const rightlimits = ArrayLimits.right
-    const downlimits = ArrayLimits.up
-    const uplimits = ArrayLimits.down
-    if (leftlimits.includes(overlay_image_num)) {
-        overlayarrows.left = false
+(defn SetAttr [attr, value]
+    (reset! state
+        (update-in @state [attr] value)
+    )
+)
+
+(defn SetAttrs [attrs]
+    (reset! state
+        (update-in @state [attr] value)
+    )
+)
+
+(defn in? 
+  "true if coll contains elm"
+  [coll elm]  
+  (some #(= elm %) coll))
+
+:updateCategory (fn [category] {
+    dispatch({type: (types :UPDATE_CATEGORY), payload: category})
+    dispatch({type: (types :SELECT_PAGE), payload: "portfolio"})
+}),
+:selectPage (page: string) => (dispatch: any) => {
+    dispatch({type: types.UPDATE_CATEGORY, payload: ""})
+    return dispatch({type: (types :SELECT_PAGE), payload: page})
+},
+
+(defn computeArrows [overlay_image_num current_category overlay_vertical_index NumberofVertical]
+    (def limits (consts/ArrayLimitsCalc current_category))
+    {
+        :left (not (in (limits :left) overlay_image_num))
+        :right (not (in (limits :right) overlay_image_num))
+        :up (< (overlay_vertical_index :overlay_image_num) (- NumberofVertical 1))
+        :down (> (overlay_vertical_index :overlay_image_num) 0)
     }
-    if (rightlimits.includes(overlay_image_num)) {
-        overlayarrows.right = false
-    }
-    // reversed logic here to make things easier
-    if (overlay_vertical_index[overlay_image_num] < NumberofVertical - 1) {
-        overlayarrows.up = true
-    }
-    if (overlay_vertical_index[overlay_image_num] > 0) {
-        overlayarrows.down = true
-    }
-    return overlayarrows
-}
+)
+
+(defn selectedOverlayImageNum [overlay_image_num current_category overlay_vertical_index overlay]
+    (if (not current_category)
+        (SetAttrs {:overlay overlay :overlay_vertical_index: overlay_vertical_index :overlay_image overlay_image_num})
+        (do
+            
+        )
+    )
+)
+
+(defn NavOverlayImage [direction]
+    (cond
+        (= direction "left") (selectedOverlayImageNum (dec (@state :overlay_image_num)) (@state :category) (@state :overlay_vertical_index) (@state :overlay))
+        (= direction "right") (selectedOverlayImageNum (inc (@state :overlay_image_num)) (@state :category) (@state :overlay_vertical_index) (@state :overlay))
+        (= direction "up") (selectedOverlayImageNum (@state :overlay_image_num) (@state :category) ((update-in @state [:overlay_vertical_index overlay_image_num] inc) :overlay_vertical_index) (@state :overlay))
+        (= direction "down") (selectedOverlayImageNum (@state :overlay_image_num) (@state :category) ((update-in @state [:overlay_vertical_index overlay_image_num] dec) :overlay_vertical_index)  (@state :overlay))
+        :else "Incorrect nav call"
+    )
+)
 
 function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
     current_category = InitalState.category,
@@ -86,39 +83,8 @@ function selectedOverlayImageNum(overlay_image_num_ = InitalState.overlay_image,
     _overlay = InitalState.overlay,
     action,
 ) {
-    if (!current_category) {
-        return {
-            overlay: _overlay,
-            overlay_vertical_index: overlay_vertical_index_,
-            overlay_image: overlay_image_num_,
-        }
-    }
-    let overlay_image_num = overlay_image_num_
-    const overlay_vertical_index = overlay_vertical_index_
-    if (!overlay_vertical_index[overlay_image_num]) {
-        overlay_vertical_index[overlay_image_num] = 0
-    }
     let state = _overlay.state
     let image = _overlay.image
-    switch (action.type) {
-    case types.NAV_OVERLAY_IMAGE:
-        switch (action.payload) {
-        case "left":
-            overlay_image_num -= 1
-            break
-        case "right":
-            overlay_image_num += 1
-            break
-        case "up":
-            overlay_vertical_index[overlay_image_num] += 1
-            break
-        case "down":
-            overlay_vertical_index[overlay_image_num] -= 1
-            break
-        default:
-            break
-        }
-        break
     case types.UPDATE_OVERLAY_IMAGE:
         overlay_image_num = action.payload
         break
@@ -196,13 +162,6 @@ function introState(state = InitalState.introOn, action) {
     return state
 }
 
-function sidebarToggle(state = InitalState.sidebarOpen, action) {
-    if (action.type === types.TOGGLE_SIDEBAR) {
-        return !state
-    }
-    return state
-}
-
 function touchmenuToggle(state = InitalState.touchmenu_active, action) {
     if (action.type === types.TOGGLE_TOUCHMENU) {
         return !state
@@ -230,41 +189,3 @@ export function TotalReducer(state: number = totalIS, action: any, shoppingCart:
     total += postageCalculator.postageResult.cost
     return total
 }
-
-
-// concatenate all the reducers
-
-function allReducers(state = {}, action) {
-    const shoppingCart = CartManagementReducer(state.shoppingCart, action)
-    const postageCalculator = CombinedPostageCalculatorReducer(state.postageCalculator, action, shoppingCart)
-    return {
-        category: selectedCategory(state.category, action),
-        list: selectedList(state.list, action),
-        isTouch,
-        total: TotalReducer(state.total, action, shoppingCart, postageCalculator),
-        page: selectPage(state.page, action),
-        touchmenu_active: touchmenuToggle(state.touchmenu_active, action),
-        introOn: introState(state.introOn, action),
-        sidebarOpen: sidebarToggle(state.sidebarOpen, action),
-        shoppingCart,
-        toastr: toastrReducer(state.toastr, action),
-        checkout: CombinedCheckoutReducer(state.checkout, action),
-        postageCalculator,
-        ...selectedOverlayImageNum(state.overlay_image_num,
-            state.category,
-            state.overlay_vertical_index,
-            state.overlay,
-            action),
-    }
-}
-
-const loggerMiddleware = createLogger()
-
-// create store
-export default createStore(
-    allReducers,
-    applyMiddleware(
-        thunkMiddleware, // lets us dispatch() functions
-        loggerMiddleware,
-    ),
-)

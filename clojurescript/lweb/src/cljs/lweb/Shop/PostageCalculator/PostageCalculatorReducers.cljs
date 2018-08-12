@@ -1,63 +1,29 @@
 (ns lweb.Shop.Checkout.CheckoutReducers
   (:require [rum.core :as rum]
-            [lweb.Shop.CartManagement.CartManagementActions :as CartActions]
-            [lweb.Shop.Checkout.CheckoutActions :as CheckoutActions]
-            [cljs-react-material-ui.core :as ui]))
+  [lweb.Shop.CartManagement :as CartManagement]
+  [cljs-react-material-ui.core :as ui]))
 
-(defn LoadingReducer [state, action]
-    if (action.type === types.POSTAGE_REQUEST) {
-        return true
-    }
-    if (action.type === types.POSTAGE_REPLY) {
-        return false
-    }
-    if (action.type === types.POSTAGE_ERROR) {
-        return false
-    }
-    return state
+(def postagePrice {"0" 0 "1" 20 "2" 40})
+
+(defn mini [] (= 0 (count (filter (fn [item]
+    (and (= "sticker" (get-in item [:type :id])) (= "pin" (get-in item [:type :id])) (= (get-in item [:type :id]) "patch")))
+    CartManagement/state))))
+
+(defonce state
+    (atom {:type 0 :cost "0" :loading false}))
+
+(defn SetLoading [state]
+    (swap! state @state [:loading] (not (@state :loading)))
 )
 
-(defn PostageReducer [state, action, shoppingCart]
-    const postagePrice = {
-        "0": 0,
-        "1": 20,
-        "2": 40,
-    }
-    let cost
-    let mini = true
-    shoppingCart.forEach((item) => {
-        if (item.type.id !== "sticker" && item.type.id !== "pin" && item.type.id !== "patch") {
-            mini = false
-        }
-    })
-    if (action.type === types.POSTAGE_REPLY) {
-        if (mini) {
-            cost = postagePrice[`${action.payload.type}`] / 2 // postage
-        } else {
-            cost = postagePrice[`${action.payload.type}`] // postage
-        }
-        return {
-            type: action.payload.type,
-            cost,
-        }
-    }
-    if (action.type === types.POSTAGE_ERROR) {
-        return action.payload
-    }
-    if (mini) {
-        cost = postagePrice[`${state.type}`] / 2 // postage
-    } else {
-        cost = postagePrice[`${state.type}`] // postage
-    }
-    return {
-        type: state.type,
-        cost,
-    }
+(defn PostageReducer []
+    (if (mini)
+        (reset! state {:type (@state :type) :cost (get-in postagePrice [@state.type]) / 2 :loading (@state :loading)})
+        (reset! state {:type (@state :type) :cost (get-in postagePrice [@state.type])} :loading (@state :loading))
+    )
 )
 
-(defn CombinedPostageCalculatorReducer [state, action, shoppingCart]
-    {
-        postageResult: PostageReducer(state.postageResult, action, shoppingCart),
-        loading: LoadingReducer(state.loading, action),
-    }
-)
+(add-watch CartManagement/state :watcher
+    (fn [key atom old-state new-state]
+        (PostageReducer)
+    ))
