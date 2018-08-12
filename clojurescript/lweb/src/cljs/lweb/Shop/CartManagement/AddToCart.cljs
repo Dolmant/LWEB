@@ -1,6 +1,6 @@
 (ns lweb.Shop.CartManagement
     (:require [rum.core :as rum]
-    [lweb.Shop.CartManagement :as CartManagement]
+    [lweb.Shop.CartManagementState :as CartManagementState]
     [cljs-react-material-ui.icons :as ic]
     [cljs-react-material-ui.core :as ui]))
 
@@ -12,7 +12,7 @@
     (defn handleClick []
         (if (types.length === 1) {
         (do toastr.success("Success", "Item added to cart")
-        (CartManagementAddToCart id, (types 0))
+        (CartManagementState/AddToCart id, (types 0))
         (reset! anchorEl (e :currentTarget))}))
     )
 
@@ -36,7 +36,7 @@
                     :on-click (fn [] 
                     (do
                     ;toastr.success("Success", "Item added to cart")
-                    (CartManagementAddToCart id, type)
+                    (CartManagementState/AddToCart id, type)
                     (handleClose))
                 }
                 (type :desc)]

@@ -1,14 +1,14 @@
 (ns lweb.DynamicReact
     (:require [rum.core :as rum]
-    [lweb.DynamicReact as DynamicReact]
-    [lweb.Shop.CartManagement as CartManagement]
+    [lweb.DynamicReactState as DynamicReactState]
+    [lweb.Shop.CartManagementState as CartManagementState]
     [cljs-react-material-ui.core :as ui]))
 
 (defonce menuOpen (atom false))
 
 (rum/defc IntroHeader < rum/reactive []
-    (def shoppingCart((rum/react CartManagement/state) :shoppingCart))
-    (def category ((rum/react DynamicReact/state) :category))
+    (def shoppingCart((rum/react CartManagementState/state) :shoppingCart))
+    (def category ((rum/react DynamicReactState/state) :category))
     (def introOn? true)
     [:header.introHeaderTemp
         [:div.container
@@ -37,10 +37,10 @@
             )
             ]
             [:h1
-            [:img {:on-click (fn [] (DynamicReact/SelectPage "home")) :src "./assets/images/LEOTIDE.png" :alt "LeoTide"}]]
+            [:img {:on-click (fn [] (DynamicReactState/SelectPage "home")) :src "./assets/images/LEOTIDE.png" :alt "LeoTide"}]]
             [:div.right
             (if (and (not introOn?) (= category "CHECKOUT"))
-            [:div.cursor {:on-click (fn [] (DynamicReact/UpdateCategory "CHECKOUT"))}
+            [:div.cursor {:on-click (fn [] (DynamicReactState/UpdateCategory "CHECKOUT"))}
                 [:div.total-count (count shoppingCart)]
                 [:i {:class "fa fa-shopping-cart"}]
             ]

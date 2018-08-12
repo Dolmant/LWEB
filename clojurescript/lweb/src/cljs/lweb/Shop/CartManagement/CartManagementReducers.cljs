@@ -1,7 +1,6 @@
-(ns lweb.Shop.CartManagement
+(ns lweb.Shop.CartManagementState
     (:require [rum.core :as rum]
-    [lweb.Shop.CartManagement.CartManagementActions :as Actions]
-    [lweb.Shop.Checkout :as Checkout]
+    [lweb.Shop.CheckoutState :as CheckoutState]
     [lweb.consts :as consts]
     [cljs-react-material-ui.core :as ui]))
 
@@ -15,7 +14,7 @@
 
 
 (defn AddToCart [id type]
-    (Checkout/SetPaid false)
+    (CheckoutState/SetPaid false)
     (def index (first
         (keep-indexed #(when (and (= (:item_number %2) id) (= (get-in % [:type :id]) (:id type))) %1) (:shoppingCart @state))
     ))
@@ -45,12 +44,3 @@
     (fn [key atom old-state new-state]
         (reduce (fn [item, count] (+ count (* (get-in item [:type :cost]) (item :count)))) [0] (new-state :shoppingCart))
     ))
-
-export function TotalReducer(state: number = totalIS, action: any, shoppingCart: any, postageCalculator: any) {
-    let total = 0
-    shoppingCart.forEach((item) => {
-        total += item.type.cost * item.count
-    })
-    total += postageCalculator.postageResult.cost
-    return total
-}

@@ -1,13 +1,13 @@
-(ns lweb.Shop.PostageCalculator
+(ns lweb.Shop.PostageCalculatorState
   (:require [rum.core :as rum]
-  [lweb.Shop.CartManagement :as CartManagement]
+  [lweb.Shop.CartManagementState :as CartManagementState]
   [cljs-react-material-ui.core :as ui]))
 
 (def postagePrice {"0" 0 "1" 20 "2" 40})
 
 (defn mini [] (= 0 (count (filter (fn [item]
     (and (= "sticker" (get-in item [:type :id])) (= "pin" (get-in item [:type :id])) (= (get-in item [:type :id]) "patch")))
-    CartManagement/state))))
+    CartManagementState/state))))
 
 (defonce state
     (atom {:type 0 :cost "0" :loading false}))
@@ -27,7 +27,7 @@
     )
 )
 
-(add-watch CartManagement/state :watcher
+(add-watch CartManagementState/state :watcher
     (fn [key atom old-state new-state]
         (PostageReducer)
     ))

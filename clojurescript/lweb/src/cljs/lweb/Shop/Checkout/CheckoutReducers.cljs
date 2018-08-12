@@ -1,6 +1,6 @@
-(ns lweb.Shop.Checkout
+(ns lweb.Shop.CheckoutState
   (:require [rum.core :as rum]
-            [lweb.Shop.CartManagement :as CartManagement]
+            [lweb.Shop.CartManagementState :as CartManagementState]
             [cljs-react-material-ui.core :as ui]
             [cljs-http.client :as http]
             [cljs.core.async :refer [<!]])
@@ -27,7 +27,7 @@
     (go (let [response (<! (http/post "https://us-central1-lweb-176107.cloudfunctions.net/try_payment"
                                     {:with-credentials? false
                                     :json-params (merge token {:amount (* 100 store.total) :currency "AUD" :description "Leotide Art" :shoppingCart store.shoppingCart})}))]
-        (CartManagement/EmptyCart)
+        (CartManagementState/EmptyCart)
         (SetPaid true)
         ;(toastr)
         (SetLoading false)

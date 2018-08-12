@@ -1,6 +1,7 @@
 (ns lweb.Shop.CartManagement
   (:require [rum.core :as rum]
             [lweb.DynamicReact :as DynamicReact]
+            [lweb.Shop.CartManagementState :as CartManagementState]
             [cljs-react-material-ui.icons :as ic]
             [cljs-react-material-ui.core :as ui]))
 
@@ -15,7 +16,7 @@
                     color "secondary"
                     :on-click (fn [_]
                         ;toastr.success ("Success", "Item removed from cart")
-                        (CartManagement/RemoveFromCart id type)
+                        (CartManagementState/RemoveFromCart id type)
                     )
         } (if mini [ic/remove-icon "Remove from cart"])]
     ]

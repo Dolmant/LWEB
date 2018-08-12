@@ -1,10 +1,11 @@
 (ns lweb.Shop.PostageCalculator
   (:require [rum.core :as rum]
+            [lweb.Shop.PostageCalculatorState :as PostageCalculatorState]
             [cljs-react-material-ui.core :as ui]))
 
 
 (rum/defc PostageCalculator [postageType]
-    (def postageType ((rum/react state) :type))
+    (def postageType ((rum/react PostageCalculatorState/state) :type))
     (defn handleChange [e] (SetType (get (get e "target") "value")))
     [:div
         [ui/FormControl {:error (= postageType 0)}

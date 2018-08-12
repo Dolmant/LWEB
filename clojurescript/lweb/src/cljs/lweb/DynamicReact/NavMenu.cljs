@@ -1,6 +1,6 @@
 (ns lweb.DynamicReact
     (:require [rum.core :as rum]
-    [lweb.DynamicReact as DynamicReact]
+    [lweb.DynamicReactState as DynamicReactState]
     [lweb.consts as :consts]
     [cljs-react-material-ui.core :as ui]))
 
@@ -10,8 +10,8 @@
 (defonce anchorEl (atom false))
 
 (defn oncatClick [id]
-    (DynamicReact/UpdateCategory id)
-    (DynamicReact/SetAttr :touchmenu_active false)
+    (DynamicReactState/UpdateCategory id)
+    (DynamicReactState/SetAttr :touchmenu_active false)
 )
 (rum/defc NavMenu < rum/reactive []
     (defn handleRequestClose [] (reset! open false))

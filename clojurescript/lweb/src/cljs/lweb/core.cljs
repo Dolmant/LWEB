@@ -4,7 +4,7 @@
                 [accountant.core :as accountant]
                 [cljsjs.material-ui]
                 [cljs-react-material-ui.core :as ui]
-                [lweb.DynamicReact.Footer :as footerComp]))
+                [lweb.DynamicReact :as DynamicReact]))
 
 ;; dummy function for actions
 (defn onClick []
@@ -35,7 +35,7 @@
 (rum/defc home-page < rum/reactive []
     (onClick)
     [:div [:h2 "Welcome to lweb"]
-        [:div [(footerComp/Footer true onClick)]]])
+        [:div [(App)]]])
 
 (defonce page (atom #'home-page))
 

@@ -1,6 +1,6 @@
 (ns lweb.DynamicReact
     (:require [rum.core :as rum]
-    [lweb.DynamicReact :as DynamicReact]))
+    [lweb.DynamicReactState :as DynamicReactState]))
 
 (rum/defc Footer []
         (def introOn? true)
@@ -13,7 +13,7 @@
                         ]
                     ]
                     [:div.contact_me
-                        [:a#contact_overlay {:on-click (fn [e] (DynamicReact/ToggleOverlay true false))} "Contact Me!"]
+                        [:a#contact_overlay {:on-click (fn [e] (DynamicReactState/ToggleOverlay true false))} "Contact Me!"]
                     ]
                     [:div.social
                         [:ul

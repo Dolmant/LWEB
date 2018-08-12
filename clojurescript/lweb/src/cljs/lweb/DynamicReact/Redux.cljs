@@ -1,6 +1,5 @@
-(ns lweb.DynamicReact
+(ns lweb.DynamicReactState
   (:require [rum.core :as rum]
-            [lweb.Shop.CartManagement :as CartManagement]
             [lweb.consts :as consts]
             [clojure.string :as s]
             ))

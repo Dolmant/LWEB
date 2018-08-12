@@ -1,6 +1,6 @@
 (ns lweb.DynamicReact
     (:require [rum.core :as rum]
-    [lweb.DynamicReact as DynamicReact
+    [lweb.DynamicReactState as DynamicReactState
     [lweb.consts as consts]
     [lweb.Shop as Shop]
     [cljs-react-material-ui.core :as ui]))
@@ -15,14 +15,14 @@
 )
 
 (defn onImageClick [index]
-    (DynamicReact/UpdateOverlayImage index)
-    (DynamicReact/ToggleOverlay true true)
+    (DynamicReactState/UpdateOverlayImage index)
+    (DynamicReactState/ToggleOverlay true true)
 )
 
 (rum/defc PageContainer < rum/reactive []
-    (def list ((rum/react DynamicReact/state) :list))
-    (def category ((rum/react DynamicReact/state) :category))
-    (def page ((rum/react DynamicReact/state) :page))
+    (def list ((rum/react DynamicReactState/state) :list))
+    (def category ((rum/react DynamicReactState/state) :category))
+    (def page ((rum/react DynamicReactState/state) :page))
     (def smallScreen (> window.innerWidth 900))
     (def settings {})
     (def listItems [:ul.projects

@@ -1,16 +1,19 @@
 (ns lweb.Shop.Checkout
   (:require [rum.core :as rum]
+            [lweb.Shop.CartManagementState :as CartManagementState]
+            [lweb.Shop.CheckoutState :as CheckoutState]
             [lweb.Shop.CartManagement :as CartManagement]
             [lweb.Shop.PostageCalculator :as PostageCalculator]
+            [lweb.Shop.PostageCalculatorState :as PostageCalculatorState]
             [cljs-react-material-ui.core :as ui]))
 
 
 (rum/defc Checkout []
-    (def shoppingCart ((rum/react state) :shoppingCart))
-    (def total ((rum/react state) :total))
-    (def loading ((rum/react state) :loading))
-    (def paid ((rum/react state) :paid))
-    (def postage ((rum/react PostageCalculator/state) :cost))
+    (def shoppingCart ((rum/react CartManagementState/state) :shoppingCart))
+    (def total ((rum/react CartManagementState/state) :total))
+    (def loading ((rum/react CheckoutState/state) :loading))
+    (def paid ((rum/react CheckoutState/state) :paid))
+    (def postage ((rum/react PostageCalculatorState/state) :cost))
     (def items (doseq [item shoppingCart] 
         [ui/Grid {:container true :key index :alignItems "center" :class "shopping-list-item"
             [ui/Grid {:class "shopping-list-column" :xs 2}
