@@ -14,7 +14,6 @@
     (DynamicReact/SetAttr :touchmenu_active false)
 )
 (rum/defc NavMenu < rum/reactive []
-    (def category ((rum/react DynamicReact/state) :category))
     (defn handleRequestClose [] (reset! open false))
     (defn handleOpenMenu [e] (if (not open) (do
         (e/preventDefault)
@@ -58,5 +57,5 @@
         0
         ))))))
     ))
-    (map mapper (sort-by (filter filterfn (keys category)) sorter))
+    (map mapper (sort-by (filter filterfn (keys consts/category)) sorter))
 )

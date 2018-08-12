@@ -2,7 +2,7 @@
     (:require [rum.core :as rum]))
 
 ;fix this
-(def isTouch (< js/window/innerWidth 1000)))
+(def isTouch (< js/window/innerWidth 1000))
 
 (def prices {
     frame: {:id "framed" desc: "Add A3 Framed ($45)" cost: 45}
@@ -713,7 +713,7 @@
     :CHECKOUT "NA",
 })
 
-function setImageNum(dict) {
+(defn setImageNum [dict]
     let x = 0
     Object.keys(dict).forEach((arrayNames) => {
         const arrayRaw: any = dict[arrayNames]
@@ -730,61 +730,37 @@ function setImageNum(dict) {
         x += arrayRaw.length
     })
     return [dict, x]
-}
+)
 
 ; // Ordered so we generate numbers for each category then create
 ; // the all category which is predefined as all the science categories
 
 (def numberedList setImageNum(projectListInitial))
-(def projectListBase numberedList[0])
+(def projectListBase (numberedList 0))
 
 (def projectList projectListInitial)
 
 (defn getImageById [ImageNum]
-    let result = false
-    Object.keys(projectList).forEach((arrayNames) => {
-        const arrayRaw: any = projectList[arrayNames]
-        for (let i = 0, len = arrayRaw.length; i < len; i += 1) {
-            if (arrayRaw[i].item_number === ImageNum) {
-                result = arrayRaw[i]
-            }
-        }
-    })
-    return result
+    (> 0 (count (filter projectList (fn [key, value]
+        (> 0 (count (filter value (fn [item]
+            (= (item :item_number) ImageNum)
+        )))
+    )))))
 )
 
-(defn function ArrayLimitsCalc [category]
-    const left = []
-    const right = []
-    let up = []
-    let down = []
-    const arrayRaw = projectList[category]
-    if (arrayRaw.length > 0) {
-        left.push(arrayRaw[0].item_number)
-        right.push(arrayRaw[arrayRaw.length - 1].item_number)
+(defn ArrayLimitsCalc [cat]
+    {
+        :left (if (> 0 (count (projectList cat))) [(get-in projectList [cat 0 :item_number])] [])
+        :right (if (> 0 (count (projectList cat))) [(get-in projectList [cat (- 1 (count (projectList cat))) :item_number])] [])
+        :up (map (filter (projectList cat) (fn [item] (is_array (item :img_src)))) (fn [item] (item :item_number)))
+        :down (map (filter (projectList cat) (fn [item] (is_array (item :img_src)))) (fn [item] (item :item_number)))
     }
-    arrayRaw.forEach((image) => {
-        if (Array.isArray(image.img_src)) {
-            up = [image.item_number]
-            down = [image.item_number]
-        }
-    })
-    return {
-        left,
-        right,
-        up,
-        down,
-    }
-})
+)
 
 ;// actions you can send to the state
 (defn category []
-    const results = {}
-    Object.keys(projectListBase).forEach((key) => {
-        results[key] = projectListLabels[key]
-    })
-    return results
-})
+    (map (keys projectListBase) (fn [key] (projectListLabels key)))
+)
 
 (def HomeInitial [
     {

@@ -1,4 +1,4 @@
-(ns lweb.DynamicReact.App
+(ns lweb.DynamicReact
     (:require [rum.core :as rum]
     [lweb.DynamicReact.Intro :as Intro]
     [lweb.DynamicReact.IntroHeader :as IntroHeader]
