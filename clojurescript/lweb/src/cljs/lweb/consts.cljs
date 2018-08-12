@@ -714,22 +714,16 @@
 })
 
 (defn setImageNum [dict]
-    let x = 0
-    Object.keys(dict).forEach((arrayNames) => {
-        const arrayRaw: any = dict[arrayNames]
-        for (let i = 0, len = arrayRaw.length; i < len; i += 1) {
-            arrayRaw[i].item_number = x + i
-            if (!arrayRaw[i].types) {
-                arrayRaw[i].types = [
-                    prices.frame,
-                    prices.poster,
-                    prices.sticker,
-                ]
-            }
-        }
-        x += arrayRaw.length
-    })
-    return [dict, x]
+    (def counter (atom 0))
+    [(map dict (fn [key, value]
+        (map value (fn [item]
+            (swap! counter inc)
+            (if (not (item :types))
+                (merge item {:types [(prices :frame) (prices :poster) (prices :sticker)] :item_number @counter})
+                (merge item {:item_number @counter})
+            )
+        ))
+    )) @counter]
 )
 
 ; // Ordered so we generate numbers for each category then create
