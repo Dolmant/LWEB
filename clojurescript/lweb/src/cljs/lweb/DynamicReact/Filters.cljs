@@ -4,7 +4,7 @@
                 [cljs-react-material-ui.rum :as ui]))
 
 (rum/defc Filters []
-    (def introOn? true)
+    (def introOn? false)
     (if introOn?
         (ui/hidden {:xsDown true}
          [:div

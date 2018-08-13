@@ -15,12 +15,6 @@
 (def projectListInitial {
     ; // This order is important if NATURE + SCIENCE + ANATOMY are not in this order
     ; // navigation vis the arrows image_number will be incorrect
-    :ALL
-    (concat projectListInitial.NATURE (concat
-        projectListInitial.SCIENCE (concat
-            projectListInitial.ANATOMY (concat
-                projectListInitial.FACTS (concat
-                    projectListInitial.TYPOGRAPHY projectListInitial.MISC)))))
     :NATURE [
         {
             :img_src "./assets/webImages/lizard.jpg"
@@ -715,27 +709,31 @@
 
 (defn setImageNum [dict]
     (def counter (atom 0))
-    [(map dict (fn [key, value]
-        (map value (fn [item]
+    (def merged (merge {:ALL
+    (concat (dict :NATURE) (concat
+        (dict :SCIENCE) (concat
+            (dict :ANATOMY) (concat
+                (dict :FACTS) (concat
+                    (dict :TYPOGRAPHY) (dict :MISC))))))} dict))
+    [(reduce (fn [altered-map [key value]]
+        (assoc altered-map key (#(map (fn [item]
             (swap! counter inc)
             (if (not (item :types))
                 (merge item {:types [(prices :frame) (prices :poster) (prices :sticker)] :item_number @counter})
                 (merge item {:item_number @counter})
             )
-        ))
-    )) @counter]
+        ) %) value))
+    ) {} merged) @counter]
 )
 
 ; // Ordered so we generate numbers for each category then create
 ; // the all category which is predefined as all the science categories
 
-(def numberedList (setImageNum projectListInitial))
-(def projectListBase (numberedList 0))
-
-(def projectList projectListInitial)
+(def projectList1 (setImageNum projectListInitial))
+(def projectList (projectList1 0))
 
 (defn getImageById [ImageNum]
-    (> 0 (count (filter projectList (fn [key, value]
+    (> 0 (count (filter projectList (fn [[key, value]]
         (> 0 (count (filter value (fn [item]
             (= (item :item_number) ImageNum)
         )))
@@ -746,14 +744,9 @@
     {
         :left (if (> 0 (count (projectList cat))) [(get-in projectList [cat 0 :item_number])] [])
         :right (if (> 0 (count (projectList cat))) [(get-in projectList [cat (- 1 (count (projectList cat))) :item_number])] [])
-        :up (map (filter (projectList cat) (fn [item] ((vector? (item :img_src))))) (fn [item] (item :item_number)))
-        :down (map (filter (projectList cat) (fn [item] ((vector? (item :img_src))))) (fn [item] (item :item_number)))
+        :up (map (fn [item] (item :item_number)) (filter (projectList cat) (fn [item] ((vector? (item :img_src))))) )
+        :down (map (fn [item] (item :item_number)) (filter (projectList cat) (fn [item] ((vector? (item :img_src))))))
     }
-)
-
-;// actions you can send to the state
-(defn category []
-    (map (keys projectListBase) (fn [key] (projectListLabels key)))
 )
 
 (def HomeInitial [

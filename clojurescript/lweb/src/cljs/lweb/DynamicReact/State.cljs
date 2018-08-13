@@ -11,7 +11,7 @@
         :total 0
         :page "home"
         :touchmenu_active false
-        :introOn true
+        :introOn false
         :overlay_vertical_index {}
         :overlay_image_num 0
         :overlay_image_src ""
@@ -25,15 +25,18 @@
         }
     }))
 
+(defn update-vals [map mf]
+  (reduce #(update-in % [%2] (fn [_] (mf %2))) map (keys mf)))
+
 (defn SetAttr [attr, value]
-    (reset! state
-        (update-in @state [attr] value)
+    (reset! State
+        (update-in @State [attr] (fn [_] value))
     )
 )
 
 (defn SetAttrs [attrs]
-    (reset! state
-        (update-vals @state [attrs])
+    (reset! State
+        (update-vals @State attrs)
     )
 )
 
@@ -42,35 +45,16 @@
   [coll elm]  
   (some #(= elm %) coll))
 
-(defn update-vals [map mf]
-  (reduce #(update-in % [%2] (fn [_] (mf %2))) map (keys mf)))
+
 
 (defn computeArrows [overlay_image_num current_category overlay_vertical_index NumberofVertical]
     (def limits (consts/ArrayLimitsCalc current_category))
     {
-        :left (not (in (limits :left) overlay_image_num))
-        :right (not (in (limits :right) overlay_image_num))
+        :left (not (in? (limits :left) overlay_image_num))
+        :right (not (in? (limits :right) overlay_image_num))
         :up (< (overlay_vertical_index :overlay_image_num) (- NumberofVertical 1))
         :down (> (overlay_vertical_index :overlay_image_num) 0)
     }
-)
-
-(defn NavOverlayImage [direction]
-    (cond
-        (= direction "left") (selectedOverlayImageNum (dec (@state :overlay_image_num)) (@state :category) (@state :overlay_vertical_index) (@state :overlay))
-        (= direction "right") (selectedOverlayImageNum (inc (@state :overlay_image_num)) (@state :category) (@state :overlay_vertical_index) (@state :overlay))
-        (= direction "up") (selectedOverlayImageNum (@state :overlay_image_num) (@state :category) ((update-in @state [:overlay_vertical_index overlay_image_num] inc) :overlay_vertical_index) (@state :overlay))
-        (= direction "down") (selectedOverlayImageNum (@state :overlay_image_num) (@state :category) ((update-in @state [:overlay_vertical_index overlay_image_num] dec) :overlay_vertical_index)  (@state :overlay))
-        :else "Incorrect nav call"
-    )
-)
-
-(defn UpdateOverlayImage [overlay_image_num]
-    (selectedOverlayImageNum overlay_image_num (@state :category) (@state :overlay_vertical_index) (@state :overlay))
-)
-
-(defn ToggleOverlay [state, image]
-    (selectedOverlayImageNum (@state :overlay_image_num) (@state :category) (@state :overlay_vertical_index) (update-vals (@state :overlay) {:state state :image image}))
 )
 
 (defn selectedOverlayImageNum [overlay_image_num current_category overlay_vertical_index overlay]
@@ -102,12 +86,30 @@
     )
 )
 
+(defn NavOverlayImage [direction]
+    (cond
+        (= direction "left") (selectedOverlayImageNum (dec (@State :overlay_image_num)) (@State :category) (@State :overlay_vertical_index) (@State :overlay))
+        (= direction "right") (selectedOverlayImageNum (inc (@State :overlay_image_num)) (@State :category) (@State :overlay_vertical_index) (@State :overlay))
+        (= direction "up") (selectedOverlayImageNum (@State :overlay_image_num) (@State :category) ((update-in @State [:overlay_vertical_index :overlay_image_num] inc) :overlay_vertical_index) (@State :overlay))
+        (= direction "down") (selectedOverlayImageNum (@State :overlay_image_num) (@State :category) ((update-in @State [:overlay_vertical_index :overlay_image_num] dec) :overlay_vertical_index)  (@State :overlay))
+        :else "Incorrect nav call"
+    )
+)
+
+(defn UpdateOverlayImage [overlay_image_num]
+    (selectedOverlayImageNum overlay_image_num (@State :category) (@State :overlay_vertical_index) (@State :overlay))
+)
+
+(defn ToggleOverlay [state1, image]
+    (selectedOverlayImageNum (@State :overlay_image_num) (@State :category) (@State :overlay_vertical_index) (update-vals (@State :overlay) {:state state1 :image image}))
+)
+
 (defn SetCategory [category]
     (SetAttrs {
         :category category
         :page "portfolio"
-        :list (if (in (keys projectList) category)
-            (projectList category)
+        :list (if (in? (keys consts/projectList) category)
+            (consts/projectList category)
             consts/HomeInitial
         )})
 )

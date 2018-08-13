@@ -90,7 +90,7 @@
             ]
             [:div
                 [:div.desc
-                    [:div.text (get consts/category category)]
+                    [:div.text (consts/projectListLabels category)]
                 ]
                 [listItems]
             ]

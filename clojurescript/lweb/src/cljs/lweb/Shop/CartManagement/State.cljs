@@ -14,30 +14,41 @@
     (atom {:paid false :shoppingCart [] :total 0 :checkoutResult "0" :loading false}))
 
 
+(defn SetPaid [paid]
+    (reset! State
+        (update-in @State [:paid ] paid)
+    )
+)
+
+(defn SetLoading [loading]
+    (reset! State
+        (update-in @State [:loading ] loading)
+    )
+)
+
 (defn AddToCart [id type]
     (SetPaid false)
-    (def index (first
+    (def index1 (first
         (keep-indexed #(when (and (= (:item_number %2) id) (= (get-in % [:type :id]) (:id type))) %1) (:shoppingCart @State))
     ))
     (reset! State
-        (if (!= index -1)
-            (update-in @State [:shoppingCart index :count] inc)
+        (if (not= index1 -1)
+            (update-in @State [:shoppingCart index1 :count] inc)
             (update-in @State [:shoppingCart] (conj (:shoppingCart @State) [(merge (consts/getImageById id) {:count 1 :type type})]))
     )))
 (defn RemoveFromCart [id type]
     ; find the matching id and type in current state
-    (def index (first
+    (def index2 (first
         (keep-indexed #(when (and (= (:item_number %2) id) (= (get-in % [:type :id]) (:id type))) %1) (:shoppingCart @State))
     ))
     (reset! State
-        (if (!= index -1)
-            (if (> 1 (get-in @State [:shoppingCart index :count]))
-                (update-in @State [:shoppingCart index :count] dec)
-                (update-in @State [:shoppingCart] (fn [_] vec-remove (@State :shoppingCart), index)))
-            )
-            @State
-        ))
-(defn EmptyCart [action]
+        (if (not= index1 -1)
+            (if (> 1 (get-in @State [:shoppingCart index2 :count]))
+                (update-in @State [:shoppingCart index2 :count] dec)
+                (update-in @State [:shoppingCart] (fn [_] vec-remove (@State :shoppingCart), index2)))
+        @State
+        )))
+(defn EmptyCart []
     (reset! State
         (update-in @State [:shoppingCart ] [])
     )
@@ -48,27 +59,15 @@
         (reduce (fn [item, count] (+ count (* (get-in item [:type :cost]) (item :count)))) [0] (new-state :shoppingCart))
     ))
 
-(defn SetLoading [loading]
-    (reset! State
-        (update-in @State [:loading ] loading)
-    )
-)
-
-(defn SetPaid [paid]
-    (reset! State
-        (update-in @State [:paid ] paid)
-    )
-)
-
 (defn PayNow [token]
     (SetLoading true)
     (go (let [response (<! (http/post "https://us-central1-lweb-176107.cloudfunctions.net/try_payment"
                                     {:with-credentials? false
                                     :json-params (merge token {:amount (* 100 store.total) :currency "AUD" :description "Leotide Art" :shoppingCart store.shoppingCart})}))]
-        (CartManagementState/EmptyCart)
+        (EmptyCart)
         (SetPaid true)
         ;(toastr)
         (SetLoading false)
-        (reset! state (update-in @State [:checkoutResult] response))
+        (reset! State (update-in @State [:checkoutResult] response))
     ))
 )

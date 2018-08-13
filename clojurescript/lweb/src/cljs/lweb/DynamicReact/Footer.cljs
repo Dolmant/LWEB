@@ -3,7 +3,7 @@
     [lweb.DynamicReact.State :as DynamicReactState]))
 
 (rum/defc Footer []
-        (def introOn? true)
+        (def introOn? false)
         (if introOn?
             [:footer
                 [:div.footer-container.container

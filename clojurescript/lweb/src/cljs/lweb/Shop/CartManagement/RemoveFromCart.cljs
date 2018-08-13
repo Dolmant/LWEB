@@ -7,8 +7,8 @@
 
 
 (rum/defc RemoveFromCart < rum/reactive [mini]
-    (def id ((rum/react DynamicReactStateState) :overlay_image_num))
-    (def type ((rum/react DynamicReactStateState) :overlay_types))
+    (def id ((rum/react DynamicReactState/State) :overlay_image_num))
+    (def type1 ((rum/react DynamicReactState/State) :overlay_types))
     [:div {:style "display: inline-block;"}
         [ui/button {
                     :mini mini
@@ -16,8 +16,8 @@
                     :color "secondary"
                     :on-click (fn [_]
                         ;toastr.success ("Success", "Item removed from cart")
-                        (CartManagementState/RemoveFromCart id type)
+                        (CartManagementState/RemoveFromCart id type1)
                     )
-        } (if mini [ic/remove-icon "Remove from cart"])]
+        } (if mini [ic/content-remove "Remove from cart"])]
     ]
 )

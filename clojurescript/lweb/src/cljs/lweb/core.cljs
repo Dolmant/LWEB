@@ -7,6 +7,7 @@
                 [cljs-react-material-ui.core :as ui]))
 
 ;; dummy function for actions
+(enable-console-print!)
 (defn onClick []
     (js/console.log "hello"))
 

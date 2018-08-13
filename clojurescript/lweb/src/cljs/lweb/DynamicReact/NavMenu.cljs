@@ -34,18 +34,18 @@
                     [:strong "ILLUSTRATIONS"
                     [:i {:class "fa fa-chevron-down"}]]
                 ]
-                [ui/menu {:on-close handleRequestClose :class "hi" :open (rum/react open) :anchorEl (rum/react anchorEl)}
-                    [ui/menu-item {:id "ALL" :on-click (fn [e] (handleSelectMenu e "ALL"))} "ALL"]
-                    [ui/menu-item {:id "NATURE" :on-click (fn [e] (handleSelectMenu e "NATURE"))} "NATURE"]
-                    [ui/menu-item {:id "SCIENCE" :on-click (fn [e] (handleSelectMenu e "SCIENCE"))} "SCIENCE"]
-                    [ui/menu-item {:id "ANATOMY" :on-click (fn [e] (handleSelectMenu e "ANATOMY"))} "ANATOMY"]
-                    [ui/menu-item {:id "FACTS" :on-click (fn [e] (handleSelectMenu e "FACTS"))} "FACTS"]
-                    [ui/menu-item {:id "TYPOGRAPHY" :on-click (fn [e] (handleSelectMenu e "TYPOGRAPHY"))} "TYPOGRAPHY"]
-                    [ui/menu-item {:id "MISC" :on-click (fn [e] (handleSelectMenu e "MISC"))} "MISC"]
-                ]
+                (ui/menu {:on-close handleRequestClose :class "hi" :open (rum/react open) :anchorEl (rum/react anchorEl)}
+                    (ui/menu-item {:id "ALL" :on-click (fn [e] (handleSelectMenu e "ALL"))} "ALL")
+                    (ui/menu-item {:id "NATURE" :on-click (fn [e] (handleSelectMenu e "NATURE"))} "NATURE")
+                    (ui/menu-item {:id "SCIENCE" :on-click (fn [e] (handleSelectMenu e "SCIENCE"))} "SCIENCE")
+                    (ui/menu-item {:id "ANATOMY" :on-click (fn [e] (handleSelectMenu e "ANATOMY"))} "ANATOMY")
+                    (ui/menu-item {:id "FACTS" :on-click (fn [e] (handleSelectMenu e "FACTS"))} "FACTS")
+                    (ui/menu-item {:id "TYPOGRAPHY" :on-click (fn [e] (handleSelectMenu e "TYPOGRAPHY"))} "TYPOGRAPHY")
+                    (ui/menu-item {:id "MISC" :on-click (fn [e] (handleSelectMenu e "MISC"))} "MISC")
+                )
             ]
             [:li.cursor {:key item :on-click (fn [] (oncatClick item)) :id item}
-                [:a.cursor [:strong item]]]
+                [:a.cursor [:strong (name item)]]]
     ))
     (defn sorter [cat1 cat2]
         (if (= cat1 "CHECKOUT") 1
@@ -57,5 +57,13 @@
         0
         ))))))
     )
-    (map mapper (sort-by sorter (filter filterfn (keys consts/category))))
+    ;(println consts/projectListLabels)
+    ; (def tester2 (keys consts/projectListLabels))
+    ; ;(println tester2)
+    ; (def tester1 (filter filterfn tester2))
+    ; (println tester1)
+    ; (def tester (sort-by sorter tester1))
+    ; ;(println tester)
+    ; (println (map mapper tester))
+    (map mapper (sort-by sorter (filter filterfn (keys consts/projectListLabels))))
 )
