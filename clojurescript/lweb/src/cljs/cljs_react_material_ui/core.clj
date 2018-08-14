@@ -1,5 +1,6 @@
 (ns cljs-react-material-ui.core
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [@material-ui/core :as MaterialUI]))
 
 (defn kebab-case
   "Converts CamelCase / camelCase to kebab-case"
@@ -15,10 +16,10 @@
   `(do ~@(clojure.core/map (partial generate-mui-dom-fn fname) tags)))
 
 (defn generate-mui-reagent-fn [tname]
-  `(def ~(symbol (kebab-case (str tname))) (r/adapt-react-class (~'aget js/MaterialUI ~(name tname)))))
+  `(def ~(symbol (kebab-case (str tname))) (r/adapt-react-class (~'aget MaterialUI ~(name tname)))))
 
 (defn generate-mui-rum-fn [tname]
-  `(def ~(symbol (kebab-case (str tname))) (cljs-react-material-ui.core/adapt-rum-class (~'aget js/MaterialUI ~(name tname)))))
+  `(def ~(symbol (kebab-case (str tname))) (cljs-react-material-ui.core/adapt-rum-class (~'aget MaterialUI ~(name tname)))))
 
 (defmacro adapt-rum-class [react-class]
   `(fn [& args#]

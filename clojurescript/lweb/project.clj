@@ -14,10 +14,10 @@
                  [ring/ring-defaults "0.3.1"]
                  [compojure "1.6.1"]
                  [hiccup "1.0.5"]
-                 [cljsjs/material-ui "1.0.0-beta.40-0"]
-                    [cljsjs/react "16.3.0-1"]
-                    [cljsjs/react-dom "16.3.0-1"]
-                    [cljs-http/cljs-http "0.1.45"]
+                 ;[cljsjs/material-ui "1.0.0-beta.40-0"]
+                [cljsjs/react "16.3.0-1"]
+                [cljsjs/react-dom "16.3.0-1"]
+                [cljs-http/cljs-http "0.1.45"]
                  [yogthos/config "1.1.1"]
                  [org.clojure/clojurescript "1.10.339"
                   :scope "provided"]
@@ -56,6 +56,10 @@
               :output-dir       "target/cljsbuild/public/js"
               :source-map       "target/cljsbuild/public/js/app.js.map"
               :optimizations :advanced
+              :install-deps true
+            :npm-deps {:"@material-ui/core" "1.0.0" :"@material-ui/icons" "15.6.1"}
+              :language-in :es-2017
+              ;; :language-out :es-2015
               :externs ["lib/particles.js"]
               :pretty-print  false}}
             :app
@@ -66,7 +70,11 @@
               :asset-path "/js/out"
               :output-to "target/cljsbuild/public/js/app.js"
               :output-dir "target/cljsbuild/public/js/out"
-              :source-map true
+              ;:npm-deps {:"@material-ui/core" "1.0.0" :"@material-ui/icons" "15.6.1"}
+              :install-deps true
+                           :source-map true
+                :language-in :es-2017
+                ;; :language-out :es-2015
               :externs ["lib/particles.js"]
               :optimizations :none
               :pretty-print  true}}

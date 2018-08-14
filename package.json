@@ -6,6 +6,7 @@
     "build": "webpack --config=webpack.dev.config && react-snapshot --build-dir .",
     "watch": "webpack --watch --config=webpack.dev.config",
     "buildProd": "webpack --config=webpack.prod.config && react-snapshot --build-dir .",
+    "buildCLJS": "webpack --config=webpack.cljsprod.config && react-snapshot --build-dir .",
     "buildStaging": "webpack --config=webpack.staging.config && react-snapshot --build-dir .",
     "flow": "flow"
   },

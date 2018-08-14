@@ -1,6 +1,6 @@
 (ns cljs-react-material-ui.core
   (:refer-clojure :exclude [list stepper])
-  (:require [cljsjs.material-ui]
+  (:require [@material-ui/core :as MaterialUI]
             [clojure.walk :refer [postwalk]]
             [sablono.util :refer [camel-case camel-case-keys]]))
 
@@ -21,20 +21,20 @@
    (create-mui-cmp (aget root-obj type) args)))
 
 (defn get-mui-theme
-  ([] (get-mui-theme (js/MaterialUIStyles.createMuiTheme (js-obj))))
+  ([] (get-mui-theme (MaterialUI/styles.createMuiTheme (js-obj))))
   ([raw-theme] (->> raw-theme
                  (transform-keys camel-case)
                  clj->js
-                 js/MaterialUIStyles.createMuiTheme)))
+                 MaterialUI/styles.createMuiTheme)))
 
 (defn color [color-key]
-  (aget js/MaterialUIStyles "colors" (name (camel-case color-key))))
+  (aget MaterialUI/styles "colors" (name (camel-case color-key))))
 
-(def make-selectable (aget js/MaterialUI "makeSelectable"))
+(def make-selectable (aget MaterialUI "makeSelectable"))
 
-(def create-mui-el (partial create-mui-cmp js/MaterialUI))
+(def create-mui-el (partial create-mui-cmp MaterialUI))
 
-(defn selectable-list [& args] (create-mui-cmp (make-selectable (aget js/MaterialUI "List")) args))
+(defn selectable-list [& args] (create-mui-cmp (make-selectable (aget MaterialUI "List")) args))
 
 (defn app-bar [& args] (create-mui-el "AppBar" args))
 (defn avatar [& args] (create-mui-el "Avatar" args))

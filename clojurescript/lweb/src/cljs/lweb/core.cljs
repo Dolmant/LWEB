@@ -2,7 +2,6 @@
     (:require   [rum.core :as rum]
                 [secretary.core :as secretary :include-macros true]
                 [accountant.core :as accountant]
-                [cljsjs.material-ui]
                 [lweb.App :as App]
                 [cljs-react-material-ui.core :as ui]))
 
