@@ -4,7 +4,6 @@
                 [accountant.core :as accountant]
                 [lweb.App :as App]
                  [cljs-react-material-ui.core :as ui]
-                ;["@material-ui/core" :as ui]
                 ))
 
 ;; dummy function for actions
@@ -32,13 +31,11 @@
             (attachLoader src))
     )
 )
-    
 
 (rum/defc home-page < rum/reactive []
     (onClick)
     [:div [:h2 "Welcome to lweb"]
         [:div [(App/App)]]
-     ;(ui/Button)
      ])
 
 (defonce page (atom #'home-page))
@@ -82,3 +79,8 @@
                             (secretary/locate-route path))})
     (accountant/dispatch-current!)
     (mountRoot))
+
+(defn reload! []
+    (init!))
+
+(init!)

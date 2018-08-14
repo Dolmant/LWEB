@@ -3,7 +3,6 @@
   (:require
     ["@material-ui/core" :as MaterialUI]
     ["@material-ui/core/styles" :as styles]
-    ["@material-ui/core/styles/createMuiTheme" :as createMuiTheme]
     [clojure.walk :refer [postwalk]]
     [sablono.util :refer [camel-case camel-case-keys]]))
 
@@ -24,11 +23,11 @@
    (create-mui-cmp (aget root-obj type) args)))
 
 (defn get-mui-theme
-  ([] (get-mui-theme (createMuiTheme (js-obj))))
+  ([] (get-mui-theme (styles/createMuiTheme (js-obj))))
   ([raw-theme] (->> raw-theme
                  (transform-keys camel-case)
                  clj->js
-                 createMuiTheme)))
+                 styles/createMuiTheme)))
 
 (defn color [color-key]
   (aget styles "colors" (name (camel-case color-key))))

@@ -18,6 +18,9 @@
 
  :builds
  {:app {:target :browser
-        :output-dir "public/js"
-        :asset-path "/js"
-        :modules {:main {:entries [lweb.core]}}}}}
+        :output-dir "dist"
+        :asset-path "."
+        :modules {:main {:entries [lweb.core]}}
+        :devtools {:after-load lweb.core/reload!
+                           :http-root "dist"
+                           :http-port 8081}}}}
