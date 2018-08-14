@@ -5,6 +5,7 @@
             [lweb.Shop.CartManagement.RemoveFromCart :as RemoveFromCart]
             [lweb.Shop.Postage.PostageCalculator :as PostageCalculator]
             [clojure.string :as str]
+            ["react-spinners" :as Spinners]
             [lweb.Shop.Postage.State :as PostageState]
             [cljs-react-material-ui.rum :as ui]))
 
@@ -49,7 +50,7 @@
             [:div.empty-cart "You have nothing in your cart!"]
             (if loading
                 [:div.empty-cart
-                    ;[PacManLoader {:loading}] todo
+                    [Spinners/PacManLoader {:loading true}]
                 ]
                 (if paid
                     [:div.empty-cart "Thanks for your purchase!"]

@@ -3,6 +3,7 @@
                 [secretary.core :as secretary :include-macros true]
                 [accountant.core :as accountant]
                 [lweb.App :as App]
+                ["/gen/particles/particles" :as particlesJS]
                  [cljs-react-material-ui.core :as ui]
                 ))
 
@@ -17,10 +18,10 @@
         (defn onLoad []
             (swap! loadCount inc)
             (if (>= @loadCount (count blockerImages))
-                (do     
+                (do
                 (set! (.-className (.getElementById js/document "html")) "")
                 (if hydrated?
-                    (js/particlesJS "introImage" "./assets/particlesBusted.json" onClick)))))
+                    (particlesJS "introImage" "./assets/particlesBusted.json" onClick)))))
         (defn attachLoader [src]
             (def img (js/Image.))
             (set! (.-onload img) onLoad)

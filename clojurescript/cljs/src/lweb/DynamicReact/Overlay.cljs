@@ -4,6 +4,7 @@
     [lweb.Shop.CartManagement.AddToCart :as AddToCart]
     [goog.dom.forms :as gforms]
     ;[cljs-http.client :as http]
+    ["/gen/lazySizes/index" :as LazySizes]
     [clojure.string :as str]
     [cljs.core.async :refer [<!]])
     (:require-macros [cljs.core.async.macros :refer [go]]))
@@ -25,6 +26,7 @@
             (set! (.-innerHTML (.getElementByClass js/document "error_message")) "Please add your contact details!")
             (do
                 (DynamicReactState/ToggleOverlay false false)
+                ; todo
                 ; (go (let [response (<! (http/post "https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail"
                 ;                                 {
                 ;                                     :with-credentials? false
@@ -68,7 +70,7 @@
                             "Your browser does not support the video tag."
                         ]
                         [:div.img-wrap-overlay
-                            ;[LazySizes {:dataSizes "auto" :alt "It's not loading!" :class "scale-img blur-up overlayimage" :src overlay_thumb_src :dataSrc overlay_image_src}]
+                            [LazySizes {:dataSizes "auto" :alt "It's not loading!" :class "scale-img blur-up overlayimage" :src overlay_thumb_src :dataSrc overlay_image_src}]
                         ]
                     )
                     (if overlay.is_video

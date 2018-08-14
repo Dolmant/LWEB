@@ -1,3 +1,3 @@
-import LazySizes from './LazySizes.js';
+import LazySizes from "./LazySizes.js"
 
-export default LazySizes;
+export default LazySizes
