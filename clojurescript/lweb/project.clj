@@ -57,8 +57,9 @@
               :source-map       "target/cljsbuild/public/js/app.js.map"
               :optimizations :advanced
               :install-deps true
-            :npm-deps {:"@material-ui/core" "1.0.0" :"@material-ui/icons" "15.6.1"}
-              :language-in :es-2017
+            ;:npm-deps {:left-pad "1.1.3"}
+            :npm-deps {"@material-ui/core" "1.0.0" "@material-ui/icons" "1.0.0"}
+              :language-in :ecmascript6
               ;; :language-out :es-2015
               :externs ["lib/particles.js"]
               :pretty-print  false}}
@@ -70,10 +71,11 @@
               :asset-path "/js/out"
               :output-to "target/cljsbuild/public/js/app.js"
               :output-dir "target/cljsbuild/public/js/out"
-              ;:npm-deps {:"@material-ui/core" "1.0.0" :"@material-ui/icons" "15.6.1"}
+              ;:npm-deps {:left-pad "1.1.3"}
+              :npm-deps {"@material-ui/core" "1.0.0" "@material-ui/icons" "1.0.0"}
               :install-deps true
                            :source-map true
-                :language-in :es-2017
+                :language-in :ecmascript6
                 ;; :language-out :es-2015
               :externs ["lib/particles.js"]
               :optimizations :none

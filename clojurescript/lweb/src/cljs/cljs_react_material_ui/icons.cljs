@@ -1,7 +1,7 @@
 (ns cljs-react-material-ui.icons
   (:require-macros [cljs-react-material-ui.icons :as mi])
   (:require [cljs-react-material-ui.core :as m]
-            [@material-ui/icons :as MaterialUISvgIcons]
+            ["@material-ui/icons" :as MaterialUISvgIcons]
             ))
 
 (def ^:private create-mui-icon (partial m/create-mui-cmp MaterialUISvgIcons))

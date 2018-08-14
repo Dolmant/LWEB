@@ -2,7 +2,9 @@
   (:refer-clojure :exclude [list stepper])
   (:require-macros [cljs-react-material-ui.core])
   (:require [rum.core]
-            [cljs-react-material-ui.core]))
+            [cljs-react-material-ui.core]
+            ["@material-ui/core" :as MaterialUI]
+            ))
 
 (def selectable-list (cljs-react-material-ui.core/adapt-rum-class ((aget MaterialUI "makeSelectable") (aget MaterialUI "List"))))
 

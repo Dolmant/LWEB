@@ -1,6 +1,6 @@
 (ns cljs-react-material-ui.core
   (:require [clojure.string :as str]
-            [@material-ui/core :as MaterialUI]))
+            ["@material-ui/core" :as MaterialUI]))
 
 (defn kebab-case
   "Converts CamelCase / camelCase to kebab-case"
