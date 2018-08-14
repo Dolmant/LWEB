@@ -1365,7 +1365,7 @@ body.work .projects {
 
 .strokeme {
   color: black;
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; }
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; }
 
 .projects li:hover .img-wrap {
   transform: scale(1.1);
