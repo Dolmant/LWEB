@@ -3,7 +3,7 @@
     [lweb.DynamicReact.State :as DynamicReactState]
     [lweb.Shop.CartManagement.AddToCart :as AddToCart]
     [goog.dom.forms :as gforms]
-    ;[cljs-http.client :as http]
+    [cljs-http.client :as http]
     ["/gen/lazySizes/index" :default Lazy]
     [clojure.string :as str]
     [cljs.core.async :refer [<!]])
@@ -28,14 +28,13 @@
             (set! (.-innerHTML (.getElementByClass js/document "error_message")) "Please add your contact details!")
             (do
                 (DynamicReactState/ToggleOverlay false false)
-                ; todo
-                ; (go (let [response (<! (http/post "https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail"
-                ;                                 {
-                ;                                     :with-credentials? false
-                ;                                     :getFormDataMap (gforms/getFormDataMap (.getElementById js/document "contact-form"))
-                ;                                 }
-                ;                             ))]
-                ; ))
+                (go (let [response (<! (http/post "https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail"
+                                                {
+                                                    :with-credentials? false
+                                                    :getFormDataMap (gforms/getFormDataMap (.getElementById js/document "contact-form"))
+                                                }
+                                            ))]
+                ))
             )
         )
     )

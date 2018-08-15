@@ -1,7 +1,7 @@
 (ns lweb.consts
     (:require [rum.core :as rum]))
 
-;fix this
+;fix this todo
 (def isTouch (< (.-innerWidth js/window) 1000))
 
 (def prices {
@@ -704,7 +704,7 @@
     :MISC "All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people.",
     :MODELS "Cute reptiles brought to life!",
     :ANIMATION "Moving pictures!",
-    :CHECKOUT "NA",
+    :CHECKOUT "",
 })
 
 (defn setImageNum [dict]

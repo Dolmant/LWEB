@@ -7,26 +7,30 @@
 
 (defn mini [] (= 0 (count (filter (fn [item]
     (and (= "sticker" (get-in item [:type :id])) (= "pin" (get-in item [:type :id])) (= (get-in item [:type :id]) "patch")))
-    CartManagementState/State))))
+    (@CartManagementState/State :shoppingCart)))))
 
 (defonce State
     (atom {:type 0 :cost "0" :loading false}))
 
 (defn SetLoading []
-    (swap! State @State [:loading] (fn [_] (not (@State :loading))))
+    (reset! State
+        (update-in @State [:loading] (fn [_] (not (@State :loading))))
+    )
 )
 
 (defn SetType [type]
-    (swap! State @State [:type] (fn [_] type))
+    (reset! State
+        (update-in @State [:type] (fn [_] type))
+    )
 )
 
 (defn PostageReducer []
     (if (mini)
         (reset! State
-            (update-in @State [:cost] (/ (get-in postagePrice (@State :type)) 2))
+            (update-in @State [:cost] (fn [_] (/ (get postagePrice (@State :type)) 2)))
         )
         (reset! State
-            (update-in @State [:cost] (get-in postagePrice (@State :type)))
+            (update-in @State [:cost] (fn [_] (get postagePrice (@State :type))))
         )
     )
 )

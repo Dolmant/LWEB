@@ -7,8 +7,8 @@
                  [cljs-react-material-ui.core :as ui]
                 ))
 
-;; dummy function for actions
 (enable-console-print!)
+;; dummy function for actions todo
 (defn onClick []
     (js/console.log "hello"))
 
@@ -20,7 +20,6 @@
             (if (>= @loadCount (count blockerImages))
                 (do
                 (set! (.-className (.getElementById js/document "html")) "")
-                  (js/console.log particlesJS)
                 (if hydrated?
                     (particlesJS/default "introImage" "./assets/particlesBusted.json" onClick)))))
         (defn attachLoader [src]
@@ -43,7 +42,7 @@
 (rum/defc current-page []
     (ui/mui-theme-provider
         {:theme (ui/get-mui-theme)}
-        [(@page)])
+        (@page))
   )
 
 (secretary/defroute "/*" []

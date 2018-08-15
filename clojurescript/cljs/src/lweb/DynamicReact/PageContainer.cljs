@@ -5,7 +5,6 @@
     [lweb.Shop.CartManagement.Checkout :as Checkout]
     [lweb.consts :as consts]
     [cljs-react-material-ui.core-macros]
-    ; ["react-slick" :default Slick]
     ["/gen/slider/index" :default Slick]
     [clojure.string :as str]
     [cljs-react-material-ui.rum :as ui]))
@@ -45,6 +44,7 @@
          ])
          itemList
     )])
+    ; todo settings not imported properly into the slider
     (def settings {
         :dots true,
         :infinite true,
@@ -56,12 +56,20 @@
         :autoplay true,
         :autoplaySpeed 10000,
     })
-    (if (= category "CHECKOUT")
-        [Checkout/Checkout]
+    (if (= category :CHECKOUT)
+        (Checkout/Checkout)
         (if (= page "home")
             [:div
                 [:div.sidescroller
-                    (Slider (merge settings {:nextArrow [LeftNavButton] :prevArrow [RightNavButton]}) listCarousel)
+                    (Slider {:nextArrow [LeftNavButton] :prevArrow [RightNavButton] :dots true,
+                        :infinite true,
+                        :speed 500,
+                        :slidesToShow (if smallScreen 4 2),
+                        :slidesToScroll 1,
+                        :arrows true,
+                        :lazyLoad false,
+                        :autoplay true,
+                        :autoplaySpeed 10000} listCarousel)
                 ]
                 [:div.desc_holder
                     [:div.desc_text
@@ -113,15 +121,3 @@
             ]
     ))
 )
-    ; const settings = {
-    ;     dots: true,
-    ;     infinite: true,
-    ;     speed: 500,
-    ;     slidesToShow: smallScreen ? 4 : 2,
-    ;     slidesToScroll: 1,
-    ;     arrows: true,
-    ;     lazyLoad: false,
-    ;     autoplay: true,
-    ;     autoplaySpeed: 10000,
-    ; }
-;import Slider from "react-slick"

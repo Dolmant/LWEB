@@ -9,12 +9,10 @@
 (defonce anchorEl (atom false))
 
 (rum/defc AddToCart < rum/reactive [mini id types]
-    ; (def id ((rum/react DynamicReactState/State) :overlay_image_num))
-    ; (def types ((rum/react DynamicReactState/State) :overlay_types))
     (defn handleClick [e]
         (if (= 1 (count types))
         (do
-        ;toastr.success("Success", "Item added to cart")
+        ;toastr.success("Success", "Item added to cart") todo
         (CartManagementState/AddToCart id, (types 0))
         (reset! anchorEl (.-currentTarget e))))
     )
@@ -40,7 +38,7 @@
                     :key (type :desc)
                     :on-click (fn [] 
                     (do
-                    ;toastr.success("Success", "Item added to cart")
+                    ;toastr.success("Success", "Item added to cart") todo
                     (CartManagementState/AddToCart id, type)
                     (handleClose)))
                 }

@@ -57,13 +57,5 @@
         0
         ))))))
     )
-    ;(println consts/projectListLabels)
-    ; (def tester2 (keys consts/projectListLabels))
-    ; ;(println tester2)
-    ; (def tester1 (filter filterfn tester2))
-    ; (println tester1)
-    ; (def tester (sort-by sorter tester1))
-    ; ;(println tester)
-    ; (println (map mapper tester))
     (map mapper (sort-by sorter (filter filterfn (keys consts/projectListLabels))))
 )
