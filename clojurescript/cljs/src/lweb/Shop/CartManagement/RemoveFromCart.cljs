@@ -6,10 +6,10 @@
             [cljs-react-material-ui.rum :as ui]))
 
 
-(rum/defc RemoveFromCart < rum/reactive [mini]
-    (def id ((rum/react DynamicReactState/State) :overlay_image_num))
-    (def type1 ((rum/react DynamicReactState/State) :overlay_types))
-    [:div {:style "display: inline-block;"}
+(rum/defc RemoveFromCart < rum/reactive [mini id type1]
+    ; (def id ((rum/react DynamicReactState/State) :overlay_image_num))
+    ; (def type1 ((rum/react DynamicReactState/State) :overlay_types))
+    [:div {:style {:display "inline-block"}}
         (ui/button {
                     :mini mini
                     :variant (if mini "fab" "raised")
@@ -18,6 +18,11 @@
                         ;toastr.success ("Success", "Item removed from cart")
                         (CartManagementState/RemoveFromCart id type1)
                     )
-        } (if mini [ic/content-remove "Remove from cart"]))
+        }
+                   ;todo
+        ; (if mini
+        ; (ic/content-remove "Remove from cart")
+        ;   )
+        )
     ]
 )

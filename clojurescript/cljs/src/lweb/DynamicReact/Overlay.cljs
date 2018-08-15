@@ -4,10 +4,12 @@
     [lweb.Shop.CartManagement.AddToCart :as AddToCart]
     [goog.dom.forms :as gforms]
     ;[cljs-http.client :as http]
-    ["/gen/lazySizes/index" :as LazySizes]
+    ["/gen/lazySizes/index" :default Lazy]
     [clojure.string :as str]
     [cljs.core.async :refer [<!]])
     (:require-macros [cljs.core.async.macros :refer [go]]))
+
+(def LazySizes (cljs-react-material-ui.core-macros/adapt-rum-class Lazy))
 
 (defn oncatClick [id]
     (DynamicReactState/SetCategory id)
@@ -21,7 +23,7 @@
     (def overlay_types ((rum/react DynamicReactState/State) :overlay_types))
     (def overlay_txt ((rum/react DynamicReactState/State) :overlay_txt))
     (defn formOverride [e]
-        (e :preventDefault)
+        (.preventDefault e)
         (if (not ((.getElementById js/document "contact-form") :value))
             (set! (.-innerHTML (.getElementByClass js/document "error_message")) "Please add your contact details!")
             (do
@@ -38,46 +40,46 @@
         )
     )
     (defn backgroundOverlayClick [e]
-        (cond 
-            (str/includes? (.-class (e :target)) "overlay_container") (DynamicReactState/ToggleOverlay false, false)
-            (str/includes? (.-class (e :target)) "downnav_overlay") (DynamicReactState/ToggleOverlay false, false)
-            (str/includes? (.-class (e :target)) "upnav_overlay") (DynamicReactState/ToggleOverlay false, false)
-            (str/includes? (.-class (e :target)) "rightnav_overlay") (DynamicReactState/ToggleOverlay false, false)
-            (str/includes? (.-class (e :target)) "leftnav_overlay") (DynamicReactState/ToggleOverlay false, false)
-            :else "Overlay not closing, not outside target"
+        (cond
+            (str/includes? (.-className (.-target e)) "overlay_container") (println "Overlay not closing, not outside target")
+            (str/includes? (.-className (.-target e)) "downnav_overlay") (println "Overlay not closing, not outside target")
+            (str/includes? (.-className (.-target e)) "upnav_overlay") (println "Overlay not closing, not outside target")
+            (str/includes? (.-className (.-target e)) "rightnav_overlay") (println "Overlay not closing, not outside target")
+            (str/includes? (.-className (.-target e)) "leftnav_overlay") (println "Overlay not closing, not outside target")
+            :else (DynamicReactState/ToggleOverlay false, false)
         )
     )
     (defn CloseButtonClick [e]
-        (e :preventDefault)
+        (.preventDefault e)
         (DynamicReactState/ToggleOverlay false, false)
     )
     [:div.overlay_top
         [:div#backgroundOverlay.backgroundOverlay {:on-click (fn [e] (backgroundOverlayClick e))}]
         [:div.overlay_container
             [:a {:class "closebutton strokeme" :on-click (fn [e] (CloseButtonClick e))}]
-            (if overlay.image
+            (if (overlay :image)
                 [:div.overlayimagecontrol
                     [:div
-                        (if overlay.arrows.left [:div.img-wrap-left-overlay [:img.leftnav_overlay {:alt "It's not loading!" :src "./assets/icons/LeftIcon.png" :on-click #(DynamicReactState/NavOverlayImage "left")}]])
-                        (if overlay.arrows.right [:div.img-wrap-right-overlay [:img.rightnav_overlay {:alt "It's not loading!" :src "./assets/icons/RightIcon.png" :on-click #(DynamicReactState/NavOverlayImage "right")}]])
-                        (if overlay.arrows.up [:div.img-wrap-up-overlay [:img.upnav_overlay {:alt "It's not loading!" :src "./assets/icons/UpIcon.png" :on-click #(DynamicReactState/NavOverlayImage "up")}]])
-                        (if overlay.arrows.down [:div.img-wrap-down-overlay [:img.downnav_overlay {:alt "It's not loading!" :src "./assets/icons/DownIcon.png" :on-click #(DynamicReactState/NavOverlayImage "down")}]])
+                        (if (get-in overlay [:arrows :left]) [:div.img-wrap-left-overlay [:img.leftnav_overlay {:alt "It's not loading!" :src "./assets/icons/LeftIcon.png" :on-click #(DynamicReactState/NavOverlayImage "left")}]])
+                        (if (get-in overlay [:arrows :right]) [:div.img-wrap-right-overlay [:img.rightnav_overlay {:alt "It's not loading!" :src "./assets/icons/RightIcon.png" :on-click #(DynamicReactState/NavOverlayImage "right")}]])
+                        (if (get-in overlay [:arrows :up]) [:div.img-wrap-up-overlay [:img.upnav_overlay {:alt "It's not loading!" :src "./assets/icons/UpIcon.png" :on-click #(DynamicReactState/NavOverlayImage "up")}]])
+                        (if (get-in overlay [:arrows :down]) [:div.img-wrap-down-overlay [:img.downnav_overlay {:alt "It's not loading!" :src "./assets/icons/DownIcon.png" :on-click #(DynamicReactState/NavOverlayImage "down")}]])
                     ]
                     [:h2 overlay_txt]
-                    (if overlay.is_video
+                    (if (overlay :is_video)
                         [:video.overlay-video {:autoPlay "1" :loop "1" :controls "1"}
                             [:source {:src overlay_image_src :type "video/mp4"}]
                             "Your browser does not support the video tag."
                         ]
                         [:div.img-wrap-overlay
-                            [LazySizes {:dataSizes "auto" :alt "It's not loading!" :class "scale-img blur-up overlayimage" :src overlay_thumb_src :dataSrc overlay_image_src}]
+                            (LazySizes {:dataSizes "auto" :alt "It's not loading!" :className "scale-img blur-up overlayimage" :src overlay_thumb_src :dataSrc overlay_image_src})
                         ]
                     )
-                    (if overlay.is_video
+                    (if (overlay :is_video)
                         [:div]
                         [:div.overlaytext "This image is large and will remain obfuscated until downloaded"]
                     )
-                    [AddToCart/AddToCart {:id overlay_image_num :types overlay_types}]
+                    (AddToCart/AddToCart false overlay_image_num overlay_types)
                 ]
                 [:div.overlayform
                     [:form#contact-form {:on-submit (fn [e] (formOverride e)) :target "self" :class "topLabel"}

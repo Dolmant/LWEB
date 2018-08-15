@@ -6,7 +6,7 @@
 
 (rum/defc PostageCalculator < rum/reactive [postageType]
     (def postageType ((rum/react PostageState/State) :type))
-    (defn handleChange [e] (PostageState/SetType (get (get e "target") "value")))
+    (defn handleChange [e] (PostageState/SetType (.-value (.-target e))))
     [:div
         [ui/form-control {:error (= postageType 0)}
         [ui/input-label {:htmlFor "postage-simple"} "Postage"]

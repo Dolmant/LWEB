@@ -1667,3 +1667,7 @@ window.particlesJS.load = function(tag_id, path_config_json, callback){
     window.particlesJS(tag_id, params);
     if(callback) callback();
 };
+
+const particlesJS = window.particlesJS.load
+
+export default particlesJS

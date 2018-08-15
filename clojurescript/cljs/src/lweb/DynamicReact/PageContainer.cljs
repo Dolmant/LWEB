@@ -5,7 +5,8 @@
     [lweb.Shop.CartManagement.Checkout :as Checkout]
     [lweb.consts :as consts]
     [cljs-react-material-ui.core-macros]
-    ["react-slick" :default Slick]
+    ; ["react-slick" :default Slick]
+    ["/gen/slider/index" :default Slick]
     [clojure.string :as str]
     [cljs-react-material-ui.rum :as ui]))
 
@@ -31,18 +32,19 @@
     (def smallScreen (> (.-innerWidth js/window) 900))
     (def listItems [:ul.projects
         (map (fn [item]
-            [:li {:key (get item key) :on-click (fn [] (onImageClick (get item :item_number)))}
+            [:li {:key (item :item_number) :on-click (fn [] (onImageClick (get item :item_number)))}
                 [:div.img-wrap
                     [:img {:alt "It's not loading!" :src (item :thumbs_src)}]]])
         itemList)
     ])
-    (def listCarousel (map (fn [item]
-         [:div.carousel-img-wrap {:key (get item :item_number)}
+    (def listCarousel 
+        [:div (map (fn [item]
+         [:div.carousel-img-wrap {:key (item :item_number)}
             [:div
                 {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src)]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if smallScreen "20vw" "40vw")}}]
-         ]
-         itemList)
-    ))
+         ])
+         itemList
+    )])
     (def settings {
         :dots true,
         :infinite true,
@@ -59,7 +61,7 @@
         (if (= page "home")
             [:div
                 [:div.sidescroller
-                    (Slider {:settings settings :nextArrow [LeftNavButton] :prevArrow [RightNavButton]} listCarousel)
+                    (Slider (merge settings {:nextArrow [LeftNavButton] :prevArrow [RightNavButton]}) listCarousel)
                 ]
                 [:div.desc_holder
                     [:div.desc_text

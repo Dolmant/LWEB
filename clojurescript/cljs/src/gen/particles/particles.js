@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /* -----------------------------------------------
@@ -1514,3 +1518,7 @@ window.particlesJS.load = function (tag_id, path_config_json, callback) {
   window.particlesJS(tag_id, params);
   if (callback) callback();
 };
+
+var particlesJS = window.particlesJS.load;
+
+exports.default = particlesJS;

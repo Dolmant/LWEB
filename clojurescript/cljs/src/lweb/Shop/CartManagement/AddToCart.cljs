@@ -8,22 +8,22 @@
 
 (defonce anchorEl (atom false))
 
-(rum/defc AddToCart < rum/reactive [mini]
-    (def id ((rum/react DynamicReactState/State) :overlay_image_num))
-    (def types ((rum/react DynamicReactState/State) :overlay_types))
+(rum/defc AddToCart < rum/reactive [mini id types]
+    ; (def id ((rum/react DynamicReactState/State) :overlay_image_num))
+    ; (def types ((rum/react DynamicReactState/State) :overlay_types))
     (defn handleClick [e]
         (if (= 1 (count types))
         (do
         ;toastr.success("Success", "Item added to cart")
         (CartManagementState/AddToCart id, (types 0))
-        (reset! anchorEl (e :currentTarget))))
+        (reset! anchorEl (.-currentTarget e))))
     )
 
     (defn handleClose []
         (reset! anchorEl nil)
     )
-    [:div {:style "display: inline block;"}
-        [ui/button {
+    [:div {:style {:display "inline-block"}}
+        (ui/button {
             :variant (if mini "fab" "raised")
             :color "primary"
             :aria-label "add"
@@ -31,19 +31,22 @@
             :aria-haspopup "true"
             :on-click handleClick
         }
-            (if mini [ic/content-add] [:div "Add to cart"])
-        ]
-        [:ui/menu {:id "simple-menu" :anchorEl (rum/react anchorEl) :open (rum/react anchorEl) :on-close handleClose}
-            (doseq [type types]
-                [ui/menu-item {
+            [:div]
+            ;(if mini [ic/content-add] [:div "Add to cart"]) todo
+        )
+        (:ui/menu {:id "simple-menu" :anchorEl (rum/react anchorEl) :open (rum/react anchorEl) :on-close handleClose}
+            (map (fn [type]
+                (ui/menu-item {
+                    :key (type :desc)
                     :on-click (fn [] 
                     (do
                     ;toastr.success("Success", "Item added to cart")
                     (CartManagementState/AddToCart id, type)
                     (handleClose)))
                 }
-                (type :desc)]
+                (type :desc)))
+                 types
             )
-        ]
+        )
     ]
 )

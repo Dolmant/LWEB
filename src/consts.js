@@ -517,9 +517,9 @@ const projectListInitial = {
     MISC: [
         {
             is_video: true,
-            img_src: "./assets/webImages/DNutFINAL.mp4",
+            img_src: "./assets/webImages/DnutFINAL.mp4",
             img_txt: "DOUGHNUTS!",
-            thumbs_src: "./assets/webImages/thumbs/DNutFINAL.jpg",
+            thumbs_src: "./assets/webImages/thumbs/DnutFINAL.jpg",
             types: [prices.pin],
         },
         {

@@ -16,10 +16,10 @@
 (rum/defc NavMenu < rum/reactive []
     (defn handleRequestClose [] (reset! open false))
     (defn handleOpenMenu [e] (if (not open) (do
-        (e :preventDefault)
-        (e :stopPropagation)
+        (.preventDefault e)
+        (.stopPropagation e)
         (reset! open false)
-        (reset! anchorEl (e :currentTarget))
+        (reset! anchorEl (.-currentTarget e))
     )))
     (defn handleSelectMenu [e, id] 
         (handleRequestClose)

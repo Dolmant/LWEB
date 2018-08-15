@@ -5,7 +5,7 @@
 ))
 
 (rum/defc Footer []
-        (def introOn? false)
+        (def introOn? true)
         (if introOn?
             [:footer
                 [:div.footer-container.container

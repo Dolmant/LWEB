@@ -518,9 +518,9 @@
     :MISC [
         {
             :is_video true
-            :img_src "./assets/webImages/DNutFINAL.mp4"
+            :img_src "./assets/webImages/DnutFINAL.mp4"
             :img_txt "DOUGHNUTS!"
-            :thumbs_src "./assets/webImages/thumbs/DNutFINAL.jpg"
+            :thumbs_src "./assets/webImages/thumbs/DnutFINAL.jpg"
             :types [prices.pin]
         }
         {
@@ -733,19 +733,19 @@
 (def projectList (projectList1 0))
 
 (defn getImageById [ImageNum]
-    (> 0 (count (filter projectList (fn [[key, value]]
-        (> 0 (count (filter value (fn [item]
+    (first (reduce (fn [reducing, [key, value]]
+        (concat reducing (filter (fn [item]
             (= (item :item_number) ImageNum)
-        )))
-    )))))
+        ) value)
+    )) [] projectList))
 )
 
 (defn ArrayLimitsCalc [cat]
     {
         :left (if (> 0 (count (projectList cat))) [(get-in projectList [cat 0 :item_number])] [])
         :right (if (> 0 (count (projectList cat))) [(get-in projectList [cat (- 1 (count (projectList cat))) :item_number])] [])
-        :up (map (fn [item] (item :item_number)) (filter (projectList cat) (fn [item] ((vector? (item :img_src))))) )
-        :down (map (fn [item] (item :item_number)) (filter (projectList cat) (fn [item] ((vector? (item :img_src))))))
+        :up (map (fn [item] (item :item_number)) (filter (fn [item] ((vector? (item :img_src)))) (projectList cat)) )
+        :down (map (fn [item] (item :item_number)) (filter (fn [item] ((vector? (item :img_src)))) (projectList cat)))
     }
 )
 

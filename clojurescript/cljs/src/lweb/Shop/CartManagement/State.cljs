@@ -16,13 +16,13 @@
 
 (defn SetPaid [paid]
     (reset! State
-        (update-in @State [:paid ] paid)
+        (update-in @State [:paid ] (fn [_] paid))
     )
 )
 
 (defn SetLoading [loading]
     (reset! State
-        (update-in @State [:loading ] loading)
+        (update-in @State [:loading ] (fn [_] loading))
     )
 )
 
@@ -50,7 +50,7 @@
         )))
 (defn EmptyCart []
     (reset! State
-        (update-in @State [:shoppingCart ] [])
+        (update-in @State [:shoppingCart ] (fn [_] []))
     )
 )
 

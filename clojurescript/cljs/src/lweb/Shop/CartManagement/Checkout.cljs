@@ -34,16 +34,8 @@
                 (str/join "" ["$" (get (get item :type) :cost)])
             ]
             [ui/grid {:class "shopping-list-column" :xs 2}
-                [AddToCart/AddToCart {
-                    :id (get item :item_number)
-                    :types (get item :types)
-                    :mini true
-                }]
-                [RemoveFromCart/RemoveFromCart {
-                    :id (get item :item_number)
-                    :types (get item :types)
-                    :mini true
-                }]
+                [AddToCart/AddToCart true (get item :item_number) (get item :types)]
+                [RemoveFromCart/RemoveFromCart true (get item :item_number) (get item :types)]
             ]
         ]))
         (if (= 0 (count items))

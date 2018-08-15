@@ -12,9 +12,9 @@ const canUseDOM = !!(
 
 let lazySizes = null;
 
-// if (canUseDOM) {
-//   lazySizes = require('lazysizes');
-// }
+if (canUseDOM) {
+  lazySizes = require('lazysizes');
+}
 
 class LazySizes extends React.Component {
   static propTypes = {

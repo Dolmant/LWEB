@@ -8,13 +8,14 @@
             [:img {
                 :alt "its not loading"
                 :src "./assets/images/LEOTIDE.png"
-            }]
-        [:div.intro-scroll-prompt
+                :style {:max-height "40vh"}
+            }]]
+        [:div.into-scroll-prompt
             [:div.blink-container
                 ;(ic/navigation-arrow-drop-down-circle) ;;:class "fas fa-arrow-alt-circle-down" todo check this is the same
                 [:div.blink]
             ]
             [:div "scroll down"]]
-        [:div.introImage#introImage]]
+        [:div.introImage#introImage]
     ]
 )

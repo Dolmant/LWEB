@@ -20,8 +20,9 @@
             (if (>= @loadCount (count blockerImages))
                 (do
                 (set! (.-className (.getElementById js/document "html")) "")
+                  (js/console.log particlesJS)
                 (if hydrated?
-                    (particlesJS "introImage" "./assets/particlesBusted.json" onClick)))))
+                    (particlesJS/default "introImage" "./assets/particlesBusted.json" onClick)))))
         (defn attachLoader [src]
             (def img (js/Image.))
             (set! (.-onload img) onLoad)
@@ -34,10 +35,8 @@
 )
 
 (rum/defc home-page < rum/reactive []
-    (onClick)
-    [:div [:h2 "Welcome to lweb"]
-        [:div [(App/App)]]
-     ])
+    [:div (App/App)]
+)
 
 (defonce page (atom #'home-page))
 

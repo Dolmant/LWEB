@@ -10,7 +10,7 @@
 (rum/defc IntroHeader < rum/reactive []
     (def shoppingCart((rum/react CartManagementState/State) :shoppingCart))
     (def category ((rum/react DynamicReactState/State) :category))
-    (def introOn? false)
+    (def introOn? true)
     [:header.introHeaderTemp
         [:div.container
             [:div.left

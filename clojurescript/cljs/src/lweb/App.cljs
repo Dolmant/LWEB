@@ -16,7 +16,7 @@
         [:div.intro#intro (Intro/Intro)]
         [:div.introHeader#introHeader (IntroHeader/IntroHeader)]
         [:div.filters#filters (Filters/Filters)]
-        (if overlay.state
+        (if (overlay :state)
             (Overlay/Overlay)
             [:div]
         )

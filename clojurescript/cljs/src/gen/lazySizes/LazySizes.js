@@ -44,9 +44,9 @@ var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.do
 
 var lazySizes = null;
 
-// if (canUseDOM) {
-//   lazySizes = require('lazysizes');
-// }
+if (canUseDOM) {
+  lazySizes = require('lazysizes');
+}
 
 var LazySizes = function (_React$Component) {
   _inherits(LazySizes, _React$Component);
