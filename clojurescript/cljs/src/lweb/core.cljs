@@ -3,14 +3,12 @@
                 [secretary.core :as secretary :include-macros true]
                 [accountant.core :as accountant]
                 [lweb.App :as App]
+                ["toastr" :as toastr]
                 ["/gen/particles/particles" :as particlesJS]
                  [cljs-react-material-ui.core :as ui]
                 ))
 
 (enable-console-print!)
-;; dummy function for actions todo
-(defn onClick []
-    (js/console.log "hello"))
 
 (defn waitForImages [hydrated?]
     (def blockerImages ["/assets/webImages/CRISPR.jpg"])
@@ -21,7 +19,7 @@
                 (do
                 (set! (.-className (.getElementById js/document "html")) "")
                 (if hydrated?
-                    (particlesJS/default "introImage" "./assets/particlesBusted.json" onClick)))))
+                    (particlesJS/default "introImage" "./assets/particlesBusted.json" #(println "Particles loaded"))))))
         (defn attachLoader [src]
             (def img (js/Image.))
             (set! (.-onload img) onLoad)
@@ -47,20 +45,17 @@
 
 (secretary/defroute "/*" []
     (reset! page #'home-page))
-; todo put in a toaster
-; {/* <ReduxToastr
-;     timeOut={4000}
-;     newestOnTop={false}
-;     preventDuplicates
-;     position="top-left"
-;     transitionIn="fadeIn"
-;     transitionOut="fadeOut"
-;     progressBar
-; /> */}
-;; -------------------------
-;; Initialize app
 
 (defn mountRoot []
+    (def toasterOptions (aget toastr "options"))
+    (aset toasterOptions "preventDuplicates" true)
+    (aset toasterOptions "newestOnTop" false)
+    (aset toasterOptions "timeOut" 4000)
+    (aset toasterOptions "position" "top-left")
+    (aset toasterOptions "transitionIn" "fadeIn")
+    (aset toasterOptions "transitionOut" "fadeOut")
+    (aset toasterOptions "progressBar" "true")
+
     (def targetElement (.getElementById js/document "app"))
     (if (.hasChildNodes targetElement)
         (do (js/console.log "hydrated") (rum/hydrate (current-page) targetElement) (waitForImages true))

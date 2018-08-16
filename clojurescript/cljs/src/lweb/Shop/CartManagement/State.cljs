@@ -2,6 +2,7 @@
     (:require [rum.core :as rum]
     [lweb.consts :as consts]
     [cljs-http.client :as http]
+    ["toastr" :as toastr]
     [cljs.core.async :refer [<!]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
@@ -29,7 +30,7 @@
 (defn AddToCart [id type]
     (SetPaid false)
     (def index1 (first
-        (keep-indexed #(when (and (= (:item_number %2) id) (= (get-in % [:type :id]) (:id type))) %1) (:shoppingCart @State))
+        (keep-indexed #(when (and (= (:item_number %2) id) (= (get-in %2 [:type :id]) (:id type))) %1) (:shoppingCart @State))
     ))
     (reset! State
         (if (not= nil index1)
@@ -44,9 +45,9 @@
     ))
     (reset! State
         (if (not= index1 -1)
-            (if (> 1 (get-in @State [:shoppingCart index2 :count]))
+            (if (< 1 (get-in @State [:shoppingCart index2 :count]))
                 (update-in @State [:shoppingCart index2 :count] dec)
-                (update-in @State [:shoppingCart] (fn [_] vec-remove (@State :shoppingCart), index2)))
+                (update-in @State [:shoppingCart] (fn [_] (vec-remove (@State :shoppingCart) index2))))
         @State
         )))
 (defn EmptyCart []
@@ -67,7 +68,7 @@
                                     :json-params (merge token {:amount (* 100 store.total) :currency "AUD" :description "Leotide Art" :shoppingCart store.shoppingCart})}))]
         (EmptyCart)
         (SetPaid true)
-        ;(toastr) todo
+        (toastr/success "Success!" "Thanks for your order!")
         (SetLoading false)
         (reset! State (update-in @State [:checkoutResult] response))
     ))

@@ -719,8 +719,8 @@
         (assoc altered-map key (#(map (fn [item]
             (swap! counter inc)
             (if (not (item :types))
-                (merge item {:types [(prices :frame) (prices :poster) (prices :sticker)] :item_number @counter})
-                (merge item {:item_number @counter})
+                (merge item {:types [(prices :frame) (prices :poster) (prices :sticker)] :item_number (- @counter 1)})
+                (merge item {:item_number (- 1 @counter)})
             )
         ) %) value))
     ) {} merged) @counter]

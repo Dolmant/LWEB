@@ -1,5 +1,6 @@
 (ns lweb.Shop.CartManagement.RemoveFromCart
   (:require [rum.core :as rum]
+            ["toastr" :as toastr]
             [lweb.DynamicReact.State :as DynamicReactState]
             [lweb.Shop.CartManagement.State :as CartManagementState]
             [cljs-react-material-ui.icons :as ic]
@@ -13,14 +14,13 @@
                     :variant (if mini "fab" "raised")
                     :color "secondary"
                     :on-click (fn [_]
-                        ;toastr.success ("Success", "Item removed from cart") todo
+                        (toastr/success "Success", "Item removed from cart")
                         (CartManagementState/RemoveFromCart id type1)
                     )
         }
-                   ;todo
-        ; (if mini
-        ; (ic/content-remove "Remove from cart")
-        ;   )
+        (if mini
+            (ic/removeIcon "Remove from cart")
+          )
         )
     ]
 )

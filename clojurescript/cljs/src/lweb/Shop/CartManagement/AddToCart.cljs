@@ -3,6 +3,7 @@
     [lweb.Shop.CartManagement.State :as CartManagementState]
     [lweb.DynamicReact.State :as DynamicReactState]
     [cljs-react-material-ui.icons :as ic]
+    ["toastr" :as toastr]
     [cljs-react-material-ui.rum :as ui])
 )
 
@@ -12,14 +13,18 @@
     (defn handleClick [e]
         (if (= 1 (count types))
         (do
-        ;toastr.success("Success", "Item added to cart") todo
-        (CartManagementState/AddToCart id, (types 0))
-        (reset! anchorEl (.-currentTarget e))))
+            (println "Item added to cart")
+            (toastr/success "Success" "Item added to cart")
+            (CartManagementState/AddToCart id, (types 0)))
+        (reset! anchorEl (.-currentTarget e)))
     )
 
     (defn handleClose []
-        (reset! anchorEl nil)
+        (reset! anchorEl false)
     )
+  (js/console.log @anchorEl)
+  (println (rum/react anchorEl))
+  (js/console.log (rum/react anchorEl))
     [:div {:style {:display "inline-block"}}
         (ui/button {
             :variant (if mini "fab" "raised")
@@ -29,22 +34,21 @@
             :aria-haspopup "true"
             :on-click handleClick
         }
-            [:div]
-            ;(if mini [ic/content-add] [:div "Add to cart"]) todo
+            (if mini (ic/addIcon) "Add to cart")
         )
-        (:ui/menu {:id "simple-menu" :anchorEl (rum/react anchorEl) :open (rum/react anchorEl) :on-close handleClose}
-            (map (fn [type]
+        (ui/menu {:id "simple-menu" :anchorEl (rum/react anchorEl) :open (rum/react anchorEl) :on-close handleClose}
+            [(map (fn [type]
                 (ui/menu-item {
                     :key (type :desc)
                     :on-click (fn [] 
                     (do
-                    ;toastr.success("Success", "Item added to cart") todo
-                    (CartManagementState/AddToCart id, type)
-                    (handleClose)))
+                        (toastr/success "Success" "Item added to cart")
+                        (CartManagementState/AddToCart id, type)
+                        (handleClose)))
                 }
                 (type :desc)))
                  types
-            )
+            )]
         )
     ]
 )

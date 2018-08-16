@@ -5,8 +5,9 @@
 
 (def postagePrice {"0" 0 "1" 20 "2" 40})
 
-(defn mini [] (= 0 (count (filter (fn [item]
-    (and (= "sticker" (get-in item [:type :id])) (= "pin" (get-in item [:type :id])) (= (get-in item [:type :id]) "patch")))
+(defn mini []
+    (= 0 (count (filter (fn [item]
+        (and (= "sticker" (get-in item [:type :id])) (= "pin" (get-in item [:type :id])) (= (get-in item [:type :id]) "patch")))
     (@CartManagementState/State :shoppingCart)))))
 
 (defonce State

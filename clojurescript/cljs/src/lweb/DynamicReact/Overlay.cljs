@@ -24,14 +24,16 @@
     (def overlay_txt ((rum/react DynamicReactState/State) :overlay_txt))
     (defn formOverride [e]
         (.preventDefault e)
-        (if (not ((.getElementById js/document "contact-form") :value))
-            (set! (.-innerHTML (.getElementByClass js/document "error_message")) "Please add your contact details!")
+      (def formData (js->clj (.-map_ (gforms/getFormDataMap (.getElementById js/document "contact-form")))))
+      (def convertedData (reduce #(update-in %1 [(first %2)] (fn [_] (first (last %2)))) formData formData))
+        (if (= "" (convertedData "Contact Details"))
+            (set! (.-innerHTML (.getElementById js/document "error_message")) "Please add your contact details!")
             (do
                 (DynamicReactState/ToggleOverlay false false)
                 (go (let [response (<! (http/post "https://us-central1-lweb-176107.cloudfunctions.net/sendLWEBMail"
                                                 {
                                                     :with-credentials? false
-                                                    :getFormDataMap (gforms/getFormDataMap (.getElementById js/document "contact-form"))
+                                                    :form-params convertedData
                                                 }
                                             ))]
                 ))
@@ -81,7 +83,7 @@
                     (AddToCart/AddToCart false overlay_image_num overlay_types)
                 ]
                 [:div.overlayform
-                    [:form#contact-form {:on-submit (fn [e] (formOverride e)) :target "self" :class "topLabel"}
+                    [:form#contact-form {:on-submit formOverride :target "self" :class "topLabel"}
                         [:form-head
                             [:h7 "The Leo Signal"]
                             [:h8 "Fill out the form below to get in contact with Me!"]
@@ -104,7 +106,7 @@
                                 [:label {:htmlFor "element_7"} "Contact Details" [:span "*"]]
                                 [:div.form-field
                                     [:input#element_7 {:name "Contact Details" :type "text"}]
-                                    [:label.error_message {:htmlFor "element_7"}]
+                                    [:label#error_message {:htmlFor "element_7"}]
                                 ]
                             ]
                             [:li.textarea

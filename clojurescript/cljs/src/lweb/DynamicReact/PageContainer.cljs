@@ -37,39 +37,31 @@
         itemList)
     ])
     (def listCarousel 
-        [:div (map (fn [item]
+        (map (fn [item]
          [:div.carousel-img-wrap {:key (item :item_number)}
             [:div
                 {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src)]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if smallScreen "20vw" "40vw")}}]
          ])
          itemList
-    )])
-    ; todo settings not imported properly into the slider
-    (def settings {
-        :dots true,
-        :infinite true,
-        :speed 500,
-        :slidesToShow (if smallScreen 4 2),
-        :slidesToScroll 1,
-        :arrows true,
-        :lazyLoad false,
-        :autoplay true,
-        :autoplaySpeed 10000,
-    })
+    ))
     (if (= category :CHECKOUT)
         (Checkout/Checkout)
         (if (= page "home")
             [:div
                 [:div.sidescroller
-                    (Slider {:nextArrow [LeftNavButton] :prevArrow [RightNavButton] :dots true,
-                        :infinite true,
-                        :speed 500,
-                        :slidesToShow (if smallScreen 4 2),
-                        :slidesToScroll 1,
-                        :arrows true,
-                        :lazyLoad false,
-                        :autoplay true,
-                        :autoplaySpeed 10000} listCarousel)
+                    (Slider {
+                            :nextArrow (LeftNavButton)
+                            :prevArrow (RightNavButton)
+                            :dots true,
+                            :infinite true,
+                            :speed 500,
+                            :slidesToShow (if smallScreen 4 2),
+                            :slidesToScroll 1,
+                            :arrows true,
+                            :lazyLoad false,
+                            :autoplay true,
+                            :autoplaySpeed 10000}
+                        [listCarousel])
                 ]
                 [:div.desc_holder
                     [:div.desc_text

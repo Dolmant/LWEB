@@ -12,7 +12,7 @@
             }]]
         [:div.into-scroll-prompt
             [:div.blink-container
-                ;(ic/navigation-arrow-drop-down-circle) ;;:class "fas fa-arrow-alt-circle-down" todo check this is the same
+                (ic/arrow-drop-down-circle)
                 [:div.blink]
             ]
             [:div "scroll down"]]

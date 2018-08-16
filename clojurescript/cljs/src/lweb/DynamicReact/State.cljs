@@ -5,7 +5,7 @@
             ))
 
 (defonce State
-    (atom {:category "ALL"
+    (atom {:category :ALL
         :list consts/HomeInitial
         :isTouch (< (.-innerWidth js/window) 1000)
         :total 0
