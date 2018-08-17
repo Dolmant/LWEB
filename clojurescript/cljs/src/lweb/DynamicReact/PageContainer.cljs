@@ -28,7 +28,6 @@
     (def itemList ((rum/react DynamicReactState/State) :list))
     (def category ((rum/react DynamicReactState/State) :category))
     (def page ((rum/react DynamicReactState/State) :page))
-    (def smallScreen (> (.-innerWidth js/window) 900))
     (def listItems [:ul.projects
         (map (fn [item]
             [:li {:key (item :item_number) :on-click (fn [] (onImageClick (get item :item_number)))}
@@ -40,7 +39,7 @@
         (map (fn [item]
          [:div.carousel-img-wrap {:key (item :item_number)}
             [:div
-                {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src)]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if smallScreen "20vw" "40vw")}}]
+                {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src)]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if consts/isTouch "40vw" "20vw")}}]
          ])
          itemList
     ))
@@ -55,7 +54,7 @@
                             :dots true,
                             :infinite true,
                             :speed 500,
-                            :slidesToShow (if smallScreen 4 2),
+                            :slidesToShow (if consts/isTouch 2 4),
                             :slidesToScroll 1,
                             :arrows true,
                             :lazyLoad false,

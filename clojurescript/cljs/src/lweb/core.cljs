@@ -4,6 +4,7 @@
                 [accountant.core :as accountant]
                 [lweb.App :as App]
                 ["toastr" :as toastr]
+                ["react-dom/server" :as reactDOM]
                 ["/gen/particles/particles" :as particlesJS]
                  [cljs-react-material-ui.core :as ui]
                 ))
@@ -76,5 +77,9 @@
 
 (defn reload! []
     (init!))
+
+(defn preRender []
+  (println (reactDOM/renderToString
+            (current-page))))
 
 (init!)

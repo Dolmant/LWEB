@@ -2,7 +2,7 @@
     (:require [rum.core :as rum]))
 
 ;fix this todo
-(def isTouch (< (.-innerWidth js/window) 1000))
+(def isTouch (if (exists? js/window) (< (.-innerWidth js/window) 1000) false))
 
 (def prices {
     :frame {:id "framed" :desc "Add A3 Framed ($45)" :cost 45}

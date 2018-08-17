@@ -7,7 +7,7 @@
 (defonce State
     (atom {:category :ALL
         :list consts/HomeInitial
-        :isTouch (< (.-innerWidth js/window) 1000)
+        :isTouch consts/isTouch
         :total 0
         :page "home"
         :touchmenu_active false

@@ -21,4 +21,11 @@
         :modules {:main {:entries [lweb.core]}}
         :devtools {:after-load lweb.core/reload!
                            :http-root "dist"
-                           :http-port 8081}}}}
+                           :http-port 8081}}
+  :prerender {:target :node-script
+         :output-to "prerender.js"
+         :main lweb.prerender/prerender
+         :modules {:main {:entries [lweb.prerender]}}
+   }
+  }
+}
