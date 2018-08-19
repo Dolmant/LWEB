@@ -7,6 +7,12 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch prerender",
+            "program": "${workspaceFolder}/clojurescript/cljs/prerender.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}\\server.js"
         }

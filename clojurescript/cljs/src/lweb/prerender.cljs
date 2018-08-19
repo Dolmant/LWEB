@@ -1,13 +1,12 @@
-(set! (.-window js/global) (js-obj))
 (ns lweb.prerender
   (:require   [rum.core :as rum]
-              [secretary.core :as secretary :include-macros true]
-              [accountant.core :as accountant]
+              [lweb.window-poly] ;import poly before window is required
               [lweb.App :as App]
               ["react-dom/server" :as reactDOM]
               [cljs-react-material-ui.core :as ui]))
 
-(rum/defc home-page < rum/reactive []
+
+(rum/defc home-page []
   [:div (App/App)])
 
 (defonce page (atom #'home-page))
@@ -15,10 +14,9 @@
 (rum/defc current-page []
   (ui/mui-theme-provider
    {:theme (ui/get-mui-theme)}
-   (@page)))
+   (home-page)))
 
 
 (defn prerender []
-  (println (reactDOM/renderToString
-            (current-page))))
+  (println (reactDOM/renderToString (current-page))))
 (prerender)

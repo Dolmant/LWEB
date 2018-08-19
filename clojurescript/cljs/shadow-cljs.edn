@@ -23,7 +23,9 @@
                            :http-root "dist"
                            :http-port 8081}}
   :prerender {:target :node-script
+            ;   :exports-var lweb.prerender/prerender
          :output-to "prerender.js"
+            ;   :output-dir "pretest"
          :main lweb.prerender/prerender
          :modules {:main {:entries [lweb.prerender]}}
    }
