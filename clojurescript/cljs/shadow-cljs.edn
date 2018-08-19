@@ -10,6 +10,7 @@
   [org.clojure/clojurescript "1.10.339"
    :scope "provided"]
   [secretary "1.2.3"]
+  [cljs-node-io "1.0.0"]
   [cider/cider-nrepl "0.16.0"]
   [venantius/accountant "0.2.4"
    :exclusions [org.clojure/tools.reader]]]

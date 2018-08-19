@@ -7,7 +7,7 @@ try {require('source-map-support').install();} catch (e) {console.warn('no "sour
 
 global.CLOSURE_NO_DEPS = true;
 
-global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"shadow.cljs.devtools.client.env.proc_id":"01194070-f41a-42a7-938c-df352ac8358b","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9630,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
+global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"shadow.cljs.devtools.client.env.proc_id":"4012e3ba-e7e0-41c8-82c7-72e7c0756f59","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9630,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
 
 var goog = global.goog = {};
 
@@ -3271,10 +3271,15 @@ SHADOW_IMPORT("lweb.Shop.Postage.PostageCalculator.js");
 SHADOW_IMPORT("shadow.js.shim.module$react_stripe_checkout.js");
 SHADOW_IMPORT("lweb.Shop.CartManagement.Checkout.js");
 SHADOW_IMPORT("shadow.js.shim.module$react_slick.js");
-SHADOW_IMPORT("module$gen$slider$index.js");
 SHADOW_IMPORT("lweb.DynamicReact.PageContainer.js");
 SHADOW_IMPORT("lweb.DynamicReact.Footer.js");
 SHADOW_IMPORT("lweb.App.js");
+SHADOW_IMPORT("cljs_node_io.protocols.js");
+SHADOW_IMPORT("cljs_node_io.streams.js");
+SHADOW_IMPORT("cljs_node_io.fs.js");
+SHADOW_IMPORT("cljs_node_io.file.js");
+SHADOW_IMPORT("cljs_node_io.core.js");
+SHADOW_IMPORT("lweb.template.index.js");
 SHADOW_IMPORT("shadow.js.shim.module$react_dom$server.js");
 SHADOW_IMPORT("lweb.prerender.js");
 SHADOW_IMPORT("shadow.module.main.append.js");

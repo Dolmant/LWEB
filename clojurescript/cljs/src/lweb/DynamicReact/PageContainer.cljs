@@ -5,11 +5,11 @@
     [lweb.Shop.CartManagement.Checkout :as Checkout]
     [lweb.consts :as consts]
     [cljs-react-material-ui.core-macros]
-    ["/gen/slider/index" :default Slick]
+    ["react-slick" :as Slick]
     [clojure.string :as str]
     [cljs-react-material-ui.rum :as ui]))
 
-(def Slider (cljs-react-material-ui.core-macros/adapt-rum-class Slick))
+(def Slider (cljs-react-material-ui.core-macros/adapt-rum-class Slick/default))
 
 (rum/defc LeftNavButton []
     [:button [:div.slick-next-div]]
@@ -39,7 +39,7 @@
         (map (fn [item]
          [:div.carousel-img-wrap {:key (item :item_number)}
             [:div
-                {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src)]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if consts/isTouch "40vw" "20vw")}}]
+                {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if consts/isTouch "40vw" "20vw")}}]
          ])
          itemList
     ))
@@ -60,7 +60,8 @@
                             :lazyLoad false,
                             :autoplay true,
                             :autoplaySpeed 10000}
-                        [listCarousel])
+                        [listCarousel]
+                    )
                 ]
                 [:div.desc_holder
                     [:div.desc_text
