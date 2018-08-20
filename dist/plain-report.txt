@@ -1,4 +1,0 @@
-style-loader: 12.71 KB (0.754%)
-css-loader: 2.21 KB (0.131%)
-webpack: 80 B (0.00463%)
-<self>: 1.63 MB (99.1%)
