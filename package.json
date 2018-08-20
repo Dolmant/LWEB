@@ -11,7 +11,9 @@
     "buildCSS": "sass src/lweb/scss/style.scss:dist/styles.css --no-source-map",
     "buildHTML": "shadow-cljs compile prerender && node prerender",
     "buildApp": "shadow-cljs release app",
-    "build": "npm run buildJS && npm run buildCSS && npm run buildApp && npm run buildHTML",
+    "report": "shadow-cljs run shadow.cljs.build-report app report.html",
+    "optimizeJS": "babel --no-babelrc --plugins minify-dead-code-elimination dist/main.js --out-file dist/main1.js",
+    "build": "npm run buildJS && npm run buildCSS && npm run buildApp && npm run optimizeJS && npm run buildHTML",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -45,6 +47,8 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-minify": "^0.4.3",
+    "babel-plugin-minify-dead-code-elimination": "^0.4.3",
     "sass": "^1.13.0",
     "shadow-cljs": "^2.5.0"
   }

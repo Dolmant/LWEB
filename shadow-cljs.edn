@@ -20,6 +20,12 @@
         :output-dir "dist"
         :asset-path "."
         :modules {:main {:entries [lweb.core]}}
+        :build-options
+            {:cache-level :off}
+        :release {:compiler-options {
+            :optimizations :advanced
+            :output-wrapper true
+            :rename-prefix-namespace "LWEB"}}
         :devtools {:after-load lweb.core/reload!
                            :http-root "dist"
                            :http-port 8081}}

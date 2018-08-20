@@ -1,15 +1,13 @@
 (ns lweb.DynamicReact.PageContainer
-    (:require-macros [cljs-react-material-ui.core-macros])
+    (:require-macros [lweb.rum-adaptor-macro :as m])
     (:require [rum.core :as rum]
     [lweb.DynamicReact.State :as DynamicReactState]
     [lweb.Shop.CartManagement.Checkout :as Checkout]
     [lweb.consts :as consts]
-    [cljs-react-material-ui.core-macros]
     ["react-slick" :as Slick]
-    [clojure.string :as str]
-    [cljs-react-material-ui.rum :as ui]))
+    [clojure.string :as str]))
 
-(def Slider (cljs-react-material-ui.core-macros/adapt-rum-class Slick/default))
+(def Slider (m/adapt-rum-class Slick/default))
 
 (rum/defc LeftNavButton []
     [:button [:div.slick-next-div]]

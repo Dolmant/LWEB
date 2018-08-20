@@ -1,19 +1,18 @@
 (ns lweb.Shop.CartManagement.Checkout
-(:require-macros [cljs-react-material-ui.core-macros])
+(:require-macros [lweb.rum-adaptor-macro :as m])
   (:require [rum.core :as rum]
             [lweb.Shop.CartManagement.State :as CartManagementState]
             [lweb.Shop.CartManagement.AddToCart :as AddToCart]
             [lweb.Shop.CartManagement.RemoveFromCart :as RemoveFromCart]
             [lweb.Shop.Postage.PostageCalculator :as PostageCalculator]
             [clojure.string :as str]
-            [cljs-react-material-ui.core-macros]
             ["react-spinners" :as Spinners]
             ["react-stripe-checkout" :as Stripe]
             [lweb.Shop.Postage.State :as PostageState]
-            [cljs-react-material-ui.rum :as ui]))
+            [lweb.wrappers.ui :as ui]))
 
-(def StripeCheckout (cljs-react-material-ui.core-macros/adapt-rum-class Stripe/default))
-(def PacmanLoader (cljs-react-material-ui.core-macros/adapt-rum-class Spinners/PacmanLoader))
+(def StripeCheckout (m/adapt-rum-class Stripe/default))
+(def PacmanLoader (m/adapt-rum-class Spinners/PacmanLoader))
 
 (rum/defc Checkout < rum/reactive []
     (def shoppingCart ((rum/react CartManagementState/State) :shoppingCart))

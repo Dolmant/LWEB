@@ -6,10 +6,14 @@
     [cljs-http.client :as http]
     ["/gen/lazySizes/index" :default Lazy]
     [clojure.string :as str]
-    [cljs.core.async :refer [<!]])
-    (:require-macros [cljs.core.async.macros :refer [go]]))
+    [lweb.rum-adaptor-macro]
+    [cljs.core.async :refer [<!]]) 
+    (:require-macros
+        [cljs.core.async.macros :refer [go]]
+        [lweb.rum-adaptor-macro :as m])
+)
 
-(def LazySizes (cljs-react-material-ui.core-macros/adapt-rum-class Lazy))
+(def LazySizes (m/adapt-rum-class Lazy))
 
 (defn oncatClick [id]
     (DynamicReactState/SetCategory id)

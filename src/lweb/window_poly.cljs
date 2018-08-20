@@ -1,6 +1,7 @@
 (ns lweb.window-poly
   (:require
-   [cljs-react-material-ui.rum :as ui]
+   [lweb.wrappers.ui :as ui]
+   [lweb.wrappers.ic :as ic]
    ["toastr"]
    ["react-spinners"]
     ;Above libs expect window to be null, so must be imported first

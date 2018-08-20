@@ -2,7 +2,7 @@
     (:require [rum.core :as rum]
     [lweb.DynamicReact.State :as DynamicReactState]
     [lweb.consts :as consts]
-    [cljs-react-material-ui.rum :as ui]))
+    [lweb.wrappers.ui :as ui]))
 
 
 (defonce open (atom false))

@@ -3,7 +3,7 @@
     [lweb.DynamicReact.State :as DynamicReactState]
     [lweb.DynamicReact.NavMenu :as NavMenu]
     [lweb.Shop.CartManagement.State :as CartManagementState]
-    [cljs-react-material-ui.rum :as ui]))
+    [lweb.wrappers.ui :as ui]))
 
 (defonce menuOpen (atom false))
 

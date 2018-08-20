@@ -3,8 +3,8 @@
             ["toastr" :as toastr]
             [lweb.DynamicReact.State :as DynamicReactState]
             [lweb.Shop.CartManagement.State :as CartManagementState]
-            [cljs-react-material-ui.icons :as ic]
-            [cljs-react-material-ui.rum :as ui]))
+            [lweb.wrappers.ic :as ic]
+            [lweb.wrappers.ui :as ui]))
 
 
 (rum/defc RemoveFromCart < rum/reactive [mini id type1]

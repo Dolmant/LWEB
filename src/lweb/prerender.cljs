@@ -8,7 +8,7 @@
               [lweb.template.index :as htmlTemplate]
               [cljs.core.async :refer [<!]]
               ["react-dom/server" :as reactDOM]
-              [cljs-react-material-ui.core :as ui])
+              [lweb.wrappers.ui :as ui])
     (:require-macros [cljs.core.async.macros :refer [go]]))
 
 

@@ -1,7 +1,7 @@
 (ns lweb.DynamicReact.Filters
     (:require [rum.core :as rum]
     [lweb.DynamicReact.NavMenu :as NavMenu]
-                [cljs-react-material-ui.rum :as ui]))
+                [lweb.wrappers.ui :as ui]))
 
 (rum/defc Filters []
     (def introOn? true)

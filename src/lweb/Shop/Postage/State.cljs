@@ -1,7 +1,6 @@
 (ns lweb.Shop.Postage.State
   (:require [rum.core :as rum]
-  [lweb.Shop.CartManagement.State :as CartManagementState]
-  [cljs-react-material-ui.core :as ui]))
+  [lweb.Shop.CartManagement.State :as CartManagementState]))
 
 (def postagePrice {"0" 0 "1" 20 "2" 40})
 

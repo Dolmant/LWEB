@@ -1,6 +1,6 @@
 (ns lweb.DynamicReact.Intro
     (:require [rum.core :as rum]
-                [cljs-react-material-ui.icons :as ic]))
+                [lweb.wrappers.ic :as ic]))
 
 (rum/defc Intro []
     [:div.intro-container

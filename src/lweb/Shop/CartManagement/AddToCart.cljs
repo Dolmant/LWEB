@@ -2,9 +2,9 @@
     (:require [rum.core :as rum]
     [lweb.Shop.CartManagement.State :as CartManagementState]
     [lweb.DynamicReact.State :as DynamicReactState]
-    [cljs-react-material-ui.icons :as ic]
+    [lweb.wrappers.ic :as ic]
     ["toastr" :as toastr]
-    [cljs-react-material-ui.rum :as ui])
+    [lweb.wrappers.ui :as ui])
 )
 
 (defonce anchorEl (atom false))

@@ -1,7 +1,7 @@
 (ns lweb.Shop.Postage.PostageCalculator
   (:require [rum.core :as rum]
             [lweb.Shop.Postage.State :as PostageState]
-            [cljs-react-material-ui.rum :as ui]))
+            [lweb.wrappers.ui :as ui]))
 
 
 (rum/defc PostageCalculator < rum/reactive [postageType]

@@ -6,7 +6,8 @@
                 ["toastr" :as toastr]
                 ["react-dom/server" :as reactDOM]
                 ["/gen/particles/particles" :as particlesJS]
-                 [cljs-react-material-ui.core :as ui]
+                 [lweb.rum-adaptor :as rum-adaptor]
+                 [lweb.wrappers.ui :as ui]
                 ))
 
 (enable-console-print!)
@@ -42,7 +43,7 @@
     (ui/mui-theme-provider
         {:theme (ui/get-mui-theme)}
         (@page))
-  )
+)
 
 (secretary/defroute "/*" []
     (reset! page #'home-page))
