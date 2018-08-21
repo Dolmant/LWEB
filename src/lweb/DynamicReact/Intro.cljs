@@ -12,7 +12,7 @@
             }]]
         [:div.into-scroll-prompt
             [:div.blink-container
-                (ic/arrow-drop-down-circle)
+                (ic/arrowDropDownCircle)
                 [:div.blink]
             ]
             [:div "scroll down"]]

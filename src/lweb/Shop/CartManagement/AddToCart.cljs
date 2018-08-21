@@ -36,7 +36,7 @@
         }
             (if mini (ic/addIcon) "Add to cart")
         )
-        (ui/menu {:id "simple-menu" :anchorEl (rum/react anchorEl) :open (rum/react anchorEl) :on-close handleClose}
+        (ui/menu {:id "simple-menu" :anchorEl (rum/react anchorEl) :open (not= false (rum/react anchorEl)) :on-close handleClose}
             [(map (fn [type]
                 (ui/menu-item {
                     :key (type :desc)

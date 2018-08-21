@@ -7,7 +7,7 @@ try {require('source-map-support').install();} catch (e) {console.warn('no "sour
 
 global.CLOSURE_NO_DEPS = true;
 
-global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"shadow.cljs.devtools.client.env.proc_id":"9614226e-7432-4f98-8356-1c1b28f9f8fd","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9630,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
+global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"shadow.cljs.devtools.client.env.proc_id":"790694d3-2155-4812-99db-7d14f18b96d0","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9631,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
 
 var goog = global.goog = {};
 
@@ -3192,6 +3192,8 @@ SHADOW_IMPORT("lweb.rum_adaptor.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$icons$ArrowDropDownCircle.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$icons$Add.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$icons$Remove.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$icons$ShoppingCart.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$icons$ExpandMore.js");
 SHADOW_IMPORT("lweb.wrappers.ic.js");
 SHADOW_IMPORT("shadow.js.shim.module$toastr.js");
 SHADOW_IMPORT("shadow.js.shim.module$react_spinners.js");

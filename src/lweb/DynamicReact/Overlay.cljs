@@ -61,7 +61,7 @@
     [:div.overlay_top
         [:div#backgroundOverlay.backgroundOverlay {:on-click (fn [e] (backgroundOverlayClick e))}]
         [:div.overlay_container
-            [:a {:class "closebutton strokeme" :on-click (fn [e] (CloseButtonClick e))}]
+            [:a {:class "closebutton strokeme" :on-click (fn [e] (CloseButtonClick e))} "✖"]
             (if (overlay :image)
                 [:div.overlayimagecontrol
                     [:div

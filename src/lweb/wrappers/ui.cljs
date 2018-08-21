@@ -30,11 +30,11 @@
     (postwalk (fn [x] (if (map? x) (into {} (map transform x)) x)) coll)))
 
 (defn get-mui-theme
-  ([] (get-mui-theme (createMuiTheme (js-obj))))
+  ([]  (get-mui-theme (createMuiTheme/default (js-obj))))
   ([raw-theme] (->> raw-theme
                     (transform-keys camel-case)
                     clj->js
-                    createMuiTheme)))
+                    createMuiTheme/default)))
 
 (def button (lweb.rum-adaptor-macro/adapt-rum-class Button/default))
 (def checkbox (lweb.rum-adaptor-macro/adapt-rum-class Checkbox/default))

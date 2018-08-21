@@ -2,7 +2,9 @@
     (:require [rum.core :as rum]
     [lweb.DynamicReact.State :as DynamicReactState]
     [lweb.consts :as consts]
-    [lweb.wrappers.ui :as ui]))
+    [lweb.wrappers.ui :as ui]
+    [lweb.wrappers.ic :as ic]
+))
 
 
 (defonce open (atom false))
@@ -38,7 +40,7 @@
             [:li {:key item :on-click handleOpenMenu :id "HEADER"}
                 [:a.cursor
                     [:strong "ILLUSTRATIONS"
-                    [:i {:class "fa fa-chevron-down"}]]
+                    (ic/expandMoreIcon)]
                 ]
                 (ui/menu {:on-close handleRequestClose :class "hi" :open (rum/react open) :anchorEl (rum/react anchorEl)}
                     (ui/menu-item {:id "ALL" :on-click (fn [e] (handleSelectMenu e :ALL))} "ALL")

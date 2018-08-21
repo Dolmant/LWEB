@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch prerender",
-            "program": "${workspaceFolder}/clojurescript/cljs/prerender.js"
+            "program": "${workspaceFolder}/prerender.js"
         },
         {
             "type": "node",
