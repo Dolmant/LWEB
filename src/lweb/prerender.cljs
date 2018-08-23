@@ -11,6 +11,7 @@
               [lweb.wrappers.ui :as ui])
     (:require-macros [cljs.core.async.macros :refer [go]]))
 
+(goog-define DEV false)
 
 (rum/defc home-page []
   [:div (App/App)])
@@ -25,6 +26,20 @@
 ;prerender and hash the appropriate files
 (defn prerender []
     (fs/writeFile "dist/manifest.webmanifest" (fs/readFile "manifest.webmanifest" "") {})
+    ;Clear any previously hashed files
+    (doall (map
+    #(if (str/includes? %1 ".css")
+        (if (not (str/includes? %1 "styles.css"))
+            (fs/rm (str/join "" ["dist/" %1]))
+    ))
+    (fs/readdir "dist")))
+    (doall (map
+    #(if (str/includes? %1 ".js")
+        (if (not (str/includes? %1 "main.js"))
+            (fs/rm (str/join "" ["dist/" %1]))
+    ))
+    (fs/readdir "dist")))
+    ;Generate hashed files
     (def css (remove nil? (map
         #(if (str/includes? %1 "styles.css")
             (do
@@ -43,7 +58,7 @@
                    (fs/writeFile (str/join "" ["dist/" newName]) content {})
                    newName))
               (fs/readdir "dist"))))
-    (def data (str/join "" ["<!DOCTYPE html>" (reactDOM/renderToString [(htmlTemplate/Template @page css jsmap)])]))
+    (def data (str/join "" ["<!DOCTYPE html>" (reactDOM/renderToString [(htmlTemplate/Template @page (if DEV ["styles.css"] css) (if DEV ["main.js"] jsmap))])]))
     (go
     (let [[err] (<! (io/aspit "dist/index.html" data))]
         (if-not err

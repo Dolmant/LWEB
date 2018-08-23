@@ -32,6 +32,7 @@
   :prerender {:target :node-script
          :output-to "prerender.js"
          :main lweb.prerender/prerender
+        :dev {:closure-defines {lweb.prerender/DEV true}}
          :modules {:main {:entries [lweb.prerender]}}
    }
   }

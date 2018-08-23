@@ -9,8 +9,10 @@
   "scripts": {
     "buildJS": "babel src/js --out-dir src/gen",
     "buildCSS": "sass src/lweb/scss/style.scss:dist/styles.css --no-source-map",
-    "buildHTML": "shadow-cljs compile prerender && node prerender",
+    "buildHTML": "shadow-cljs release prerender && node prerender",
     "buildApp": "shadow-cljs release app",
+    "watch": "shadow-cljs watch app",
+    "watchP": "shadow-cljs watch prerender",
     "report": "shadow-cljs run shadow.cljs.build-report app report.html",
     "optimizeJS": "babel --no-babelrc --plugins minify-dead-code-elimination dist/main.js --out-file dist/main1.js",
     "build": "npm run buildJS && npm run buildCSS && npm run buildApp && npm run optimizeJS && npm run buildHTML",
