@@ -10,7 +10,7 @@
     "buildJS": "babel src/js --out-dir src/gen",
     "buildCSS": "sass src/lweb/scss/style.scss:dist/styles.css --no-source-map",
     "buildHTML": "shadow-cljs release prerender && node prerender",
-    "buildApp": "shadow-cljs release app",
+    "buildP": "shadow-cljs release app",
     "watch": "shadow-cljs watch app",
     "watchP": "shadow-cljs watch prerender",
     "report": "shadow-cljs run shadow.cljs.build-report app report.html",
