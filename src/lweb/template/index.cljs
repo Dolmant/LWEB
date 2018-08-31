@@ -18,7 +18,7 @@
             jsTemplate
             cssTemplate
             [:script { :dangerouslySetInnerHTML {:__html "window.matchMedia = window.matchMedia || (() => ({matches: false,addListener: () => {},removeListener: () => {},}))"}}]
-            [:link {:rel "shortcut icon" :href "/assets/images/MVicon01.ico"}]
+            [:link {:rel "shortcut icon" :href "/assets/images/leotideicon.ico"}]
             [:link {:rel "stylesheet" :type "text/css" :href "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"}]
             [:link {:rel "stylesheet" :type "text/css" :href "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"}]
             [:link {:rel "stylesheet" :type "text/css" :href "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"}]

@@ -30,7 +30,7 @@
         (map (fn [item]
             [:li {:key (item :item_number) :on-click (fn [] (onImageClick (get item :item_number)))}
                 [:div.img-wrap
-                    [:img {:alt "It's not loading!" :src (item :thumbs_src)}]]])
+                    [:div {:style {:height "90%" :width "90%" :backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover"}}]]])
         itemList)
     ])
     (def listCarousel 
@@ -39,75 +39,48 @@
             [:div
                 {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if consts/isTouch "40vw" "20vw")}}]
          ])
-         itemList
+         consts/HomeInitial
     ))
-    (if (= category :CHECKOUT)
-        (Checkout/Checkout)
-        (if (= page "home")
-            [:div
-                [:div.sidescroller
-                    (Slider {
-                            :nextArrow (LeftNavButton)
-                            :prevArrow (RightNavButton)
-                            :dots true,
-                            :infinite true,
-                            :speed 500,
-                            :slidesToShow (if consts/isTouch 2 4),
-                            :slidesToScroll 1,
-                            :arrows true,
-                            :lazyLoad false,
-                            :autoplay true,
-                            :autoplaySpeed 10000}
-                        [listCarousel]
-                    )
-                ]
-                [:div.desc_holder
-                    [:div.desc_text
-                        [:div [:img {:alt "Not found" :src "./assets/images/LeotideIcon-min.png"}]]
-                        [:h2 "Hello!"
-                            [:div "I am Leonie (Leo) Herson, a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in both"
-                            ][:br][:br]
-                            [:span.pink [:b "Science"]]
-                            [:div "and"]
-                            [:span.blue [:b "Design"]]
-                            [:span.pink "(Research)"]
-                            [:span.pink "(Animation/illustration)"][:br]
-                            [:div "Whilst following my passion as a freelance scientific illustrator!"]
-                        ]
-                    ]
-                    [:div.desc_txt
-                        [:h2 "News!"]
-                        [:div.news
-                            [:div
-                                "Beautiful and dangerous: animating deadly viruses at Vivid Sydney " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
-                                [:br]
-                                "Mastering biomedical science by design "[:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]
-                            ]
-                        ]
-                    ]
-                    [:div.demoreel
-                        [:h2 "Check out the demo reel below!"]
-                        [:video {:preload "none" :autoPlay "" :loop "" :controls "1"}
-                            [:source {:src "./assets/images/LHDemoReel18.mp4" :type "video/mp4"}]
-                            "Your browser does not support the video tag"
-                        ]
-                    ]
-                    [:div {:class "desc_text last-element"}
-                        [:h2 "Interested in a commission or purchasing a print?"]
-                        "Please use the \"CONTACT ME!\" button on the bottom left of the screen to make an enquiry:" [:br]
-                        [:div.left
-                            [:span.underline "For a commission:"] [:br]
-                            " - What type of comission? 2D/3D animation, illustration, 3D model or sketch?" [:br]
-                            "- Subject matter, size, black/white or colour, etc" [:br]
-                        ]
+    [:div
+        [:div.desc_holder#about
+            [:div.desc_text
+                [:h2 "ABOUT" ]
+                [:div "I am Leonie (Leo) Herson, a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in science and biomedical research whilst following my passion as an illustrator!"]
+            ]
+            [:div.desc_txt
+                [:h2 "News!"]
+                [:div.news
+                    [:div
+                        "Beautiful and dangerous: animating deadly viruses at Vivid Sydney " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
+                        [:br]
+                        "Mastering biomedical science by design "[:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]
                     ]
                 ]
             ]
-            [:div
-                [:div.desc
-                    [:div.text (consts/projectListLabels category)]
-                ]
-                [listItems]
-            ]
-    ))
+            [:div.sidescroller
+                (Slider {:nextArrow (LeftNavButton)
+                        :prevArrow (RightNavButton)
+                        :dots true
+                        :infinite true
+                        :speed 500
+                        :slidesToShow (if consts/isTouch 2 4)
+                        :slidesToScroll 1
+                        :arrows true
+                        :lazyLoad false
+                        :autoplay true
+                        :autoplaySpeed 10000}
+                        [listCarousel])]
+            ; [:div.demoreel
+            ;     [:h2 "Check out the demo reel below!"]
+            ;     [:video {:preload "none" :autoPlay "" :loop "" :controls "1"}
+            ;         [:source {:src "./assets/images/LHDemoReel18.mp4" :type "video/mp4"}]
+            ;         "Your browser does not support the video tag"
+            ;     ]
+            ; ]
+        ]
+        [:div.desc
+            [:div.text (consts/projectListLabels category)]]
+        [:div#content
+            [listItems]]
+    ]
 )

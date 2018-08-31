@@ -6,54 +6,31 @@
     [lweb.wrappers.ic :as ic]
 ))
 
-
-(defonce open (atom false))
-
-(defonce anchorEl (atom false))
+(defn scroll-into-view [element]
+  (def bodyOffset (.-top (.getBoundingClientRect (.-body js/document))))
+  (def offset (- (.-top (.getBoundingClientRect (.getElementById js/document element))) 50))
+  (.scrollTo js/window (js-obj "behavior" "smooth" "top" (- offset bodyOffset)))
+)
 
 (defn oncatClick [id]
+    (scroll-into-view "content")
     (DynamicReactState/SetCategory id)
     (DynamicReactState/SetAttr :touchmenu_active false)
 )
 (rum/defc NavMenu < rum/reactive []
-    (defn handleRequestClose [e]
-        (.preventDefault e)
-        (.stopPropagation e)
-        (reset! open false)
-        (reset! anchorEl false)
-      )
-    (defn handleOpenMenu [e] 
-        (if (not @open) (do
-            (.preventDefault e)
-            (.stopPropagation e)
-            (reset! open true)
-            (reset! anchorEl (.-currentTarget e))
-    )))
-    (defn handleSelectMenu [e, id] 
-        (handleRequestClose e)
-        (oncatClick id)
-    )
-    (def bundled [:NATURE, :SCIENCE, :ANATOMY, :TYPOGRAPHY, :FACTS, :MISC])
+    (def before [
+        (ui/button {:key 1 :on-click (fn [] (scroll-into-view "about")) :id 1} "ABOUT")
+        (ui/button {:key 2 :on-click (fn [] (scroll-into-view "footer")) :id 2} "CONTACT")
+    ])
+    (def after [
+        (ui/button {:key 3 :on-click (fn [] (scroll-into-view "content")) :id 3} "CHECKOUT")
+    ])
+    (def bundled [:NATURE, :SCIENCE, :ANATOMY, :TYPOGRAPHY, :FACTS, :MISC, :CHECKOUT])
     (defn filterfn [item] (not (some #(= item %) bundled)))
     (defn mapper [item]
         (if (= item :ALL)
-            [:li {:key item :on-click handleOpenMenu :id "HEADER"}
-                [:a.cursor
-                    [:strong "ILLUSTRATIONS"
-                    (ic/expandMoreIcon)]
-                ]
-                (ui/menu {:on-close handleRequestClose :class "hi" :open (rum/react open) :anchorEl (rum/react anchorEl)}
-                    (ui/menu-item {:id "ALL" :on-click (fn [e] (handleSelectMenu e :ALL))} "ALL")
-                    (ui/menu-item {:id "NATURE" :on-click (fn [e] (handleSelectMenu e :NATURE))} "NATURE")
-                    (ui/menu-item {:id "SCIENCE" :on-click (fn [e] (handleSelectMenu e :SCIENCE))} "SCIENCE")
-                    (ui/menu-item {:id "ANATOMY" :on-click (fn [e] (handleSelectMenu e :ANATOMY))} "ANATOMY")
-                    (ui/menu-item {:id "FACTS" :on-click (fn [e] (handleSelectMenu e :FACTS))} "FACTS")
-                    (ui/menu-item {:id "TYPOGRAPHY" :on-click (fn [e] (handleSelectMenu e :TYPOGRAPHY))} "TYPOGRAPHY")
-                    (ui/menu-item {:id "MISC" :on-click (fn [e] (handleSelectMenu e :MISC))} "MISC")
-                )
-            ]
-            [:li.cursor {:key item :on-click (fn [] (oncatClick item)) :id item}
-                [:a.cursor [:strong (name item)]]]
+            (ui/button {:key item :on-click (fn [] (oncatClick item)) :id item} "ILLUSTRATIONS")
+            (ui/button {:key item :on-click (fn [] (oncatClick item)) :id item} (name item))
     ))
     (defn sorter [cat1 cat2]
         (if (= cat1 :CHECKOUT) 1
@@ -67,5 +44,5 @@
         0
         ))))))))
     )
-    (map mapper (sort sorter (filter filterfn (keys consts/projectListLabels))))
+    (concat before (map mapper (sort sorter (filter filterfn (keys consts/projectListLabels)))) after)
 )

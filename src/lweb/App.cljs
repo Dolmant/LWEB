@@ -4,7 +4,6 @@
     [lweb.DynamicReact.State :as DynamicReactState]
     [lweb.DynamicReact.Intro :as Intro]
     [lweb.DynamicReact.IntroHeader :as IntroHeader]
-    [lweb.DynamicReact.Filters :as Filters]
     [lweb.DynamicReact.Overlay :as Overlay]
     [lweb.DynamicReact.PageContainer :as PageContainer]
     [lweb.DynamicReact.Footer :as Footer]
@@ -15,7 +14,6 @@
     [:div
         [:div.intro#intro (Intro/Intro)]
         [:div.introHeader#introHeader (IntroHeader/IntroHeader)]
-        [:div.filters#filters (Filters/Filters)]
         (if (overlay :state)
             (Overlay/Overlay)
             [:div]

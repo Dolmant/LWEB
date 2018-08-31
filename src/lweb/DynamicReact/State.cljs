@@ -11,7 +11,6 @@
         :total 0
         :page "home"
         :touchmenu_active false
-        :introOn false
         :overlay_vertical_index {}
         :overlay_image_num 0
         :overlay_image_src ""
@@ -110,7 +109,7 @@
         :page "portfolio"
         :list (if (in? (keys consts/projectList) category)
             (consts/projectList category)
-            consts/HomeInitial
+            (consts/projectList :ALL)
         )})
 )
 

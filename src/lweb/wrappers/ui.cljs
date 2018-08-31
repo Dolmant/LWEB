@@ -3,6 +3,8 @@
   (:require-macros [lweb.rum-adaptor-macro])
   (:require
    [rum.core]
+   ["@material-ui/core/AppBar" :as AppBar]
+   ["@material-ui/core/Toolbar" :as Toolbar]
    ["@material-ui/core/Checkbox" :as Checkbox]
    ["@material-ui/core/Button" :as Button]
    ["@material-ui/core/Hidden" :as Hidden]
@@ -36,6 +38,8 @@
                     clj->js
                     createMuiTheme/default)))
 
+(def toolbar (lweb.rum-adaptor-macro/adapt-rum-class Toolbar/default))
+(def appBar (lweb.rum-adaptor-macro/adapt-rum-class AppBar/default))
 (def button (lweb.rum-adaptor-macro/adapt-rum-class Button/default))
 (def checkbox (lweb.rum-adaptor-macro/adapt-rum-class Checkbox/default))
 (def divider (lweb.rum-adaptor-macro/adapt-rum-class Divider/default))

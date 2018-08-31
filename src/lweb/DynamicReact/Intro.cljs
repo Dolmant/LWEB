@@ -10,12 +10,12 @@
                 :src "./assets/images/LEOTIDE.png"
                 :style {:max-height "40vh"}
             }]]
-        [:div.into-scroll-prompt
-            [:div.blink-container
-                (ic/arrowDropDownCircle)
-                [:div.blink]
-            ]
-            [:div "scroll down"]]
+        ; [:div.into-scroll-prompt
+        ;     [:div.blink-container
+        ;         (ic/arrowDropDownCircle)
+        ;         [:div.blink]
+        ;     ]
+        ;     [:div "scroll down"]]
         [:div.introImage#introImage]
     ]
 )
