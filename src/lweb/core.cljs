@@ -60,7 +60,7 @@
     (def targetElement (.getElementById js/document "app"))
     (if (.hasChildNodes targetElement)
         (do (js/console.log "hydrated") (rum/hydrate (current-page) targetElement) (waitForImages true))
-        (do (js/console.log "rendered") (rum/mount (current-page) targetElement) (waitForImages false))  ;; RenderSnapShot or just output a string to save
+        (do (js/console.log "rendered") (rum/mount (current-page) targetElement) (waitForImages false))
     )
 )
 

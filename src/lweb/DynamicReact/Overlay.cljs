@@ -90,7 +90,7 @@
                     [:form#contact-form {:on-submit formOverride :target "self" :class "topLabel"}
                         [:form-head
                             [:h7 "The Leo Signal"]
-                            [:h8 "Fill out the form below to get in contact with Me!"]
+                            [:h8 "Fill out the form below to get in contact with me!"]
                         ]
                         [:ul
                             [:li#li-0.data_container

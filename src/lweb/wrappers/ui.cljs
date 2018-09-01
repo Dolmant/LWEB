@@ -15,6 +15,10 @@
    ["@material-ui/core/Drawer" :as Drawer]
    ["@material-ui/core/Divider" :as Divider]
    ["@material-ui/core/InputLabel" :as InputLabel]
+   ["@material-ui/core/Tab" :as Tab]
+   ["@material-ui/core/Tabs" :as Tabs]
+   ["@material-ui/core/Paper" :as Paper]
+   ["@material-ui/core/Menu" :as Menu]
    ["@material-ui/core/Menu" :as Menu]
    ["@material-ui/core/MenuItem" :as MenuItem]
    ["@material-ui/core/styles/MuiThemeProvider" :as MuiThemeProvider]
@@ -50,6 +54,9 @@
 (def grid (lweb.rum-adaptor-macro/adapt-rum-class Grid/default))
 (def icon-button (lweb.rum-adaptor-macro/adapt-rum-class IconButton/default))
 (def input-label (lweb.rum-adaptor-macro/adapt-rum-class InputLabel/default))
+(def tabs (lweb.rum-adaptor-macro/adapt-rum-class Tabs/default))
+(def tab (lweb.rum-adaptor-macro/adapt-rum-class Tab/default))
+(def paper (lweb.rum-adaptor-macro/adapt-rum-class Paper/default))
 (def menu (lweb.rum-adaptor-macro/adapt-rum-class Menu/default))
 (def menu-item (lweb.rum-adaptor-macro/adapt-rum-class MenuItem/default))
 (def mui-theme-provider (lweb.rum-adaptor-macro/adapt-rum-class MuiThemeProvider/default))

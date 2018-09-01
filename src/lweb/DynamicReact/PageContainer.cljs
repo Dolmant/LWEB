@@ -1,6 +1,7 @@
 (ns lweb.DynamicReact.PageContainer
     (:require-macros [lweb.rum-adaptor-macro :as m])
     (:require [rum.core :as rum]
+    [lweb.DynamicReact.NavMenu :as NavMenu]
     [lweb.DynamicReact.State :as DynamicReactState]
     [lweb.Shop.CartManagement.Checkout :as Checkout]
     [lweb.consts :as consts]
@@ -43,33 +44,33 @@
     ))
     [:div
         [:div.desc_holder#about
-            [:div.desc_text
-                [:h2 "ABOUT" ]
+            [:div.desc_text.divider
+                ; [:h2 "About" ]
                 [:div "I am Leonie (Leo) Herson, a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in science and biomedical research whilst following my passion as an illustrator!"]
             ]
-            [:div.desc_txt
-                [:h2 "News!"]
+            [:div.desc_text.divider
+                ; [:h2 "News"]
                 [:div.news
                     [:div
-                        "Beautiful and dangerous: animating deadly viruses at Vivid Sydney " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
+                        "Beautiful and dangerous: animating deadly viruses at Vivid Sydney, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
                         [:br]
-                        "Mastering biomedical science by design "[:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]
+                        "Mastering biomedical science by design, link "[:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]
                     ]
                 ]
             ]
-            [:div.sidescroller
-                (Slider {:nextArrow (LeftNavButton)
-                        :prevArrow (RightNavButton)
-                        :dots true
-                        :infinite true
-                        :speed 500
-                        :slidesToShow (if consts/isTouch 2 4)
-                        :slidesToScroll 1
-                        :arrows true
-                        :lazyLoad false
-                        :autoplay true
-                        :autoplaySpeed 10000}
-                        [listCarousel])]
+            ; [:div.sidescroller
+            ;     (Slider {:nextArrow (LeftNavButton)
+            ;             :prevArrow (RightNavButton)
+            ;             :dots true
+            ;             :infinite true
+            ;             :speed 500
+            ;             :slidesToShow (if consts/isTouch 2 4)
+            ;             :slidesToScroll 1
+            ;             :arrows true
+            ;             :lazyLoad false
+            ;             :autoplay true
+            ;             :autoplaySpeed 10000}
+            ;             [listCarousel])]
             ; [:div.demoreel
             ;     [:h2 "Check out the demo reel below!"]
             ;     [:video {:preload "none" :autoPlay "" :loop "" :controls "1"}
@@ -79,7 +80,10 @@
             ; ]
         ]
         [:div.desc
-            [:div.text (consts/projectListLabels category)]]
+            [:h2 "My Work"]
+            (NavMenu/TabMenu)
+            ; [:div.text (consts/projectListLabels category)]
+        ]
         [:div#content
             [listItems]]
     ]

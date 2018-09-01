@@ -159,9 +159,9 @@
             :thumbs_src "./assets/webImages/thumbs/SC_Compare.jpg"
         }
         {
-            :img_src "./assets/webImages/mouse02 copy.jpg"
+            :img_src "./assets/webImages/mouse02.jpg"
             :img_txt "Mice"
-            :thumbs_src "./assets/webImages/thumbs/mouse02 copy.jpg"
+            :thumbs_src "./assets/webImages/thumbs/mouse02.jpg"
         }
         {
             :img_src "./assets/webImages/2017TheCancerGame.jpg"
@@ -359,9 +359,9 @@
             :thumbs_src "./assets/webImages/thumbs/UTS_Build.jpg"
         }
         {
-            :img_src "./assets/webImages/Liposome_Protocol copy2.jpg"
+            :img_src "./assets/webImages/Liposome_Protocol.jpg"
             :img_txt "Liposome Protocol"
-            :thumbs_src "./assets/webImages/thumbs/Liposome_Protocol copy2.jpg"
+            :thumbs_src "./assets/webImages/thumbs/Liposome_Protocol.jpg"
         }
         {
             :img_src "./assets/webImages/NH2016_Poster03.jpg"
@@ -369,9 +369,9 @@
             :thumbs_src "./assets/webImages/thumbs/NH2016_Poster03.jpg"
         }
         {
-            :img_src "./assets/webImages/WBlot_Protocol01 copy2.jpg"
+            :img_src "./assets/webImages/WBlot_Protocol01.jpg"
             :img_txt "Western Blot"
-            :thumbs_src "./assets/webImages/thumbs/WBlot_Protocol01 copy2.jpg"
+            :thumbs_src "./assets/webImages/thumbs/WBlot_Protocol01.jpg"
         }
         {
             :img_src "./assets/webImages/rsz_nh_posterportraitfinal.jpg"
@@ -384,9 +384,9 @@
             :thumbs_src "./assets/webImages/thumbs/ExosomeInfographic4.jpg"
         }
         {
-            :img_src "./assets/webImages/ING 01 WINTER_Quantum_26-27-1.jpg"
+            :img_src "./assets/webImages/ING01WINTER_Quantum_26-27-1.jpg"
             :img_txt "Refraction Media Magazine"
-            :thumbs_src "./assets/webImages/thumbs/ING 01 WINTER_Quantum_26-27-1.jpg"
+            :thumbs_src "./assets/webImages/thumbs/ING01WINTER_Quantum_26-27-1.jpg"
         }
         {
             :img_src "./assets/webImages/RM_ESWA_Poster.jpg"
@@ -488,9 +488,9 @@
             :thumbs_src "./assets/webImages/thumbs/Flagellum.jpg"
         }
         {
-            :img_src "./assets/webImages/Proteomics_Typo_02 copy.jpg"
+            :img_src "./assets/webImages/Proteomics_Typo_02.jpg"
             :img_txt "Proteomics"
-            :thumbs_src "./assets/webImages/thumbs/Proteomics_Typo_02 copy.jpg"
+            :thumbs_src "./assets/webImages/thumbs/Proteomics_Typo_02.jpg"
         }
     ]
     :FACTS [
@@ -751,12 +751,6 @@
 
 (def HomeInitial [
     {
-        :item_number 0,
-        :img_src "./assets/webImages/InTheNews.jpg",
-        :img_txt "",
-        :thumbs_src "./assets/webImages/thumbs/InTheNews.jpg",
-    },
-    {
         :item_number 1,
         :img_src "./assets/webImages/VIVID_NightRenderV7full.jpg",
         :img_txt "",
@@ -764,27 +758,9 @@
     },
     {
         :item_number 2,
-        :img_src "./assets/webImages/DragonVirus1.jpg",
+        :img_src "./assets/webImages/DragonVirus.jpg",
         :img_txt "",
-        :thumbs_src "./assets/webImages/DragonVirus1.jpg",
-    },
-    {
-        :item_number 3,
-        :img_src "./assets/webImages/DragonVirus2.jpg",
-        :img_txt "",
-        :thumbs_src "./assets/webImages/DragonVirus2.jpg",
-    },
-    {
-        :item_number 4,
-        :img_src "./assets/webImages/DragonVirus3.jpg",
-        :img_txt "",
-        :thumbs_src "./assets/webImages/DragonVirus3.jpg",
-    },
-    {
-        :item_number 5,
-        :img_src "./assets/webImages/DragonVirus4.jpg",
-        :img_txt "",
-        :thumbs_src "./assets/webImages/DragonVirus4.jpg",
+        :thumbs_src "./assets/webImages/DragonVirus.jpg",
     },
     {
         :item_number 6,

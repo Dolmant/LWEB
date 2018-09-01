@@ -22,9 +22,6 @@
     (defn handleClose []
         (reset! anchorEl false)
     )
-  (js/console.log @anchorEl)
-  (println (rum/react anchorEl))
-  (js/console.log (rum/react anchorEl))
     [:div {:style {:display "inline-block"}}
         (ui/button {
             :variant (if mini "fab" "raised")

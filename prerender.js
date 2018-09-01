@@ -7,7 +7,7 @@ try {require('source-map-support').install();} catch (e) {console.warn('no "sour
 
 global.CLOSURE_NO_DEPS = true;
 
-global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"lweb.prerender.DEV":true,"shadow.cljs.devtools.client.env.proc_id":"c2fd264e-66a8-41d3-8685-54bd373dabca","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9631,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
+global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"lweb.prerender.DEV":true,"shadow.cljs.devtools.client.env.proc_id":"5fb46aae-433d-4a62-b12f-a2ddc099bb74","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9630,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
 
 var goog = global.goog = {};
 
@@ -3182,6 +3182,9 @@ SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$FormControl.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Drawer.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Divider.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$InputLabel.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Tab.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Tabs.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Paper.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Menu.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$MenuItem.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$styles$MuiThemeProvider.js");

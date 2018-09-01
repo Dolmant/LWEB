@@ -7,6 +7,9 @@
 (rum/defc Footer []
     [:footer
         [:div.footer-container.container
+            [:div.contact_me
+                [:a#contact_overlay {:on-click (fn [e] (DynamicReactState/ToggleOverlay true false))} "Contact Me!"]
+            ]
             [:div.contact
                 [:ul
                     [:li [:a "Member of the Australian Institute of Medical and Biological Illustration"]]
@@ -19,9 +22,6 @@
             ;   [:span.underline "For a commission:"] [:br]
             ;   " - What type of comission? 2D/3D animation, illustration, 3D model or sketch?" [:br]
             ;   "- Subject matter, size, black/white or colour, etc" [:br]]]
-            [:div.contact_me
-                [:a#contact_overlay {:on-click (fn [e] (DynamicReactState/ToggleOverlay true false))} "Contact Me!"]
-            ]
             [:div.social
                 [:ul
                     [:li

@@ -191,7 +191,6 @@ h3 {
 	margin-bottom: 10px;
 	margin-left: 20px;
 	margin-top: 20px;
-	font-family: 'Roboto', sans-serif;
 	line-height: 1.3em;
 	text-transform: none;
 	letter-spacing: 0px;
@@ -205,7 +204,6 @@ h4 {
 	margin-bottom: 10px;
 	margin-left: 20px;
 	margin-top: 20px;
-	font-family: 'Roboto', sans-serif;
 	line-height: 1.3em;
 	text-transform: none;
 	letter-spacing: 0px;
@@ -215,7 +213,6 @@ h4 {
 }
 
 h6 {
-	font-family: 'Roboto', sans-serif;
 	line-height: 1.3em;
 	text-transform: none;
 	letter-spacing: 0px;
@@ -233,7 +230,6 @@ h7 {
 	max-width: 800px;
 	margin-bottom: 10px;
 	margin-top: 20px;
-	font-family: 'Roboto', sans-serif;
 	line-height: 1.3em;
 	text-transform: none;
 	letter-spacing: 0px;
@@ -251,7 +247,6 @@ h8 {
 	max-width: 800px;
 	margin-bottom: 10px;
 	margin-top: 20px;
-	font-family: 'Roboto', sans-serif;
 	line-height: 1.3em;
 	text-transform: none;
 	letter-spacing: 0px;
@@ -273,8 +268,8 @@ img {
 
 body {
 	color:#000;
-	line-height:20px;
-	font-family: 'Roboto', sans-serif;
+    line-height:20px;
+    font-family: 'Raleway', sans-serif;
 	font-weight:500;
 	font-size:14px;
 	letter-spacing:.025em
@@ -294,7 +289,9 @@ h2 {
 	font-size:25px;
 	line-height:25px;
 	font-weight: bold;
-	margin-bottom: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
 }
 
 a {
@@ -318,19 +315,6 @@ hr {
 	margin:30px 0
 }
 
-html.loading {
-	background-image:url('/assets/images/MV_AniBlack.gif');
-	background-size:10rem 10rem;
-	background-position:center;
-	background-repeat:no-repeat;
-}
-
-html {
-	background-color:#fafafb;
-	min-height:100%;
-	overflow-y:scroll
-}
-
 html.sidebar-open {
 	max-height:100%;
 	overflow:hidden
@@ -344,7 +328,6 @@ html.sidebar-open body {
 }
 
 body {
-	background-color:#fafafb;
 	-moz-animation:fadein .75s;
 	-webkit-animation:fadein .75s;
 	-o-animation:fadein .75s;
@@ -368,12 +351,33 @@ body {
 }
 
 .blur-up.lazyloaded {
-	animation: sharpen 1s;
+	animation: sharpen 0.2s;
 	-webkit-animation-fill-mode: forwards;
 	-moz-animation-fill-mode: forwards;
 	-ms-animation-fill-mode: forwards;
 	-o-animation-fill-mode: forwards;
 	animation-fill-mode: forwards;
+}
+
+.divider {
+    position: relative;
+    height: 100%;
+    padding-bottom: 3rem;
+    &:before {
+        position: absolute;
+        content: '';
+        pointer-events: none;
+
+        bottom: 20px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        background: #2072a7;
+        box-shadow: 30px 0 #2072a7, -30px 0 #2072a7;
+    }
 }
 
 .container {
@@ -392,6 +396,15 @@ body {
 		margin:0 auto;
 		width:90%;
 	}
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > div {
+        max-width: 1500px;
+    }
 }
 .page.container {
     padding-top:16vh;
@@ -450,7 +463,6 @@ h1 img {
 
 .news {
     padding-left: 2rem;
-    text-align: left;
 
     a:hover {
         color: blue;
@@ -487,7 +499,13 @@ footer {
 }
 
 footer .container {
-	position:relative
+    position:relative;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    display:flex;
+    flex-direction: row;
+    font-size: 16px;
 }
 
 footer li,footer address {
@@ -507,11 +525,7 @@ footer a,footer address,footer label {
 }
 
 .contact_me {
-	width:210px;
 	padding-right:20px;
-	top:24px;
-	left:0px;
-	position:absolute;
 	cursor:pointer
 }
 
@@ -536,7 +550,7 @@ footer a,footer address,footer label {
 	left:0;
 	width:100%;
 	height:100%;
-	z-index:40;
+	z-index:1200;
 	background-color:rgba(0,0,0,0.5);
 	-webkit-transition:background-color .2s;
 	-moz-transition:background-color .2s;
@@ -684,7 +698,7 @@ footer a,footer address,footer label {
 	flex-direction:column;
 	align-items:center;
 	background-size: 100% 100%;
-	background-image: url("/assets/webImages/thumbs/EmailPage.jpg");
+	background-image: url("/assets/webImages/EmailPage.jpg");
 }
 
 .overlay_container form ul {
@@ -784,25 +798,18 @@ footer a,footer address,footer label {
 
 .contact {
 	text-align:center;
-	width:100%;
-	margin-top:21px;
 	float:left;
-	padding:0 105px 0 210px
 }
 
 @media only screen and (max-width: 1000px) {
 	.contact {
-		width:100%;
 		text-align:left;
-		float:left;
 		padding:0
 	}
 }
 
 @media only screen and (min-width: 1465px) {
 	.contact {
-		padding-left:33.33333%;
-		left:0px;
 		text-align:left
 	}
 }
@@ -833,9 +840,6 @@ footer a,footer address,footer label {
 footer .container>div.social {
 	text-align:right;
 	width:105px;
-	position:absolute;
-	right:0px;
-	top:27px
 }
 
 @media only screen and (max-width: 1000px) {
@@ -865,7 +869,7 @@ footer .container>div.social {
 
 .social li a {
 	display:block;
-	height:10px;
+	height:14px;
 	background-color:#000;
 	-webkit-transition:background-color .2s;
 	-moz-transition:background-color .2s;
@@ -874,7 +878,7 @@ footer .container>div.social {
 }
 
 .social li img {
-	height:10px;
+	height:14px;
 	width:auto;
 	display:block;
 	float:left
@@ -907,7 +911,6 @@ footer .container>div.social {
 	width:100%;
 	text-align:center;
 	background-color: white;
-	font-family: 'Raleway', sans-serif;
 	margin-bottom: 10px;
 
 	.text {
@@ -922,9 +925,8 @@ footer .container>div.social {
 	width:100%;
 	text-align:center;
 	background-color: white;
-	font-family: 'Raleway', sans-serif;
 	font-size: 15px;
-	padding-bottom: 10vh;
+	padding-bottom: 1rem;
 
 	.boxes {
 		display: flex;
@@ -943,10 +945,8 @@ footer .container>div.social {
 
 	.desc_text {
 		margin-top: 10px;
-		margin-bottom: 10px;
-		padding-top: 10px;
-		padding-bottom: 10px;
-		white-space: pre-wrap;
+        white-space: pre-wrap;
+        font-size:20px;
 
 		.left{
 			text-align: left;

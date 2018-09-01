@@ -5,7 +5,7 @@
             ))
 
 (defonce State
-    (atom {:category :ALL
+    (atom {:category :NONE
         :list consts/HomeInitial
         :isTouch consts/isTouch
         :total 0
@@ -51,12 +51,14 @@
     {
         :left (not (in? (limits :left) overlay_image_num))
         :right (not (in? (limits :right) overlay_image_num))
-        :up (< (overlay_vertical_index :overlay_image_num) (- NumberofVertical 1))
-        :down (> (overlay_vertical_index :overlay_image_num) 0)
+        :up (< (overlay_vertical_index overlay_image_num) (- NumberofVertical 1))
+        :down (> (overlay_vertical_index overlay_image_num) 0)
     }
 )
 
 (defn selectedOverlayImageNum [overlay_image_num current_category overlay_vertical_index overlay]
+    (def verticalImageNum (if (= nil (overlay_vertical_index overlay_image_num)) 0 (overlay_vertical_index overlay_image_num)))
+    (js/console.log overlay_vertical_index)
     (if (not current_category)
         (SetAttrs {:overlay overlay :overlay_vertical_index overlay_vertical_index :overlay_image overlay_image_num})
         (do
@@ -65,8 +67,8 @@
                 (SetAttrs {
                     :overlay_vertical_index overlay_vertical_index
                     :overlay_image_num overlay_image_num
-                    :overlay_image_src (get-in tempImage [:img_src (overlay_vertical_index overlay_image_num)])
-                    :overlay_thumb_src (get-in tempImage [:overlay_thumbs_src (overlay_vertical_index overlay_image_num)])
+                    :overlay_image_src (get-in tempImage [:img_src verticalImageNum])
+                    :overlay_thumb_src (get-in tempImage [:overlay_thumbs_src verticalImageNum])
                     :overlay_types (tempImage :types)
                     :overlay_txt (tempImage :img_txt)
                     :overlay {:state (overlay :state) :image (overlay :image) :is_video (tempImage :is_video) :arrows (computeArrows overlay_image_num current_category overlay_vertical_index (count (tempImage :img_src)))}
@@ -89,8 +91,8 @@
     (cond
         (= direction "left") (selectedOverlayImageNum (dec (@State :overlay_image_num)) (@State :category) (@State :overlay_vertical_index) (@State :overlay))
         (= direction "right") (selectedOverlayImageNum (inc (@State :overlay_image_num)) (@State :category) (@State :overlay_vertical_index) (@State :overlay))
-        (= direction "up") (selectedOverlayImageNum (@State :overlay_image_num) (@State :category) ((update-in @State [:overlay_vertical_index :overlay_image_num] inc) :overlay_vertical_index) (@State :overlay))
-        (= direction "down") (selectedOverlayImageNum (@State :overlay_image_num) (@State :category) ((update-in @State [:overlay_vertical_index :overlay_image_num] dec) :overlay_vertical_index)  (@State :overlay))
+        (= direction "up") (selectedOverlayImageNum (@State :overlay_image_num) (@State :category) ((update-in @State [:overlay_vertical_index (@State :overlay_image_num)] inc) :overlay_vertical_index) (@State :overlay))
+        (= direction "down") (selectedOverlayImageNum (@State :overlay_image_num) (@State :category) ((update-in @State [:overlay_vertical_index (@State :overlay_image_num)] dec) :overlay_vertical_index)  (@State :overlay))
         :else "Incorrect nav call"
     )
 )
