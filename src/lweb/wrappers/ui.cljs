@@ -4,6 +4,11 @@
   (:require
    [rum.core]
    ["@material-ui/core/AppBar" :as AppBar]
+   ["@material-ui/core/DialogTitle" :as DialogTitle]
+   ["@material-ui/core/Dialog" :as Dialog]
+   ["@material-ui/core/DialogContent" :as DialogContent]
+   ["@material-ui/core/DialogContent" :as DialogContent]
+   ["@material-ui/core/DialogActions" :as DialogActions]
    ["@material-ui/core/Toolbar" :as Toolbar]
    ["@material-ui/core/Checkbox" :as Checkbox]
    ["@material-ui/core/Button" :as Button]
@@ -14,6 +19,7 @@
    ["@material-ui/core/FormControl" :as FormControl]
    ["@material-ui/core/Drawer" :as Drawer]
    ["@material-ui/core/Divider" :as Divider]
+   ["@material-ui/core/Input" :as Input]
    ["@material-ui/core/InputLabel" :as InputLabel]
    ["@material-ui/core/Tab" :as Tab]
    ["@material-ui/core/Tabs" :as Tabs]
@@ -27,8 +33,7 @@
    ["@material-ui/core/SvgIcon" :as SvgIcon]
    ["@material-ui/core/TextField" :as TextField]
    [clojure.walk :refer [postwalk]]
-   [sablono.util :refer [camel-case]]
-   ))
+   [sablono.util :refer [camel-case]]))
 
 (defn transform-keys [t coll]
   "Recursively transforms all map keys in coll with t."
@@ -43,6 +48,10 @@
                     createMuiTheme/default)))
 
 (def toolbar (lweb.rum-adaptor-macro/adapt-rum-class Toolbar/default))
+(def dialog (lweb.rum-adaptor-macro/adapt-rum-class Dialog/default))
+(def dialog-actions (lweb.rum-adaptor-macro/adapt-rum-class DialogActions/default))
+(def dialog-content (lweb.rum-adaptor-macro/adapt-rum-class DialogContent/default))
+(def dialog-title (lweb.rum-adaptor-macro/adapt-rum-class DialogTitle/default))
 (def appBar (lweb.rum-adaptor-macro/adapt-rum-class AppBar/default))
 (def button (lweb.rum-adaptor-macro/adapt-rum-class Button/default))
 (def checkbox (lweb.rum-adaptor-macro/adapt-rum-class Checkbox/default))
@@ -53,6 +62,7 @@
 (def form-helper-text (lweb.rum-adaptor-macro/adapt-rum-class FormHelperText/default))
 (def grid (lweb.rum-adaptor-macro/adapt-rum-class Grid/default))
 (def icon-button (lweb.rum-adaptor-macro/adapt-rum-class IconButton/default))
+(def input (lweb.rum-adaptor-macro/adapt-rum-class Input/default))
 (def input-label (lweb.rum-adaptor-macro/adapt-rum-class InputLabel/default))
 (def tabs (lweb.rum-adaptor-macro/adapt-rum-class Tabs/default))
 (def tab (lweb.rum-adaptor-macro/adapt-rum-class Tab/default))

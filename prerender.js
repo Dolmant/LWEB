@@ -7,7 +7,7 @@ try {require('source-map-support').install();} catch (e) {console.warn('no "sour
 
 global.CLOSURE_NO_DEPS = true;
 
-global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"lweb.prerender.DEV":true,"shadow.cljs.devtools.client.env.proc_id":"5fb46aae-433d-4a62-b12f-a2ddc099bb74","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9630,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
+global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"lweb.prerender.DEV":true,"shadow.cljs.devtools.client.env.proc_id":"35aa80e2-e65d-4fe5-a535-30f56fcfead1","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9631,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
 
 var goog = global.goog = {};
 
@@ -3171,6 +3171,10 @@ SHADOW_IMPORT("rum.util.js");
 SHADOW_IMPORT("rum.derived_atom.js");
 SHADOW_IMPORT("rum.core.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$AppBar.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$DialogTitle.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Dialog.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$DialogContent.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$DialogActions.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Toolbar.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Checkbox.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Button.js");
@@ -3181,6 +3185,7 @@ SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$IconButton.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$FormControl.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Drawer.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Divider.js");
+SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Input.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$InputLabel.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Tab.js");
 SHADOW_IMPORT("shadow.js.shim.module$$material_ui$core$Tabs.js");
@@ -3280,6 +3285,15 @@ SHADOW_IMPORT("lweb.Shop.CartManagement.AddToCart.js");
 SHADOW_IMPORT("goog.dom.inputtype.js");
 SHADOW_IMPORT("goog.window.window.js");
 SHADOW_IMPORT("goog.dom.forms.js");
+SHADOW_IMPORT("shadow.js.shim.module$three.js");
+SHADOW_IMPORT("shadow.js.shim.module$three_obj_loader.js");
+SHADOW_IMPORT("lweb.DynamicReact.ModelViewer.js");
+SHADOW_IMPORT("lweb.Shop.CartManagement.RemoveFromCart.js");
+SHADOW_IMPORT("lweb.Shop.Postage.State.js");
+SHADOW_IMPORT("lweb.Shop.Postage.PostageCalculator.js");
+SHADOW_IMPORT("shadow.js.shim.module$react_spinners$PacmanLoader.js");
+SHADOW_IMPORT("shadow.js.shim.module$react_stripe_checkout.js");
+SHADOW_IMPORT("lweb.Shop.CartManagement.Checkout.js");
 SHADOW_IMPORT("shadow.js.shim.module$prop_types.js");
 SHADOW_IMPORT("shadow.js.shim.module$invariant.js");
 SHADOW_IMPORT("shadow.js.shim.module$classnames.js");
@@ -3288,12 +3302,6 @@ SHADOW_IMPORT("module$gen$lazySizes$LazySizes.js");
 SHADOW_IMPORT("module$gen$lazySizes$index.js");
 SHADOW_IMPORT("lweb.rum_adaptor_macro.js");
 SHADOW_IMPORT("lweb.DynamicReact.Overlay.js");
-SHADOW_IMPORT("lweb.Shop.CartManagement.RemoveFromCart.js");
-SHADOW_IMPORT("lweb.Shop.Postage.State.js");
-SHADOW_IMPORT("lweb.Shop.Postage.PostageCalculator.js");
-SHADOW_IMPORT("shadow.js.shim.module$react_spinners$PacmanLoader.js");
-SHADOW_IMPORT("shadow.js.shim.module$react_stripe_checkout.js");
-SHADOW_IMPORT("lweb.Shop.CartManagement.Checkout.js");
 SHADOW_IMPORT("shadow.js.shim.module$react_slick.js");
 SHADOW_IMPORT("lweb.DynamicReact.PageContainer.js");
 SHADOW_IMPORT("lweb.DynamicReact.Footer.js");

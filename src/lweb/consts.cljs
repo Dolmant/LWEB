@@ -667,30 +667,54 @@
             :thumbs_src "./assets/webImages/thumbs/01_MicroFinalRender01.jpg"
         }
     ]
-    :MODELS [
-        {
-            :img_src "./assets/webImages/GolgonMiniPaint.jpg"
-            :img_txt "Mini Golgon"
-            :thumbs_src "./assets/webImages/thumbs/GolgonMiniPaint.jpg"
-        }
-        {
-            :img_src "./assets/webImages/DragonSwimmer.jpg"
-            :img_txt "Dragon Swimmer"
-            :thumbs_src "./assets/webImages/thumbs/DragonSwimmer.jpg"
-        }
-        {
-            :img_src "./assets/webImages/SnakeConeCropped.jpg"
-            :img_txt "Snake Cone"
-            :thumbs_src "./assets/webImages/thumbs/SnakeConeCropped.jpg"
-        }
-        {
-            :img_src "./assets/webImages/SnakeRice.jpg"
-            :img_txt "Snake Rice"
-            :thumbs_src "./assets/webImages/thumbs/SnakeRice.jpg"
-        }
-    ]
+    ; Moved to model viewer
+    ; :MODELS [
+    ;     {
+    ;         :img_src "./assets/webImages/GolgonMiniPaint.jpg"
+    ;         :img_txt "Mini Golgon"
+    ;         :thumbs_src "./assets/webImages/thumbs/GolgonMiniPaint.jpg"
+    ;     }
+    ;     {
+    ;         :img_src "./assets/webImages/DragonSwimmer.jpg"
+    ;         :img_txt "Dragon Swimmer"
+    ;         :thumbs_src "./assets/webImages/thumbs/DragonSwimmer.jpg"
+    ;     }
+    ;     {
+    ;         :img_src "./assets/webImages/SnakeConeCropped.jpg"
+    ;         :img_txt "Snake Cone"
+    ;         :thumbs_src "./assets/webImages/thumbs/SnakeConeCropped.jpg"
+    ;     }
+    ;     {
+    ;         :img_src "./assets/webImages/SnakeRice.jpg"
+    ;         :img_txt "Snake Rice"
+    ;         :thumbs_src "./assets/webImages/thumbs/SnakeRice.jpg"
+    ;     }
+    ; ]
     :CHECKOUT [] ;// Empty just used for the store
 })
+
+(def models [
+    {
+        :img_src "./assets/webImages/GolgonMiniPaint.jpg"
+        :img_txt "Mini Golgon"
+        :thumbs_src "./assets/webImages/thumbs/GolgonMiniPaint.jpg"
+    }
+    {
+        :img_src "./assets/webImages/DragonSwimmer.jpg"
+        :img_txt "Dragon Swimmer"
+        :thumbs_src "./assets/webImages/thumbs/DragonSwimmer.jpg"
+    }
+    {
+        :img_src "./assets/webImages/SnakeConeCropped.jpg"
+        :img_txt "Snake Cone"
+        :thumbs_src "./assets/webImages/thumbs/SnakeConeCropped.jpg"
+    }
+    {
+        :img_src "./assets/webImages/SnakeRice.jpg"
+        :img_txt "Snake Rice"
+        :thumbs_src "./assets/webImages/thumbs/SnakeRice.jpg"
+    }
+])
 
 ;// hardcoded for now
 (def projectListLabels {
@@ -702,7 +726,6 @@
     :TYPOGRAPHY "Taking everyday letters and making them look better…with science!",
     :FACTS "Learning every day! Fun facts for those who want to impress others with their knowledge of anything and everything. Or just cats, crabs and eels specifically.",
     :MISC "All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people.",
-    :MODELS "Cute reptiles brought to life!",
     :ANIMATION "Moving pictures!",
     :CHECKOUT "",
 })

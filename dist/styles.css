@@ -147,7 +147,69 @@
     opacity: 1;
   }
 }
-html, body, div, select, span, applet, object, iframe, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, h1, h2, h3, h4, h5, h6, h7, h8, pre, form, fieldset, input, textarea, label, legend, p, blockquote, table, caption, tbody, tfoot, thead, tr, th, td {
+html,
+body,
+div,
+select,
+span,
+applet,
+object,
+iframe,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7,
+h8,
+pre,
+form,
+fieldset,
+input,
+textarea,
+label,
+legend,
+p,
+blockquote,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -174,15 +236,24 @@ body {
   outline: 0;
 }
 
-fieldset, img {
+fieldset,
+img {
   border: 0;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6, h7, h8 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7,
+h8 {
   font-size: 100%;
   font-weight: normal;
 }
@@ -308,7 +379,8 @@ a:hover {
   color: #cae5f2;
 }
 
-em, strong {
+em,
+strong {
   font-weight: 700;
 }
 
@@ -508,16 +580,18 @@ footer .container {
   height: 100%;
   display: flex;
   flex-direction: row;
-  font-size: 18px;
+  font-size: 16px;
 }
 
-footer li, footer address {
+footer li,
+footer address {
   display: inline-block;
 }
 
-footer a, footer address, footer label {
+footer a,
+footer address,
+footer label {
   color: #000;
-  font-weight: 700;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -529,6 +603,7 @@ footer a, footer address, footer label {
 .contact_me {
   padding-right: 20px;
   cursor: pointer;
+  font-weight: 700;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -574,6 +649,10 @@ footer a, footer address, footer label {
   line-height: 15px;
   width: 15px;
   text-align: center;
+}
+
+.form-spaced {
+  margin: 10px;
 }
 
 .shopping-list-title {
@@ -635,7 +714,8 @@ footer a, footer address, footer label {
   justify-content: center;
 }
 
-.img-wrap-overlay, .overlay-video {
+.img-wrap-overlay,
+.overlay-video {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -690,7 +770,7 @@ footer a, footer address, footer label {
   background: white;
 }
 
-.overlay_container form {
+.overlayform {
   width: 75%;
   min-width: 300px;
   position: relative;
@@ -792,14 +872,8 @@ footer a, footer address, footer label {
   min-height: 50px;
 }
 
-.contact_me label {
-  margin-right: 12px;
-  float: left;
-}
-
 .contact {
   text-align: center;
-  float: left;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -1193,7 +1267,8 @@ header.introStatic {
   left: 0;
 }
 
-.introVideo, .introImage {
+.introVideo,
+.introImage {
   display: block;
   width: 100vw;
   height: 100vh;
