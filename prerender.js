@@ -7,7 +7,7 @@ try {require('source-map-support').install();} catch (e) {console.warn('no "sour
 
 global.CLOSURE_NO_DEPS = true;
 
-global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"lweb.prerender.DEV":true,"shadow.cljs.devtools.client.env.proc_id":"35aa80e2-e65d-4fe5-a535-30f56fcfead1","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9631,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
+global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"lweb.prerender.DEV":true,"shadow.cljs.devtools.client.env.proc_id":"d8ba57b1-6d83-444d-87e0-a27a7330e450","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9631,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
 
 var goog = global.goog = {};
 
@@ -3287,6 +3287,7 @@ SHADOW_IMPORT("goog.window.window.js");
 SHADOW_IMPORT("goog.dom.forms.js");
 SHADOW_IMPORT("shadow.js.shim.module$three.js");
 SHADOW_IMPORT("shadow.js.shim.module$three_obj_loader.js");
+SHADOW_IMPORT("shadow.js.shim.module$three_orbit_controls.js");
 SHADOW_IMPORT("lweb.DynamicReact.ModelViewer.js");
 SHADOW_IMPORT("lweb.Shop.CartManagement.RemoveFromCart.js");
 SHADOW_IMPORT("lweb.Shop.Postage.State.js");
