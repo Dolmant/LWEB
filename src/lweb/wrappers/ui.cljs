@@ -24,6 +24,7 @@
    ["@material-ui/core/Tab" :as Tab]
    ["@material-ui/core/Tabs" :as Tabs]
    ["@material-ui/core/Paper" :as Paper]
+   ["@material-ui/core/LinearProgress" :as LinearProgress]
    ["@material-ui/core/Menu" :as Menu]
    ["@material-ui/core/Menu" :as Menu]
    ["@material-ui/core/MenuItem" :as MenuItem]
@@ -57,6 +58,7 @@
 (def checkbox (lweb.rum-adaptor-macro/adapt-rum-class Checkbox/default))
 (def divider (lweb.rum-adaptor-macro/adapt-rum-class Divider/default))
 (def drawer (lweb.rum-adaptor-macro/adapt-rum-class Drawer/default))
+(def linear-progress (lweb.rum-adaptor-macro/adapt-rum-class LinearProgress/default))
 (def form-control (lweb.rum-adaptor-macro/adapt-rum-class FormControl/default))
 (def hidden (lweb.rum-adaptor-macro/adapt-rum-class Hidden/default))
 (def form-helper-text (lweb.rum-adaptor-macro/adapt-rum-class FormHelperText/default))
