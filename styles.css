@@ -488,6 +488,10 @@ body {
   max-width: 1500px;
 }
 
+.modelInstructions {
+  padding: 0.1em;
+}
+
 .page.container {
   padding-top: 16vh;
   min-height: 80vh;
