@@ -34,7 +34,7 @@
            [:div.carousel-img-wrap {:key (item :item_number)}
             [:div
              {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if consts/isTouch "40vw" "20vw")}}]])
-         consts/HomeInitial))
+         (consts/projectList :HomeInitial)))
   [:div
    [:div.desc_holder#about
     [:div.desc_text.divider

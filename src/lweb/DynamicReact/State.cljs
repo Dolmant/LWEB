@@ -5,7 +5,7 @@
 
 (defonce State
   (atom {:category :NONE
-         :list consts/HomeInitial
+         :list (consts/projectList :HomeInitial)
          :isTouch consts/isTouch
          :total 0
          :page "home"
