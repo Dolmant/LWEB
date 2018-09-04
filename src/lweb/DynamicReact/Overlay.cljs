@@ -102,7 +102,6 @@
                  [:input {:name "http_referer" :value "http://www.leotide.com/" :type "hidden"}]]))
     (= (overlay :name) :checkout)
     (ui/dialog {:PaperProps {:className "checkoutoverlay"} :open true :onClose (fn [] (reset! formError false) (DynamicReactState/CloseOverlay))}
-               (ui/dialog-title "Checkout")
                (ui/dialog-content (Checkout/Checkout)))
     (= (overlay :name) :models)
     (ui/dialog {:PaperProps {:className "modeloverlay"} :open true :onClose (fn [] (reset! formError false) (DynamicReactState/CloseOverlay))}

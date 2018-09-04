@@ -15,7 +15,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /* v2.0.0
 /* ----------------------------------------------- */
 
-var pJS = function pJS(tag_id, params) {
+var pJS = function (tag_id, params) {
 
   var canvas_el = document.querySelector('#' + tag_id + ' > .particles-js-canvas-el');
 
@@ -451,7 +451,7 @@ var pJS = function pJS(tag_id, params) {
         break;
 
       case 'image':
-        var draw = function draw() {
+        var draw = function () {
           pJS.canvas.ctx.drawImage(img_obj, p.x - radius, p.y - radius, radius * 2, radius * 2 / p.img.ratio);
         };
 
@@ -760,7 +760,7 @@ var pJS = function pJS(tag_id, params) {
 
     /* on hover event */
     if (pJS.interactivity.events.onhover.enable && isInArray('bubble', pJS.interactivity.events.onhover.mode)) {
-      var init = function init() {
+      var init = function () {
         p.opacity_bubble = p.opacity;
         p.radius_bubble = p.radius;
       };
@@ -824,7 +824,7 @@ var pJS = function pJS(tag_id, params) {
 
     /* on click event */
     else if (pJS.interactivity.events.onclick.enable && isInArray('bubble', pJS.interactivity.events.onclick.mode)) {
-        var process = function process(bubble_param, particles_param, p_obj_bubble, p_obj, id) {
+        var process = function (bubble_param, particles_param, p_obj_bubble, p_obj, id) {
 
           if (bubble_param != particles_param) {
 
@@ -842,9 +842,8 @@ var pJS = function pJS(tag_id, params) {
               }
             } else {
               if (p_obj_bubble != undefined) {
-                var value_tmp = p_obj - time_spent * (p_obj - bubble_param) / pJS.interactivity.modes.bubble.duration,
-                    dif = bubble_param - value_tmp;
-                value = bubble_param + dif;
+                var value_tmp = p_obj - time_spent * (p_obj - bubble_param) / pJS.interactivity.modes.bubble.duration;
+                value = bubble_param + (bubble_param - value_tmp);
                 if (id == 'size') p.radius_bubble = value;
                 if (id == 'opacity') p.opacity_bubble = value;
               }
@@ -887,8 +886,7 @@ var pJS = function pJS(tag_id, params) {
 
       var normVec = { x: dx_mouse / dist_mouse, y: dy_mouse / dist_mouse },
           repulseRadius = pJS.interactivity.modes.repulse.distance,
-          velocity = 100,
-          repulseFactor = clamp(1 / repulseRadius * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
+          repulseFactor = clamp(1 / repulseRadius * (-1 * Math.pow(dist_mouse / repulseRadius, 2) + 1) * repulseRadius * 100, 0, 50);
 
       var pos = {
         x: p.x + normVec.x * repulseFactor,
@@ -912,7 +910,7 @@ var pJS = function pJS(tag_id, params) {
       }
 
       if (pJS.tmp.repulse_clicking) {
-        var process = function process() {
+        var process = function () {
 
           var f = Math.atan2(dy, dx);
           p.vx = force * Math.cos(f);
@@ -1032,7 +1030,7 @@ var pJS = function pJS(tag_id, params) {
       });
 
       /* el on onmouseleave */
-      pJS.interactivity.el.addEventListener('mouseleave', function (e) {
+      pJS.interactivity.el.addEventListener('mouseleave', function () {
 
         pJS.interactivity.mouse.pos_x = null;
         pJS.interactivity.mouse.pos_y = null;
@@ -1128,7 +1126,7 @@ var pJS = function pJS(tag_id, params) {
     /* set color to svg element */
     var svgXml = pJS.tmp.source_svg,
         rgbHex = /#([0-9A-F]{3,6})/gi,
-        coloredSvgXml = svgXml.replace(rgbHex, function (m, r, g, b) {
+        coloredSvgXml = svgXml.replace(rgbHex, function () {
       if (p.color.rgb) {
         var color_value = 'rgba(' + p.color.rgb.r + ',' + p.color.rgb.g + ',' + p.color.rgb.b + ',' + p.opacity + ')';
       } else {
@@ -1160,17 +1158,16 @@ var pJS = function pJS(tag_id, params) {
   };
 
   pJS.fn.vendors.drawShape = function (c, startX, startY, sideLength, sideCountNumerator, sideCountDenominator) {
+    var decimalSides = sideCountNumerator / sideCountDenominator;
 
     // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
-    var sideCount = sideCountNumerator * sideCountDenominator;
-    var decimalSides = sideCountNumerator / sideCountDenominator;
-    var interiorAngleDegrees = 180 * (decimalSides - 2) / decimalSides;
-    var interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
+
+    var interiorAngle = Math.PI - Math.PI * (180 * (decimalSides - 2) / decimalSides) / 180; // convert to radians
     c.save();
     c.beginPath();
     c.translate(startX, startY);
     c.moveTo(0, 0);
-    for (var i = 0; i < sideCount; i++) {
+    for (var i = 0; i < sideCountNumerator * sideCountDenominator; i++) {
       c.lineTo(sideLength, 0);
       c.translate(sideLength, 0);
       c.rotate(interiorAngle);
@@ -1338,11 +1335,11 @@ function hexToRgb(hex) {
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
   } : null;
-};
+}
 
 function clamp(number, min, max) {
   return Math.min(Math.max(number, min), max);
-};
+}
 
 function isInArray(value, array) {
   return array.indexOf(value) > -1;
@@ -1400,7 +1397,7 @@ window.particlesJS.load = function (tag_id, path_config_json, callback) {
 
   /* load json config */
 
-  var particlesConfig = {
+  window.particlesJS(tag_id, {
     "particles": {
       "number": {
         "value": 20,
@@ -1512,10 +1509,7 @@ window.particlesJS.load = function (tag_id, path_config_json, callback) {
       }
     },
     "retina_detect": true
-  };
-
-  var params = particlesConfig;
-  window.particlesJS(tag_id, params);
+  });
   if (callback) callback();
 };
 

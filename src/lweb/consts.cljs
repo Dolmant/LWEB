@@ -410,7 +410,7 @@
                                    :thumbs_src "./assets/webImages/thumbs/GolgonMiniPaint.jpg"}
                                   {:img_src "./assets/webImages/DragonSwimmer.jpg"
                                    :img_txt "Dragon Swimmer"
-                                   :model_src "/assets/models/gltf1.gltf"
+                                   :model_src "/assets/models/SnakeLowPolyScales1-processed.gltf"
                                    :thumbs_src "./assets/webImages/thumbs/DragonSwimmer.jpg"}
                                   {:img_src "./assets/webImages/SnakeConeCropped.jpg"
                                    :img_txt "Snake Cone"
