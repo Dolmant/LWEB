@@ -414,7 +414,7 @@
                                    :thumbs_src "./assets/webImages/thumbs/DragonSwimmer.jpg"}
                                   {:img_src "./assets/webImages/SnakeConeCropped.jpg"
                                    :img_txt "Snake Cone"
-                                   :model_src "/assets/models/SnakeLowPolyScales1.gltf"
+                                   :model_src "/assets/models/CaramelSnake.gltf"
                                    :thumbs_src "./assets/webImages/thumbs/SnakeConeCropped.jpg"}
                                   {:img_src "./assets/webImages/SnakeRice.jpg"
                                    :img_txt "Snake Rice"
