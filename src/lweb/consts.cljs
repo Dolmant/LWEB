@@ -404,21 +404,21 @@
                                       :img_src "./assets/webImages/01_MicroFinalRender01.mp4"
                                       :img_txt "Micro Messengers"
                                       :thumbs_src "./assets/webImages/thumbs/01_MicroFinalRender01.jpg"}]
-                         :MODELS [{:img_src "./assets/webImages/GolgonMiniPaint.jpg"
-                                   :model_src "/assets/models/gltf.gltf"
-                                   :img_txt "Mini Golgon"
-                                   :thumbs_src "./assets/webImages/thumbs/GolgonMiniPaint.jpg"}
+                         :MODELS [{:img_src "./assets/webImages/.jpg"
+                                   :img_txt "Seadragon"
+                                   :model_src "/assets/models/Seadragon.gltf"
+                                   :thumbs_src "./assets/webImages/thumbs/.jpg"}
                                   {:img_src "./assets/webImages/DragonSwimmer.jpg"
                                    :img_txt "Dragon Swimmer"
-                                   :model_src "/assets/models/SnakeLowPolyScales1-processed.gltf"
+                                   :model_src "/assets/models/DragonSwim.gltf"
                                    :thumbs_src "./assets/webImages/thumbs/DragonSwimmer.jpg"}
                                   {:img_src "./assets/webImages/SnakeConeCropped.jpg"
                                    :img_txt "Snake Cone"
-                                   :model_src "/assets/models/gltf2.gltf"
+                                   :model_src "/assets/models/SnakeLowPolyScales1.gltf"
                                    :thumbs_src "./assets/webImages/thumbs/SnakeConeCropped.jpg"}
                                   {:img_src "./assets/webImages/SnakeRice.jpg"
                                    :img_txt "Snake Rice"
-                                   :model_src "/assets/models/scene.gltf"
+                                   :model_src "/assets/models/SnakeRice.gltf"
                                    :thumbs_src "./assets/webImages/thumbs/SnakeRice.jpg"}]
                          :CHECKOUT [] ;// Empty just used for the store
                          :HomeInitial [{:img_src "./assets/webImages/VIVID_NightRenderV7full.jpg"

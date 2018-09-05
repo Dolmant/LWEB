@@ -23,6 +23,8 @@
                 (.setDecoderPath (.-DRACOLoader THREE) "/assets/draco/")
                 (def dracoLoader (THREE/DRACOLoader.))
                 ; (.appendChild (.getElementById js/document "model-viewer") (.-domElement renderer))
+                (reset! animator @selectedModel)
+
                 (def controller (viewer. (.getElementById js/document "model-viewer") (js-obj "model" @selectedModel) THREE dat stats (fn [xhr] (reset! loadPerc true))))
                 ; (def scene (THREE/Scene.))
                 ; (def camera (THREE/PerspectiveCamera. 75, 1, 0.1, 1000))
@@ -92,21 +94,23 @@
                 ; (loadCurrentModel)
                 state)
    :will-unmount (fn [state]
-                  ;  (if (not (= false @animator))
-                  ;    (do
-                  ;      (.remove scene (aget (.getObjectByName scene @animator) "children" 0))
-                  ;      (reset! animator false)))
-                  ;  (.dispose controls)
+                   (if (not (= false @animator))
+                     (do
+                       (.clear controller)
+                       (reset! animator false)))
                    state)
    :did-update (fn [state]
+                ; (def controller (viewer. (.getElementById js/document "model-viewer") (js-obj "model" @selectedModel) THREE dat stats (fn [xhr] (reset! loadPerc true))))
                 ;  (.reset controls)
                 ;  (.update controls)
-                ;  (if (and (not (= false @animator)) (not= @animator @selectedModel))
-                ;    (do
+                 (if (and (not (= false @animator)) (not= @animator @selectedModel))
+                   (do
+                     (js/console.log "test")
                 ;      (.remove scene (.getObjectByName scene @animator))
-                ;      (reset! animator false)
+                     (reset! animator @selectedModel)
                 ;      (.render renderer scene camera)
                 ;      (loadCurrentModel)))
+                     (.view controller @selectedModel "" (js/Map.))))
                  state)}
   []
   [:div
