@@ -20,7 +20,6 @@
   (def loading ((rum/react CartManagementState/State) :loading))
   (def paid ((rum/react CartManagementState/State) :paid))
   (def postage ((rum/react PostageState/State) :cost))
-  (js/console.log postage)
   (def items (map-indexed (fn [index item]
                             (ui/grid {:container true :key index :alignItems "center" :className "shopping-list-item"}
                                      (ui/grid {:className "shopping-list-column" :item true :xs 2}

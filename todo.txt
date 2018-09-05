@@ -1,20 +1,11 @@
 Now:
 wait for images to load before removing loading spinner
 redo hosting somewhere with https
+css watching
 
 laterish:
-gzip etc?
-oh god why is my dom so terrible, reimplement with grids
-fix website searching
-better shop
 check back button doesnt kill image and stuff
 track user location with hash, load hash at start to do movement in the app
 
 Later - easy:
-load common scripts (react, etc) from CDN?
 Add image URL fingerprints?
-
-checkout page
-move other pictures to other pages or delete
-proper stripe keys
-create test endpoints

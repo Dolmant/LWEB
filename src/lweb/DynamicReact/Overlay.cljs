@@ -17,8 +17,6 @@
 
 (def LazySizes (m/adapt-rum-class Lazy))
 
-(defn debugprint [x] (js/console.log x) x)
-
 (defn oncatClick [id]
   (DynamicReactState/SetCategory id)
   (DynamicReactState/SetAttr :touchmenu_active false))

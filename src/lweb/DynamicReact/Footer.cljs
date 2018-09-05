@@ -11,13 +11,6 @@
     [:div.contact
      [:ul
       [:li [:a "Member of the Australian Institute of Medical and Biological Illustration"]]]]
-            ; [:div {:class "desc_text last-element"}
-            ;  [:h2 "Interested in a commission or purchasing a print?"]
-            ;  "Please use the \"CONTACT ME!\" button on the bottom left of the screen to make an enquiry:" [:br]
-            ;  [:div.left
-            ;   [:span.underline "For a commission:"] [:br]
-            ;   " - What type of comission? 2D/3D animation, illustration, 3D model or sketch?" [:br]
-            ;   "- Subject matter, size, black/white or colour, etc" [:br]]]
     [:div.social
      [:ul
       [:li

@@ -10,8 +10,6 @@
 
 (rum/defc App < rum/reactive []
   (def overlay ((rum/react DynamicReactState/State) :overlay))
-  (js/console.log "overlay")
-  (js/console.log overlay)
   [:div
    [:div.intro#intro (Intro/Intro)]
    [:div.introHeader#introHeader (IntroHeader/IntroHeader)]

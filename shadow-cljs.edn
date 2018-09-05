@@ -25,13 +25,12 @@
         :release {:compiler-options {:optimizations :advanced
                                      :output-wrapper true
                                      :rename-prefix-namespace "LWEB"}}
-        ; :js-options {:resolve {"glslify" {:target :npm
-        ;                                   :require "glslify"}}}
         :devtools {:after-load lweb.core/reload!
                    :http-root "dist"
                    :http-port 8081}}
   :prerender {:target :node-script
               :output-to "prerender.js"
               :main lweb.prerender/prerender
+              :release {:compiler-options {:optimizations :simple}}
               :dev {:closure-defines {lweb.prerender/DEV true}}
               :modules {:main {:entries [lweb.prerender]}}}}}

@@ -4,16 +4,16 @@
             [lweb.DynamicReact.NavMenu :as NavMenu]
             [lweb.DynamicReact.State :as DynamicReactState]
             [lweb.consts :as consts]
-            ["react-slick" :as Slick]
+            ; ["react-slick" :as Slick]
             [clojure.string :as str]))
 
-(def Slider (m/adapt-rum-class Slick/default))
+; (def Slider (m/adapt-rum-class Slick/default))
 
-(rum/defc LeftNavButton []
-  [:button [:div.slick-next-div]])
+; (rum/defc LeftNavButton []
+;   [:button [:div.slick-next-div]])
 
-(rum/defc RightNavButton []
-  [:button [:div.slick-prev-div]])
+; (rum/defc RightNavButton []
+;   [:button [:div.slick-prev-div]])
 
 (defn onImageClick [index]
   (DynamicReactState/UpdateOverlayImage index)
@@ -38,10 +38,8 @@
   [:div
    [:div.desc_holder#about
     [:div.desc_text.divider
-                ; [:h2 "About" ]
      [:div "I am Leonie (Leo) Herson, a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in science and biomedical research whilst following my passion as an illustrator!"]]
     [:div.desc_text.divider
-                ; [:h2 "News"]
      [:div.news
       [:div
        "Beautiful and dangerous: animating deadly viruses at Vivid Sydney, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
@@ -70,8 +68,6 @@
 ]
    [:div.desc
     [:h2 "My Work"]
-    (NavMenu/TabMenu)
-            ; [:div.text (consts/projectListLabels category)]
-]
+    (NavMenu/TabMenu)]
    [:div#content
     [listItems]]])
