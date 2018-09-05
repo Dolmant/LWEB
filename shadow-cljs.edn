@@ -21,19 +21,17 @@
         :asset-path "."
         :modules {:main {:entries [lweb.core]}}
         :build-options
-            {:cache-level :off}
-        :release {:compiler-options {
-            :optimizations :advanced
-            :output-wrapper true
-            :rename-prefix-namespace "LWEB"}}
+        {:cache-level :off}
+        :release {:compiler-options {:optimizations :advanced
+                                     :output-wrapper true
+                                     :rename-prefix-namespace "LWEB"}}
+        ; :js-options {:resolve {"glslify" {:target :npm
+        ;                                   :require "glslify"}}}
         :devtools {:after-load lweb.core/reload!
-                           :http-root "dist"
-                           :http-port 8081}}
+                   :http-root "dist"
+                   :http-port 8081}}
   :prerender {:target :node-script
-         :output-to "prerender.js"
-         :main lweb.prerender/prerender
-        :dev {:closure-defines {lweb.prerender/DEV true}}
-         :modules {:main {:entries [lweb.prerender]}}
-   }
-  }
-}
+              :output-to "prerender.js"
+              :main lweb.prerender/prerender
+              :dev {:closure-defines {lweb.prerender/DEV true}}
+              :modules {:main {:entries [lweb.prerender]}}}}}

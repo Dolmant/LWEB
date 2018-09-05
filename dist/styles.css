@@ -366,6 +366,21 @@ h2 {
   text-transform: uppercase;
 }
 
+#model-viewer {
+  height: 80vh;
+  width: 80vw;
+  position: relative;
+}
+#model-viewer .viewer {
+  height: 80vh;
+  width: 80vw;
+}
+#model-viewer .gui-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 canvas {
   height: 100%;
   width: 100%;
@@ -1096,27 +1111,27 @@ body.work .projects {
     padding-bottom: 25px;
   }
 }
-.projects > li:nth-child(3n+3) {
+.projects > li:nth-child(3n + 3) {
   margin-right: 0%;
 }
 
 @media only screen and (max-width: 1000px) {
-  .projects > li:nth-child(3n+3) {
+  .projects > li:nth-child(3n + 3) {
     margin-right: 0%;
   }
 }
 @media only screen and (max-width: 500px) {
-  .projects > li:nth-child(3n+3) {
+  .projects > li:nth-child(3n + 3) {
     margin-right: 0%;
   }
 }
 @media only screen and (max-width: 1000px) {
-  .projects > li:nth-child(2n+2) {
+  .projects > li:nth-child(2n + 2) {
     margin-right: 0%;
   }
 }
 @media only screen and (max-width: 500px) {
-  .projects > li:nth-child(2n+2) {
+  .projects > li:nth-child(2n + 2) {
     margin-right: 0%;
   }
 }

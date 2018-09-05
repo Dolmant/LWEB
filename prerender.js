@@ -7,7 +7,7 @@ try {require('source-map-support').install();} catch (e) {console.warn('no "sour
 
 global.CLOSURE_NO_DEPS = true;
 
-global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"lweb.prerender.DEV":true,"shadow.cljs.devtools.client.env.proc_id":"302399a1-4c61-4983-88c4-cd247f449579","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9631,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
+global.CLOSURE_DEFINES = {"shadow.cljs.devtools.client.env.repl_pprint":false,"shadow.cljs.devtools.client.env.devtools_url":"","shadow.cljs.devtools.client.env.autoload":false,"lweb.prerender.DEV":true,"shadow.cljs.devtools.client.env.proc_id":"c7271cd0-e3cf-4bb5-ad64-4552a08ea302","goog.ENABLE_DEBUG_LOADER":false,"shadow.cljs.devtools.client.env.server_port":9630,"shadow.cljs.devtools.client.env.use_document_host":true,"shadow.cljs.devtools.client.env.module_format":"goog","goog.LOCALE":"en","shadow.cljs.devtools.client.env.build_id":"prerender","shadow.cljs.devtools.client.env.ignore_warnings":false,"goog.DEBUG":true,"cljs.core._STAR_target_STAR_":"nodejs","shadow.cljs.devtools.client.env.ssl":false,"shadow.cljs.devtools.client.env.enabled":true,"shadow.cljs.devtools.client.env.server_host":"localhost","goog.TRANSPILE":"never"};
 
 var goog = global.goog = {};
 
@@ -3004,40 +3004,6 @@ goog.provide = SHADOW_PROVIDE;
 goog.require = SHADOW_REQUIRE;
 /** @const */ var $jscomp = $jscomp || {};
 /** @const */ $jscomp.scope = {};
-/**
- @param {!Object} obj
- @param {string} prop
- @return {boolean}
- */
-$jscomp.owns = function(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-/**
- @final
- @param {!Object} target
- @param {...?Object} var_args
- @return {!Object}
- */
-$jscomp.assign = typeof Object.assign == "function" ? Object.assign : /**
- @param {!Object} target
- @param {...?Object} var_args
- @return {!Object}
- @suppress {reportUnknownTypes}
- */
-function(target, var_args) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-    if (!source) {
-      continue;
-    }
-    for (var key in source) {
-      if ($jscomp.owns(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-  return target;
-};
 /** @define {boolean} */ $jscomp.ASSUME_ES5 = false;
 /** @define {boolean} */ $jscomp.ASSUME_NO_NATIVE_MAP = false;
 /** @define {boolean} */ $jscomp.ASSUME_NO_NATIVE_SET = false;
@@ -3063,37 +3029,6 @@ $jscomp.getGlobal = function(maybeGlobal) {
   return typeof window != "undefined" && window === maybeGlobal ? maybeGlobal : typeof global != "undefined" && global != null ? global : maybeGlobal;
 };
 /** @const @type {?} */ $jscomp.global = $jscomp.getGlobal(this);
-/**
- @param {string} target
- @param {?function(*):*} polyfill
- @param {string} fromLang
- @param {string} toLang
- @suppress {reportUnknownTypes}
- */
-$jscomp.polyfill = function(target, polyfill, fromLang, toLang) {
-  if (!polyfill) {
-    return;
-  }
-  var obj = $jscomp.global;
-  var split = target.split(".");
-  for (var i = 0; i < split.length - 1; i++) {
-    var key = split[i];
-    if (!(key in obj)) {
-      obj[key] = {};
-    }
-    obj = obj[key];
-  }
-  var property = split[split.length - 1];
-  var orig = obj[property];
-  var impl = polyfill(orig);
-  if (impl == orig || impl == null) {
-    return;
-  }
-  $jscomp.defineProperty(obj, property, {configurable:true, writable:true, value:impl});
-};
-$jscomp.polyfill("Object.assign", function(orig) {
-  return orig || $jscomp.assign;
-}, "es6", "es3");
 /** @const @type {string} */ $jscomp.SYMBOL_PREFIX = "jscomp_symbol_";
 /**
  @suppress {reportUnknownTypes}
@@ -3197,6 +3132,34 @@ $jscomp.makeIterator = function(iterable) {
   $jscomp.initSymbolIterator();
   var iteratorFunction = iterable[Symbol.iterator];
   return iteratorFunction ? iteratorFunction.call(iterable) : $jscomp.arrayIterator(iterable);
+};
+/**
+ @param {string} target
+ @param {?function(*):*} polyfill
+ @param {string} fromLang
+ @param {string} toLang
+ @suppress {reportUnknownTypes}
+ */
+$jscomp.polyfill = function(target, polyfill, fromLang, toLang) {
+  if (!polyfill) {
+    return;
+  }
+  var obj = $jscomp.global;
+  var split = target.split(".");
+  for (var i = 0; i < split.length - 1; i++) {
+    var key = split[i];
+    if (!(key in obj)) {
+      obj[key] = {};
+    }
+    obj = obj[key];
+  }
+  var property = split[split.length - 1];
+  var orig = obj[property];
+  var impl = polyfill(orig);
+  if (impl == orig || impl == null) {
+    return;
+  }
+  $jscomp.defineProperty(obj, property, {configurable:true, writable:true, value:impl});
 };
 /** @define {boolean} */ $jscomp.FORCE_POLYFILL_PROMISE = false;
 $jscomp.polyfill("Promise", /**
@@ -3512,6 +3475,424 @@ PolyfillPromise.prototype.settleSameAsThenable_ = function(thenMethod, thenable)
   };
   return PolyfillPromise;
 }, "es6", "es3");
+/**
+ @return {boolean}
+ @suppress {reportUnknownTypes}
+ */
+$jscomp.checkEs6ConformanceViaProxy = function() {
+  try {
+    var proxied = {};
+    var proxy = Object.create(new $jscomp.global["Proxy"](proxied, {"get":function(target, key, receiver) {
+      return target == proxied && key == "q" && receiver == proxy;
+    }}));
+    return proxy["q"] === true;
+  } catch (err) {
+    return false;
+  }
+};
+/** @define {boolean} */ $jscomp.USE_PROXY_FOR_ES6_CONFORMANCE_CHECKS = false;
+/** @const @type {boolean} */ $jscomp.ES6_CONFORMANCE = $jscomp.USE_PROXY_FOR_ES6_CONFORMANCE_CHECKS && $jscomp.checkEs6ConformanceViaProxy();
+/**
+ @param {!Object} obj
+ @param {string} prop
+ @return {boolean}
+ */
+$jscomp.owns = function(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+};
+$jscomp.polyfill("WeakMap", /**
+ @param {*} NativeWeakMap
+ @return {*}
+ @suppress {reportUnknownTypes}
+ */
+function(NativeWeakMap) {
+  /**
+ @return {boolean}
+ */
+function isConformant() {
+    if (!NativeWeakMap || !Object.seal) {
+      return false;
+    }
+    try {
+      var x = Object.seal({});
+      var y = Object.seal({});
+      var map = new NativeWeakMap([[x, 2], [y, 3]]);
+      if (map.get(x) != 2 || map.get(y) != 3) {
+        return false;
+      }
+      map.delete(x);
+      map.set(y, 4);
+      return !map.has(x) && map.get(y) == 4;
+    } catch (err) {
+      return false;
+    }
+  }
+  /**
+ @param {!Object} target
+ */
+function insert(target) {
+    if (!$jscomp.owns(target, prop)) {
+      var obj = {};
+      $jscomp.defineProperty(target, prop, {value:obj});
+    }
+  }
+  /**
+ @param {string} name
+ */
+function patch(name) {
+    var prev = Object[name];
+    if (prev) {
+      Object[name] = function(target) {
+        insert(target);
+        return prev(target);
+      };
+    }
+  }
+  if ($jscomp.USE_PROXY_FOR_ES6_CONFORMANCE_CHECKS) {
+    if (NativeWeakMap && $jscomp.ES6_CONFORMANCE) {
+      return NativeWeakMap;
+    }
+  } else {
+    if (isConformant()) {
+      return NativeWeakMap;
+    }
+  }
+  var prop = "$jscomp_hidden_" + Math.random();
+  patch("freeze");
+  patch("preventExtensions");
+  patch("seal");
+  var index = 0;
+  /**
+ @constructor
+ @extends {WeakMap<KEY,VALUE>}
+ @param {(!Iterator<!Array<(KEY|VALUE)>>|!Array<!Array<(KEY|VALUE)>>|null)=} opt_iterable
+ @template KEY,VALUE
+ */
+var PolyfillWeakMap = function(opt_iterable) {
+    /** @private @const @type {string} */ this.id_ = (index += Math.random() + 1).toString();
+    if (opt_iterable) {
+      $jscomp.initSymbol();
+      $jscomp.initSymbolIterator();
+      var iter = $jscomp.makeIterator(opt_iterable);
+      for (var entry; !(entry = iter.next()).done;) {
+        var item = entry.value;
+        this.set(item[0], item[1]);
+      }
+    }
+  };
+  /** @override */ PolyfillWeakMap.prototype.set = function(key, value) {
+    insert(key);
+    if (!$jscomp.owns(key, prop)) {
+      throw new Error("WeakMap key fail: " + key);
+    }
+    key[prop][this.id_] = value;
+    return this;
+  };
+  /** @override */ PolyfillWeakMap.prototype.get = function(key) {
+    return $jscomp.owns(key, prop) ? key[prop][this.id_] : undefined;
+  };
+  /** @override */ PolyfillWeakMap.prototype.has = function(key) {
+    return $jscomp.owns(key, prop) && $jscomp.owns(key[prop], this.id_);
+  };
+  /** @override */ PolyfillWeakMap.prototype.delete = function(key) {
+    if (!$jscomp.owns(key, prop) || !$jscomp.owns(key[prop], this.id_)) {
+      return false;
+    }
+    return delete key[prop][this.id_];
+  };
+  return PolyfillWeakMap;
+}, "es6", "es3");
+/**
+ @record
+ @template KEY,VALUE
+ @suppress {reportUnknownTypes}
+ */
+$jscomp.MapEntry = function() {
+  /** @type {!$jscomp.MapEntry<KEY,VALUE>} */ this.previous;
+  /** @type {!$jscomp.MapEntry<KEY,VALUE>} */ this.next;
+  /** @type {?Object} */ this.head;
+  /** @type {KEY} */ this.key;
+  /** @type {VALUE} */ this.value;
+};
+$jscomp.polyfill("Map", /**
+ @param {*} NativeMap
+ @return {*}
+ @suppress {reportUnknownTypes}
+ */
+function(NativeMap) {
+  /**
+ @return {boolean}
+ @suppress {missingProperties}
+ */
+function isConformant() {
+    if ($jscomp.ASSUME_NO_NATIVE_MAP || !NativeMap || typeof NativeMap != "function" || !NativeMap.prototype.entries || typeof Object.seal != "function") {
+      return false;
+    }
+    try {
+      NativeMap = NativeMap;
+      var key = Object.seal({x:4});
+      var map = new NativeMap($jscomp.makeIterator([[key, "s"]]));
+      if (map.get(key) != "s" || map.size != 1 || map.get({x:4}) || map.set({x:4}, "t") != map || map.size != 2) {
+        return false;
+      }
+      var /** !Iterator<!Array> */ iter = map.entries();
+      var item = iter.next();
+      if (item.done || item.value[0] != key || item.value[1] != "s") {
+        return false;
+      }
+      item = iter.next();
+      if (item.done || item.value[0].x != 4 || item.value[1] != "t" || !iter.next().done) {
+        return false;
+      }
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+  if ($jscomp.USE_PROXY_FOR_ES6_CONFORMANCE_CHECKS) {
+    if (NativeMap && $jscomp.ES6_CONFORMANCE) {
+      return NativeMap;
+    }
+  } else {
+    if (isConformant()) {
+      return NativeMap;
+    }
+  }
+  $jscomp.initSymbol();
+  $jscomp.initSymbolIterator();
+  /** @const @type {!WeakMap<!Object,string>} */ var idMap = new WeakMap;
+  /**
+ @struct
+ @constructor
+ @extends {Map<KEY,VALUE>}
+ @implements {Iterable<!Array<(KEY|VALUE)>>}
+ @param {(!Iterable<!Array<(KEY|VALUE)>>|!Array<!Array<(KEY|VALUE)>>|null)=} opt_iterable
+ @template KEY,VALUE
+ */
+var PolyfillMap = function(opt_iterable) {
+    /** @private @type {!Object<?,!Array<!$jscomp.MapEntry<KEY,VALUE>>>} */ this.data_ = {};
+    /** @private @type {!$jscomp.MapEntry<KEY,VALUE>} */ this.head_ = createHead();
+    /** @type {number} */ this.size = 0;
+    if (opt_iterable) {
+      var iter = $jscomp.makeIterator(opt_iterable);
+      for (var entry; !(entry = iter.next()).done;) {
+        var item = entry.value;
+        this.set(item[0], item[1]);
+      }
+    }
+  };
+  /** @override */ PolyfillMap.prototype.set = function(key, value) {
+    key = key === 0 ? 0 : key;
+    var r = maybeGetEntry(this, key);
+    if (!r.list) {
+      r.list = this.data_[r.id] = [];
+    }
+    if (!r.entry) {
+      r.entry = {next:this.head_, previous:this.head_.previous, head:this.head_, key:key, value:value};
+      r.list.push(r.entry);
+      this.head_.previous.next = r.entry;
+      this.head_.previous = r.entry;
+      this.size++;
+    } else {
+      r.entry.value = value;
+    }
+    return this;
+  };
+  /** @override */ PolyfillMap.prototype.delete = function(key) {
+    var r = maybeGetEntry(this, key);
+    if (r.entry && r.list) {
+      r.list.splice(r.index, 1);
+      if (!r.list.length) {
+        delete this.data_[r.id];
+      }
+      r.entry.previous.next = r.entry.next;
+      r.entry.next.previous = r.entry.previous;
+      r.entry.head = null;
+      this.size--;
+      return true;
+    }
+    return false;
+  };
+  /** @override */ PolyfillMap.prototype.clear = function() {
+    this.data_ = {};
+    this.head_ = this.head_.previous = createHead();
+    this.size = 0;
+  };
+  /** @override */ PolyfillMap.prototype.has = function(key) {
+    return !!maybeGetEntry(this, key).entry;
+  };
+  /** @override */ PolyfillMap.prototype.get = function(key) {
+    var entry = maybeGetEntry(this, key).entry;
+    return entry && entry.value;
+  };
+  /** @override */ PolyfillMap.prototype.entries = function() {
+    return makeIterator(this, /**
+ @return {!Array<(KEY|VALUE)>}
+ */
+function(/** !$jscomp.MapEntry<KEY,VALUE> */ entry) {
+      return [entry.key, entry.value];
+    });
+  };
+  /** @override */ PolyfillMap.prototype.keys = function() {
+    return makeIterator(this, /**
+ @return {KEY}
+ */
+function(/** !$jscomp.MapEntry<KEY,VALUE> */ entry) {
+      return entry.key;
+    });
+  };
+  /** @override */ PolyfillMap.prototype.values = function() {
+    return makeIterator(this, /**
+ @return {VALUE}
+ */
+function(/** !$jscomp.MapEntry<KEY,VALUE> */ entry) {
+      return entry.value;
+    });
+  };
+  /** @override */ PolyfillMap.prototype.forEach = function(callback, opt_thisArg) {
+    var iter = this.entries();
+    for (var item; !(item = iter.next()).done;) {
+      var entry = item.value;
+      callback.call(opt_thisArg, entry[1], entry[0], this);
+    }
+  };
+  PolyfillMap.prototype[Symbol.iterator] = PolyfillMap.prototype.entries;
+  /**
+ @param {!PolyfillMap<KEY,VALUE>} map
+ @param {KEY} key
+ @return {{id:string,list:(!Array<!$jscomp.MapEntry<KEY,VALUE>>|undefined),index:number,entry:(!$jscomp.MapEntry<KEY,VALUE>|undefined)}}
+ @template KEY,VALUE
+ */
+var maybeGetEntry = function(map, key) {
+    var id = getId(key);
+    var list = map.data_[id];
+    if (list && $jscomp.owns(map.data_, id)) {
+      for (var index = 0; index < list.length; index++) {
+        var entry = list[index];
+        if (key !== key && entry.key !== entry.key || key === entry.key) {
+          return {id:id, list:list, index:index, entry:entry};
+        }
+      }
+    }
+    return {id:id, list:list, index:-1, entry:undefined};
+  };
+  /**
+ @private
+ @param {!PolyfillMap<KEY,VALUE>} map
+ @param {function(!$jscomp.MapEntry<KEY,VALUE>):T} func
+ @return {!IteratorIterable<T>}
+ @template KEY,VALUE,T
+ */
+var makeIterator = function(map, func) {
+    var entry = map.head_;
+    return $jscomp.iteratorPrototype(function() {
+      if (entry) {
+        for (; entry.head != map.head_;) {
+          entry = entry.previous;
+        }
+        for (; entry.next != entry.head;) {
+          entry = entry.next;
+          return {done:false, value:func(entry)};
+        }
+        entry = null;
+      }
+      return {done:true, value:void 0};
+    });
+  };
+  /**
+ @return {!$jscomp.MapEntry<KEY,VALUE>}
+ @template KEY,VALUE
+ @suppress {checkTypes}
+ */
+var createHead = function() {
+    var head = {};
+    head.previous = head.next = head.head = head;
+    return head;
+  };
+  /** @private @type {number} */ var mapIndex = 0;
+  /**
+ @param {*} obj
+ @return {string}
+ */
+var getId = function(obj) {
+    var type = obj && typeof obj;
+    if (type == "object" || type == "function") {
+      obj = obj;
+      if (!idMap.has(obj)) {
+        var id = "" + ++mapIndex;
+        idMap.set(obj, id);
+        return id;
+      }
+      return idMap.get(obj);
+    }
+    return "p_" + obj;
+  };
+  return PolyfillMap;
+}, "es6", "es3");
+$jscomp.polyfill("Array.from", function(orig) {
+  if (orig) {
+    return orig;
+  }
+  /**
+ @param {(!IArrayLike<INPUT>|!Iterable<INPUT>)} arrayLike
+ @param {function(this:THIS,INPUT,number):OUTPUT=} opt_mapFn
+ @param {THIS=} opt_thisArg
+ @return {!Array<OUTPUT>}
+ @template INPUT,OUTPUT,THIS
+ @suppress {reportUnknownTypes}
+ */
+var polyfill = function(arrayLike, opt_mapFn, opt_thisArg) {
+    $jscomp.initSymbolIterator();
+    opt_mapFn = opt_mapFn != null ? opt_mapFn : function(x) {
+      return x;
+    };
+    var result = [];
+    var iteratorFunction = arrayLike[Symbol.iterator];
+    if (typeof iteratorFunction == "function") {
+      arrayLike = iteratorFunction.call(arrayLike);
+      var next;
+      for (var k = 0; !(next = arrayLike.next()).done;) {
+        result.push(opt_mapFn.call(opt_thisArg, next.value, k++));
+      }
+    } else {
+      var len = arrayLike.length;
+      for (var i = 0; i < len; i++) {
+        result.push(opt_mapFn.call(opt_thisArg, arrayLike[i], i));
+      }
+    }
+    return result;
+  };
+  return polyfill;
+}, "es6", "es3");
+/**
+ @final
+ @param {!Object} target
+ @param {...?Object} var_args
+ @return {!Object}
+ */
+$jscomp.assign = typeof Object.assign == "function" ? Object.assign : /**
+ @param {!Object} target
+ @param {...?Object} var_args
+ @return {!Object}
+ @suppress {reportUnknownTypes}
+ */
+function(target, var_args) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    if (!source) {
+      continue;
+    }
+    for (var key in source) {
+      if ($jscomp.owns(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
+$jscomp.polyfill("Object.assign", function(orig) {
+  return orig || $jscomp.assign;
+}, "es6", "es3");
 
 global.$jscomp = $jscomp;
 SHADOW_IMPORT("goog.debug.error.js");
@@ -3705,9 +4086,10 @@ SHADOW_IMPORT("goog.dom.inputtype.js");
 SHADOW_IMPORT("goog.window.window.js");
 SHADOW_IMPORT("goog.dom.forms.js");
 SHADOW_IMPORT("shadow.js.shim.module$three.js");
-SHADOW_IMPORT("shadow.js.shim.module$three_obj_loader.js");
 SHADOW_IMPORT("shadow.js.shim.module$three_gltf_loader.js");
 SHADOW_IMPORT("module$gen$dracoloader$dracoloader.js");
+SHADOW_IMPORT("module$gen$modelviewer$modelviewer.js");
+SHADOW_IMPORT("module$gen$modelviewer$stats_min.js");
 SHADOW_IMPORT("shadow.js.shim.module$three_orbitcontrols.js");
 SHADOW_IMPORT("shadow.js.shim.module$dat_gui.js");
 SHADOW_IMPORT("lweb.DynamicReact.ModelViewer.js");
