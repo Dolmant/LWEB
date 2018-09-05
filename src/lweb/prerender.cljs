@@ -12,15 +12,13 @@
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (goog-define DEV false)
-
+(defonce sheetsManager (js/Map.))
 (rum/defc home-page < rum/reactive []
   [:div (App/App)])
 
-(defonce page (atom #'home-page))
-
 (rum/defc current-page []
   (ui/get-jss (ui/mui-theme-provider
-               {:theme (ui/get-mui-theme) :sheetsManager (js/Map.)}
+               {:theme (ui/get-mui-theme) :sheetsManager sheetsManager}
                (home-page))))
 
 ;prerender and hash the appropriate files

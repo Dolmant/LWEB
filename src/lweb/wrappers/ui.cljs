@@ -30,7 +30,6 @@
    ["@material-ui/core/MenuItem" :as MenuItem]
    ["@material-ui/core/styles/MuiThemeProvider" :as MuiThemeProvider]
    ["@material-ui/core/styles/createMuiTheme" :as createMuiTheme]
-;    ["@material-ui/core/styles/createGenerateClassName" :as createGenerateClassName]
    ["react-jss/lib/JssProvider" :as JssProvider]
    ["react-jss/lib/jss" :as SheetsRegistry]
    ["@material-ui/core/Select" :as Select]
@@ -40,11 +39,11 @@
    [clojure.string :as str]
    [sablono.util :refer [camel-case]]))
 (def JssProviderer (lweb.rum-adaptor-macro/adapt-rum-class JssProvider/default))
-; (defonce generateClassName (createGenerateClassName/default))
-(defonce sheetsRegistry (SheetsRegistry/SheetsRegistry.))
-(def generateClassName (do
-                         (defonce counter (atom 0))
-                         (fn [rule, sheet] (swap! counter inc) (str/join "" ["stable-" (.-key rule) "-" @counter]))))
+(def sheetsRegistry (SheetsRegistry/SheetsRegistry.))
+; Its important this is generated every render, so no defonce and this must be a function
+(defn generateClassName []
+  (def counter (atom 0))
+  (fn [rule, sheet] (swap! counter inc) (str/join "" ["stable-" (.-key rule) "-" @counter])))
 
 (defn transform-keys [t coll]
   "Recursively transforms all map keys in coll with t."
@@ -58,7 +57,7 @@
                      clj->js
                      createMuiTheme/default)))
 (rum/defc get-jss [child]
-  (JssProviderer {:registry sheetsRegistry :generateClassName generateClassName} child))
+  (JssProviderer {:registry sheetsRegistry :generateClassName (generateClassName)} child))
 (def toolbar (lweb.rum-adaptor-macro/adapt-rum-class Toolbar/default))
 (def dialog (lweb.rum-adaptor-macro/adapt-rum-class Dialog/default))
 (def dialog-actions (lweb.rum-adaptor-macro/adapt-rum-class DialogActions/default))

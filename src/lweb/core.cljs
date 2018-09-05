@@ -1,12 +1,12 @@
 (ns lweb.core
   (:require-macros [lweb.rum-adaptor-macro])
   (:require   [rum.core :as rum]
-              [secretary.core :as secretary :include-macros true]
-              [accountant.core :as accountant]
-              [lweb.App :as App]
+              [lweb.wrappers.ui :as ui]
+              [lweb.wrappers.ic :as ic]
               ["toastr" :as toastr]
-              ["/gen/particles/particles" :as particlesJS]
-              [lweb.wrappers.ui :as ui]))
+              ["react-spinners"]
+              [lweb.App :as App]
+              ["/gen/particles/particles" :as particlesJS]))
 
 (enable-console-print!)
 
@@ -30,16 +30,12 @@
 
 (rum/defc home-page < rum/reactive []
   [:div (App/App)])
-
-(defonce page (atom #'home-page))
+(defonce sheetsManager (js/Map.))
 
 (rum/defc current-page []
   (ui/get-jss (ui/mui-theme-provider
-               {:theme (ui/get-mui-theme) :sheetsManager (js/Map.)}
-               (@page))))
-
-(secretary/defroute "/*" []
-  (reset! page #'home-page))
+               {:theme (ui/get-mui-theme) :sheetsManager sheetsManager}
+               (home-page))))
 
 (defn mountRoot []
   (def toasterOptions (aget toastr "options"))
@@ -53,21 +49,10 @@
 
   (def targetElement (.getElementById js/document "app"))
   (if (.hasChildNodes targetElement)
-    (do (js/console.log "hydrated") (rum/mount (current-page) targetElement) (waitForImages true));(do (js/console.log "hydrated") (rum/hydrate (current-page) targetElement) (waitForImages true))
+    (do (js/console.log "hydrated") (rum/hydrate (current-page) targetElement) (waitForImages true))
     (do (js/console.log "rendered") (rum/mount (current-page) targetElement) (waitForImages false))))
 
-(defn init! []
-  (accountant/configure-navigation!
-   {:nav-handler
-    (fn [path]
-      (secretary/dispatch! path))
-    :path-exists?
-    (fn [path]
-      (secretary/locate-route path))})
-  (accountant/dispatch-current!)
+(defn reload! []
   (mountRoot))
 
-(defn reload! []
-  (init!))
-
-(init!)
+(mountRoot)
