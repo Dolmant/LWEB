@@ -15,6 +15,7 @@
                           [[:h1 {:key 1}
                             [:img {:on-click (fn [] (DynamicReactState/SetPage "home")) :src "./assets/images/LEOTIDErev.png" :alt "LeoTide"}]]
                            (NavMenu/NavMenu)
-                           [:div.cursor {:key 3 :on-click (fn [] (DynamicReactState/SetCategory :CHECKOUT))}
-                            [:div.total-count (count shoppingCart)]
-                            (ic/shoppingCartIcon)]]))])
+                        ;    [:div.cursor {:key 3 :on-click (fn [] (DynamicReactState/SetCategory :CHECKOUT))}
+                        ;     [:div.total-count (count shoppingCart)]
+                        ;     (ic/shoppingCartIcon)]
+]))])

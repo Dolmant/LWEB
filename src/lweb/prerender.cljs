@@ -13,19 +13,18 @@
 
 (goog-define DEV false)
 
-(rum/defc home-page []
+(rum/defc home-page < rum/reactive []
   [:div (App/App)])
 
 (defonce page (atom #'home-page))
 
 (rum/defc current-page []
-  (ui/mui-theme-provider
-   {:theme (ui/get-mui-theme)}
-   (home-page)))
+  (ui/get-jss (ui/mui-theme-provider
+               {:theme (ui/get-mui-theme) :sheetsManager (js/Map.)}
+               (home-page))))
 
 ;prerender and hash the appropriate files
 (defn prerender []
-  (fs/writeFile "dist/manifest.webmanifest" (fs/readFile "manifest.webmanifest" "") {})
     ;Clear any previously hashed files
   (doall (map
           #(if (str/includes? %1 ".css")
@@ -54,7 +53,7 @@
                                 (fs/writeFile (str/join "" ["dist/" newName]) content {})
                                 newName))
                            (fs/readdir "dist"))))
-  (def data (str/join "" ["<!DOCTYPE html>" (reactDOM/renderToString [(htmlTemplate/Template @page (if DEV ["styles.css"] css) (if DEV ["main.js"] jsmap))])]))
+  (def data (str/join "" ["<!DOCTYPE html>" (reactDOM/renderToString [(htmlTemplate/Template current-page (if DEV ["styles.css"] css) (if DEV ["main.js"] jsmap))])]))
   (go
     (let [[err] (<! (io/aspit "dist/index.html" data))]
       (if-not err

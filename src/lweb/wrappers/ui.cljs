@@ -2,7 +2,7 @@
   (:refer-clojure :exclude [list stepper])
   (:require-macros [lweb.rum-adaptor-macro])
   (:require
-   [rum.core]
+   [rum.core :as rum]
    ["@material-ui/core/AppBar" :as AppBar]
    ["@material-ui/core/DialogTitle" :as DialogTitle]
    ["@material-ui/core/Dialog" :as Dialog]
@@ -30,11 +30,21 @@
    ["@material-ui/core/MenuItem" :as MenuItem]
    ["@material-ui/core/styles/MuiThemeProvider" :as MuiThemeProvider]
    ["@material-ui/core/styles/createMuiTheme" :as createMuiTheme]
+;    ["@material-ui/core/styles/createGenerateClassName" :as createGenerateClassName]
+   ["react-jss/lib/JssProvider" :as JssProvider]
+   ["react-jss/lib/jss" :as SheetsRegistry]
    ["@material-ui/core/Select" :as Select]
    ["@material-ui/core/SvgIcon" :as SvgIcon]
    ["@material-ui/core/TextField" :as TextField]
    [clojure.walk :refer [postwalk]]
+   [clojure.string :as str]
    [sablono.util :refer [camel-case]]))
+(def JssProviderer (lweb.rum-adaptor-macro/adapt-rum-class JssProvider/default))
+; (defonce generateClassName (createGenerateClassName/default))
+(defonce sheetsRegistry (SheetsRegistry/SheetsRegistry.))
+(def generateClassName (do
+                         (defonce counter (atom 0))
+                         (fn [rule, sheet] (swap! counter inc) (str/join "" ["stable-" (.-key rule) "-" @counter]))))
 
 (defn transform-keys [t coll]
   "Recursively transforms all map keys in coll with t."
@@ -43,11 +53,12 @@
 
 (defn get-mui-theme
   ([]  (get-mui-theme (createMuiTheme/default (js-obj))))
-  ([raw-theme] (->> raw-theme
-                    (transform-keys camel-case)
-                    clj->js
-                    createMuiTheme/default)))
-
+  ([raw-theme]  (->> raw-theme
+                     (transform-keys camel-case)
+                     clj->js
+                     createMuiTheme/default)))
+(rum/defc get-jss [child]
+  (JssProviderer {:registry sheetsRegistry :generateClassName generateClassName} child))
 (def toolbar (lweb.rum-adaptor-macro/adapt-rum-class Toolbar/default))
 (def dialog (lweb.rum-adaptor-macro/adapt-rum-class Dialog/default))
 (def dialog-actions (lweb.rum-adaptor-macro/adapt-rum-class DialogActions/default))

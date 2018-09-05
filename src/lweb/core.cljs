@@ -1,11 +1,11 @@
 (ns lweb.core
+  (:require-macros [lweb.rum-adaptor-macro])
   (:require   [rum.core :as rum]
               [secretary.core :as secretary :include-macros true]
               [accountant.core :as accountant]
               [lweb.App :as App]
               ["toastr" :as toastr]
               ["/gen/particles/particles" :as particlesJS]
-              [lweb.rum-adaptor :as rum-adaptor]
               [lweb.wrappers.ui :as ui]))
 
 (enable-console-print!)
@@ -34,9 +34,9 @@
 (defonce page (atom #'home-page))
 
 (rum/defc current-page []
-  (ui/mui-theme-provider
-   {:theme (ui/get-mui-theme)}
-   (@page)))
+  (ui/get-jss (ui/mui-theme-provider
+               {:theme (ui/get-mui-theme) :sheetsManager (js/Map.)}
+               (@page))))
 
 (secretary/defroute "/*" []
   (reset! page #'home-page))
@@ -53,7 +53,7 @@
 
   (def targetElement (.getElementById js/document "app"))
   (if (.hasChildNodes targetElement)
-    (do (js/console.log "hydrated") (rum/hydrate (current-page) targetElement) (waitForImages true))
+    (do (js/console.log "hydrated") (rum/mount (current-page) targetElement) (waitForImages true));(do (js/console.log "hydrated") (rum/hydrate (current-page) targetElement) (waitForImages true))
     (do (js/console.log "rendered") (rum/mount (current-page) targetElement) (waitForImages false))))
 
 (defn init! []
