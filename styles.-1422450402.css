@@ -268,7 +268,7 @@ h3 {
   letter-spacing: 0px;
   font-weight: 600;
   font-style: normal;
-  font-size: 26px;
+  font-size: 2rem;
 }
 
 h4 {
@@ -281,7 +281,7 @@ h4 {
   letter-spacing: 0px;
   font-weight: 400;
   font-style: normal;
-  font-size: 18px;
+  font-size: 1.3rem;
 }
 
 h6 {
@@ -290,7 +290,7 @@ h6 {
   letter-spacing: 0px;
   font-weight: 400;
   font-style: normal;
-  font-size: 18px;
+  font-size: 1.3rem;
 }
 
 h7 {
@@ -307,7 +307,7 @@ h7 {
   letter-spacing: 0px;
   font-weight: 600;
   font-style: normal;
-  font-size: 26px;
+  font-size: 2rem;
 }
 
 h8 {
@@ -324,7 +324,7 @@ h8 {
   letter-spacing: 0px;
   font-weight: 400;
   font-style: normal;
-  font-size: 18px;
+  font-size: 1.3rem;
 }
 
 * {
@@ -343,7 +343,6 @@ body {
   line-height: 20px;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
-  font-size: 14px;
   letter-spacing: 0.02em;
 }
 
@@ -369,11 +368,15 @@ h2 {
 #model-viewer {
   height: 80vh;
   width: 80vw;
+  max-height: 80vw;
+  max-width: 80vh;
   position: relative;
 }
 #model-viewer .viewer {
   height: 80vh;
   width: 80vw;
+  max-height: 80vw;
+  max-width: 80vh;
 }
 #model-viewer .gui-wrap {
   position: absolute;
@@ -416,6 +419,15 @@ html.sidebar-open {
   overflow: hidden;
 }
 
+html {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 12px;
+  }
+}
 html.sidebar-open body {
   overflow: hidden;
 }
@@ -631,9 +643,13 @@ footer label {
 }
 
 @media only screen and (max-width: 1000px) {
+  footer .container {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 1000px) {
   .contact_me {
     position: static;
-    width: 25%;
     margin-top: 25px;
     padding-right: 0px;
   }
@@ -731,13 +747,6 @@ footer label {
   margin: 10px;
 }
 
-.overlayform {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .img-wrap-overlay,
 .overlay-video {
   display: flex;
@@ -795,6 +804,7 @@ footer label {
 }
 
 .overlayform {
+  justify-content: center;
   width: 75%;
   min-width: 300px;
   position: relative;
@@ -806,6 +816,11 @@ footer label {
   background-image: url("/assets/webImages/EmailPage.jpg");
 }
 
+@media only screen and (max-width: 800px) {
+  .overlayform {
+    background-image: none;
+  }
+}
 .overlay_container form ul {
   width: 66%;
   height: 100%;
@@ -939,7 +954,6 @@ footer .container > div.social {
 
 @media only screen and (max-width: 1000px) {
   footer .container > div.social {
-    width: 25%;
     position: static;
     margin-top: 27px;
     text-align: left;
@@ -1017,7 +1031,6 @@ footer .container > div.social {
   width: 100%;
   text-align: center;
   background-color: white;
-  font-size: 15px;
   padding-bottom: 1rem;
 }
 .desc_holder .boxes {
@@ -1035,7 +1048,9 @@ footer .container > div.social {
 .desc_holder .desc_text {
   margin-top: 10px;
   white-space: pre-wrap;
-  font-size: 20px;
+  font-size: 1.2rem;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .desc_holder .desc_text .left {
   text-align: left;
@@ -1070,8 +1085,6 @@ footer .container > div.social {
 @media only screen and (max-width: 500px) {
   .projects {
     margin: 0 auto;
-    padding-top: 10%;
-    width: 100%;
   }
 }
 body.work .projects {
