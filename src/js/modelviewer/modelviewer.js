@@ -804,6 +804,10 @@ module.exports = class App {
       .then(cleanup);
   }
 
+  clear() {
+    if (this.viewer) this.viewer.clear();
+  }
+
   /**
    * @param  {Error} error
    */

@@ -37,7 +37,9 @@
     (if (= item :ALL)
       (ui/button {:key item :on-click (fn [] (scroll-into-view "content") (oncatClick item)) :id item} "ILLUSTRATIONS")
       (ui/button {:key item :on-click (fn [] (scroll-into-view "content") (oncatClick item)) :id item} (name item))))
-  (concat before (map navMapper (sort sorter (filter filterfn (keys consts/projectListLabels)))) after))
+  (if consts/isTouch
+    (concat before after)
+    (concat before (map navMapper (sort sorter (filter filterfn (keys consts/projectListLabels)))) after)))
 
 (defn NavMenu [] (rum/with-key (NavMenuNoKey) "navmenu"))
 

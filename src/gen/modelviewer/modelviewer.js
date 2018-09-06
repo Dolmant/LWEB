@@ -818,6 +818,11 @@ module.exports = function () {
         if ((typeof rootFile === "undefined" ? "undefined" : _typeof(rootFile)) === "object") URL.revokeObjectURL(fileURL);
       });
     }
+  }, {
+    key: "clear",
+    value: function clear() {
+      if (this.viewer) this.viewer.clear();
+    }
 
     /**
      * @param  {Error} error
