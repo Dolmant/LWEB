@@ -79,9 +79,11 @@
   (selectedOverlayImageNum overlay_image_num (@State :category) (@State :overlay_vertical_index) (@State :overlay)))
 
 (defn SetOverlay [name]
+  (set! (.-className (.getElementById js/document "body")) "no-overflow")
   (selectedOverlayImageNum (@State :overlay_image_num) (@State :category) (@State :overlay_vertical_index) (update-vals (@State :overlay) {:state true :name name})))
 
 (defn CloseOverlay []
+  (set! (.-className (.getElementById js/document "body")) "")
   (SetAttr :overlay {:state false :name false}))
 
 (defn SetCategory [category]

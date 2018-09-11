@@ -4,9 +4,11 @@
             [lweb.Shop.CartManagement.AddToCart :as AddToCart]
             [goog.dom.forms :as gforms]
             [cljs-http.client :as http]
+            [lweb.consts :as consts]
             [lweb.DynamicReact.ModelViewer :as ModelViewer]
             [lweb.Shop.CartManagement.Checkout :as Checkout]
             [lweb.wrappers.ui :as ui]
+            [lweb.wrappers.ic :as ic]
             ["/gen/lazySizes/index" :default Lazy]
             [clojure.string :as str]
             [lweb.rum-adaptor-macro]
@@ -61,10 +63,23 @@
       [:a {:class "closebutton strokeme" :on-click (fn [e] (CloseButtonClick e))} "✖"]
       [:div.overlayimagecontrol
        [:div
-        (if (get-in overlay [:arrows :left]) [:div.img-wrap-left-overlay [:img.leftnav_overlay {:alt "It's not loading!" :src "./assets/icons/LeftIcon.png" :on-click #(DynamicReactState/NavOverlayImage "left")}]])
-        (if (get-in overlay [:arrows :right]) [:div.img-wrap-right-overlay [:img.rightnav_overlay {:alt "It's not loading!" :src "./assets/icons/RightIcon.png" :on-click #(DynamicReactState/NavOverlayImage "right")}]])
-        (if (get-in overlay [:arrows :up]) [:div.img-wrap-up-overlay [:img.upnav_overlay {:alt "It's not loading!" :src "./assets/icons/UpIcon.png" :on-click #(DynamicReactState/NavOverlayImage "up")}]])
-        (if (get-in overlay [:arrows :down]) [:div.img-wrap-down-overlay [:img.downnav_overlay {:alt "It's not loading!" :src "./assets/icons/DownIcon.png" :on-click #(DynamicReactState/NavOverlayImage "down")}]])]
+        (if consts/isTouch [:div.img-wrap-up-overlay
+              (if (get-in overlay [:arrows :left]) (ic/chevronLeft {:on-click #(DynamicReactState/NavOverlayImage "left")}))
+              (if (get-in overlay [:arrows :up]) (ic/keyboardArrowUp {:on-click #(DynamicReactState/NavOverlayImage "up")}))
+              (if (get-in overlay [:arrows :down]) (ic/keyboardArrowDown {:on-click #(DynamicReactState/NavOverlayImage "down")}))
+              (if (get-in overlay [:arrows :right]) (ic/chevronRight {:on-click #(DynamicReactState/NavOverlayImage "right")}))
+              ]
+        [(if (get-in overlay [:arrows :left]) [:div.img-wrap-left-overlay
+                                              (ic/chevronLeft {:on-click #(DynamicReactState/NavOverlayImage "left")})])
+        (if (get-in overlay [:arrows :right]) [:div.img-wrap-right-overlay
+                                              (ic/chevronRight {:on-click #(DynamicReactState/NavOverlayImage "right")})])
+        (if (get-in overlay [:arrows :up]) [:div.img-wrap-up-overlay
+                                              (ic/keyboardArrowUp {:on-click #(DynamicReactState/NavOverlayImage "up")})
+                                            (if (get-in overlay [:arrows :down])
+                                              (ic/keyboardArrowDown {:className "marginLeft" :on-click #(DynamicReactState/NavOverlayImage "down")}))])
+        (if (and (not (get-in overlay [:arrows :up])) (get-in overlay [:arrows :down])) [:div.img-wrap-down-overlay
+                                              (ic/keyboardArrowDown {:on-click #(DynamicReactState/NavOverlayImage "down")})])
+        ])]
        [:h2 overlay_txt]
        (if (overlay :is_video)
          [:video.overlay-video {:autoPlay "1" :loop "1" :controls "1"}

@@ -316,23 +316,23 @@
                                  :img_src "./assets/webImages/DnutFINAL.mp4"
                                  :img_txt "DOUGHNUTS!"
                                  :thumbs_src "./assets/webImages/thumbs/DnutFINAL.jpg"
-                                 :types [prices.pin]}
+                                 :types [(prices :pin)]}
                                 {:img_src "./assets/webImages/ShibaSynthesisPrototype.jpg"
                                  :img_txt "Shiba pin"
                                  :thumbs_src "./assets/webImages/thumbs/ShibaSynthesisPrototype.jpg"
-                                 :types [prices.pin]}
+                                 :types [(prices :pin)]}
                                 {:img_src "./assets/webImages/patches.jpg"
                                  :img_txt "Patches"
                                  :thumbs_src "./assets/webImages/thumbs/patches.jpg"
-                                 :types [prices.patch]}
+                                 :types [(prices :patch)]}
                                 {:img_src "./assets/webImages/InvisibleChameleonSticker.jpg"
                                  :img_txt "Invisible Chameleon Sticker"
                                  :thumbs_src "./assets/webImages/thumbs/InvisibleChameleonSticker.jpg"
-                                 :types [prices.sticker]}
+                                 :types [(prices :sticker)]}
                                 {:img_src "./assets/webImages/LabRat.jpg"
                                  :img_txt "Lab Rat"
                                  :thumbs_src "./assets/webImages/thumbs/LabRat.jpg"
-                                 :types [prices.sticker]}
+                                 :types [(prices :sticker)]}
                                 {:img_src "./assets/webImages/CatGlass.jpg"
                                  :img_txt "CatGlass"
                                  :thumbs_src "./assets/webImages/thumbs/CatGlass.jpg"}

@@ -253,7 +253,6 @@ body {
   line-height: 1;
   color: black;
   background: white;
-  overflow-x: hidden;
 }
 
 :focus {
@@ -438,11 +437,6 @@ hr {
   margin: 30px 0;
 }
 
-html.sidebar-open {
-  max-height: 100%;
-  overflow: hidden;
-}
-
 html {
   font-size: 16px;
 }
@@ -450,10 +444,6 @@ html {
   html {
     font-size: 12px;
   }
-}
-
-html.sidebar-open body {
-  overflow: hidden;
 }
 
 .loading {
@@ -699,7 +689,8 @@ footer label {
 
 .overlay_top {
   position: fixed;
-  display: block;
+  display: flex;
+  justify-content: center;
   top: 0;
   left: 0;
   width: 100%;
@@ -752,9 +743,12 @@ footer label {
 }
 
 .overlay_container {
+  max-height: calc(100vh - 80px);
+  @media only screen and (min-width: 800px) {
+    max-width: calc(100vw - 150px);
+  }
   position: relative;
-  top: 5%;
-  left: 5%;
+  top: 15px;
   width: 90%;
   height: 90%;
   box-sizing: border-box;
@@ -799,42 +793,67 @@ footer label {
   -o-transition: opacity 0.2s ease-out;
 }
 
+.no-overflow {
+  overflow: hidden;
+}
+
 .img-wrap-left-overlay {
+  svg {
+    fill: white;
+    font-size: 6em;
+  }
   position: absolute;
-  top: 48%;
-  left: -5%;
-  width: 4%;
+  top: 50%;
+  left: 0%;
+  transform: translateX(-100%) translateY(-50%);
+  // width: 4%;
   overflow: hidden;
   cursor: pointer;
 }
 
 .img-wrap-right-overlay {
+  svg {
+    fill: white;
+    font-size: 6em;
+  }
   position: absolute;
-  top: 48%;
-  left: 101%;
-  width: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 100%;
+  // width: 4%;
   overflow: hidden;
   cursor: pointer;
 }
 
 .img-wrap-up-overlay {
+  svg {
+    fill: white;
+    font-size: 6em;
+  }
+  .marginLeft {
+    margin-left: 1em;
+  }
   position: absolute;
-  top: -6%;
-  left: 48%;
-  width: 4%;
+  top: 100%;
+  left: 0%;
+  transform: translateX(calc(45vw - 50%));
+  // width: 4%;
   overflow: hidden;
   cursor: pointer;
-  filter: brightness(4);
 }
 
 .img-wrap-down-overlay {
+  svg {
+    fill: white;
+    font-size: 6em;
+  }
   position: absolute;
-  top: 104%;
-  left: 48%;
-  width: 4%;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  // width: 4%;
   overflow: hidden;
   cursor: pointer;
-  filter: brightness(4);
 }
 
 .overlayimage {
