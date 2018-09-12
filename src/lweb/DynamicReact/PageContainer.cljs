@@ -27,7 +27,7 @@
                   (map (fn [item]
                          [:li {:key (item :item_number) :on-click (fn [] (onImageClick (get item :item_number)))}
                           [:div.img-wrap
-                           [:div {:style {:height "90%" :width "90%" :backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover"}}]]])
+                           [:div {:style {:height "100%" :width "100%" :backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "contain"}}]]])
                        itemList)])
   (def listCarousel
     (map (fn [item]
