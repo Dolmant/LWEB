@@ -394,14 +394,14 @@
                                       :img_txt "Cardosin"
                                       :thumbs_src "./assets/webImages/thumbs/CardosinMovieGif.jpg"}
                                      {:is_video true
-                                      :img_src "./assets/webImages/05_ProteinPeephole.mp4"
+                                      :img_src "./assets/images/05_ProteinPeephole.mp4"
                                       :img_txt "Protein Peephole"
                                       :thumbs_src "./assets/webImages/thumbs/05_ProteinPeephole.jpg"}
                                      {:img_src "./assets/images/Carp_Swim.gif"
                                       :img_txt "Carp Swimming"
                                       :thumbs_src "./assets/webImages/thumbs/Carp_Swim.jpg"}
                                      {:is_video true
-                                      :img_src "./assets/webImages/01_MicroFinalRender01.mp4"
+                                      :img_src "./assets/images/01_MicroFinalRender01.mp4"
                                       :img_txt "Micro Messengers"
                                       :thumbs_src "./assets/webImages/thumbs/01_MicroFinalRender01.jpg"}]
                          :MODELS [{:img_src "./assets/webImages/.jpg"
