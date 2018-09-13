@@ -57,4 +57,3 @@
       (if-not err
         (println "you've successfully written to 'dist/index.html'")
         (println "there was an error writing: " err)))))
-(prerender)

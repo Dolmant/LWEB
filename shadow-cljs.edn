@@ -31,6 +31,7 @@
   :prerender {:target :node-script
               :output-to "prerender.js"
               :main lweb.prerender/prerender
+              :devtools {:after-load lweb.prerender/prerender}
               :release {:compiler-options {:optimizations :simple}}
               :dev {:closure-defines {lweb.prerender/DEV true}}
               :modules {:main {:entries [lweb.prerender]}}}}}
