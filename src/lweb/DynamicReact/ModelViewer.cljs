@@ -24,7 +24,10 @@
                 (def dracoLoader (THREE/DRACOLoader.))
                 (reset! animator @selectedModel)
 
-                (def controller (viewer. (.getElementById js/document "model-viewer") (js-obj "model" @selectedModel) THREE dat stats (fn [xhr] (reset! loadPerc (* 100 (/ xhr.loaded xhr.total))))))
+                (def controller (viewer. (.getElementById js/document "model-viewer") (js-obj "model" @selectedModel) THREE dat stats
+                                         (fn [xhr]
+                                           (reset! loadPerc
+                                                   (* 100 (/ xhr.loaded xhr.total))))))
                 state)
    :will-unmount (fn [state]
                    (if (not (= false @animator))
