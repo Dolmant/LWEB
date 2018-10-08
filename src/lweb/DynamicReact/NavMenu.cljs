@@ -27,7 +27,7 @@
 
 (def before [(ui/button {:key "before1" :on-click (fn [] (scroll-into-view "about")) :id 1} "ABOUT")
              (ui/button {:key "before2" :on-click (fn [e] (DynamicReactState/SetOverlay :contact)) :id 2} "CONTACT")])
-(def after [(ui/button {:key "after1" :on-click (fn [e] (DynamicReactState/SetOverlay :models)) :id 3} "MODELS")
+(def after [(if (not consts/isTouch) (ui/button {:key "after1" :on-click (fn [e] (DynamicReactState/SetOverlay :models)) :id 3} "MODELS"))
             (ui/button {:key "after2" :on-click (fn [e] (DynamicReactState/SetOverlay :checkout)) :id 4} "CHECKOUT")])
 (def bundled [:NATURE, :SCIENCE, :ANATOMY, :TYPOGRAPHY, :FACTS, :MISC, :CHECKOUT])
 (defn filterfn [item] (not (some #(= item %) bundled)))
