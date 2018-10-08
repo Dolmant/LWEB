@@ -24,7 +24,7 @@
                 (def dracoLoader (THREE/DRACOLoader.))
                 (reset! animator @selectedModel)
 
-                (def controller (viewer. (.getElementById js/document "model-viewer") (js-obj "model" @selectedModel) THREE dat stats (fn [xhr] (reset! loadPerc true))))
+                (def controller (viewer. (.getElementById js/document "model-viewer") (js-obj "model" @selectedModel) THREE dat stats (fn [xhr] (reset! loadPerc (* 100 (/ xhr.loaded xhr.total))))))
                 state)
    :will-unmount (fn [state]
                    (if (not (= false @animator))
@@ -39,8 +39,9 @@
                      (.view controller @selectedModel "" (js/Map.))))
                  state)}
   []
+  (js/console.log @loadPerc)
   [:div
-   (if (not (rum/react loadPerc)) (ui/linear-progress))
+   (if (not= 200 (rum/react loadPerc)) (ui/linear-progress {:variant "determinate" :value @loadPerc}))
    [:div.modelInstructions "Select the model to view: "
     (ui/select {:value (rum/react selectedModel) :onChange (fn [e] (reset! loadPerc false) (reset! selectedModel (.. e -target -value)))}
                (map (fn [item] (ui/menu-item {:value (item :model_src)} (item :img_txt))) (consts/projectList :MODELS)))]

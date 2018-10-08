@@ -12,30 +12,37 @@ var environments = [{
   name: "None",
   path: null,
   format: ".jpg"
-}, {
-  name: "Park (Day)",
-  path: "assets/environment/Park2/",
-  format: ".jpg"
-}, {
-  name: "Park (Night)",
-  path: "assets/environment/Park3Med/",
-  format: ".jpg"
-}, {
-  name: "Bridge",
-  path: "assets/environment/Bridge2/",
-  format: ".jpg"
-}, {
-  name: "Sky",
-  path: "assets/environment/skybox/",
-  format: ".jpg"
-}, {
-  name: "Castle",
-  path: "assets/environment/SwedishRoyalCastle/",
-  format: ".jpg"
-}, {
-  name: "Footprint Court (HDR)",
-  path: "assets/environment/FootprintCourt/",
-  format: ".hdr"
+  // todo get some environments to play around with
+  // {
+  //   name: "Park (Day)",
+  //   path: "assets/environment/Park2/",
+  //   format: ".jpg"
+  // },
+  // {
+  //   name: "Park (Night)",
+  //   path: "assets/environment/Park3Med/",
+  //   format: ".jpg"
+  // },
+  // {
+  //   name: "Bridge",
+  //   path: "assets/environment/Bridge2/",
+  //   format: ".jpg"
+  // },
+  // {
+  //   name: "Sky",
+  //   path: "assets/environment/skybox/",
+  //   format: ".jpg"
+  // },
+  // {
+  //   name: "Castle",
+  //   path: "assets/environment/SwedishRoyalCastle/",
+  //   format: ".jpg"
+  // },
+  // {
+  //   name: "Footprint Court (HDR)",
+  //   path: "assets/environment/FootprintCourt/",
+  //   format: ".hdr"
+  // }
 }];
 
 var DEFAULT_CAMERA = "[default]";
@@ -66,7 +73,7 @@ var Viewer = function () {
     this.gui = null;
 
     this.state = {
-      environment: options.preset === Preset.ASSET_GENERATOR ? "Footprint Court (HDR)" : environments[1].name,
+      environment: options.preset === Preset.ASSET_GENERATOR ? "Footprint Court (HDR)" : environments[0].name,
       background: false,
       playbackSpeed: 1.0,
       actionStates: {},
@@ -115,12 +122,6 @@ var Viewer = function () {
     this.controls.autoRotate = false;
     this.controls.autoRotateSpeed = -10;
     this.controls.screenSpacePanning = true;
-
-    // this.background = this.createVignetteBackground({
-    //   aspect: this.defaultCamera.aspect,
-    //   grainScale: IS_IOS ? 0 : 0.001, // mattdesl/three-vignette-background#1
-    //   colors: [this.state.bgColor1, this.state.bgColor2]
-    // });
 
     this.el.appendChild(this.renderer.domElement);
 
@@ -215,9 +216,9 @@ var Viewer = function () {
 
           // See: https://github.com/google/draco/issues/349
           // THREE.DRACOLoader.releaseDecoderModule();
-          _this.xhr();
+          _this.xhr({ loaded: 2, total: 1 });
           resolve();
-        }, undefined, reject);
+        }, _this.xhr, reject);
       });
     }
 
