@@ -37,14 +37,16 @@
          (consts/projectList :HomeInitial)))
   [:div
    [:div.desc_holder#about
-    [:div.desc_text.divider
-     [:div "I am Leonie (Leo) Herson, a multi-discliplinary, multi-talented and multi-limbed masters student from the University of Technology Sydney engaging in science and biomedical research whilst following my passion as an illustrator!"]]
-    [:div.desc_text.divider
-     [:div.news
-      [:div
-       "Beautiful and dangerous: animating deadly viruses at Vivid Sydney, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
-       [:br]
-       "Mastering biomedical science by design, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]]]]
+    ; [:img {:src "/assets/webImages/headshot.jpg"}]
+    [:div
+     [:div.desc_text.divider
+      [:div "Leonie (Leo) Herson is a multi-disciplinary, multi-talented and multi-limbed biomedical animator and illustrator/graphic designer from Sydney. She has collaborated to create award-winning works with companies, research institutions, engineers (even banks!) from across the world."]]
+     [:div.desc_text.divider
+      [:div.news
+       [:div
+        "Beautiful and dangerous: animating deadly viruses at Vivid Sydney, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
+        [:br]
+        "Mastering biomedical science by design, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]]]]]
             ; [:div.sidescroller
             ;     (Slider {:nextArrow (LeftNavButton)
             ;             :prevArrow (RightNavButton)
@@ -67,7 +69,7 @@
             ; ]
 ]
    [:div.desc
-    [:h2 "My Work"]
+    ; [:h2 "My Work"]
     (NavMenu/TabMenu)]
    [:div#content
     [listItems]]])

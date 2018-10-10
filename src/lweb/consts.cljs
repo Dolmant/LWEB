@@ -12,15 +12,18 @@
 
 (def projectListInitial {; // This order is important if NATURE + SCIENCE + ANATOMY are not in this order
     ; // navigation vis the arrows image_number will be incorrect
-                         :NATURE [{:img_src "./assets/webImages/lizard.jpg"
+                         :NATURE [{:img_src "./assets/webImages/WaterPython.jpg"
+                                   :img_txt "Water Python"
+                                   :thumbs_src "./assets/webImages/thumbs/WaterPython.jpg"}
+                                  {:img_src "./assets/webImages/lizard.jpg"
                                    :img_txt "Lizard"
                                    :thumbs_src "./assets/webImages/thumbs/lizard.jpg"}
                                   {:img_src "./assets/webImages/Binturong.jpg"
                                    :img_txt "Binturong"
                                    :thumbs_src "./assets/webImages/thumbs/Binturong.jpg"}
-                                  {:img_src "./assets/webImages/BlackBear.jpg"
-                                   :img_txt "Black Bear"
-                                   :thumbs_src "./assets/webImages/thumbs/BlackBear.jpg"}
+                                  {:img_src "./assets/webImages/BinturongChildrensBook.jpg"
+                                   :img_txt "Binturong"
+                                   :thumbs_src "./assets/webImages/thumbs/BinturongChildrensBook.jpg"}
                                   {:img_src "./assets/webImages/RedPanda.jpg"
                                    :img_txt "Red Panda"
                                    :thumbs_src "./assets/webImages/thumbs/RedPanda.jpg"}
@@ -36,9 +39,6 @@
                                   {:img_src "./assets/webImages/OctopusIsLate.jpg"
                                    :img_txt "Octopus"
                                    :thumbs_src "./assets/webImages/thumbs/OctopusIsLate.jpg"}
-                                  {:img_src "./assets/webImages/Archaeopteryx.jpg"
-                                   :img_txt "Archaeopteryx"
-                                   :thumbs_src "./assets/webImages/thumbs/Archaeopteryx.jpg"}
                                   {:img_src "./assets/webImages/SeaSlugs.jpg"
                                    :img_txt "SeaSlugs"
                                    :thumbs_src "./assets/webImages/thumbs/SeaSlugs.jpg"}
@@ -93,9 +93,6 @@
                                    {:img_src "./assets/webImages/CLICblue.jpg"
                                     :img_txt "CLIC"
                                     :thumbs_src "./assets/webImages/thumbs/CLICblue.jpg"}
-                                   {:img_src "./assets/webImages/SC_Compare.jpg"
-                                    :img_txt "SC Compare"
-                                    :thumbs_src "./assets/webImages/thumbs/SC_Compare.jpg"}
                                    {:img_src "./assets/webImages/mouse02.jpg"
                                     :img_txt "Mice"
                                     :thumbs_src "./assets/webImages/thumbs/mouse02.jpg"}
@@ -105,15 +102,9 @@
                                    {:img_src "./assets/webImages/2017TheRustNetworkFINAL.jpg"
                                     :img_txt "The Rust Network"
                                     :thumbs_src "./assets/webImages/thumbs/2017TheRustNetworkFINAL.jpg"}
-                                   {:img_src "./assets/webImages/KnotParticles.jpg"
-                                    :img_txt "Knot Particles"
-                                    :thumbs_src "./assets/webImages/thumbs/KnotParticles.jpg"}
                                    {:img_src "./assets/webImages/StrawberryChem.jpg"
                                     :img_txt "Strawberry"
                                     :thumbs_src "./assets/webImages/thumbs/StrawberryChem.jpg"}
-                                   {:img_src "./assets/webImages/Vertigo_Prokaryote.jpg"
-                                    :img_txt "Vertigo Prokaryote"
-                                    :thumbs_src "./assets/webImages/thumbs/Vertigo_Prokaryote.jpg"}
                                    {:img_src "./assets/webImages/AntibodyMagazine.jpg"
                                     :img_txt "Antibody"
                                     :thumbs_src "./assets/webImages/thumbs/AntibodyMagazine.jpg"}
@@ -180,7 +171,13 @@
                                                          "./assets/webImages/thumbs/UterineInversion_Colour05.jpg"]
                                     :img_txt "Uterine Inversion Collection"
                                     :thumbs_src "./assets/webImages/thumbs/UIFolder.jpg"}]
-                         :ADVERTISING [{:img_src "./assets/webImages/AntiVenom.jpg"
+                         :ADVERTISING [{:img_src "./assets/webImages/Kohakutou.jpg"
+                                        :img_txt "Kohakutou"
+                                        :thumbs_src "./assets/webImages/thumbs/Kohakutou.jpg"}
+                                       {:img_src "./assets/webImages/EndostealBoneSurface.jpg"
+                                        :img_txt "EndostealBoneSurface"
+                                        :thumbs_src "./assets/webImages/thumbs/EndostealBoneSurface.jpg"}
+                                       {:img_src "./assets/webImages/AntiVenom.jpg"
                                         :img_txt "AntiVenom"
                                         :thumbs_src "./assets/webImages/thumbs/AntiVenom.jpg"}
                                        {:img_src "./assets/webImages/CellMockup_CutVirus.jpg"
@@ -198,9 +195,6 @@
                                        {:img_src "./assets/webImages/ShapeFormFunctionSigned.jpg"
                                         :img_txt "Shaped"
                                         :thumbs_src "./assets/webImages/thumbs/ShapeFormFunctionSigned.jpg"}
-                                       {:img_src "./assets/webImages/SwiftAvionics.jpg"
-                                        :img_txt "Swift Avionics"
-                                        :thumbs_src "./assets/webImages/thumbs/SwiftAvionics.jpg"}
                                        {:img_src "./assets/webImages/ADPoster.jpg"
                                         :img_txt "ADPoster"
                                         :thumbs_src "./assets/webImages/thumbs/ADPoster.jpg"}
@@ -333,6 +327,15 @@
                                  :img_txt "Lab Rat"
                                  :thumbs_src "./assets/webImages/thumbs/LabRat.jpg"
                                  :types [(prices :sticker)]}
+                                {:img_src "./assets/webImages/DigiScene.jpg"
+                                 :img_txt "DigiScene"
+                                 :thumbs_src "./assets/webImages/thumbs/DigiScene.jpg"}
+                                {:img_src "./assets/webImages/PythonMorphs.jpg"
+                                 :img_txt "PythonMorphs"
+                                 :thumbs_src "./assets/webImages/thumbs/PythonMorphs.jpg"}
+                                {:img_src "./assets/webImages/Veffle.jpg"
+                                 :img_txt "Veffle"
+                                 :thumbs_src "./assets/webImages/thumbs/Veffle.jpg"}
                                 {:img_src "./assets/webImages/CatGlass.jpg"
                                  :img_txt "CatGlass"
                                  :thumbs_src "./assets/webImages/thumbs/CatGlass.jpg"}
