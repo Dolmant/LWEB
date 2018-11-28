@@ -18,24 +18,15 @@
                                   {:img_src "./assets/webImages/lizard.jpg"
                                    :img_txt "Lizard"
                                    :thumbs_src "./assets/webImages/thumbs/lizard.jpg"}
-                                  {:img_src "./assets/webImages/Binturong.jpg"
-                                   :img_txt "Binturong"
-                                   :thumbs_src "./assets/webImages/thumbs/Binturong.jpg"}
                                   {:img_src "./assets/webImages/BinturongChildrensBook.jpg"
                                    :img_txt "Binturong"
                                    :thumbs_src "./assets/webImages/thumbs/BinturongChildrensBook.jpg"}
-                                  {:img_src "./assets/webImages/RedPanda.jpg"
-                                   :img_txt "Red Panda"
-                                   :thumbs_src "./assets/webImages/thumbs/RedPanda.jpg"}
                                   {:img_src "./assets/webImages/Dragonfly2Signed.jpg"
                                    :img_txt "Dragonfly with prey"
                                    :thumbs_src "./assets/webImages/thumbs/Dragonfly2Signed.jpg"}
                                   {:img_src "./assets/webImages/Chameleon.jpg"
                                    :img_txt "Chameleon"
                                    :thumbs_src "./assets/webImages/thumbs/Chameleon.jpg"}
-                                  {:img_src "./assets/webImages/HiveBeetle2.jpg"
-                                   :img_txt "Hive Beetle"
-                                   :thumbs_src "./assets/webImages/thumbs/HiveBeetle2.jpg"}
                                   {:img_src "./assets/webImages/OctopusIsLate.jpg"
                                    :img_txt "Octopus"
                                    :thumbs_src "./assets/webImages/thumbs/OctopusIsLate.jpg"}
@@ -195,12 +186,6 @@
                                        {:img_src "./assets/webImages/ShapeFormFunctionSigned.jpg"
                                         :img_txt "Shaped"
                                         :thumbs_src "./assets/webImages/thumbs/ShapeFormFunctionSigned.jpg"}
-                                       {:img_src "./assets/webImages/ADPoster.jpg"
-                                        :img_txt "ADPoster"
-                                        :thumbs_src "./assets/webImages/thumbs/ADPoster.jpg"}
-                                       {:img_src "./assets/webImages/MVintroV2.jpg"
-                                        :img_txt "MVintro"
-                                        :thumbs_src "./assets/webImages/thumbs/MVintroV2.jpg"}
                                        {:img_src "./assets/webImages/MFS01.jpg"
                                         :img_txt "March for Science Logo"
                                         :thumbs_src "./assets/webImages/thumbs/MFS01.jpg"}
@@ -222,9 +207,6 @@
                                        {:img_src "./assets/webImages/rsz_nh_posterportraitfinal.jpg"
                                         :img_txt "Poster Final"
                                         :thumbs_src "./assets/webImages/thumbs/rsz_nh_posterportraitfinal.jpg"}
-                                       {:img_src "./assets/webImages/ExosomeInfographic4.jpg"
-                                        :img_txt "Microvesicle analysis"
-                                        :thumbs_src "./assets/webImages/thumbs/ExosomeInfographic4.jpg"}
                                        {:img_src "./assets/webImages/ING01WINTER_Quantum_26-27-1.jpg"
                                         :img_txt "Refraction Media Magazine"
                                         :thumbs_src "./assets/webImages/thumbs/ING01WINTER_Quantum_26-27-1.jpg"}
@@ -369,18 +351,12 @@
                                 {:img_src "./assets/webImages/JarPunch.jpg"
                                  :img_txt "JarPunch"
                                  :thumbs_src "./assets/webImages/thumbs/JarPunch.jpg"}
-                                {:img_src "./assets/webImages/MerryZilla.jpg"
-                                 :img_txt "MerryZilla"
-                                 :thumbs_src "./assets/webImages/thumbs/MerryZilla.jpg"}
                                 {:img_src "./assets/webImages/PhoPuns.jpg"
                                  :img_txt "PhoPuns"
                                  :thumbs_src "./assets/webImages/thumbs/PhoPuns.jpg"}
                                 {:img_src "./assets/webImages/Rahn.jpg"
                                  :img_txt "Rahn"
                                  :thumbs_src "./assets/webImages/thumbs/Rahn.jpg"}
-                                {:img_src "./assets/webImages/SamuraiJackal.jpg"
-                                 :img_txt "SamuraiJackal"
-                                 :thumbs_src "./assets/webImages/thumbs/SamuraiJackal.jpg"}
                                 {:img_src "./assets/webImages/eggbox.jpg"
                                  :img_txt "eggbox"
                                  :thumbs_src "./assets/webImages/thumbs/eggbox.jpg"}
