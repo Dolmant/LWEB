@@ -1,8 +1,8 @@
 (ns lweb.wrappers.ui
   (:refer-clojure :exclude [list stepper])
-  (:require-macros [lweb.rum-adaptor-macro])
   (:require
    [rum.core :as rum]
+   [lweb.rum-adaptor :refer (adapt-rum-class)]
    ["@material-ui/core/AppBar" :as AppBar]
    ["@material-ui/core/DialogTitle" :as DialogTitle]
    ["@material-ui/core/Dialog" :as Dialog]
@@ -38,7 +38,7 @@
    [clojure.walk :refer [postwalk]]
    [clojure.string :as str]
    [sablono.util :refer [camel-case]]))
-(def JssProviderer (lweb.rum-adaptor-macro/adapt-rum-class JssProvider/default))
+(def JssProviderer (adapt-rum-class JssProvider/default))
 (def sheetsRegistry (SheetsRegistry/SheetsRegistry.))
 ; Its important this is generated every render, so no defonce and this must be a function
 (defn generateClassName []
@@ -58,30 +58,30 @@
                      createMuiTheme/default)))
 (rum/defc get-jss [child]
   (JssProviderer {:registry sheetsRegistry :generateClassName (generateClassName)} child))
-(def toolbar (lweb.rum-adaptor-macro/adapt-rum-class Toolbar/default))
-(def dialog (lweb.rum-adaptor-macro/adapt-rum-class Dialog/default))
-(def dialog-actions (lweb.rum-adaptor-macro/adapt-rum-class DialogActions/default))
-(def dialog-content (lweb.rum-adaptor-macro/adapt-rum-class DialogContent/default))
-(def dialog-title (lweb.rum-adaptor-macro/adapt-rum-class DialogTitle/default))
-(def appBar (lweb.rum-adaptor-macro/adapt-rum-class AppBar/default))
-(def button (lweb.rum-adaptor-macro/adapt-rum-class Button/default))
-(def checkbox (lweb.rum-adaptor-macro/adapt-rum-class Checkbox/default))
-(def divider (lweb.rum-adaptor-macro/adapt-rum-class Divider/default))
-(def drawer (lweb.rum-adaptor-macro/adapt-rum-class Drawer/default))
-(def linear-progress (lweb.rum-adaptor-macro/adapt-rum-class LinearProgress/default))
-(def form-control (lweb.rum-adaptor-macro/adapt-rum-class FormControl/default))
-(def hidden (lweb.rum-adaptor-macro/adapt-rum-class Hidden/default))
-(def form-helper-text (lweb.rum-adaptor-macro/adapt-rum-class FormHelperText/default))
-(def grid (lweb.rum-adaptor-macro/adapt-rum-class Grid/default))
-(def icon-button (lweb.rum-adaptor-macro/adapt-rum-class IconButton/default))
-(def input (lweb.rum-adaptor-macro/adapt-rum-class Input/default))
-(def input-label (lweb.rum-adaptor-macro/adapt-rum-class InputLabel/default))
-(def tabs (lweb.rum-adaptor-macro/adapt-rum-class Tabs/default))
-(def tab (lweb.rum-adaptor-macro/adapt-rum-class Tab/default))
-(def paper (lweb.rum-adaptor-macro/adapt-rum-class Paper/default))
-(def menu (lweb.rum-adaptor-macro/adapt-rum-class Menu/default))
-(def menu-item (lweb.rum-adaptor-macro/adapt-rum-class MenuItem/default))
-(def mui-theme-provider (lweb.rum-adaptor-macro/adapt-rum-class MuiThemeProvider/default))
-(def select (lweb.rum-adaptor-macro/adapt-rum-class Select/default))
-(def svg-icon (lweb.rum-adaptor-macro/adapt-rum-class SvgIcon/default))
-(def text-field (lweb.rum-adaptor-macro/adapt-rum-class TextField/default))
+(def toolbar (adapt-rum-class Toolbar/default))
+(def dialog (adapt-rum-class Dialog/default))
+(def dialog-actions (adapt-rum-class DialogActions/default))
+(def dialog-content (adapt-rum-class DialogContent/default))
+(def dialog-title (adapt-rum-class DialogTitle/default))
+(def appBar (adapt-rum-class AppBar/default))
+(def button (adapt-rum-class Button/default))
+(def checkbox (adapt-rum-class Checkbox/default))
+(def divider (adapt-rum-class Divider/default))
+(def drawer (adapt-rum-class Drawer/default))
+(def linear-progress (adapt-rum-class LinearProgress/default))
+(def form-control (adapt-rum-class FormControl/default))
+(def hidden (adapt-rum-class Hidden/default))
+(def form-helper-text (adapt-rum-class FormHelperText/default))
+(def grid (adapt-rum-class Grid/default))
+(def icon-button (adapt-rum-class IconButton/default))
+(def input (adapt-rum-class Input/default))
+(def input-label (adapt-rum-class InputLabel/default))
+(def tabs (adapt-rum-class Tabs/default))
+(def tab (adapt-rum-class Tab/default))
+(def paper (adapt-rum-class Paper/default))
+(def menu (adapt-rum-class Menu/default))
+(def menu-item (adapt-rum-class MenuItem/default))
+(def mui-theme-provider (adapt-rum-class MuiThemeProvider/default))
+(def select (adapt-rum-class Select/default))
+(def svg-icon (adapt-rum-class SvgIcon/default))
+(def text-field (adapt-rum-class TextField/default))

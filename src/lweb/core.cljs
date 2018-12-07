@@ -1,5 +1,4 @@
 (ns lweb.core
-  (:require-macros [lweb.rum-adaptor-macro])
   (:require   [rum.core :as rum]
               [lweb.wrappers.ui :as ui]
               [lweb.wrappers.ic :as ic]

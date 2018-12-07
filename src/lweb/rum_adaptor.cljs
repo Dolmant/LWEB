@@ -1,7 +1,8 @@
 (ns lweb.rum-adaptor
   (:refer-clojure :exclude [list stepper])
   (:require
-   [sablono.util :refer [camel-case-keys]]))
+   [sablono.util :refer [camel-case-keys]])
+  (:require-macros [lweb.rum-adaptor]))
 
 (def props-kebab->camel->js (comp clj->js camel-case-keys))
 

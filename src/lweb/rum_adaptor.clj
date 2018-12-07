@@ -1,4 +1,4 @@
-(ns lweb.rum-adaptor-macro
+(ns lweb.rum-adaptor
   (:require
    [clojure.string :as str]))
 

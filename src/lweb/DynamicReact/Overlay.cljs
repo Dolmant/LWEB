@@ -4,6 +4,7 @@
             [lweb.Shop.CartManagement.AddToCart :as AddToCart]
             [goog.dom.forms :as gforms]
             [cljs-http.client :as http]
+            [lweb.rum-adaptor :refer (adapt-rum-class)]
             [lweb.consts :as consts]
             [lweb.DynamicReact.ModelViewer :as ModelViewer]
             [lweb.Shop.CartManagement.Checkout :as Checkout]
@@ -11,13 +12,10 @@
             [lweb.wrappers.ic :as ic]
             ["/gen/lazySizes/index" :default Lazy]
             [clojure.string :as str]
-            [lweb.rum-adaptor-macro]
             [cljs.core.async :refer [<!]])
-  (:require-macros
-   [cljs.core.async.macros :refer [go]]
-   [lweb.rum-adaptor-macro :as m]))
+  (:require-macros [cljs.core.async.macros :refer [go]]))
 
-(def LazySizes (m/adapt-rum-class Lazy))
+(def LazySizes (adapt-rum-class Lazy))
 
 (defn oncatClick [id]
   (DynamicReactState/SetCategory id)
@@ -64,22 +62,20 @@
       [:div.overlayimagecontrol
        [:div
         (if consts/isTouch [:div.img-wrap-up-overlay
-              (if (get-in overlay [:arrows :left]) (ic/chevronLeft {:on-click #(DynamicReactState/NavOverlayImage "left")}))
-              (if (get-in overlay [:arrows :up]) (ic/keyboardArrowUp {:on-click #(DynamicReactState/NavOverlayImage "up")}))
-              (if (get-in overlay [:arrows :down]) (ic/keyboardArrowDown {:on-click #(DynamicReactState/NavOverlayImage "down")}))
-              (if (get-in overlay [:arrows :right]) (ic/chevronRight {:on-click #(DynamicReactState/NavOverlayImage "right")}))
-              ]
-        [(if (get-in overlay [:arrows :left]) [:div.img-wrap-left-overlay
-                                              (ic/chevronLeft {:on-click #(DynamicReactState/NavOverlayImage "left")})])
-        (if (get-in overlay [:arrows :right]) [:div.img-wrap-right-overlay
-                                              (ic/chevronRight {:on-click #(DynamicReactState/NavOverlayImage "right")})])
-        (if (get-in overlay [:arrows :up]) [:div.img-wrap-up-overlay
-                                              (ic/keyboardArrowUp {:on-click #(DynamicReactState/NavOverlayImage "up")})
-                                            (if (get-in overlay [:arrows :down])
-                                              (ic/keyboardArrowDown {:className "marginLeft" :on-click #(DynamicReactState/NavOverlayImage "down")}))])
-        (if (and (not (get-in overlay [:arrows :up])) (get-in overlay [:arrows :down])) [:div.img-wrap-down-overlay
-                                              (ic/keyboardArrowDown {:on-click #(DynamicReactState/NavOverlayImage "down")})])
-        ])]
+                            (if (get-in overlay [:arrows :left]) (ic/chevronLeft {:on-click #(DynamicReactState/NavOverlayImage "left")}))
+                            (if (get-in overlay [:arrows :up]) (ic/keyboardArrowUp {:on-click #(DynamicReactState/NavOverlayImage "up")}))
+                            (if (get-in overlay [:arrows :down]) (ic/keyboardArrowDown {:on-click #(DynamicReactState/NavOverlayImage "down")}))
+                            (if (get-in overlay [:arrows :right]) (ic/chevronRight {:on-click #(DynamicReactState/NavOverlayImage "right")}))]
+            [(if (get-in overlay [:arrows :left]) [:div.img-wrap-left-overlay
+                                                   (ic/chevronLeft {:on-click #(DynamicReactState/NavOverlayImage "left")})])
+             (if (get-in overlay [:arrows :right]) [:div.img-wrap-right-overlay
+                                                    (ic/chevronRight {:on-click #(DynamicReactState/NavOverlayImage "right")})])
+             (if (get-in overlay [:arrows :up]) [:div.img-wrap-up-overlay
+                                                 (ic/keyboardArrowUp {:on-click #(DynamicReactState/NavOverlayImage "up")})
+                                                 (if (get-in overlay [:arrows :down])
+                                                   (ic/keyboardArrowDown {:className "marginLeft" :on-click #(DynamicReactState/NavOverlayImage "down")}))])
+             (if (and (not (get-in overlay [:arrows :up])) (get-in overlay [:arrows :down])) [:div.img-wrap-down-overlay
+                                                                                              (ic/keyboardArrowDown {:on-click #(DynamicReactState/NavOverlayImage "down")})])])]
        [:h2 overlay_txt]
        (if (overlay :is_video)
          [:video.overlay-video {:autoPlay "1" :loop "1" :controls "1"}

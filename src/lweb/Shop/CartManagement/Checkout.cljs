@@ -1,6 +1,6 @@
 (ns lweb.Shop.CartManagement.Checkout
-  (:require-macros [lweb.rum-adaptor-macro :as m])
   (:require [rum.core :as rum]
+            [lweb.rum-adaptor :refer (adapt-rum-class)]
             [lweb.Shop.CartManagement.State :as CartManagementState]
             [lweb.Shop.CartManagement.AddToCart :as AddToCart]
             [lweb.Shop.CartManagement.RemoveFromCart :as RemoveFromCart]
@@ -11,8 +11,8 @@
             [lweb.Shop.Postage.State :as PostageState]
             [lweb.wrappers.ui :as ui]))
 
-(def StripeCheckout (m/adapt-rum-class Stripe/default))
-(def PacmanLoader (m/adapt-rum-class Pacman))
+(def StripeCheckout (adapt-rum-class Stripe/default))
+(def PacmanLoader (adapt-rum-class Pacman))
 
 (rum/defc Checkout < rum/reactive []
   (def shoppingCart ((rum/react CartManagementState/State) :shoppingCart))

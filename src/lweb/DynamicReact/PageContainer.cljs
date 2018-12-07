@@ -1,5 +1,4 @@
 (ns lweb.DynamicReact.PageContainer
-  (:require-macros [lweb.rum-adaptor-macro :as m])
   (:require [rum.core :as rum]
             [lweb.DynamicReact.NavMenu :as NavMenu]
             [lweb.DynamicReact.State :as DynamicReactState]
@@ -7,7 +6,7 @@
             ; ["react-slick" :as Slick]
             [clojure.string :as str]))
 
-; (def Slider (m/adapt-rum-class Slick/default))
+; (def Slider (adapt-rum-class Slick/default))
 
 ; (rum/defc LeftNavButton []
 ;   [:button [:div.slick-next-div]])
@@ -67,7 +66,7 @@
             ;         "Your browser does not support the video tag"
             ;     ]
             ; ]
-]
+    ]
    [:div.desc
     ; [:h2 "My Work"]
     (NavMenu/TabMenu)]
