@@ -28,12 +28,12 @@
                           [:div.img-wrap
                            [:div {:style {:height "100%" :width "100%" :backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "contain"}}]]])
                        itemList)])
-  (def listCarousel
-    (map (fn [item]
-           [:div.carousel-img-wrap {:key (item :item_number)}
-            [:div
-             {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if consts/isTouch "40vw" "20vw")}}]])
-         (consts/projectList :HomeInitial)))
+  ; (def listCarousel
+  ;   (map (fn [item]
+  ;          [:div.carousel-img-wrap {:key (item :item_number)}
+  ;           [:div
+  ;            {:style {:backgroundImage (str/join "" ["url(" (item :thumbs_src) ")"]) :backgroundPosition "center" :backgroundRepeat "no-repeat" :backgroundSize "cover" :height "50vh" :width (if consts/isTouch "40vw" "20vw")}}]])
+  ;        (consts/projectList :Highlights)))
   [:div
    [:div.desc_holder#about
     ; [:img {:src "/assets/webImages/headshot.jpg"}]

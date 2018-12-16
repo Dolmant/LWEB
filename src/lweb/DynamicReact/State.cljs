@@ -4,8 +4,8 @@
             [clojure.string :as s]))
 
 (defonce State
-  (atom {:category :NONE
-         :list (consts/projectList :HomeInitial)
+  (atom {:category :HIGHLIGHTS
+         :list (consts/projectList :HIGHLIGHTS)
          :isTouch consts/isTouch
          :total 0
          :page "home"
@@ -18,7 +18,7 @@
          :overlay {:arrows {:left true :right true :up false :down false}
                    :state false
                    :name false
-                   :video false}}))
+                   :is_video false}}))
 
 (defn update-vals [map mf]
   (reduce #(update-in % [%2] (fn [_] (mf %2))) map (keys mf)))
@@ -35,8 +35,6 @@
   "true if coll contains elm"
   [coll elm]
   (some #(= elm %) coll))
-
-
 
 (defn computeArrows [overlay_image_num current_category overlay_vertical_index NumberofVertical]
   (def limits (consts/ArrayLimitsCalc current_category))
@@ -58,14 +56,14 @@
                    :overlay_thumb_src (get-in tempImage [:overlay_thumbs_src verticalImageNum])
                    :overlay_types (tempImage :types)
                    :overlay_txt (tempImage :img_txt)
-                   :overlay {:state (overlay :state) :name (overlay :name) :is_video (tempImage :is_video) :arrows (computeArrows overlay_image_num current_category overlay_vertical_index (count (tempImage :img_src)))}})
+                   :overlay {:state (overlay :state) :name (overlay :name) :desc (tempImage :desc) :is_video (tempImage :is_video) :arrows (computeArrows overlay_image_num current_category overlay_vertical_index (count (tempImage :img_src)))}})
         (SetAttrs {:overlay_vertical_index overlay_vertical_index
                    :overlay_image_num overlay_image_num
                    :overlay_image_src (tempImage :img_src)
                    :overlay_thumb_src (tempImage :thumbs_src)
                    :overlay_types (tempImage :types)
                    :overlay_txt (tempImage :img_txt)
-                   :overlay {:state (overlay :state) :name (overlay :name) :is_video (tempImage :is_video) :arrows (computeArrows overlay_image_num current_category overlay_vertical_index 0)}})))))
+                   :overlay {:state (overlay :state) :name (overlay :name) :desc (tempImage :desc) :is_video (tempImage :is_video) :arrows (computeArrows overlay_image_num current_category overlay_vertical_index 0)}})))))
 
 (defn NavOverlayImage [direction]
   (cond

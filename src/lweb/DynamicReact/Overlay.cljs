@@ -85,7 +85,7 @@
           (LazySizes {:dataSizes "auto" :alt "It's not loading!" :className "scale-img blur-up overlayimage" :src overlay_thumb_src :dataSrc overlay_image_src})])
        (if (overlay :is_video)
          [:div]
-         [:div.overlaytext "This image is large and will remain obfuscated until downloaded"])
+         [:div.overlaytext (overlay :desc)])
        (AddToCart/AddToCart false overlay_image_num overlay_types)]]]
     (= (overlay :name) :contact)
     (ui/dialog {:PaperProps {:className "overlayform"} :open true :onClose (fn [] (reset! formError false) (DynamicReactState/CloseOverlay))}

@@ -47,10 +47,8 @@
                                    :thumbs_src "./assets/webImages/thumbs/HailHydrate.jpg"}]
                          :SCIENCE [{:img_src "./assets/webImages/CellMockupBacteria.jpg"
                                     :img_txt "Cell Cover"
+                                    :desc "Mockup concepts for the journal CELL"
                                     :thumbs_src "./assets/webImages/thumbs/CellMockupBacteria.jpg"}
-                                   {:img_src "./assets/webImages/SeaViruses.jpg"
-                                    :img_txt "Sea Viruses"
-                                    :thumbs_src "./assets/webImages/thumbs/SeaViruses.jpg"}
                                    {:img_src "./assets/webImages/CellCross.jpg"
                                     :img_txt "Cell Cross"
                                     :thumbs_src "./assets/webImages/thumbs/CellCross.jpg"}
@@ -77,6 +75,7 @@
                                     :thumbs_src "./assets/webImages/thumbs/DNAtetris.jpg"}
                                    {:img_src "./assets/webImages/Cell_comp03.jpg"
                                     :img_txt "Cell comp"
+                                    :desc "Concept art for the short film “The Micro Messengers”"
                                     :thumbs_src "./assets/webImages/thumbs/Cell_comp03.jpg"}
                                    {:img_src "./assets/webImages/06_Cell_Internal.jpg"
                                     :img_txt "3D Cell internals"
@@ -92,6 +91,7 @@
                                     :thumbs_src "./assets/webImages/thumbs/2017TheCancerGame.jpg"}
                                    {:img_src "./assets/webImages/2017TheRustNetworkFINAL.jpg"
                                     :img_txt "The Rust Network"
+                                    :desc "2nd prize at the VIZBI competition"
                                     :thumbs_src "./assets/webImages/thumbs/2017TheRustNetworkFINAL.jpg"}
                                    {:img_src "./assets/webImages/StrawberryChem.jpg"
                                     :img_txt "Strawberry"
@@ -105,14 +105,9 @@
                                    {:img_src "./assets/webImages/CLICgarment.jpg"
                                     :img_txt "CLIC"
                                     :thumbs_src "./assets/webImages/thumbs/CLICgarment.jpg"}
-                                   {:img_src "./assets/webImages/CRISPR.jpg"
-                                    :img_txt "CRISPR"
-                                    :thumbs_src "./assets/webImages/thumbs/CRISPR.jpg"}
-                                   {:img_src "./assets/webImages/CRISPRcloseup.jpg"
-                                    :img_txt "CRISPR Closeup"
-                                    :thumbs_src "./assets/webImages/thumbs/CRISPRcloseup.jpg"}
                                    {:img_src "./assets/webImages/Microwaves.jpg"
-                                    :img_txt "Microwave"
+                                    :img_txt "The History of Microwaves"
+                                    :desc "Published in Lateral Magazine"
                                     :thumbs_src "./assets/webImages/thumbs/Microwaves.jpg"}
                                    {:img_src "./assets/webImages/ProteinCityTitle.jpg"
                                     :img_txt "Protein City"
@@ -162,7 +157,7 @@
                                                          "./assets/webImages/thumbs/UterineInversion_Colour05.jpg"]
                                     :img_txt "Uterine Inversion Collection"
                                     :thumbs_src "./assets/webImages/thumbs/UIFolder.jpg"}]
-                         :ADVERTISING [{:img_src "./assets/webImages/Kohakutou.jpg"
+                         :PUBLISHINGS [{:img_src "./assets/webImages/Kohakutou.jpg"
                                         :img_txt "Kohakutou"
                                         :thumbs_src "./assets/webImages/thumbs/Kohakutou.jpg"}
                                        {:img_src "./assets/webImages/EndostealBoneSurface.jpg"
@@ -170,30 +165,36 @@
                                         :thumbs_src "./assets/webImages/thumbs/EndostealBoneSurface.jpg"}
                                        {:img_src "./assets/webImages/AntiVenom.jpg"
                                         :img_txt "AntiVenom"
+                                        :desc "Published in the Careers for Science/Health article with Refraction Media"
                                         :thumbs_src "./assets/webImages/thumbs/AntiVenom.jpg"}
                                        {:img_src "./assets/webImages/CellMockup_CutVirus.jpg"
                                         :img_txt "Cell cover"
+                                        :desc "Mockup concepts for the journal CELL"
                                         :thumbs_src "./assets/webImages/thumbs/CellMockup_CutVirus.jpg"}
                                        {:img_src "./assets/webImages/LeotideIconTest.jpg"
                                         :img_txt "Logo"
                                         :thumbs_src "./assets/webImages/thumbs/LeotideIconTest.jpg"}
                                        {:img_src "./assets/webImages/ProteinExpression.jpg"
                                         :img_txt "Protein Expression"
+                                        :desc "Masters final seminar"
                                         :thumbs_src "./assets/webImages/thumbs/ProteinExpression.jpg"}
                                        {:img_src "./assets/webImages/SeptemberFlier.jpg"
                                         :img_txt "September Flier"
+                                        :desc "Designed to advertise the short film “The Micro Messengers”"
                                         :thumbs_src "./assets/webImages/thumbs/SeptemberFlier.jpg"}
                                        {:img_src "./assets/webImages/ShapeFormFunctionSigned.jpg"
                                         :img_txt "Shaped"
                                         :thumbs_src "./assets/webImages/thumbs/ShapeFormFunctionSigned.jpg"}
                                        {:img_src "./assets/webImages/MFS01.jpg"
                                         :img_txt "March for Science Logo"
+                                        :desc "Logo designs commissioned by the members of March for Science Tokyo"
                                         :thumbs_src "./assets/webImages/thumbs/MFS01.jpg"}
                                        {:img_src "./assets/webImages/MFS02.jpg"
                                         :img_txt "March for Science Tokyo Logo"
                                         :thumbs_src "./assets/webImages/thumbs/MFS02.jpg"}
                                        {:img_src "./assets/webImages/UTS_Build.jpg"
                                         :img_txt "UTS School of Life Sciences Logo"
+                                        :desc "Logo designed for the School of Life Science"
                                         :thumbs_src "./assets/webImages/thumbs/UTS_Build.jpg"}
                                        {:img_src "./assets/webImages/Liposome_Protocol.jpg"
                                         :img_txt "Liposome Protocol"
@@ -205,37 +206,45 @@
                                         :img_txt "Western Blot"
                                         :thumbs_src "./assets/webImages/thumbs/WBlot_Protocol01.jpg"}
                                        {:img_src "./assets/webImages/rsz_nh_posterportraitfinal.jpg"
-                                        :img_txt "Poster Final"
+                                        :img_txt "NH 2015 Poster"
                                         :thumbs_src "./assets/webImages/thumbs/rsz_nh_posterportraitfinal.jpg"}
                                        {:img_src "./assets/webImages/ING01WINTER_Quantum_26-27-1.jpg"
-                                        :img_txt "Refraction Media Magazine"
+                                        :img_txt "Ingenuity Magazine designs)"
+                                        :desc "Designed for UNSW Ingenuity Magazine"
                                         :thumbs_src "./assets/webImages/thumbs/ING01WINTER_Quantum_26-27-1.jpg"}
                                        {:img_src "./assets/webImages/RM_ESWA_Poster.jpg"
                                         :img_txt "Earth Week Poster"
+                                        :desc "Designed for Earth Science Week in Western Australia – published and printed for schools"
                                         :thumbs_src "./assets/webImages/thumbs/RM_ESWA_Poster.jpg"}
                                        {:img_src "./assets/webImages/SDx_Bilayer.jpg"
                                         :img_txt "SDx Bilayer"
+                                        :desc "A revised figure for paper on Tethered BIlayer Membranes"
                                         :thumbs_src "./assets/webImages/thumbs/SDx_Bilayer.jpg"}
                                        {:img_src "./assets/webImages/Piecon.jpg"
                                         :img_txt "PIECon"
+                                        :desc "An entertaining piece for the members of IRESS"
                                         :thumbs_src "./assets/webImages/thumbs/Piecon.jpg"}
                                        {:img_src "./assets/webImages/GelTest.jpg"
                                         :img_txt "Gel"
+                                        :desc "Figure designed for Josh Chou, UTS School of Biomedical Engineering"
                                         :thumbs_src "./assets/webImages/thumbs/GelTest.jpg"}
                                        {:img_src "./assets/webImages/Micro_ColourPanels.jpg"
                                         :img_txt "Micro Panels"
+                                        :desc "Scene shots of the short film “The Micro Messengers”"
                                         :thumbs_src "./assets/webImages/thumbs/Micro_ColourPanels.jpg"}
                                        {:img_src "./assets/webImages/QuantumMagazine-1.jpg"
                                         :img_txt "Magazine"
                                         :thumbs_src "./assets/webImages/thumbs/QuantumMagazine-1.jpg"}
                                        {:img_src "./assets/webImages/SBME.jpg"
                                         :img_txt "UTS Logo"
+                                        :desc "Logo designed for the UTS School of Biomedical Engineering"
                                         :thumbs_src "./assets/webImages/thumbs/SBME.jpg"}
                                        {:img_src ["./assets/webImages/RM_BionicBody.jpg"
                                                   "./assets/webImages/RM_BionicBodyMag-1.jpg"]
                                         :overlay_thumbs_src ["./assets/webImages/thumbs/RM_BionicBody.jpg"
                                                              "./assets/webImages/thumbs/RM_BionicBodyMag-1.jpg"]
                                         :img_txt "BionicBody"
+                                        :desc "Design for Magazine with Refraction Media"
                                         :thumbs_src "./assets/webImages/thumbs/RM_BionicBodyMag-1.jpg"}
                                        {:img_src ["./assets/webImages/CBA_DesignThinking1.jpg"
                                                   "./assets/webImages/CBA_DesignThinking2.jpg"
@@ -248,6 +257,7 @@
                                                              "./assets/webImages/thumbs/CBA_DesignThinking4.jpg"
                                                              "./assets/webImages/thumbs/CBA_DesignThinking5.jpg"]
                                         :img_txt "CBA Design Thinking"
+                                        :desc "Designs for the Commonwealth Bank Australia"
                                         :thumbs_src "./assets/webImages/thumbs/CBA_Folder.jpg"}
                                        {:img_src ["./assets/webImages/EngiPlus_01V2.jpg"
                                                   "./assets/webImages/EngiPlus_02V2.jpg"
@@ -260,6 +270,7 @@
                                                              "./assets/webImages/thumbs/EngiPlus_04V2.jpg"
                                                              "./assets/webImages/thumbs/EngiPlus_05V2.jpg"]
                                         :img_txt "EngiPlus"
+                                        :desc "Concept artwork for Engineering Magazine with Refraction Media"
                                         :thumbs_src "./assets/webImages/thumbs/EngiMag_Folder.jpg"}]
                          :TYPOGRAPHY [{:img_src "./assets/webImages/Blood_Components2.jpg"
                                        :img_txt "Blood"
@@ -366,23 +377,32 @@
                                 {:img_src "./assets/webImages/TerraMon.jpg"
                                  :img_txt "TerraMon"
                                  :thumbs_src "./assets/webImages/thumbs/TerraMon.jpg"}]
-                         :ANIMATION [{:img_src "./assets/images/DNA_RenderGifu.gif"
-                                      :img_txt "DNA Render"
-                                      :thumbs_src "./assets/webImages/thumbs/DNA_RenderGifu.jpg"}
-                                     {:img_src "./assets/images/CardosinMovieGif.gif"
-                                      :img_txt "Cardosin"
-                                      :thumbs_src "./assets/webImages/thumbs/CardosinMovieGif.jpg"}
-                                     {:is_video true
-                                      :img_src "./assets/images/05_ProteinPeephole.mp4"
-                                      :img_txt "Protein Peephole"
-                                      :thumbs_src "./assets/webImages/thumbs/05_ProteinPeephole.jpg"}
-                                     {:img_src "./assets/images/Carp_Swim.gif"
-                                      :img_txt "Carp Swimming"
-                                      :thumbs_src "./assets/webImages/thumbs/Carp_Swim.jpg"}
-                                     {:is_video true
-                                      :img_src "./assets/images/01_MicroFinalRender01.mp4"
-                                      :img_txt "Micro Messengers"
-                                      :thumbs_src "./assets/webImages/thumbs/01_MicroFinalRender01.jpg"}]
+                         :3D [{:img_src "./assets/webImages/CRISPR.jpg"
+                               :img_txt "CRISPR"
+                               :thumbs_src "./assets/webImages/thumbs/CRISPR.jpg"}
+                              {:img_src "./assets/webImages/CRISPRcloseup.jpg"
+                               :img_txt "CRISPR Closeup"
+                               :thumbs_src "./assets/webImages/thumbs/CRISPRcloseup.jpg"}
+                              {:img_src "./assets/images/DNA_RenderGifu.gif"
+                               :img_txt "DNA Render"
+                               :thumbs_src "./assets/webImages/thumbs/DNA_RenderGifu.jpg"}
+                              {:img_src "./assets/images/CardosinMovieGif.gif"
+                               :img_txt "Cardosin"
+                               :thumbs_src "./assets/webImages/thumbs/CardosinMovieGif.jpg"}
+                              {:is_video true
+                               :img_src "./assets/images/05_ProteinPeephole.mp4"
+                               :img_txt "Protein Peephole"
+                               :thumbs_src "./assets/webImages/thumbs/05_ProteinPeephole.jpg"}
+                              {:img_src "./assets/images/Carp_Swim.gif"
+                               :img_txt "Carp Swimming"
+                               :thumbs_src "./assets/webImages/thumbs/Carp_Swim.jpg"}
+                              {:img_src "./assets/webImages/SeaViruses.jpg"
+                               :img_txt "Sea Viruses"
+                               :thumbs_src "./assets/webImages/thumbs/SeaViruses.jpg"}
+                              {:is_video true
+                               :img_src "./assets/images/01_MicroFinalRender01.mp4"
+                               :img_txt "Micro Messengers"
+                               :thumbs_src "./assets/webImages/thumbs/01_MicroFinalRender01.jpg"}]
                          :MODELS [{:img_src "./assets/webImages/.jpg"
                                    :img_txt "Seadragon"
                                    :model_src "/assets/models/Seadragon.gltf"
@@ -400,35 +420,37 @@
                                    :model_src "/assets/models/SnakeRice.gltf"
                                    :thumbs_src "./assets/webImages/thumbs/SnakeRice.jpg"}]
                          :CHECKOUT [] ;// Empty just used for the store
-                         :HomeInitial [{:img_src "./assets/webImages/VIVID_NightRenderV7full.jpg"
-                                        :img_txt ""
-                                        :thumbs_src "./assets/webImages/thumbs/VIVID_NightRenderV7full.jpg"}
-                                       {:img_src "./assets/webImages/DragonVirus.jpg"
-                                        :img_txt ""
-                                        :thumbs_src "./assets/webImages/DragonVirus.jpg"}
-                                       {:img_src "./assets/webImages/RedPandaAnat.jpg"
-                                        :img_txt ""
-                                        :thumbs_src "./assets/webImages/thumbs/RedPandaAnat.jpg"}
-                                       {:img_src "./assets/webImages/SnakeRice.jpg"
-                                        :img_txt ""
-                                        :thumbs_src "./assets/webImages/thumbs/SnakeRice.jpg"}
-                                       {:img_src "./assets/webImages/SeptemberFlier.jpg"
-                                        :img_txt ""
-                                        :thumbs_src "./assets/webImages/thumbs/SeptemberFlier.jpg"}
-                                       {:img_src "./assets/webImages/CellMockup_CutVirus.jpg"
-                                        :img_txt ""
-                                        :thumbs_src "./assets/webImages/thumbs/CellMockup_CutVirus.jpg"}]})
+                         :HIGHLIGHTS [{:img_src "./assets/webImages/VIVID_NightRenderV7full.jpg"
+                                       :img_txt "Beautiful and dangerous"
+                                       :desc "Lead Animator for a collaborative VIVID project between CSIRO and The Garvan Institute in 2018"
+                                       :thumbs_src "./assets/webImages/thumbs/VIVID_NightRenderV7full.jpg"}
+                                      {:img_src "./assets/webImages/DragonVirus.jpg"
+                                       :img_txt ""
+                                       :thumbs_src "./assets/webImages/DragonVirus.jpg"}
+                                      {:img_src "./assets/webImages/RedPandaAnat.jpg"
+                                       :img_txt ""
+                                       :thumbs_src "./assets/webImages/thumbs/RedPandaAnat.jpg"}
+                                      {:img_src "./assets/webImages/SnakeRice.jpg"
+                                       :img_txt ""
+                                       :thumbs_src "./assets/webImages/thumbs/SnakeRice.jpg"}
+                                      {:img_src "./assets/webImages/SeptemberFlier.jpg"
+                                       :img_txt ""
+                                       :thumbs_src "./assets/webImages/thumbs/SeptemberFlier.jpg"}
+                                      {:img_src "./assets/webImages/CellMockup_CutVirus.jpg"
+                                       :img_txt ""
+                                       :thumbs_src "./assets/webImages/thumbs/CellMockup_CutVirus.jpg"}]})
 
 ;// hardcoded for now
 (def projectListLabels {:ALL "All your favourite science-based artworks, all in one place! Presented in a variety of styles, each artwork has careful thought behind them to best illustrate the topic they represent."
                         :NATURE "I’ve heard it’s pretty scary."
                         :ANATOMY "Delving into the inner structure of the body, one chorus of “ewwww”s at a time."
                         :SCIENCE "A combination of scientific illustration and culture. The aim: To create thought-provoking artworks that stand out from the crowd from regular scientific illustrations."
-                        :ADVERTISING "Smart, infographic-styled posters to educate the public in the latest scientific research. Commissioned logos by companies and individuals looking to make their ads stand out."
+                        :PUBLISHINGS "Smart, infographic-styled posters to educate the public in the latest scientific research. Commissioned logos by companies and individuals looking to make their ads stand out."
                         :TYPOGRAPHY "Taking everyday letters and making them look better…with science!"
                         :FACTS "Learning every day! Fun facts for those who want to impress others with their knowledge of anything and everything. Or just cats, crabs and eels specifically."
                         :MISC "All the other artworks which don’t fall into the science-ey categories. Made either purely for personal interest, or commissioned by awesome people."
-                        :ANIMATION "Moving pictures!"
+                        :3D "Moving pictures!"
+                        :HIGHLIGHTS "The best of the best!"
                         :CHECKOUT ""})
 
 (defn setImageNum [dict]

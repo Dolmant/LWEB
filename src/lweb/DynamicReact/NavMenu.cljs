@@ -15,15 +15,18 @@
   (DynamicReactState/SetAttr :touchmenu_active false))
 
 (defn sorter [cat1 cat2]
-  (if (= cat1 :CHECKOUT) 1
-      (if (= cat2 :CHECKOUT) -1
-          (if (= cat1 :MODELS) 1
-              (if (= cat2 :MODELS) -1
-                  (if (and (= cat1 :ADVERTISING) (= cat2 :ALL)) 1
-                      (if (and (= cat1 :ALL) (= cat2 :ADVERTISING)) -1
-                          (if (> cat1 cat2) 1
-                              (if (< cat1 cat2) -1
-                                  0)))))))))
+  (cond
+    (= cat1 :HIGHLIGHTS) -1
+    (= cat2 :HIGHLIGHTS) 1
+    (= cat1 :CHECKOUT) 1
+    (= cat2 :CHECKOUT) -1
+    (= cat1 :MODELS) 1
+    (= cat2 :MODELS) -1
+    (and (= cat1 :PUBLISHINGS) (= cat2 :ALL)) 1
+    (and (= cat1 :ALL) (= cat2 :PUBLISHINGS)) -1
+    (> cat1 cat2) 1
+    (< cat1 cat2) -1
+    true 0))
 
 (def before [(ui/button {:key "before1" :on-click (fn [] (scroll-into-view "about")) :id 1} "ABOUT")
              (ui/button {:key "before2" :on-click (fn [e] (DynamicReactState/SetOverlay :contact)) :id 2} "CONTACT")])
@@ -35,7 +38,7 @@
 (rum/defc NavMenuNoKey < rum/reactive []
   (defn navMapper [item]
     (if (= item :ALL)
-      (ui/button {:key item :on-click (fn [] (scroll-into-view "content") (oncatClick item)) :id item} "ILLUSTRATIONS")
+      (ui/button {:key item :on-click (fn [] (scroll-into-view "content") (oncatClick item)) :id item} "2D")
       (ui/button {:key item :on-click (fn [] (scroll-into-view "content") (oncatClick item)) :id item} (name item))))
   (if consts/isTouch
     (concat before after)
@@ -46,7 +49,7 @@
 (rum/defc TabMenu < rum/reactive []
   (defn tabMapper [item]
     (if (= item :ALL)
-      (ui/tab {:key (name item) :value :ALL :label "ILLUSTRATIONS" :id item})
+      (ui/tab {:key (name item) :value :ALL :label "2D" :id item})
       (ui/tab {:key (name item) :value (name item) :label (name item) :id item})))
   (ui/tabs {:key "navmenu" :centered true :value ((rum/react DynamicReactState/State) :category) :indicatorColor "primary" :textColor "primary" :onChange (fn [event value] (oncatClick (keyword value)))}
            (map tabMapper (sort sorter (filter filterfn (keys consts/projectListLabels))))))
