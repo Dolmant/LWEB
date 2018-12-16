@@ -458,7 +458,7 @@ body {
 }
 
 .blur-up.lazyloaded {
-  animation: sharpen 0.2s;
+  animation: sharpen 0.1s;
   -webkit-animation-fill-mode: forwards;
   -moz-animation-fill-mode: forwards;
   -ms-animation-fill-mode: forwards;
