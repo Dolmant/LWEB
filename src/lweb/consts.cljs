@@ -12,7 +12,13 @@
 
 (def projectListInitial {; // This order is important if NATURE + SCIENCE + ANATOMY are not in this order
     ; // navigation vis the arrows image_number will be incorrect
-                         :NATURE [{:img_src "./assets/webImages/WaterPython.jpg"
+                         :NATURE [{:img_src "./assets/webImages/DragonPoster.jpg"
+                                   :img_txt "Dragon Poster"
+                                   :thumbs_src "./assets/webImages/thumbs/DragonPoster.jpg"}
+                                  {:img_src "./assets/webImages/PeronsTreeFrog.jpg"
+                                   :img_txt "Perons Tree Frog"
+                                   :thumbs_src "./assets/webImages/thumbs/PeronsTreeFrog.jpg"}
+                                  {:img_src "./assets/webImages/WaterPython.jpg"
                                    :img_txt "Water Python"
                                    :thumbs_src "./assets/webImages/thumbs/WaterPython.jpg"}
                                   {:img_src "./assets/webImages/lizard.jpg"
@@ -157,7 +163,10 @@
                                                          "./assets/webImages/thumbs/UterineInversion_Colour05.jpg"]
                                     :img_txt "Uterine Inversion Collection"
                                     :thumbs_src "./assets/webImages/thumbs/UIFolder.jpg"}]
-                         :PUBLISHINGS [{:img_src "./assets/webImages/Kohakutou.jpg"
+                         :PUBLISHINGS [{:img_src "./assets/webImages/NatureCandyda.jpg"
+                                        :img_txt "Nature Cover"
+                                        :thumbs_src "./assets/webImages/thumbs/NatureCandyda.jpg"}
+                                       {:img_src "./assets/webImages/Kohakutou.jpg"
                                         :img_txt "Kohakutou"
                                         :thumbs_src "./assets/webImages/thumbs/Kohakutou.jpg"}
                                        {:img_src "./assets/webImages/EndostealBoneSurface.jpg"
@@ -377,12 +386,31 @@
                                 {:img_src "./assets/webImages/TerraMon.jpg"
                                  :img_txt "TerraMon"
                                  :thumbs_src "./assets/webImages/thumbs/TerraMon.jpg"}]
-                         :3D [{:img_src "./assets/webImages/CRISPR.jpg"
+                         :3D [{:img_src "./assets/webImages/Salamander.jpg"
+                               :img_txt "Salamander"
+                               :thumbs_src "./assets/webImages/thumbs/Salamander.jpg"}
+                              {:img_src "./assets/webImages/Moray3D.jpg"
+                               :img_txt "Moray Eel"
+                               :thumbs_src "./assets/webImages/thumbs/Moray3D.jpg"}
+                              {:is_video true
+                               :img_src "./assets/images/MorayChase.mp4"
+                               :img_txt "Moray Chasing Worm"
+                               :thumbs_src "./assets/webImages/thumbs/Moray3D.jpg"}
+                              {:img_src "./assets/webImages/ThornyDevilExample.jpg"
+                               :img_txt "Thorny Devil"
+                               :thumbs_src "./assets/webImages/thumbs/ThornyDevilExample.jpg"}
+                              {:img_src "./assets/webImages/NatureCandyda.jpg"
+                               :img_txt "Nature Cover"
+                               :thumbs_src "./assets/webImages/thumbs/NatureCandyda.jpg"}
+                              {:img_src "./assets/webImages/CRISPR.jpg"
                                :img_txt "CRISPR"
                                :thumbs_src "./assets/webImages/thumbs/CRISPR.jpg"}
                               {:img_src "./assets/webImages/CRISPRcloseup.jpg"
                                :img_txt "CRISPR Closeup"
                                :thumbs_src "./assets/webImages/thumbs/CRISPRcloseup.jpg"}
+                              {:img_src "./assets/webImages/Squat.jpg"
+                               :img_txt "Schrodingers Cat"
+                               :thumbs_src "./assets/webImages/thumbs/Squat.jpg"}
                               {:img_src "./assets/images/DNA_RenderGifu.gif"
                                :img_txt "DNA Render"
                                :thumbs_src "./assets/webImages/thumbs/DNA_RenderGifu.jpg"}
@@ -420,7 +448,10 @@
                                    :model_src "/assets/models/SnakeRice.gltf"
                                    :thumbs_src "./assets/webImages/thumbs/SnakeRice.jpg"}]
                          :CHECKOUT [] ;// Empty just used for the store
-                         :HIGHLIGHTS [{:img_src "./assets/webImages/VIVID_NightRenderV7full.jpg"
+                         :HIGHLIGHTS [{:img_src "./assets/webImages/Salamander.jpg"
+                                       :img_txt "Salamander"
+                                       :thumbs_src "./assets/webImages/thumbs/Salamander.jpg"}
+                                      {:img_src "./assets/webImages/VIVID_NightRenderV7full.jpg"
                                        :img_txt "Beautiful and dangerous"
                                        :desc "Lead Animator for a collaborative VIVID project between CSIRO and The Garvan Institute in 2018"
                                        :thumbs_src "./assets/webImages/thumbs/VIVID_NightRenderV7full.jpg"}
