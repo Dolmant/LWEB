@@ -3,7 +3,7 @@
               [lweb.wrappers.ui :as ui]
               [lweb.wrappers.ic :as ic]
               ["toastr" :as toastr]
-              ["react-spinners"]
+              ; ["react-spinners"]
               ["/gen/progressShim/progressShim"]
               [lweb.App :as App]
               ["/gen/particles/particles" :as particlesJS]))

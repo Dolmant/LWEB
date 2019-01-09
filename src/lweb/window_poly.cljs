@@ -3,7 +3,7 @@
    [lweb.wrappers.ui :as ui]
    [lweb.wrappers.ic :as ic]
    ["toastr"]
-   ["react-spinners"]
+  ;  ["react-spinners"]
     ;Above libs expect window to be null, so must be imported first
    ["node-window-polyfill" :as poly]))
 

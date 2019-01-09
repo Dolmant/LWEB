@@ -44,7 +44,7 @@
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
         "react-jss": "^8.6.1",
-        "react-spinners": "^0.4.4",
+        "react-spinners": "^0.5.1",
         "react-stripe-checkout": "^2.6.3",
         "three": "^0.96.0",
         "three-gltf-loader": "^1.96.0",

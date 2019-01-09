@@ -6,13 +6,13 @@
             [lweb.Shop.CartManagement.RemoveFromCart :as RemoveFromCart]
             [lweb.Shop.Postage.PostageCalculator :as PostageCalculator]
             [clojure.string :as str]
-            ["react-spinners/PacmanLoader" :as Pacman]
+            ; ["react-spinners/PacmanLoader" :as Pacman]
             ["react-stripe-checkout" :as Stripe]
             [lweb.Shop.Postage.State :as PostageState]
             [lweb.wrappers.ui :as ui]))
 
 (def StripeCheckout (adapt-rum-class Stripe/default))
-(def PacmanLoader (adapt-rum-class Pacman))
+; (def PacmanLoader (adapt-rum-class Pacman))
 
 (rum/defc Checkout < rum/reactive []
   (def shoppingCart ((rum/react CartManagementState/State) :shoppingCart))
@@ -43,7 +43,9 @@
               [:div.empty-cart "You have nothing in your cart!"])]
     (if loading
       [:div.empty-cart
-       (PacmanLoader {:loading true})]
+      ;  (PacmanLoader {:loading true})
+       "Loading..."
+       ]
       (if paid
         [:div.empty-cart "Thanks for your purchase!"]
         (ui/grid {:container true :className "checkout" :alignItems "center" :direction "column"}

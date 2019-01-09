@@ -43,9 +43,12 @@
      [:div.desc_text.divider
       [:div.news
        [:div
+        "Animation on CAR T Cells featured on SBS World News, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://www.sbs.com.au/news/revolutionary-cancer-treatment-approved"} "here"]] "/full animation " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://www.petermac.org/services/treatment/haematological-treatments/cellular-therapies-program/car-t-cell-therapy"} "here!"]]
+        [:br]
         "Beautiful and dangerous: animating deadly viruses at Vivid Sydney, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "https://blog.csiro.au/beautiful-and-dangerous-animating-deadly-viruses-at-vivid-sydney/"} "here!"]]
         [:br]
-        "Mastering biomedical science by design, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]]]]]
+        "Mastering biomedical science by design, link " [:strong [:a {:rel "noopener noreferrer" :target "_blank" :href "http://newsroom.uts.edu.au/news/2017/10/mastering-biomedical-science-design"} "here!"]]
+        ]]]]
             ; [:div.sidescroller
             ;     (Slider {:nextArrow (LeftNavButton)
             ;             :prevArrow (RightNavButton)
