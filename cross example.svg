@@ -24,20 +24,16 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     transform="translate(0,-284.3)"
-     id="layer1">
-    <path
-       id="path3719"
-       d="M 1.0440443,295.95596 11.651303,285.34871"
-       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <path
-       id="path3719-3"
-       d="M 11.605803,296.00146 0.99854429,285.39421"
-       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <path
-       id="path3751"
-       d="M 0.85192161,290.69113 H 11.645921"
-       style="fill:none;stroke:#000000;stroke-width:0.26924437px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-  </g>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 1.1421226,11.61096 C 4.6778756,8.07521 8.2136287,4.53946 11.749382,1.00371"
+     id="path3719" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 11.703882,11.65646 C 8.1681287,8.12071 4.6323756,4.58496 1.0966226,1.04921"
+     id="path3719-3" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:0.26924437px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 0.95,6.34613 c 3.5979999,0 7.1959998,0 10.794,0"
+     id="path3751" />
 </svg>

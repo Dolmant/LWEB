@@ -6,6 +6,9 @@ magick mogrify -resize 500x500 -quality 50 -path ../webImages/thumbs *.jpg
 
 Site design:
 cross to hamburger animation in svg?
+https://codemyui.com/svg-css3-hamburger-to-close-button-animation/
+
+something like :rotate(45deg) translate(4px, 5px)
 
 todo:
 Delete store payment stuff in gcloud
