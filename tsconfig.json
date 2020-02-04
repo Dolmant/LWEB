@@ -4,7 +4,7 @@
     "lib": [
       "es2017","es2015","dom","es6", "esnext.asynciterable", "es2018.asynciterable"
     ],
-    "module": "AMD",
+    "module": "CommonJS",
     "outDir": "./",
     "sourceMap": false,
     "strict": true,

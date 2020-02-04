@@ -1,4 +1,4 @@
-{
+export default {
   "Nature": [
     {
       "file": "DragonPoster.jpg",
