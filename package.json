@@ -4,8 +4,10 @@
   "description": "Modelled based on https://tworobbers.com/",
   "main": "lweb.js",
   "scripts": {
-    "build": "parcel build ./lweb.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "parcel build ./lweb.ts --public-url /dist",
+    "watch": "parcel watch ./lweb.ts --public-url /dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "stats": "npx size-limit"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,14 @@
     "parcel": "^1.12.4"
   },
   "devDependencies": {
+    "@size-limit/preset-app": "^4.0.1",
+    "size-limit": "^4.0.1",
     "typescript": "^3.7.5"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/lweb.js",
+      "limit": "10 KB"
+    }
+  ]
 }

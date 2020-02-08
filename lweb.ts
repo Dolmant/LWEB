@@ -16,9 +16,23 @@ const getHQPath = (file: string) => {
 }
 
 let cursors: {[x:string]: number} = {}
+let selected: keyof typeof config | "" = ""
 
-const loadAsset = (targetEl: HTMLElement, source: assetItem) => {
+const selectCategory = (category: typeof selected) => {
+  if (selected) {
+    const item = document.getElementById(selected) as HTMLElement
+    item.style.display = "none"
+  }
+  const item = document.getElementById(category) as HTMLElement
+  item.style.display = "flex"
+  selected = category
+}
+
+const loadAsset = (targetEl: Element, source: assetItem) => {
   // Loads image into target el, displays loading graphic while its fetching
+  if (!source) {
+    debugger;
+  }
   switch(true) {
     case (source.file.includes(".mp4")): {
       // todo
@@ -31,8 +45,15 @@ const loadAsset = (targetEl: HTMLElement, source: assetItem) => {
       newImg.src = loadingSpinner
       targetEl.appendChild(newImg)
 
+      newImg.addEventListener("click", function() {
+        if (!this.classList.contains("selected")) {
+          highDefAsset(this, source)
+        }
+        this.classList.toggle("selected")
+      })
+
       var backgroundImg = new Image;
-      backgroundImg.addEventListener("onload", function(event) {
+      backgroundImg.addEventListener("load", function(event) {
         const target = event.target as HTMLImageElement
         newImg.src = target.src;
       })
@@ -53,7 +74,12 @@ const highDefAsset = (targetEl: HTMLImageElement, source: assetItem) => {
   switch(true) {
     case (source.file.includes(".jpg")):
     case (source.file.includes(".gif")): {
-      // todo
+      var backgroundImg = new Image;
+      backgroundImg.addEventListener("load", function(event) {
+        const target = event.target as HTMLImageElement
+        targetEl.src = target.src;
+      })
+      backgroundImg.src = getHQPath(source.file);
       break
     }
     case (source.file.includes(".mp4")): {
@@ -69,37 +95,76 @@ const highDefAsset = (targetEl: HTMLImageElement, source: assetItem) => {
     }
   }
 }
-(Object.keys(config) as Array<keyof typeof config>).forEach((category) => {
-  const categoryContainer = document.getElementById(category)
-  if (!categoryContainer) {
-    return
-  }
-  const populateItems = () => {
+
+let balancing = false
+const populateItems = (forcePopulate: typeof selected = "") => {
+  const category = selected || forcePopulate
+  if (category && !balancing) {
+    let columns = 3
+    if (getWidth() <= 300) {
+      columns = 1
+    } else if (getWidth() <= 600) {
+      columns = 2
+    }
+
     const initI = cursors[category] || 0
     const endI = initI + 9
-    for (let i = initI; i < endI; i++) {
-      let index = i
-      // todo check this correctly lines up
-      if (config[category].length >= i) {
-        cursors[category] = i - config[category].length
-        index = i - config[category].length
+    let i = initI
+    const balanceImgs = () => {
+      if (i >= endI) {
+        balancing = false
+        return
       }
-      loadAsset(categoryContainer, config[category][index])
+      const parent = document?.getElementById(category) as HTMLElement;
+      let index = i
+      let target: Element = parent.children[0]
+      for (let i = 1; i < columns; i++) {
+        if (target?.clientHeight > parent.children[i]?.clientHeight) {
+          target = parent.children[i]
+        }
+      }
+      if (config[category].length <= i) {
+        cursors[category] = i % config[category].length
+        index = i % config[category].length
+      }
+      loadAsset(target, config[category][index])
       cursors[category] = (cursors[category] || 0) + 1
+      i++
+      requestAnimationFrame(balanceImgs)
     }
+    balancing = true
+    requestAnimationFrame(balanceImgs)
   }
-  categoryContainer.addEventListener('scroll', function() {
-    // todo check this works
-    if ((this.scrollTop + this.scrollHeight) >= this.offsetHeight) {
-      populateItems()
-    }
-  })
-  populateItems()
+}
+
+const contentEl = document?.getElementById("content");
+
+(Object.keys(config) as Array<keyof typeof config>).forEach((category) => {
+  const containerEl = document.createElement("div")
+  containerEl.id = category
+  containerEl.className = "category"
+  containerEl.style.display = "none"
+  for(let i = 0; i < 3; i++) {
+    const columnEl = document.createElement("div")
+    columnEl.className = "column column" + String(i)
+    containerEl?.appendChild(columnEl)
+  }
+  contentEl?.appendChild(containerEl)
+  populateItems(category)
+})
+selectCategory("Nature")
+window.addEventListener('scroll', function() {
+  // todo check this works
+  if (document.body.scrollHeight - document.body.scrollTop <= document.body.clientHeight + 100) {
+    populateItems()
+  }
 })
 
-window.onscroll = () => {
-  // Hook into scroll of elements. If at end, add extra images to the element
-}
+/* Init */
+
+document.getElementById("svg8")?.addEventListener("click", function() {
+  this.classList.toggle('open');
+})
 
 // Attach handlers
 const menuItem = document.getElementById("")
@@ -107,4 +172,24 @@ if (menuItem) {
   menuItem.onclick = ((ev: MouseEvent) => {
     // todo mark classes/display none on stuff
   })
+}
+
+function getWidth() {
+  return Math.max(
+    document.body.scrollWidth,
+    document.documentElement.scrollWidth,
+    document.body.offsetWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  );
+}
+
+function getHeight() {
+  return Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.offsetHeight,
+    document.documentElement.clientHeight
+  );
 }

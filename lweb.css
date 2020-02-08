@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+}
+svg path {
+  transform-origin: left;
+  will-change: transform;
+  transition: 0.3s ease-in;
+}
+img {
+  max-width: 288px;
+  margin: 5px 0;
+  border: 1px transparent solid;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.selected {
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+}
+#content {
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.category {
+  display: flex;
+  max-width: 100%;
+  background-color: grey;
+  /* Prevents columns from alll taking the same height so JS can determine which element to stack */
+  align-items: flex-start;
+}
+.column {
+  min-width: 0;
+  padding: 5px;
+  /* max-width: 700px; */
+  display: flex;
+  flex-direction: column;
+}
+#path3 {
+  opacity: 0;
+}
+.open #path3 {
+  opacity: 1;
+}
+.open #path1 {
+  transform: rotate(45deg);
+}
+.open #path2 {
+  transform: rotate(-45deg);
+}
+@media only screen and (max-width: 600px) {
+  .column2 {
+    display: none;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .column3 {
+    display: none;
+  }
+}
