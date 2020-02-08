@@ -152,7 +152,7 @@ const contentEl = document?.getElementById("content");
   contentEl?.appendChild(containerEl)
   populateItems(category)
 })
-selectCategory("Nature")
+
 window.addEventListener('scroll', function() {
   // todo check this works
   if (document.body.scrollHeight - document.body.scrollTop <= document.body.clientHeight + 100) {
@@ -162,7 +162,7 @@ window.addEventListener('scroll', function() {
 
 /* Init */
 
-document.getElementById("svg8")?.addEventListener("click", function() {
+document.getElementById("crossSVG")?.addEventListener("click", function() {
   this.classList.toggle('open');
 })
 

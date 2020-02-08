@@ -1,10 +1,25 @@
 body {
   margin: 0;
 }
-svg path {
+
+header {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+#crossSVG path {
   transform-origin: left;
   will-change: transform;
   transition: 0.3s ease-in;
+}
+#waveSVG path {
+  transform-origin: center;
+  will-change: transform;
+  transition: 1s ease;
+}
+#waveSVG.leave path {
+  transform: scale(20);
 }
 img {
   max-width: 288px;

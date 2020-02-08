@@ -738,7 +738,6 @@ Object.keys(config_1.default).forEach(function (category) {
   (_b = contentEl) === null || _b === void 0 ? void 0 : _b.appendChild(containerEl);
   populateItems(category);
 });
-selectCategory("Nature");
 window.addEventListener('scroll', function () {
   // todo check this works
   if (document.body.scrollHeight - document.body.scrollTop <= document.body.clientHeight + 100) {
@@ -747,7 +746,7 @@ window.addEventListener('scroll', function () {
 });
 /* Init */
 
-(_b = document.getElementById("svg8")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
+(_b = document.getElementById("crossSVG")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
   this.classList.toggle('open');
 }); // Attach handlers
 
