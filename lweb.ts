@@ -138,8 +138,10 @@ const populateItems = (forcePopulate: typeof selected = "") => {
 }
 
 const contentEl = document?.getElementById("content");
+const headerEl = document?.getElementById("header");
 
 (Object.keys(config) as Array<keyof typeof config>).forEach((category) => {
+  // Create basic container elements for each category
   const containerEl = document.createElement("div")
   containerEl.id = category
   containerEl.className = "category"
@@ -150,11 +152,20 @@ const contentEl = document?.getElementById("content");
     containerEl?.appendChild(columnEl)
   }
   contentEl?.appendChild(containerEl)
+  // TODO only populate when you navigate to the first items
   populateItems(category)
+
+  // Create menu items
+  const buttonEl = document.createElement("button")
+  buttonEl.id = category + "Button"
+  buttonEl.className = "categoryButton"
+  buttonEl.textContent = category
+  headerEl?.appendChild(buttonEl)
 })
 
+// TODO navigation directly to a particular list
+
 window.addEventListener('scroll', function() {
-  // todo check this works
   if (document.body.scrollHeight - document.body.scrollTop <= document.body.clientHeight + 100) {
     populateItems()
   }

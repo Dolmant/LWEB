@@ -549,7 +549,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
-var _a, _b;
+var _a, _b, _c;
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -721,8 +721,10 @@ var populateItems = function populateItems(forcePopulate) {
 };
 
 var contentEl = (_a = document) === null || _a === void 0 ? void 0 : _a.getElementById("content");
+var headerEl = (_b = document) === null || _b === void 0 ? void 0 : _b.getElementById("header");
 Object.keys(config_1.default).forEach(function (category) {
-  var _a, _b;
+  var _a, _b, _c; // Create basic container elements for each category
+
 
   var containerEl = document.createElement("div");
   containerEl.id = category;
@@ -735,18 +737,25 @@ Object.keys(config_1.default).forEach(function (category) {
     (_a = containerEl) === null || _a === void 0 ? void 0 : _a.appendChild(columnEl);
   }
 
-  (_b = contentEl) === null || _b === void 0 ? void 0 : _b.appendChild(containerEl);
-  populateItems(category);
-});
+  (_b = contentEl) === null || _b === void 0 ? void 0 : _b.appendChild(containerEl); // TODO only populate when you navigate to the first items
+
+  populateItems(category); // Create menu items
+
+  var buttonEl = document.createElement("button");
+  buttonEl.id = category + "Button";
+  buttonEl.className = "categoryButton";
+  buttonEl.textContent = category;
+  (_c = headerEl) === null || _c === void 0 ? void 0 : _c.appendChild(buttonEl);
+}); // TODO navigation directly to a particular list
+
 window.addEventListener('scroll', function () {
-  // todo check this works
   if (document.body.scrollHeight - document.body.scrollTop <= document.body.clientHeight + 100) {
     populateItems();
   }
 });
 /* Init */
 
-(_b = document.getElementById("crossSVG")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
+(_c = document.getElementById("crossSVG")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", function () {
   this.classList.toggle('open');
 }); // Attach handlers
 
@@ -792,7 +801,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38555" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33057" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
