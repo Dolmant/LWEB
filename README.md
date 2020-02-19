@@ -10,6 +10,10 @@ https://codemyui.com/svg-css3-hamburger-to-close-button-animation/
 
 something like :rotate(45deg) translate(4px, 5px)
 
+animnate buttons on main page, top button in top right, page spills when content selected
+some animation on the title (underline?) use https://codepen.io/perry_nt/pen/OWoNxK
+https://codepen.io/deineko/pen/jrmmoQ
+
 todo:
 Delete store payment stuff in gcloud
 fix emails

@@ -138,7 +138,7 @@ const populateItems = (forcePopulate: typeof selected = "") => {
 }
 
 const contentEl = document?.getElementById("content");
-const headerEl = document?.getElementById("header");
+const headerEl = document?.getElementById("menu");
 
 (Object.keys(config) as Array<keyof typeof config>).forEach((category) => {
   // Create basic container elements for each category
@@ -158,7 +158,7 @@ const headerEl = document?.getElementById("header");
   // Create menu items
   const buttonEl = document.createElement("button")
   buttonEl.id = category + "Button"
-  buttonEl.className = "categoryButton"
+  buttonEl.className = "panel"
   buttonEl.textContent = category
   headerEl?.appendChild(buttonEl)
 })

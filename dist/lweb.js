@@ -721,7 +721,7 @@ var populateItems = function populateItems(forcePopulate) {
 };
 
 var contentEl = (_a = document) === null || _a === void 0 ? void 0 : _a.getElementById("content");
-var headerEl = (_b = document) === null || _b === void 0 ? void 0 : _b.getElementById("header");
+var headerEl = (_b = document) === null || _b === void 0 ? void 0 : _b.getElementById("menu");
 Object.keys(config_1.default).forEach(function (category) {
   var _a, _b, _c; // Create basic container elements for each category
 
@@ -743,7 +743,7 @@ Object.keys(config_1.default).forEach(function (category) {
 
   var buttonEl = document.createElement("button");
   buttonEl.id = category + "Button";
-  buttonEl.className = "categoryButton";
+  buttonEl.className = "panel";
   buttonEl.textContent = category;
   (_c = headerEl) === null || _c === void 0 ? void 0 : _c.appendChild(buttonEl);
 }); // TODO navigation directly to a particular list
@@ -801,7 +801,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33057" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40911" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
