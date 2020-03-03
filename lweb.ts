@@ -1,10 +1,13 @@
 import config from "./config"
+import particles from "./particles"
 
 interface assetItem {
   file: string
   files?: string[]
   text: string
 }
+
+particles("splash", "/assets/particlesBusted.json", () => console.log("Particles loaded"))
 
 const loadingSpinner = "/processedImages/thumbs/MV_AniBlack.gif"
 
@@ -160,6 +163,9 @@ const headerEl = document?.getElementById("menu");
   buttonEl.id = category + "Button"
   buttonEl.className = "panel"
   buttonEl.textContent = category
+  buttonEl.onclick = () => {
+    selectCategory(category)
+  }
   headerEl?.appendChild(buttonEl)
 })
 

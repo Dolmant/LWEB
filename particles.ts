@@ -1,5 +1,6 @@
 /* -----------------------------------------------
 /* Author : Vincent Garreau  - vincentgarreau.com
+/* Modified by me
 /* MIT license: http://opensource.org/licenses/MIT
 /* Demo / Generator : vincentgarreau.com/particles.js
 /* GitHub : github.com/VincentGarreau/particles.js
@@ -1498,9 +1499,9 @@ function isInArray(value, array) {
 
 /* ---------- particles.js functions - start ------------ */
 
-window.pJSDom = [];
+const pJSDom = [];
 
-window.particlesJS = function(tag_id, params){
+const particlesJS = function(tag_id, params){
 
   //console.log(params);
 
@@ -1545,7 +1546,7 @@ window.particlesJS = function(tag_id, params){
 
 };
 
-window.particlesJS.load = function(tag_id, path_config_json, callback){
+particlesJS.load = function(tag_id, path_config_json, callback){
 
   /* load json config */
 
@@ -1664,10 +1665,8 @@ window.particlesJS.load = function(tag_id, path_config_json, callback){
     };
   
     var params = particlesConfig;
-    window.particlesJS(tag_id, params);
+    particlesJS(tag_id, params);
     if(callback) callback();
 };
 
-const particlesJS = window.particlesJS.load
-
-export default particlesJS
+export default particlesJS.load

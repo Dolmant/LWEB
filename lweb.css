@@ -3,6 +3,7 @@
 body {
   margin: 0;
   font-family:comfortaa;
+  overflow-x: hidden;
 }
 
 #logo {
@@ -30,15 +31,17 @@ body {
   max-height: 40vh;
 }
 
-#splash #menu {
-  position: absolute;
-  transform: translateX(-50%);
-  bottom: 10vh;
-  left: 50vw;
-  max-height: 40vh;
+#menu {
+  position: sticky;
+  top: 0;
+  height: 0px;
+  margin-top: -20vh;
+  margin-bottom: -20vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-left: 5vw;
+  max-width:90vw;
 }
 
 #splash {
@@ -62,6 +65,7 @@ header {
   justify-content: flex-end;
   display: flex;
   padding: 0 2rem;
+  z-index: 1;
 }
 
 /* social media on top? */
@@ -101,7 +105,7 @@ footer {
   object-fit: contain;
 }
 #content {
-  background-color: grey;
+  background-color: #add8e6;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,7 +114,8 @@ footer {
 .category {
   display: flex;
   max-width: 100%;
-  background-color: grey;
+  background-color: #add8e6;
+  min-height: 500px;
   /* Prevents columns from alll taking the same height so JS can determine which element to stack */
   align-items: flex-start;
 }
@@ -161,14 +166,17 @@ button {
   color:var(--main-bg-color);background:transparent;border-width:2px;border-style: solid;border-color: var(--main-bg-color);position:relative;margin:1em;display:inline-block;padding:0.5em 1em;transition:all 0.3s ease-in-out;text-align:center;
 font-weight:bold;
 
+
 }
+button {background-color:var(--main-text-color);}
 button:before, button:after {content:'';display:block;position:absolute;border-color:var(--main-bg-color);box-sizing:border-box;border-style:solid;width:1em;height:1em;transition:all 0.3s ease-in-out}
 button:before {top:-6px;left:-6px;border-width:2px 0 0 2px;z-index:5;}
 button:after {bottom:-6px;right:-6px;border-width:0 2px 2px 0;}
 button:hover:before, button:hover:after {width:calc(100% + 12px);
   height:calc(100% + 12px);border-color:var(--main-text-color)}
 button:hover {color:var(--main-bg-color);background-color:var(--main-text-color);border-color:var(--main-text-color)}
-.panel {max-width:960px;text-align:center;position:relative;font-size: large;}
+.panel {max-width:960px;text-align:center;position:relative;font-size: 1.2rem;}
+
 
 
 .borderless button {border-color:rgba(0,0,0,0);color:#999}
