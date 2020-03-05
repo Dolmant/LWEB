@@ -22,13 +22,29 @@ let cursors: {[x:string]: number} = {}
 let selected: keyof typeof config | "" = ""
 
 const selectCategory = (category: typeof selected) => {
+  if (selected === category) {
+    return
+  }
+  const item = document.getElementById(category) as HTMLElement
+  item.style.display = "flex"
+  populateItems(category)
   if (selected) {
     const item = document.getElementById(selected) as HTMLElement
     item.style.display = "none"
   }
-  const item = document.getElementById(category) as HTMLElement
-  item.style.display = "flex"
   selected = category
+
+  // Scrolls to the beginning of the content. If page is being populated, will have to wait until balancing is done.
+  const winheight = window.innerHeight || (document.documentElement || document.body).clientHeight
+  const ensureScroll = () => {
+    const scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+    if ((scrollTop < winheight - 100 || scrollTop > winheight + 100) && balancing) {
+      setTimeout(ensureScroll, 25)
+    } else {
+      window.scrollTo({top: winheight, behavior: 'smooth' })
+    }
+  }
+  ensureScroll()
 }
 
 const loadAsset = (targetEl: Element, source: assetItem) => {
@@ -101,7 +117,7 @@ const highDefAsset = (targetEl: HTMLImageElement, source: assetItem) => {
 
 let balancing = false
 const populateItems = (forcePopulate: typeof selected = "") => {
-  const category = selected || forcePopulate
+  const category = forcePopulate || selected
   if (category && !balancing) {
     let columns = 3
     if (getWidth() <= 300) {
@@ -112,27 +128,37 @@ const populateItems = (forcePopulate: typeof selected = "") => {
 
     const initI = cursors[category] || 0
     const endI = initI + 9
-    let i = initI
+    let count = initI
     const balanceImgs = () => {
-      if (i >= endI) {
+      let index = count
+      if (count >= endI) {
         balancing = false
+        const scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+        const winheight = window.innerHeight || (document.documentElement || document.body).clientHeight
+      
+        if(scrollTop + winheight > getHeight() - 100) {
+          setTimeout(populateItems)
+        }
         return
       }
       const parent = document?.getElementById(category) as HTMLElement;
-      let index = i
+
+      // Get smallest column
       let target: Element = parent.children[0]
       for (let i = 1; i < columns; i++) {
         if (target?.clientHeight > parent.children[i]?.clientHeight) {
           target = parent.children[i]
         }
       }
-      if (config[category].length <= i) {
-        cursors[category] = i % config[category].length
-        index = i % config[category].length
+
+      // Uses cound and index to prevent overflow
+      if (config[category].length <= index) {
+        cursors[category] = index % config[category].length
+        index = index % config[category].length
       }
       loadAsset(target, config[category][index])
       cursors[category] = (cursors[category] || 0) + 1
-      i++
+      count++
       requestAnimationFrame(balanceImgs)
     }
     balancing = true
@@ -172,7 +198,10 @@ const headerEl = document?.getElementById("menu");
 // TODO navigation directly to a particular list
 
 window.addEventListener('scroll', function() {
-  if (document.body.scrollHeight - document.body.scrollTop <= document.body.clientHeight + 100) {
+  var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+  var winheight = window.innerHeight || (document.documentElement || document.body).clientHeight
+
+  if(scrollTop + winheight > getHeight() - 100) {
     populateItems()
   }
 })
@@ -197,7 +226,8 @@ function getWidth() {
     document.documentElement.scrollWidth,
     document.body.offsetWidth,
     document.documentElement.offsetWidth,
-    document.documentElement.clientWidth
+    document.documentElement.clientWidth,
+    document.body.clientWidth
   );
 }
 
@@ -207,6 +237,7 @@ function getHeight() {
     document.documentElement.scrollHeight,
     document.body.offsetHeight,
     document.documentElement.offsetHeight,
-    document.documentElement.clientHeight
+    document.documentElement.clientHeight,
+    document.body.clientHeight
   );
 }

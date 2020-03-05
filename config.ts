@@ -227,11 +227,7 @@ export default {
     },
     {
       "file": "ProteinExpression.jpg",
-      "text": "Logo"
-    },
-    {
-      "file": "LeotideIconTest.jpg",
-      "text": "Protein Expression (Masters final seminar)"
+      "text": "Protein Expression"
     },
     {
       "file": "SeptemberFlier.jpg",

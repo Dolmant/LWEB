@@ -36,7 +36,7 @@ body {
   top: 0;
   height: 0px;
   margin-top: -20vh;
-  margin-bottom: -20vh;
+  margin-bottom: 20vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -98,7 +98,7 @@ footer {
   border-radius: 5px;
   object-fit: cover;
 }
-.selected {
+#content .selected {
   max-width: 100%;
   /* view height - Header - footer */
   max-height: calc(100vh - 4rem - 4rem);

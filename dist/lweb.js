@@ -289,10 +289,7 @@ exports.default = {
     "text": "Logo"
   }, {
     "file": "ProteinExpression.jpg",
-    "text": "Logo"
-  }, {
-    "file": "LeotideIconTest.jpg",
-    "text": "Protein Expression (Masters final seminar)"
+    "text": "Protein Expression"
   }, {
     "file": "SeptemberFlier.jpg",
     "text": "Designed to advertise the short film “The Micro Messengers”"
@@ -2320,14 +2317,37 @@ var cursors = {};
 var selected = "";
 
 var selectCategory = function selectCategory(category) {
+  if (selected === category) {
+    return;
+  }
+
+  var item = document.getElementById(category);
+  item.style.display = "flex";
+  populateItems(category);
+
   if (selected) {
     var item_1 = document.getElementById(selected);
     item_1.style.display = "none";
   }
 
-  var item = document.getElementById(category);
-  item.style.display = "flex";
-  selected = category;
+  selected = category; // Scrolls to the beginning of the content. If page is being populated, will have to wait until balancing is done.
+
+  var winheight = window.innerHeight || (document.documentElement || document.body).clientHeight;
+
+  var ensureScroll = function ensureScroll() {
+    var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
+    if ((scrollTop < winheight - 100 || scrollTop > winheight + 100) && balancing) {
+      setTimeout(ensureScroll, 25);
+    } else {
+      window.scrollTo({
+        top: winheight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  ensureScroll();
 };
 
 var loadAsset = function loadAsset(targetEl, source) {
@@ -2420,7 +2440,7 @@ var populateItems = function populateItems(forcePopulate) {
     forcePopulate = "";
   }
 
-  var category = selected || forcePopulate;
+  var category = forcePopulate || selected;
 
   if (category && !balancing) {
     var columns_1 = 3;
@@ -2433,34 +2453,44 @@ var populateItems = function populateItems(forcePopulate) {
 
     var initI = cursors[category] || 0;
     var endI_1 = initI + 9;
-    var i_1 = initI;
+    var count_1 = initI;
 
     var balanceImgs_1 = function balanceImgs_1() {
       var _a, _b, _c;
 
-      if (i_1 >= endI_1) {
+      var index = count_1;
+
+      if (count_1 >= endI_1) {
         balancing = false;
+        var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        var winheight = window.innerHeight || (document.documentElement || document.body).clientHeight;
+
+        if (scrollTop + winheight > getHeight() - 100) {
+          setTimeout(populateItems);
+        }
+
         return;
       }
 
-      var parent = (_a = document) === null || _a === void 0 ? void 0 : _a.getElementById(category);
-      var index = i_1;
+      var parent = (_a = document) === null || _a === void 0 ? void 0 : _a.getElementById(category); // Get smallest column
+
       var target = parent.children[0];
 
-      for (var i_2 = 1; i_2 < columns_1; i_2++) {
-        if (((_b = target) === null || _b === void 0 ? void 0 : _b.clientHeight) > ((_c = parent.children[i_2]) === null || _c === void 0 ? void 0 : _c.clientHeight)) {
-          target = parent.children[i_2];
+      for (var i = 1; i < columns_1; i++) {
+        if (((_b = target) === null || _b === void 0 ? void 0 : _b.clientHeight) > ((_c = parent.children[i]) === null || _c === void 0 ? void 0 : _c.clientHeight)) {
+          target = parent.children[i];
         }
-      }
+      } // Uses cound and index to prevent overflow
 
-      if (config_1.default[category].length <= i_1) {
-        cursors[category] = i_1 % config_1.default[category].length;
-        index = i_1 % config_1.default[category].length;
+
+      if (config_1.default[category].length <= index) {
+        cursors[category] = index % config_1.default[category].length;
+        index = index % config_1.default[category].length;
       }
 
       loadAsset(target, config_1.default[category][index]);
       cursors[category] = (cursors[category] || 0) + 1;
-      i_1++;
+      count_1++;
       requestAnimationFrame(balanceImgs_1);
     };
 
@@ -2503,7 +2533,10 @@ Object.keys(config_1.default).forEach(function (category) {
 }); // TODO navigation directly to a particular list
 
 window.addEventListener('scroll', function () {
-  if (document.body.scrollHeight - document.body.scrollTop <= document.body.clientHeight + 100) {
+  var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+  var winheight = window.innerHeight || (document.documentElement || document.body).clientHeight;
+
+  if (scrollTop + winheight > getHeight() - 100) {
     populateItems();
   }
 });
@@ -2521,11 +2554,11 @@ if (menuItem) {
 }
 
 function getWidth() {
-  return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.documentElement.clientWidth);
+  return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.offsetWidth, document.documentElement.clientWidth, document.body.clientWidth);
 }
 
 function getHeight() {
-  return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.documentElement.clientHeight);
+  return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.documentElement.clientHeight, document.body.clientHeight);
 }
 },{"./config":"config.ts","./particles":"particles.ts"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -2555,7 +2588,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52862" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50879" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
