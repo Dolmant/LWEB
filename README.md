@@ -1,4 +1,7 @@
-Modelled based on https://tworobbers.com/
+TODO:
+1. Fix all file formats to work
+2. Add contact/about page
+3. Leonie to figure out background
 
 imagemagick commands for images:
 magick mogrify -resize 1920x1080 -quality 100 -path ../webImages *.jpg
@@ -7,11 +10,6 @@ magick mogrify -resize 500x500 -quality 50 -path ../webImages/thumbs *.jpg
 Site design:
 make the particles stick together a bit
 
-something like :rotate(45deg) translate(4px, 5px)
-
-animnate buttons on main page, top button in top right, page spills when content selected
-some animation on the title (underline?) use https://codepen.io/perry_nt/pen/OWoNxK
-https://codepen.io/deineko/pen/jrmmoQ
 
 todo:
 Delete store payment stuff in gcloud
@@ -46,3 +44,9 @@ Make sure you select the correct extension for the asset type (.jpg for images, 
 6. type "git commit -a -m "Insert comment here"
 7. type "git push"
 8. Wait 5 minutes and check the website has been updated. Dont forget to do a hard refresh using control + f5
+
+
+OLD:
+animnate buttons on main page, top button in top right, page spills when content selected
+some animation on the title (underline?) use https://codepen.io/perry_nt/pen/OWoNxK
+https://codepen.io/deineko/pen/jrmmoQ
