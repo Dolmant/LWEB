@@ -1,5 +1,9 @@
 import config from "./config"
 import particles from "./particles"
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import { DRACOLoader } from "three/examples/jsm/loaders/DracoLoader"
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 interface assetItem {
   file: string
@@ -12,10 +16,13 @@ particles("splash", "/assets/particlesBusted.json", () => console.log("Particles
 const loadingSpinner = "/processedImages/thumbs/MV_AniBlack.gif"
 
 const getThumbPath = (file: string) => {
-  return "/processedImages/thumbs/" + file
+  return "/processedImages/thumbs/" + file.replace(".gltf", ".jpg").replace(".mp4", ".jpg")
 }
 const getHQPath = (file: string) => {
   return "/processedImages/HQ/" + file
+}
+const getRawPath = (file: string) => {
+  return "/assets/" + file
 }
 
 let cursors: {[x:string]: number} = {}
@@ -48,21 +55,37 @@ const selectCategory = (category: typeof selected) => {
 }
 
 const loadAsset = (targetEl: Element, source: assetItem) => {
-  // Loads image into target el, displays loading graphic while its fetching
-  if (!source) {
-    debugger;
-  }
+  var newImg = document.createElement("img");
+  newImg.src = loadingSpinner
+  targetEl.appendChild(newImg)
+
+  var backgroundImg = new Image;
+  backgroundImg.addEventListener("load", function(event) {
+    const target = event.target as HTMLImageElement
+    newImg.src = target.src;
+  })
+  backgroundImg.src = getThumbPath(source.file);
   switch(true) {
     case (source.file.includes(".mp4")): {
-      // todo
+      newImg.addEventListener("click", function() {
+        if (!this.classList.contains("selected")) {
+          var newVideo = document.createElement("video");
+          newVideo.controls = true
+          var newSource = document.createElement("source");
+          newSource.src = getRawPath(source.file)
+          newSource.type = "video/mp4"
+          newSource.textContent = "Your browser does not support the video tag."
+          
+          newVideo.appendChild(newSource)
+          targetEl.appendChild(newVideo)
+        }
+        this.classList.toggle("selected")
+      })
+
       break
     }
     case (source.file.includes(".gif")):
     case (source.file.includes(".jpg")): {
-      // todo
-      var newImg = document.createElement("img");
-      newImg.src = loadingSpinner
-      targetEl.appendChild(newImg)
 
       newImg.addEventListener("click", function() {
         if (!this.classList.contains("selected")) {
@@ -71,16 +94,67 @@ const loadAsset = (targetEl: Element, source: assetItem) => {
         this.classList.toggle("selected")
       })
 
-      var backgroundImg = new Image;
-      backgroundImg.addEventListener("load", function(event) {
-        const target = event.target as HTMLImageElement
-        newImg.src = target.src;
-      })
-      backgroundImg.src = getThumbPath(source.file);
       break
     }
     case (source.file.includes(".gltf")): {
-      // todo
+      newImg.addEventListener("click", function() {
+        if (!this.classList.contains("selected")) {
+          var scene = new THREE.Scene();
+          scene.background = new THREE.Color('white');
+          var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+          var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+          scene.add( light );
+    
+          var loader = new GLTFLoader();
+    
+          // Optional: Provide a DRACOLoader instance to decode compressed mesh data
+          var dracoLoader = new DRACOLoader();
+          dracoLoader.setDecoderPath( '/draco/' );
+          loader.setDRACOLoader( dracoLoader );
+    
+          // Load a glTF resource
+          loader.load(
+            // resource URL
+            getRawPath(source.file),
+            // called when the resource is loaded
+            function ( gltf ) {
+              scene.add( gltf.scene );
+    
+              gltf.animations; // Array<THREE.AnimationClip>
+              gltf.scene; // THREE.Group
+              gltf.scenes; // Array<THREE.Group>
+              gltf.cameras; // Array<THREE.Camera>
+              gltf.asset; // Object
+
+              var renderer = new THREE.WebGLRenderer();
+              function animate() {
+                requestAnimationFrame( animate );
+                renderer.render( scene, camera );
+              }
+              const controls = new OrbitControls( camera, renderer.domElement );
+              // controls.minDistance = 2;
+              controls.maxDistance = 2
+              controls.target.set( 0, 0, - 0.2 );
+              controls.update();
+    
+              renderer.setSize( window.innerWidth, window.innerHeight );
+              targetEl.appendChild( renderer.domElement );
+
+              animate();
+            },
+            // called while loading is progressing
+            function ( xhr ) {
+              console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+            },
+            // called when loading has errors
+            function ( error ) {
+              console.log( 'An error happened' );
+              console.log( error );
+            }
+          );
+        }
+        this.classList.toggle("selected")
+      })
       break
     }
     default: {
@@ -106,7 +180,6 @@ const highDefAsset = (targetEl: HTMLImageElement, source: assetItem) => {
       break
     }
     case (source.file.includes(".gltf")): {
-      // todo
       break
     }
     default: {

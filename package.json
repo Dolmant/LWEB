@@ -16,7 +16,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "parcel": "^1.12.4"
+    "parcel": "^1.12.4",
+    "three": "^0.114.0"
   },
   "devDependencies": {
     "@size-limit/preset-app": "^4.0.1",
