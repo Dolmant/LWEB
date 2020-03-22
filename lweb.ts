@@ -2,7 +2,7 @@ import config from "./config"
 import particles from "./particles"
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import { DRACOLoader } from "three/examples/jsm/loaders/DracoLoader"
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 interface assetItem {

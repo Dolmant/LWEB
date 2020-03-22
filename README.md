@@ -1,7 +1,8 @@
 TODO:
-1. Fix all file formats to work
+1. Fix all file formats to work (GIF needs cover, check video player and models)
 2. Add contact/about page
 3. Leonie to figure out background
+
 
 imagemagick commands for images:
 magick mogrify -resize 1920x1080 -quality 100 -path ../webImages *.jpg

@@ -39762,7 +39762,7 @@ var GLTFLoader = function () {
 }();
 
 exports.GLTFLoader = GLTFLoader;
-},{"../../../build/three.module.js":"node_modules/three/build/three.module.js"}],"node_modules/three/examples/jsm/loaders/DracoLoader.js":[function(require,module,exports) {
+},{"../../../build/three.module.js":"node_modules/three/build/three.module.js"}],"node_modules/three/examples/jsm/loaders/DRACOLoader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41092,7 +41092,7 @@ var THREE = __importStar(require("three"));
 
 var GLTFLoader_1 = require("three/examples/jsm/loaders/GLTFLoader");
 
-var DracoLoader_1 = require("three/examples/jsm/loaders/DracoLoader");
+var DRACOLoader_1 = require("three/examples/jsm/loaders/DRACOLoader");
 
 var OrbitControls_js_1 = require("three/examples/jsm/controls/OrbitControls.js");
 
@@ -41205,7 +41205,7 @@ var loadAsset = function loadAsset(targetEl, source) {
             scene.add(light);
             var loader = new GLTFLoader_1.GLTFLoader(); // Optional: Provide a DRACOLoader instance to decode compressed mesh data
 
-            var dracoLoader = new DracoLoader_1.DRACOLoader();
+            var dracoLoader = new DRACOLoader_1.DRACOLoader();
             dracoLoader.setDecoderPath('/draco/');
             loader.setDRACOLoader(dracoLoader); // Load a glTF resource
 
@@ -41420,7 +41420,7 @@ function getWidth() {
 function getHeight() {
   return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.documentElement.clientHeight, document.body.clientHeight);
 }
-},{"./config":"config.ts","./particles":"particles.ts","three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","three/examples/jsm/loaders/DracoLoader":"node_modules/three/examples/jsm/loaders/DracoLoader.js","three/examples/jsm/controls/OrbitControls.js":"node_modules/three/examples/jsm/controls/OrbitControls.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./config":"config.ts","./particles":"particles.ts","three":"node_modules/three/build/three.module.js","three/examples/jsm/loaders/GLTFLoader":"node_modules/three/examples/jsm/loaders/GLTFLoader.js","three/examples/jsm/loaders/DRACOLoader":"node_modules/three/examples/jsm/loaders/DRACOLoader.js","three/examples/jsm/controls/OrbitControls.js":"node_modules/three/examples/jsm/controls/OrbitControls.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -41448,7 +41448,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53503" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45961" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
