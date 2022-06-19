@@ -14,8 +14,10 @@ albums.forEach(async (album) => {
   let nextPage = 1
   const items = []
   while (nextPage) {
-    const results = await fetch("https://www.artstation.com/users/leotide/projects.json?album_id="+album.albumID+"&page=" + String(nextPage))
-      .then((res: any) => res.json())
+    const textRes = await fetch("https://www.artstation.com/users/leotide/projects.json?album_id="+album.albumID+"&page=" + String(nextPage))
+      .then((res: any) => res.text())
+    console.log(textRes)
+    const results = JSON.parse(textRes)
     if (results?.data?.length) {
       items.push(...results.data)
       nextPage++
@@ -37,7 +39,7 @@ albums.forEach(async (album) => {
         // const thumbName = item.cover.thumb_url.substr(item.cover.thumb_url.lastIndexOf("/") + 1).replace(/[\#\?].*$/,'')
         await fetch(asset.image_url)
           .then((res) => {
-            const dest = fs.createWriteStream("./processedImages/HQ/" + fileName)
+            const dest = fs.createWriteStream("./" + fileName)
             res.body.pipe(dest)
           })
           .then(() => result.image = fileName)

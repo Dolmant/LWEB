@@ -3,6 +3,7 @@ TODO:
 2. Add contact/about page
 3. Leonie to figure out background
 
+https://imagemagick.org/script/download.php
 
 imagemagick commands for images:
 magick mogrify -resize 1920x1080 -quality 100 -path ../webImages *.jpg
